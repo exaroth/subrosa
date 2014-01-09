@@ -1,0 +1,21 @@
+{% extends "layout.html"%}
+
+{% block content %}
+<h2>Hello {{ user.username }}!</h2>
+{% if articles %}
+<h3>Your articles: <br></h3>
+{% for article in articles %}
+<article class="article-main">
+<h2><a href="{{ url_for('article_view', id = article.id ) }}" class="title-link text-info">{{ article.title }}</a></h2>
+<h6>Created {{ article.date_created | timesince }}</h6>
+<div class="article-body">
+    {{ article.body |truncate(800)|markdown }}
+</div>
+<hr />
+</article>
+{% endfor %}
+{% else %}
+<h2>No articles here yet, maybe write some cowboy...</h2>
+{% endif %}
+
+{% endblock %}

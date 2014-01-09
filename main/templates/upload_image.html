@@ -1,0 +1,29 @@
+﻿{% extends "layout.html" %}
+
+{% block content %} 
+{% if error %}
+<div class="alert alert-dismissable alert-danger"><strong>Error:</strong><p>{{ error }}</p></div>
+{% endif %}
+<div class="well">
+<form action="" role="form" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+    <legend>Upload Image</legend>
+    <div class="form-group">
+    	<label for="image">Choose File:</label>
+	<input type="file" name="image" class="form-control" id="image" value="" />
+    </div>
+    <div class="form-group">
+	<label for="image-name">Filename</label>
+	<input type="text" name="image-name" id="image-name" class="form-control" value="" />
+    </div>
+    <div class="form-group">
+	<label >
+	    <input id="create-thumbnail" type="checkbox" name="create-thumbnail" />
+	    Custom Filename
+	</label>
+    </div>
+    <div class="form-group">
+	<input class="btn btn-sm btn-primary" type="submit" value="Submit" />
+    </div>
+
+</form></div>
+{% endblock %}

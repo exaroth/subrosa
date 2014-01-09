@@ -1,0 +1,22 @@
+﻿{% extends 'layout.html' %}
+
+{% block content %} 
+<h2>Create new article</h2>
+<hr style="margin: 40px 0;" />
+{% if error %}
+<div class="alert alert-dismissable alert-danger">
+    <button class="close" data-dismiss="alert">x</button>
+    <strong>Error: </strong><p>{{ error }}</p>
+</div>
+{% endif %}
+<form action="" method="POST" role="form" accept-charset="utf-8">
+    <div class="form-group">
+	<input type="text" class="form-control" name="title" id="title" value="{{ title }}" placeholder="Title of the article here..." />
+    </div>
+    <div class="form-group">
+	<textarea id="body" class="body form-control" name="body" cols="30" rows="40" placeholder="Content here...">{{ body }}</textarea>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
+
+{% endblock %}

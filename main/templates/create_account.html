@@ -1,0 +1,33 @@
+﻿{% extends "layout.html" %}
+
+{% block content %} 
+
+{% if error %}
+<div class="alert alert-dismissable alert-danger">
+    <button class="close" type="button" data-dismiss="alert">x</button>
+    <strong>Error:</strong>
+    <p>{{ error }}</p>
+</div>
+{% endif %}
+<form role="form" action="" method="POST" accept-charset="utf-8">
+    <div class="col-md-4 col-md-offset-4">
+	<legend>Create Account</legend>
+	<div class="form-group">
+	    <label for="username">Username</label>
+	    <input type="text" name="username" class="form-control" id="username" value="" />
+	</div>
+	<div class="form-group">
+	    <label for="email">Email</label>
+	    <input type="email" name="email" class="form-control" id="email" value="" />
+	</div>
+	<div class="form-group">
+	    <label for="password">password</label>
+	    <input type="password" name="password" class="form-control" id="password" value="" />
+	</div>
+	<div class="form-group">
+	    <input type="submit" value="Submit" class="btn btn-primary" />
+	</div>
+    </div>
+	
+</form>
+{% endblock %}

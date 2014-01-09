@@ -1,0 +1,23 @@
+﻿{% extends "layout.html" %}
+
+{% block content %} 
+<div class="content">
+    <div class="img-frame col-md-12">
+	<legend>{{ image.filename }}</legend>
+	<div class="panel panel-default">
+	    <div class="panel-body">
+		<a href="{{ url_for('delete_image', id = image.id) }}" class="btn btn-xs btn-danger">Delete Image</a>
+	    </div>
+	    <div class="well well-sm">
+		<small>http://{{ path + '/uploads/' + image.owner.username + '/' +image.filename  }} </small>
+	    </div>
+	    <div class="well well-sm">
+		<small>http://{{ path + '/uploads/' + image.owner.username + '/thumbnails/' +image.thumbnail  }} </small>
+	    </div>
+	</div>
+	<div class="row">
+	    <a href="{{ url_for('send_image', filename = image.owner.username + '/' + image.filename) }}"> <img class="image-preview" style="margin: 0 auto; position: relative; display: block" src="{{ url_for('send_image', filename = image.owner.username + '/' + image.filename) }}" alt="{{ image.filename }}" width="800px" /></a>
+	</div>
+    </div>
+</div>
+{% endblock %}
