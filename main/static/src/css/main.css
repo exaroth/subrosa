@@ -1,72 +1,78 @@
+.hidden {
+  position: absolute;
+  top: auto;
+  left: -999em;
+  right: auto;
+}
 * {
-	box-sizing: border-box;
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
 }
 textarea {
-	font-size: 24px !important;
-	resize: none;
+  font-size: 24px !important;
+  resize: none;
 }
 .article-entry input[type='text'] {
-	font-size: 36px !important;
-	text-align: center;
-	padding: 2em !important;
-	margin-bottom: 2em;
-	outline: none;
-	border: none !important;
-	box-shadow: none !important;
+  font-size: 36px !important;
+  text-align: center;
+  padding: 2em !important;
+  margin-bottom: 2em;
+  outline: none;
+  border: none !important;
+  box-shadow: none !important;
 }
 /*.article-entry input[type='text']:focus {
 	background-color: rgba(0,0,0,.02);
 }
-*/.article-entry textarea {
-	outline: none;
-	border: none !important;
-	box-shadow: none !important;
+*/
+.article-entry textarea {
+  outline: none;
+  border: none !important;
+  box-shadow: none !important;
 }
 html,
 body {
-	height: 100%;
-	/* The html and body elements cannot have any padding or margin. */
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
 }
 /* Wrapper for page content to push down footer */
 .content {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	/* Negative indent footer by it's height */
-	margin: 0 auto -60px;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
 }
 .push,
 .footer {
-	height: 60px;
+  height: 60px;
 }
-
 .title-img {
-	border-radius: 50%;
-	background-color: white;
-	background-image: url("../img/kermit.jpg");
-	background-size: contain;
-	background-position: center center;
-	border: 1px solid rgba(0,0,0,.2);
+  border-radius: 50%;
+  background-color: white;
+  background-image: url("../img/kermit.jpg");
+  background-size: contain;
+  background-position: center center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 body {
-	overflow-x: hidden;
+  overflow-x: hidden;
 }
-
 .title-field {
-	background-color: #fbfbf3;
-	padding-bottom: 3em;
-	border-bottom: 1px solid rgba(0,0,0,.2);
+  background-color: #fbfbf3;
+  padding-bottom: 3em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .main-matter {
-	margin-top: 2em;
+  margin-top: 2em;
 }
 .footer small {
-	text-align: center;
-	display: block;
+  text-align: center;
+  display: block;
 }
-
 /*.footer-matter {
     height: 50px;
     margin-top: 2em;
@@ -74,63 +80,63 @@ body {
     width: 100%;
     background-color: gray;
     }*/
-    .navbar-default {
-    	background-color: white;
-    }
-    .navbar-inner small {
-    	text-align: center;
-    }
-    .navbar-inner {
-    	padding: 2em 0;
-    }
-    .navbar .navbar-nav {
-    	display: inline-block;
-    	float: none;
-    }
-
+.navbar-default {
+  background-color: white;
+}
+.navbar-inner small {
+  text-align: center;
+}
+.navbar-inner {
+  padding: 2em 0;
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+}
 .head-title li {
-	color: black;
+  color: black;
 }
 .head-inner a {
-	color: black;
+  color: black;
 }
-
 ul.nav a {
-	color: black;
+  color: black;
 }
 .navbar-default .navbar-brand {
-    color: #777;
+  color: #777;
 }
 .navbar-default .navbar-brand:hover {
-    color: #777;
+  color: #777;
 }
 .navbar-default .navbar-nav > li > a {
-    color: #777;
+  color: #777;
 }
 .article-main p {
-	font-size: 18px;
-	color: rgba(0,0,0,.8);
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.8);
 }
 .article-main h2 {
-	text-align:center;
+  text-align: center;
 }
 .article-main a {
-	color: rgba(0,0,0,.6);
+  color: rgba(0, 0, 0, 0.6);
 }
 .timesince {
-	color: rgba(0,0,0,.4);
-	padding: 10px 10px 10px 10px;
-	left: 10px;
-	font-weight: bold;
-	border-bottom: 1px dotted rgba(0,0,0,.7);
-	display: block;
-	text-align: right;
-	margin-right: 5em;
-	width: auto;
-	padding-bottom: 2px;
-	padding-right: 0;
-	
+  color: rgba(0, 0, 0, 0.4);
+  padding: 10px 10px 10px 10px;
+  left: 10px;
+  font-weight: bold;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.7);
+  display: block;
+  text-align: right;
+  margin-right: 5em;
+  width: auto;
+  padding-bottom: 2px;
+  padding-right: 0;
 }
 pagination li.active {
-	border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+p {
+  color: red;
 }
