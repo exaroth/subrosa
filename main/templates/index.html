@@ -2,15 +2,15 @@
 
 {% block titlebar %} 
 <div class="row title-field">
-    
     <div class="col-md-12">
 	<h1 class="text-center" style="margin: 1em 0 0.5em 0; font-size: 60px;font-weight: bold">{{ g.title }}</h1>
 	<div class="title-img" style="width: 90px; height: 90px;red; position:
 	    relative; margin: 0 auto; "></div>
     </div>
-<hr />
 </div>
 {% endblock %}
+
+
 {% block content %} 
 
 <!-- <h2>{{ title }}</h2> -->
@@ -25,10 +25,12 @@
 {% if articles.items %}
 {% for article in articles.items %}
 <article class="article-main col-md-10 col-md-offset-1">
+<div class="row">
+<h6 class="timesince pull-right ">Created {{ article.date_created | timesince }} by {{ article.author.username }}</h6>
+</div>
 <a href="{{ url_for('article_view', id = article.id) }}">
     <h1 class="article-title" style="text-align: center; margin-bottom: 1em">{{ article.title }}</h2></a>
-<h6>Created {{ article.date_created | timesince }} by {{ article.author.username }}</h6>
-<div class="article-body">
+<div class="article-body col-xs-12">
     {{ article.body |truncate(800)|markdown }}
 </div>
 {% if not loop.last %}

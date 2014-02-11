@@ -47,7 +47,8 @@ body {
 	background-color: white;
 	background-image: url("../img/kermit.jpg");
 	background-size: contain;
-	background-position: center center
+	background-position: center center;
+	border: 1px solid rgba(0,0,0,.2);
 }
 body {
 	overflow-x: hidden;
@@ -56,6 +57,7 @@ body {
 .title-field {
 	background-color: #fbfbf3;
 	padding-bottom: 3em;
+	border-bottom: 1px solid rgba(0,0,0,.2);
 }
 .main-matter {
 	margin-top: 2em;
@@ -104,4 +106,31 @@ ul.nav a {
 }
 .navbar-default .navbar-nav > li > a {
     color: #777;
+}
+.article-main p {
+	font-size: 18px;
+	color: rgba(0,0,0,.8);
+}
+.article-main h2 {
+	text-align:center;
+}
+.article-main a {
+	color: rgba(0,0,0,.6);
+}
+.timesince {
+	color: rgba(0,0,0,.4);
+	padding: 10px 10px 10px 10px;
+	left: 10px;
+	font-weight: bold;
+	border-bottom: 1px dotted rgba(0,0,0,.7);
+	display: block;
+	text-align: right;
+	margin-right: 5em;
+	width: auto;
+	padding-bottom: 2px;
+	padding-right: 0;
+	
+}
+pagination li.active {
+	border-radius: 50% !important;
 }
