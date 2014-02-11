@@ -12,6 +12,7 @@ git clone https://github.com/exaroth/subrosa.git
 virtualenv create subrosa
 cd subrosa
 source bin/activate
+pip install -r requirements.txt
 ```
 
 Next configure connection to db in config.py
