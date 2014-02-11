@@ -9,14 +9,16 @@
     <strong>Error: </strong><p>{{ error }}</p>
 </div>
 {% endif %}
+<div class="article-entry">
 <form action="" method="POST" role="form" accept-charset="utf-8">
     <div class="form-group">
 	<input type="text" class="form-control" name="title" id="title" value="{{ title }}" placeholder="Title of the article here..." />
     </div>
     <div class="form-group">
-	<textarea id="body" class="body form-control" name="body" cols="30" rows="40" placeholder="Content here...">{{ body }}</textarea>
+	<textarea id="body" class="body form-control entry-input" name="body" cols="30" rows="40" placeholder=" And content here...">{{ body }}</textarea>
     </div>
     <input type="submit" value="Submit" class="btn btn-primary" />
 </form>
+</div>
 
 {% endblock %}

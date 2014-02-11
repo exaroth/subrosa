@@ -3,6 +3,27 @@
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 }
+textarea {
+	font-size: 24px !important;
+	resize: none;
+}
+.article-entry input[type='text'] {
+	font-size: 36px !important;
+	text-align: center;
+	padding: 2em !important;
+	margin-bottom: 2em;
+	outline: none;
+	border: none !important;
+	box-shadow: none !important;
+}
+/*.article-entry input[type='text']:focus {
+	background-color: rgba(0,0,0,.02);
+}
+*/.article-entry textarea {
+	outline: none;
+	border: none !important;
+	box-shadow: none !important;
+}
 html,
 body {
 	height: 100%;
@@ -64,3 +85,23 @@ body {
     	display: inline-block;
     	float: none;
     }
+
+.head-title li {
+	color: black;
+}
+.head-inner a {
+	color: black;
+}
+
+ul.nav a {
+	color: black;
+}
+.navbar-default .navbar-brand {
+    color: #777;
+}
+.navbar-default .navbar-brand:hover {
+    color: #777;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #777;
+}
