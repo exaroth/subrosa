@@ -6,6 +6,7 @@ from werkzeug import secure_filename
 import os
 from datetime import datetime
 from werkzeug.contrib.atom import AtomFeed
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.before_request
@@ -263,7 +264,7 @@ def delete_image(id):
 @app.route("/image_details/<int:id>")
 def image_details(id):
     image = UserImages.query.get_or_404(id)
-    path = app.config["URL_ADDRESS"] 
+    path = request.url_root
     return render_template("image_details.html",path = path, image = image)
 
 

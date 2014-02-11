@@ -7,7 +7,18 @@
 	<div class="title-img" style="width: 90px; height: 90px;red; position:
 	    relative; margin: 0 auto; "></div>
     </div>
+    <div class="toolbar-buttons hidden-xs">
+    <ul class="list-unstyled">
+    <li>
     <a href="{{ url_for('recent_feeds') }} ">recent feeds</a>
+    </li>
+    	
+    <li>
+    <a href="{{ url_for('index') }} ">home</a>
+    </li>
+    </ul>
+    	
+    </div>
 </div>
 {% endblock %}
 

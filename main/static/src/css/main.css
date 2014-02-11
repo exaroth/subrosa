@@ -137,6 +137,13 @@ ul.nav a {
 pagination li.active {
   border-radius: 50% !important;
 }
-p {
-  color: red;
+.toolbar-buttons {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
+.toolbar-buttons ul li {
+  display: inline-block;
+  float: left;
+  padding: 0 20px;
 }

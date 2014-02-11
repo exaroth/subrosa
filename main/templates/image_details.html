@@ -9,10 +9,10 @@
 		<a href="{{ url_for('delete_image', id = image.id) }}" class="btn btn-xs btn-danger">Delete Image</a>
 	    </div>
 	    <div class="well well-sm">
-		<small>http://{{ path + '/uploads/' + image.owner.username + '/' +image.filename  }} </small>
+		<small>{{ path + 'uploads/' + image.owner.username + '/' +image.filename  }} </small>
 	    </div>
 	    <div class="well well-sm">
-		<small>http://{{ path + '/uploads/' + image.owner.username + '/thumbnails/' +image.thumbnail  }} </small>
+		<small>{{ path + 'uploads/' + image.owner.username + '/thumbnails/' +image.thumbnail  }} </small>
 	    </div>
 	</div>
 	<div class="row">
