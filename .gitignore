@@ -26,6 +26,9 @@ pip-log.txt
 # Mr Developer
 .mr.developer.cfg
 
+uploads/*
+test.db
+
 # Django files
 include
 lib

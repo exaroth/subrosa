@@ -1,20 +1,41 @@
-##Simple blog written by me
-###Work in progress
+# Subrosa
 
-This is a simple blogging platform i write in a free time, based on a Flask microframework and SQLAlchemy. It also includes automatic image handling thanks to pillow library, so thumbnails are created automatically when picture is uploaded.
+Subrosa is simple blogging platform with multiple accounts capability, simple image processing function and simple and elegant styling built with Flask microframework.
 
-**Installation:**
 
-1. Create virtualenv environment
->> virtualenv <folder_name>
+## Installation
 
-2. Clone this repositiory (inside venv):
->> git clone https://github.com/exaroth/sub_rosa
+Requires pip and virtualenv installed on the system
 
-3. Install using pip:
->> pip install -r requirements.txt
+``` shell
+git clone https://github.com/exaroth/subrosa.git
+virtualenv create subrosa
+cd subrosa
+source bin/activate
+```
 
-:::
-Note this is still a very early version, made purely to teach myself building Flask apps so don't expect anything marvelous
+Next configure connection to db in config.py
+and run
+``` python
+python create_db.py to create the tables
+```
 
-Cheers
+To start it on localhost run
+
+``` python
+python run.py
+```
+
+NOTE: for deployment you dont want to host it with development server
+use Gunicorn over Nginx (reccomended) or similar solution
+
+The server runs by default on
+
+##### localhost:5000
+
+Next navigate to localhost:5000/admin and input username, password and email to create your account.
+
+
+And that's that, from /admin you can add images and write your blog aswell as add new users (not implemented yet)
+
+Have fun.
