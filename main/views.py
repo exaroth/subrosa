@@ -1,10 +1,11 @@
 from main import app, db
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
 from .models import User, Articles, UserImages
-from .helpers import Pagination, login_required, process_image
+from .helpers import Pagination, login_required, process_image, make_external
 from werkzeug import secure_filename
 import os
 from datetime import datetime
+from werkzeug.contrib.atom import AtomFeed
 
 
 @app.before_request
@@ -199,7 +200,6 @@ def upload_image():
         if image:
             if os.path.splitext(image.filename)[1][1:] in app.config["ALLOWED_FILENAMES"]:
                 filename = secure_filename(request.form.get("image-name")) or secure_filename(image.filename)
-                print filename
                 try:
                     image_filename, thumb_filename, show_filename = process_image(image = image, filename = filename , username = session["user"])
                     print image_filename, thumb_filename, show_filename
@@ -214,7 +214,7 @@ def upload_image():
                         return render_template("upload_image.html", error = error)
                 except Exception, e:
                     error = "Error occured while processing the image"
-                    print e
+                   
                     return render_template("upload_image.html", error = error)
             else:
                 error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
@@ -267,8 +267,32 @@ def image_details(id):
     return render_template("image_details.html",path = path, image = image)
 
 
+@app.route("/recent.atom")
+def recent_feeds():
+    """
+    Generates Atom feeds
+    """
+    feed = AtomFeed("Recent Posts", 
+        feed_url = request.url, url = request.url_root)
+    articles = Articles.query.order_by(Articles.date_created.desc())\
+        .limit(15).all()
+
+    for article in articles:
+        feed.add(article.title, unicode(article.body)[:320],
+            content_type = "html",
+            author = article.author,
+            updated = article.date_created,
+            url = make_external(article.id),
+            published = article.date_created
+            )
+
+    return feed.get_response()
+
 @app.route("/uploads/<path:filename>")
 def send_image(filename):
+    """
+    Allows sending images from upload folder
+    """
     return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
 
 @app.template_filter()

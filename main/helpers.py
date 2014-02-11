@@ -1,13 +1,19 @@
 from math import ceil
 from functools import wraps
-from flask import session, redirect, url_for
+from flask import session, redirect, url_for, request
 from PIL import Image
 from main import app
 import os
+from urlparse import urljoin
 
 def slugify(text):
     return text.strip().replace(" ", "-")
 
+def make_external(id):
+    """
+    Returns external url for article based on id
+    """
+    return urljoin(request.url_root + "article/", str(id))
 
 def login_required(f):
 
@@ -22,10 +28,13 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated
 
+
+
 class Pagination(object):
 
     """
     Pagination class...for paginating.
+    courtesy of Armin Ronacher
     """
 
     def __init__(self, page, per_page, total_count):
