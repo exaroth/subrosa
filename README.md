@@ -18,8 +18,9 @@ pip install -r requirements.txt
 Next configure connection to db in config.py
 and run
 ``` python
-python create_db.py to create the tables
+python create_db.py 
 ```
+to create the tables
 
 To start it on localhost run
 
