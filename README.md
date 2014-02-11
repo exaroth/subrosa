@@ -1,6 +1,6 @@
 # Subrosa
 
-Subrosa is simple blogging platform with multiple accounts capability, simple image processing function and simple and elegant styling built with Flask microframework.
+Subrosa is simple blogging platform with built-in Markdonw parser, simple image processing function and elegant styling built with Flask microframework.
 
 
 ## Installation
@@ -21,6 +21,8 @@ and run
 python create_db.py 
 ```
 to create the tables
+
+also set TITLE variable in config.py to set title of you blog
 
 To start it on localhost run
 

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
 	<meta charset="UTF-8">
-	<title>Blogg</title>
+	<title>Subrosa</title>
 	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/bootstrap.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/main.css') }}" media="all" />
@@ -26,15 +26,18 @@
 	</ul>
 	</nav>
 	{% endif %}
-	    <div class="row">
+	{% block titlebar %} 
+	{% endblock %}
+	    <div class="row main-matter">
 		<div class="col-md-6 col-md-offset-3">
 		    {% block content %} 
-		    //insert content here
 		    {% endblock %}
 		</div>
 	    </div>
+	    <div class="push"></div>
 	</div>
-
+	<div class="footer">
 	{% include "footer.html" %}
+	</div>
     </body>
 </html>

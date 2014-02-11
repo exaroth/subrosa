@@ -7,6 +7,11 @@ import os
 from datetime import datetime
 
 
+@app.before_request
+def load_vars():
+    g.title = app.config["TITLE"]
+
+
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
 def index(page):

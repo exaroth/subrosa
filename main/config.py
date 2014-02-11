@@ -4,6 +4,10 @@ import os
 BASE_PATH = os.path.dirname(os.path.realpath(__file__))
 ROOT_PATH = os.path.dirname(BASE_PATH + "..")
 
+# Set title of you site
+
+TITLE = "Kermit's Blog"
+
 # Url adress to you page, used for linking images
 
 URL_ADDRESS = "localhost:5000"

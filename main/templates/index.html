@@ -1,4 +1,16 @@
 {% extends "layout.html" %}
+
+{% block titlebar %} 
+<div class="row title-field">
+    
+    <div class="col-md-12">
+	<h1 class="text-center" style="margin: 1em 0 0.5em 0; font-size: 60px;font-weight: bold">{{ g.title }}</h1>
+	<div class="title-img" style="width: 90px; height: 90px;red; position:
+	    relative; margin: 0 auto; "></div>
+    </div>
+<hr />
+</div>
+{% endblock %}
 {% block content %} 
 
 <h2>{{ title }}</h2>

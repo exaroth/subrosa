@@ -1,5 +1,66 @@
 * {
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 }
+html,
+body {
+	height: 100%;
+	/* The html and body elements cannot have any padding or margin. */
+}
+/* Wrapper for page content to push down footer */
+.content {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+}
+.push,
+.footer {
+	height: 60px;
+}
+
+.title-img {
+	border-radius: 50%;
+	background-color: white;
+	background-image: url("../img/kermit.jpg");
+	background-size: contain;
+	background-position: center center
+}
+body {
+	overflow-x: hidden;
+}
+
+.title-field {
+	background-color: #fbfbf3;
+	padding-bottom: 3em;
+}
+.main-matter {
+	margin-top: 2em;
+}
+.footer small {
+	text-align: center;
+	display: block;
+}
+
+/*.footer-matter {
+    height: 50px;
+    margin-top: 2em;
+    padding: 10px;
+    width: 100%;
+    background-color: gray;
+    }*/
+    .navbar-default {
+    	background-color: white;
+    }
+    .navbar-inner small {
+    	text-align: center;
+    }
+    .navbar-inner {
+    	padding: 2em 0;
+    }
+    .navbar .navbar-nav {
+    	display: inline-block;
+    	float: none;
+    }
