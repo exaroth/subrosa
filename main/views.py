@@ -6,7 +6,6 @@ from werkzeug import secure_filename
 import os
 from datetime import datetime
 from werkzeug.contrib.atom import AtomFeed
-from werkzeug.security import generate_password_hash, check_password_hash
 
 
 @app.before_request
