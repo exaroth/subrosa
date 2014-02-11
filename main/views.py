@@ -194,8 +194,10 @@ def upload_image():
         if image:
             if os.path.splitext(image.filename)[1][1:] in app.config["ALLOWED_FILENAMES"]:
                 filename = secure_filename(request.form.get("image-name")) or secure_filename(image.filename)
+                print filename
                 try:
                     image_filename, thumb_filename, show_filename = process_image(image = image, filename = filename , username = session["user"])
+                    print image_filename, thumb_filename, show_filename
                     try:
                         user = User.query.filter_by(username = session["user"]).first()
                         user_image = UserImages(filename = image_filename, thumbnail = thumb_filename, showcase = show_filename, owner = user)
@@ -207,6 +209,7 @@ def upload_image():
                         return render_template("upload_image.html", error = error)
                 except Exception, e:
                     error = "Error occured while processing the image"
+                    print e
                     return render_template("upload_image.html", error = error)
             else:
                 error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))

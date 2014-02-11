@@ -26,7 +26,6 @@ class Pagination(object):
 
     """
     Pagination class...for paginating.
-    Thanks Armin :)
     """
 
     def __init__(self, page, per_page, total_count):
@@ -67,6 +66,7 @@ def process_image(image, filename, username):
     base = app.config["THUMBNAIL_SIZE"]
     square_dim = (200,200)
     try:
+        print filename
         # Open an image for processing
         img = Image.open(image)
 
@@ -85,6 +85,7 @@ def process_image(image, filename, username):
         thumb = img.resize(dim, Image.ANTIALIAS)
         showcase_img = img.resize(square_dim, Image.ANTIALIAS)
         img_path = os.path.join(app.config["UPLOAD_FOLDER"], username + "/")
+        print img_path
 
         # Create thumbnail filename - extension is the same as base file
 
@@ -97,6 +98,7 @@ def process_image(image, filename, username):
             img.save(img_path + full_filename, "JPEG")
             return (full_filename, thumb_filename, show_filename)
         except IOError, e:
+                print e
                 raise IOError("Could not save the file")
-    except IOError, e:
+    except Exception as e:
         raise IOError("Could not open the file")

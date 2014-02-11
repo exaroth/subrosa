@@ -8,7 +8,7 @@ ROOT_PATH = os.path.dirname(BASE_PATH + "..")
 
 URL_ADDRESS = "localhost:5000"
 
-UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/"))
+UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
 
 # path to your database
 
