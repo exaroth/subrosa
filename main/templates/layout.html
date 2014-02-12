@@ -11,7 +11,7 @@
 	<div class="container-full">
 	<div class="content">
 	    {% if session.user %}
-	    <nav class=" head-title navbar navbar-default"  role="navigation">
+<!-- 	    <nav class=" head-title navbar navbar-default"  role="navigation">
 	    <div class="navbar-header">
 		<a class="navbar-brand" href="{{ url_for('index') }}">Subrosa</a>
 	    </div>
@@ -26,7 +26,15 @@
 		<li> <a href="{{ url_for('logout') }}">Logout</a> </li>
 	    </ul>
 	    </nav>
-	    {% endif %}
+
+ -->
+ <div class="admin-icon-holder hidden-xs">
+ <a href="#"></a>
+
+ 	
+ </div>
+
+ 	    {% endif %}
 	    {% block titlebar %} 
 	    {% endblock %}
 		<div class="row main-matter">
@@ -42,6 +50,7 @@
 	    {% include "footer.html" %}
 	</div></div>
 	<script src="{{ url_for('static', filename='src/js/jquery.min.js') }} "></script>
+	<script src="{{ url_for('static', filename='src/js/jquery.pageslide.min.js') }} "></script>
 	<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
 	<script src="//localhost:35729/livereload.js"></script>
     </body>

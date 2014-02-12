@@ -64,6 +64,7 @@
 
 	$textarea = $("textarea")
 	$textarea.autogrow();
+	
 })(jQuery);
 
 

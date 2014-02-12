@@ -1,40 +1,34 @@
 @import "lesshat.less";
 @import "utils.less";
+@import "article-view";
+@import "admin";
+@import "article-edit";
 
 * {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 }
-textarea {
-	font-size: 24px !important;
-	resize: none;
-	overflow-y: hidden;
-
-}
-.article-entry input[type='text'] {
-	font-size: 36px !important;
-	text-align: center;
-	padding: 2em !important;
-	margin-bottom: 2em;
-	outline: none;
-	border: none !important;
-	box-shadow: none !important;
-}
-/*.article-entry input[type='text']:focus {
-	background-color: rgba(0,0,0,.02);
-}
-*/.article-entry textarea {
-	outline: none;
-	border: none !important;
-	box-shadow: none !important;
-}
-html,
-body {
+#pageslide {
+	/* These styles MUST be included. Do not change. */
+	display: none;
+	position: absolute;
+	position: fixed;
+	top: 0;
 	height: 100%;
-	/* The html and body elements cannot have any padding or margin. */
+	z-index: 999999;
+
+	/* Specify the width of your pageslide here */
+	width: 260px;
+	padding: 20px;
+
+	/* These styles are optional, and describe how the pageslide will look */
+	background-color: #333;
+	color: #FFF;
+	-webkit-box-shadow: inset 0 0 5px 5px #222;
+	-moz-shadow: inset 0 0 5px 5px #222;
+	box-shadow: inset 0 0 5px 5px #222;
 }
-/* Wrapper for page content to push down footer */
 .content {
 	min-height: 100%;
 	height: auto !important;
@@ -72,26 +66,20 @@ body {
 	display: block;
 }
 
-/*.footer-matter {
-    height: 50px;
-    margin-top: 2em;
-    padding: 10px;
-    width: 100%;
-    background-color: gray;
-    }*/
-    .navbar-default {
-    	background-color: white;
-    }
-    .navbar-inner small {
-    	text-align: center;
-    }
-    .navbar-inner {
-    	padding: 2em 0;
-    }
-    .navbar .navbar-nav {
-    	display: inline-block;
-    	float: none;
-    }
+
+.navbar-default {
+	background-color: white;
+}
+.navbar-inner small {
+	text-align: center;
+}
+.navbar-inner {
+	padding: 2em 0;
+}
+.navbar .navbar-nav {
+	display: inline-block;
+	float: none;
+}
 
 .head-title li {
 	color: black;
@@ -100,28 +88,6 @@ body {
 	color: black;
 }
 
-ul.nav a {
-	color: black;
-}
-.navbar-default .navbar-brand {
-    color: #777;
-}
-.navbar-default .navbar-brand:hover {
-    color: #777;
-}
-.navbar-default .navbar-nav > li > a {
-    color: #777;
-}
-.article-main p {
-	font-size: 18px;
-	color: rgba(0,0,0,.8);
-}
-.article-main h2 {
-	text-align:center;
-}
-.article-main a {
-	color: rgba(0,0,0,.6);
-}
 .timesince {
 	color: rgba(0,0,0,.4);
 	padding: 10px 10px 10px 10px;
@@ -139,10 +105,13 @@ ul.nav a {
 pagination li.active {
 	border-radius: 50% !important;
 }
+.title-field {
+	position: relative;
+}
 .toolbar-buttons {
 	position: absolute;
-	bottom: 10%;
 	right: 10%;
+	top: 30%;
 	ul li {
 		display: inline-block;
 		float: left;
@@ -151,3 +120,8 @@ pagination li.active {
 
 }
 
+
+.article-entry {
+	
+	overflow: hidden;
+}
