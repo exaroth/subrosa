@@ -1,0 +1,36 @@
+{% extends "layout.html"%}
+
+{% block content %}
+<h2>Hello {{ user.username }}!</h2>
+
+{% if articles %}
+<div class="article-table col-md-8 col-md-offset-2">
+
+<table class="table table-hover">
+<thead>
+	<tr>
+		<th>#</th>
+		<th>Title</th>
+		<th>Last updated</th>
+		<th>Status</th>
+	</tr>
+
+
+</thead>
+
+{% for article in articles %}
+<tr>
+	<td> {{ loop.index }} </td>
+	<td><a href="{{ url_for('article_view', id = article.id) }} ">{{ article.title | truncate(35) }} </a></td>
+	<td>{{ article.date_created.strftime('%Y-%m-%d %H:%M') }} </td>
+	<td>Published</td>
+
+</tr>
+{% endfor %}
+</table>
+</div>
+{% else %}
+<h2 class="text-center">No articles written yet</h2>
+{% endif %}
+
+{% endblock %}

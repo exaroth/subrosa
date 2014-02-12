@@ -40,6 +40,7 @@
 	@media screen and (min-width: @md){
 		
 		font-size: 1.4em;
+		line-height: 1.6em;
 	}
 }
 .article-main .article-body a {
@@ -102,13 +103,12 @@ blockquote {
 	text-align: center;
 	&::after {
 		content: "\2026";
-		position: absolute;
+		position: relative;
 		display: block;
 		text-align: center;
 		margin-top: 0.5em;
 		font-size: 2em;
-		left: 50%;
-		.translateY(-50%);
+		width: 100%;
 	}
 }
 .article-main .article-timesince {

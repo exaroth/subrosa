@@ -103,7 +103,12 @@ def account(username):
         return redirect("/admin")
     user = User.query.filter_by(username = username).first()
     user_articles = Articles.query.filter_by(author = user).all()
-    return render_template("user_articles.html",user = user, articles = user_articles)
+    return render_template("dashboard.html",user = user, articles = user_articles)
+
+@app.route("/admin_panel")
+@login_required
+def admin_panel():
+    return render_template("admin_panel.html")
 
 @app.route("/create_article", methods = ["GET", "POST"])
 @login_required

@@ -11,7 +11,7 @@
 </div>
 {% endif %}
 <div class="article-entry">
-<form action="" method="POST" role="form" accept-charset="utf-8">
+<form action="" method="POST" role="form" class="new-article-form" accept-charset="utf-8">
     <div class="form-group">
 
     <textarea name="title" id="article-title" class="article-title" placeholder="Title of your Article here...">{{ title }}</textarea>
@@ -19,12 +19,18 @@
     <div class="form-group">
 	<textarea id="body" class="body form-control entry-input" name="body"  rows="16" placeholder=" And content here...">{{ body }}</textarea>
     </div>
-    <input type="submit" value="Submit" class="btn btn-primary" />
+    <input type="submit" value="" style="display: none"  />
 </form>
 </div>
 
 {% endblock %}
 
 {% block sidebar %}
- {% include "editing-tools.html" %}
+<div class="editing-tools">
+<a href="" class="create-button">Create Article</a>
+<a href="depro">Markdown Cheatsheet</a>
+<a href="fundis">Submit</a>
+<a href="clamo">Cancel</a>
+    
+</div>
 {% endblock %}

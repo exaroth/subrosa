@@ -7,8 +7,7 @@
      */
      $.fn.autogrow = function(options)
      {
-     	return this.filter('textarea').each(function()
-     	{
+     	return this.filter('textarea').each(function() {
      		var self         = this;
      		var $self        = $(self);
      		var minHeight    = $self.height();
@@ -63,17 +62,25 @@
 
 
 	$textarea = $("textarea");
-    $editForm = $(".edit-article");
-    $updateArticleButton = $(".update-button")
+    $editForm = $(".edit-article-form");
+    $createForm = $(".new-article-form");
+    $updateArticleButton = $(".update-button");
+    $createArticleButton = $(".create-button");
+    $sidepanelToggler = $("#sidepanel-toggler")
 
     $updateArticleButton.click(function(e){
         e.preventDefault();
         $editForm.submit();
-    })
+    });
+    $createArticleButton.click(function(e){
+        e.preventDefault();
+        $createForm.submit();
+    });
 
 
 
 	$textarea.autogrow();
+    $sidepanelToggler.pageslide();
 	
 })(jQuery);
 

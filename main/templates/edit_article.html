@@ -2,7 +2,6 @@
 {% block content %} 
 
 
-<hr style="margin: 40px 0" />
  {% if error %}
 <div class="alert alert-dismissable alert-danger">
     <button class="close" data-dismiss="alert">x</button>
@@ -10,7 +9,7 @@
 </div>
 {% endif %}
 <div class="article-entry">
-<form action="" role="form" class="edit-article" method="POST" accept-charset="utf-8">
+<form action="" role="form" class="edit-article-form" method="POST" accept-charset="utf-8">
     <div class="form-group">
     <textarea name="title" id="article-title" class="article-title"> {{ article.title }} </textarea>
     </div>
