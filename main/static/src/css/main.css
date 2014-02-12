@@ -4,9 +4,6 @@
   left: -999em;
   right: auto;
 }
-.article-main {
-  overflow: hidden;
-}
 .article-main h2 {
   text-align: center;
 }
@@ -34,6 +31,85 @@
   font-size: 3em;
   margin-bottom: 2em;
   color: #333333;
+}
+@media screen and (min-width: 970px) {
+  .article-main p {
+    font-size: 1.4em;
+  }
+}
+.article-main .article-body a {
+  color: #69a0cd;
+}
+blockquote {
+  border: none;
+  position: relative;
+  width: 80%;
+  margin: 2em auto 2em auto;
+}
+blockquote:before {
+  content: open-quote;
+  font-size: 5em;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: block;
+}
+blockquote p {
+  font-weight: bold !important ;
+  text-align: justify;
+}
+.article-main .article-body > p:first-of-type {
+  font-size: 1.4em;
+  margin-top: 1em;
+  font-weight: bold;
+  margin-bottom: 4em;
+  text-align: center;
+}
+.article-main .article-body > p:first-of-type::after {
+  content: "\2026";
+  position: absolute;
+  display: block;
+  margin-top: 0.5em;
+  font-size: 2em;
+  left: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.article-main .article-timesince {
+  border-bottom: 2px dotted #666666;
+  padding-bottom: 10px;
+  text-align: right;
+  margin-bottom: 1em;
+}
+@media screen and (max-width: 970px) {
+  .article-main .article-timesince {
+    padding: 0 1em;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+  }
+}
+.article-main .article-body a img {
+  width: 50%;
+  max-width: 80%;
+  position: relative;
+  padding: 0.8em;
+  -webkit-box-shadow: 1px 1px 1px #cccccc;
+  -moz-box-shadow: 1px 1px 1px #cccccc;
+  box-shadow: 1px 1px 1px #cccccc;
+  border: 1px solid #b3b3b3;
+  display: block;
+  float: right;
+  margin: 1em 0 1em 0;
+}
+@media screen and (min-width: 970px) {
+  .article-main .article-body a img {
+    right: -2em;
+  }
 }
 .admin-icon-holder {
   width: 60px;
@@ -139,7 +215,9 @@ textarea.article-title {
 .article-list h1:active {
   text-decoration: none;
 }
-.article-list p {
+.article-list p,
+li,
+a {
   color: #4d4d4d;
 }
 * {
