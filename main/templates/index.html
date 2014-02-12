@@ -38,10 +38,10 @@
 {% for article in articles.items %}
 <article class="article-list col-md-10 col-md-offset-1">
 	<div class="row">
-		<h6 class="timesince pull-right ">Created {{ article.date_created | timesince }} by {{ article.author.username }}</h6>
+		<h6 class="timesince pull-right ">Written {{ article.date_created | timesince }}</h6>
 	</div>
 	<a href="{{ url_for('article_view', id = article.id) }}">
-		<h1 class="article-title" style="text-align: center; margin-bottom: 1em">{{ article.title }}</h2></a>
+		<h1 class="article-title" >{{ article.title }}</h2></a>
 			<div class="article-body col-xs-12">
 				{{ article.body |truncate(800)|markdown }}
 			</div>

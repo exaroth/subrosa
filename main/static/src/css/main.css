@@ -112,9 +112,32 @@ textarea.article-title {
     width: 25%;
   }
 }
-* {
-  background: #eee;
-  background: rgba(0, 0, 0, 0.05);
+.article-list .timesince {
+  color: rgba(0, 0, 0, 0.4);
+  padding: 10px 10px 10px 10px;
+  left: 10px;
+  font-weight: bold;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.7);
+  display: block;
+  text-align: right;
+  margin-right: 5em;
+  width: auto;
+  padding-bottom: 2px;
+  padding-right: 0;
+}
+.article-list {
+  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.article-list h1 {
+  color: #333333;
+  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+.article-list h1:hover,
+.article-list h1:active {
+  text-decoration: none;
 }
 * {
   box-sizing: border-box;
@@ -152,14 +175,6 @@ body {
 .footer {
   height: 60px;
 }
-.title-field {
-  background-color: #fbfbf3;
-  padding-bottom: 3em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-.main-matter {
-  margin-top: 2em;
-}
 .footer small {
   text-align: center;
   display: block;
@@ -177,16 +192,24 @@ body {
   display: inline-block;
   float: none;
 }
-.timesince {
-  color: rgba(0, 0, 0, 0.4);
-  padding: 10px 10px 10px 10px;
-  left: 10px;
-  font-weight: bold;
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.7);
-  display: block;
-  text-align: right;
-  margin-right: 5em;
-  width: auto;
-  padding-bottom: 2px;
-  padding-right: 0;
+.pagination .active a {
+  background-color: #333333;
+  border: none;
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
+}
+.pagination .active a:hover {
+  background-color: #666666;
+}
+.pagination > li > a:hover {
+  -webkit-border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 0;
+  -moz-background-clip: padding;
+  border-radius: 0;
+  background-clip: padding-box;
 }
