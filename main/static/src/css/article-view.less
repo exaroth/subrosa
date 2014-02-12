@@ -67,15 +67,31 @@ blockquote {
 }
 
 // Double blockquote ( >> ) doesnt work TODO
-// blockquote > blockquote {
-// 	background-color: @black-70;
-// 	&:before {
-// 		content: "";
-// 	}
-// 	p {
-// 		color: white;
-// 	}
-// }
+
+
+.content-header {
+	height: 10em;
+	position: relative;
+}
+.content-header-btns {
+	display: inline-block;
+	top: 20%;
+	right: 10%;
+	position: absolute;
+	text-align: center;
+	a {
+		padding-right: 10px;
+		background-color: @black-70;
+		display: inline-block;
+		height: 50px;
+		width: 50px;
+	}
+	@media screen and (max-width: @md){
+		left: 0;
+		right: 0;
+		margin: 0 auto
+	}
+}
 
 
 .article-main .article-body > p:first-of-type {
@@ -88,6 +104,7 @@ blockquote {
 		content: "\2026";
 		position: absolute;
 		display: block;
+		text-align: center;
 		margin-top: 0.5em;
 		font-size: 2em;
 		left: 50%;

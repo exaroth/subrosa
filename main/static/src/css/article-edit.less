@@ -11,6 +11,8 @@ textarea {
 		font-weight: bold !important;
 		width: 100%;
 		color: rgba(0,0,0,.8) !important;
+		overflow-x: hidden;
+		padding: 0 1em;
 	}
 
 }
@@ -18,4 +20,24 @@ textarea {
 .article-entry {
 	overflow: hidden;
 	margin-top: 3em;
+	@media screen and (max-width: @md){
+		padding: 0 8em 0 1em;
+	}
+}
+
+.editing-tools {
+	position: fixed;
+	right: 5%;
+	top: 50%;
+	.translateY(-50%);
+	a, input[type='submit'] {
+		width: 60px;
+		height: 60px;
+		float: left;
+		clear: both;
+		display: block;
+		background-color: @black-70;
+		margin-bottom: 10px;
+		
+	}
 }

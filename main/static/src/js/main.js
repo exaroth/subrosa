@@ -62,7 +62,17 @@
 // ------------------------------ My code here -----------------------------
 
 
-	$textarea = $("textarea")
+	$textarea = $("textarea");
+    $editForm = $(".edit-article");
+    $updateArticleButton = $(".update-button")
+
+    $updateArticleButton.click(function(e){
+        e.preventDefault();
+        $editForm.submit();
+    })
+
+
+
 	$textarea.autogrow();
 	
 })(jQuery);

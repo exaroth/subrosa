@@ -59,6 +59,31 @@ blockquote p {
   font-weight: bold !important ;
   text-align: justify;
 }
+.content-header {
+  height: 10em;
+  position: relative;
+}
+.content-header-btns {
+  display: inline-block;
+  top: 20%;
+  right: 10%;
+  position: absolute;
+  text-align: center;
+}
+.content-header-btns a {
+  padding-right: 10px;
+  background-color: #4d4d4d;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+@media screen and (max-width: 970px) {
+  .content-header-btns {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}
 .article-main .article-body > p:first-of-type {
   font-size: 1.4em;
   margin-top: 1em;
@@ -70,6 +95,7 @@ blockquote p {
   content: "\2026";
   position: absolute;
   display: block;
+  text-align: center;
   margin-top: 0.5em;
   font-size: 2em;
   left: 50%;
@@ -134,10 +160,37 @@ textarea.article-title {
   font-weight: bold !important;
   width: 100%;
   color: rgba(0, 0, 0, 0.8) !important;
+  overflow-x: hidden;
+  padding: 0 1em;
 }
 .article-entry {
   overflow: hidden;
   margin-top: 3em;
+}
+@media screen and (max-width: 970px) {
+  .article-entry {
+    padding: 0 8em 0 1em;
+  }
+}
+.editing-tools {
+  position: fixed;
+  right: 5%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.editing-tools a,
+.editing-tools input[type='submit'] {
+  width: 60px;
+  height: 60px;
+  float: left;
+  clear: both;
+  display: block;
+  background-color: #4d4d4d;
+  margin-bottom: 10px;
 }
 .title-img {
   -webkit-border-radius: 50%;
@@ -150,13 +203,15 @@ textarea.article-title {
   background-image: url("../img/kermit.jpg");
   background-size: contain;
   background-position: center center;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.8);
 }
 .header-field .site-title {
   margin: 1em 0 0.5em 0;
   font-size: 60px;
   font-weight: bold;
   color: #333333;
+  font-family: sans-serif;
+  padding: 0 2em;
 }
 .header-field {
   background-color: #e6e6e6;
@@ -164,6 +219,10 @@ textarea.article-title {
   padding-bottom: 4em;
   border-bottom: 1px solid #666666;
   position: relative;
+  background-image: url("../img/bg.jpg");
+  background-position: center center;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .header-field .toolbar-buttons {
   position: absolute;

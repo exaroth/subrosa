@@ -1,5 +1,8 @@
 ﻿{% extends 'layout.html' %}
 
+
+
+
 {% block content %} 
 {% if error %}
 <div class="alert alert-dismissable alert-danger">
@@ -20,4 +23,8 @@
 </form>
 </div>
 
+{% endblock %}
+
+{% block sidebar %}
+ {% include "editing-tools.html" %}
 {% endblock %}

@@ -1,26 +1,33 @@
 ﻿{% extends "layout.html" %}
 {% block content %} 
 
-<!-- <h2>Edit article</h2>
 
 <hr style="margin: 40px 0" />
- -->{% if error %}
+ {% if error %}
 <div class="alert alert-dismissable alert-danger">
     <button class="close" data-dismiss="alert">x</button>
     <strong>Error: </strong><p>{{ error }}</p>
 </div>
 {% endif %}
 <div class="article-entry">
-<form action="" role="form" method="POST" accept-charset="utf-8">
+<form action="" role="form" class="edit-article" method="POST" accept-charset="utf-8">
     <div class="form-group">
     <textarea name="title" id="article-title" class="article-title"> {{ article.title }} </textarea>
     </div>
     <div class="form-group">
 	<textarea id="article-body" class="article-body form-control entry-input" name="body" >{{ article.body }}</textarea>
     </div>
-    <div class="form-group">
-	<input type="submit" value="Update" class="btn btn-primary" />
-    </div>
-	
+    <input type="submit" value="" class="btn btn-primary" style="display: none" />
+
 </form></div>
+{% endblock %}
+
+{% block sidebar %}
+<div class="editing-tools">
+<a href="" class="update-button">Update Article</a>
+<a href="depro">Markdown Cheatsheet</a>
+<a href="fundis">Submit</a>
+<a href="clamo">Cancel</a>
+    
+</div>
 {% endblock %}
