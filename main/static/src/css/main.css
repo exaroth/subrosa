@@ -17,6 +17,24 @@
 .article-main a {
   color: rgba(0, 0, 0, 0.6);
 }
+.article-main p,
+.article-main h1,
+.article-main h2,
+.article-main h3,
+.article-main h4,
+.article-main h5,
+.article-main h6,
+.article-main li,
+.article-main a {
+  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #4d4d4d;
+}
+.article-main h2 {
+  font-weight: bold;
+  font-size: 3em;
+  margin-bottom: 2em;
+  color: #333333;
+}
 .admin-icon-holder {
   width: 60px;
   height: 60px;
@@ -45,6 +63,59 @@ textarea.article-title {
   overflow: hidden;
   margin-top: 3em;
 }
+.title-img {
+  -webkit-border-radius: 50%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 50%;
+  -moz-background-clip: padding;
+  border-radius: 50%;
+  background-clip: padding-box;
+  background-color: white;
+  background-image: url("../img/kermit.jpg");
+  background-size: contain;
+  background-position: center center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.header-field .site-title {
+  margin: 1em 0 0.5em 0;
+  font-size: 60px;
+  font-weight: bold;
+  color: #333333;
+}
+.header-field {
+  background-color: #e6e6e6;
+  margin-bottom: 2em;
+  padding-bottom: 4em;
+  border-bottom: 1px solid #666666;
+  position: relative;
+}
+.header-field .toolbar-buttons {
+  position: absolute;
+  right: 10%;
+  top: 30%;
+}
+.header-field .toolbar-buttons ul li {
+  display: inline-block;
+  float: left;
+  padding: 0 20px;
+}
+@media screen and (max-width: 970px) {
+  .header-field .toolbar-buttons {
+    position: absolute;
+    width: 400px;
+    top: 96%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .header-field .toolbar-buttons li {
+    width: 25%;
+  }
+}
+* {
+  background: #eee;
+  background: rgba(0, 0, 0, 0.05);
+}
 * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -52,18 +123,18 @@ textarea.article-title {
   -moz-box-sizing: border-box;
   /* Firefox, other Gecko */
 }
+body {
+  overflow-x: hidden;
+}
 #pageslide {
-  /* These styles MUST be included. Do not change. */
   display: none;
   position: absolute;
   position: fixed;
   top: 0;
   height: 100%;
   z-index: 999999;
-  /* Specify the width of your pageslide here */
   width: 260px;
   padding: 20px;
-  /* These styles are optional, and describe how the pageslide will look */
   background-color: #333;
   color: #FFF;
   -webkit-box-shadow: inset 0 0 5px 5px #222;
@@ -80,17 +151,6 @@ textarea.article-title {
 .push,
 .footer {
   height: 60px;
-}
-.title-img {
-  border-radius: 50%;
-  background-color: white;
-  background-image: url("../img/kermit.jpg");
-  background-size: contain;
-  background-position: center center;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
-body {
-  overflow-x: hidden;
 }
 .title-field {
   background-color: #fbfbf3;
@@ -117,12 +177,6 @@ body {
   display: inline-block;
   float: none;
 }
-.head-title li {
-  color: black;
-}
-.head-inner a {
-  color: black;
-}
 .timesince {
   color: rgba(0, 0, 0, 0.4);
   padding: 10px 10px 10px 10px;
@@ -135,23 +189,4 @@ body {
   width: auto;
   padding-bottom: 2px;
   padding-right: 0;
-}
-pagination li.active {
-  border-radius: 50% !important;
-}
-.title-field {
-  position: relative;
-}
-.toolbar-buttons {
-  position: absolute;
-  right: 10%;
-  top: 30%;
-}
-.toolbar-buttons ul li {
-  display: inline-block;
-  float: left;
-  padding: 0 20px;
-}
-.article-entry {
-  overflow: hidden;
 }

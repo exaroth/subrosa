@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block titlebar %} 
-<div class="row title-field">
+<div class="row header-field">
 	<div class="col-md-12">
-		<h1 class="text-center" style="margin: 1em 0 0.5em 0; font-size: 60px;font-weight: bold">{{ g.title }}</h1>
+		<h1 class="text-center site-title" style="">{{ g.title }}</h1>
 		<div class="title-img" style="width: 90px; height: 90px;red; position:
 		relative; margin: 0 auto; "></div>
 	</div>
-	<div class="toolbar-buttons hidden-xs">
+	<div class="toolbar-buttons">
 		<ul class="list-unstyled">
 			<li>
 				<a href="{{ url_for('recent_feeds') }} ">recent feeds</a>
@@ -36,7 +36,7 @@
 {% endwith %}
 {% if articles.items %}
 {% for article in articles.items %}
-<article class="article-main col-md-10 col-md-offset-1">
+<article class="article-list col-md-10 col-md-offset-1">
 	<div class="row">
 		<h6 class="timesince pull-right ">Created {{ article.date_created | timesince }} by {{ article.author.username }}</h6>
 	</div>
