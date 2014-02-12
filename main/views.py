@@ -231,7 +231,7 @@ def upload_image():
 def user_images(username, page):
     user = User.query.filter_by(username =  username).first()
     images = UserImages.query.filter_by(owner = user).paginate(page, 9)
-    url_path = "http://" + app.config["URL_ADDRESS"] + "/uploads/"
+    url_path = request.url_root +"uploads/"
     if not images.items and page != 1:
         abort(404)
     return render_template("user_images.html", images = images, url_path = url_path)

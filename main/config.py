@@ -10,7 +10,7 @@ TITLE = "Kermit's Blog"
 
 # Url adress to you page, used for linking images
 
-URL_ADDRESS = "localhost:5000"
+# URL_ADDRESS = "localhost:5000"
 
 UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
 

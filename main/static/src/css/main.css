@@ -139,6 +139,9 @@ textarea.article-title {
 .article-list h1:active {
   text-decoration: none;
 }
+.article-list p {
+  color: #4d4d4d;
+}
 * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
