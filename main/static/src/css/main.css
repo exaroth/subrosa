@@ -222,21 +222,15 @@ textarea.article-title {
 .article-list {
   font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+.article-list:a.article-title {
+  color: red;
+}
 .article-list h1 {
   color: #333333;
   font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: bold;
   text-align: center;
   margin-bottom: 0.5em;
-}
-.article-list h1:hover,
-.article-list h1:active {
-  text-decoration: none;
-}
-.article-list p,
-li,
-a {
-  color: #4d4d4d;
 }
 #pageslide {
   /* These styles MUST be included. Do not change. */
@@ -291,6 +285,7 @@ a {
   -moz-transition: all 0.1s ease-in;
   -o-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
+  color: #4d4d4d;
 }
 .push,
 .footer {
@@ -415,6 +410,9 @@ a {
 }
 .cheatsheet-button:hover {
   color: #47b1ff;
+}
+.rss-button:hover {
+  color: #ffb126;
 }
 .mini-icon i {
   font-size: 1.4em;

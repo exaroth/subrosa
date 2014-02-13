@@ -73,6 +73,9 @@
 }
 .article-list {
 	font-family: @body-font;
+	&:a.article-title {
+		color: red;
+	}
 }
 
 .article-list h1 {
@@ -81,10 +84,4 @@
 	font-weight: bold;
 	text-align: center;
 	margin-bottom: 0.5em;
-	&:hover, &:active {
-		text-decoration: none;
-	}
-}
-.article-list p, li, a {
-	color: @black-70;
 }

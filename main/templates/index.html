@@ -11,7 +11,7 @@
 		<ul class="list-unstyled">
 
 			<li>
-				<a href="{{ url_for('recent_feeds') }}" class="icon-holder menu-icon"><i class="icon-rss"></i></a>
+				<a href="{{ url_for('recent_feeds') }}" class=" rss-button icon-holder menu-icon"><i class="icon-rss"></i></a>
 			</li>
 			
 			<li>
@@ -39,8 +39,8 @@
 	<div class="row">
 		<h6 class="timesince pull-right ">Written {{ article.date_created | timesince }}</h6>
 	</div>
-	<a href="{{ url_for('article_view', id = article.id) }}">
-		<h1 class="article-title" >{{ article.title }}</h2></a>
+	<a href="{{ url_for('article_view', id = article.id) }}" class="article-title">
+		<h1>{{ article.title }}</h1></a>
 			<div class="article-body col-xs-12">
 				{{ article.body |truncate(800)|markdown }}
 			</div>

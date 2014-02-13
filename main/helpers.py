@@ -14,6 +14,15 @@ def make_external(id):
     Returns external url for article based on id
     """
     return urljoin(request.url_root + "article/", str(id))
+    
+def redirect_url():
+    """
+    simple function for getting back_button
+    functionality in request context
+    """
+    return request.args.get('next') or \
+           request.referrer or \
+           url_for('index')
 
 def login_required(f):
 

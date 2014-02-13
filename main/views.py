@@ -1,7 +1,7 @@
 from main import app, db
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
 from .models import User, Articles, UserImages
-from .helpers import Pagination, login_required, process_image, make_external
+from .helpers import Pagination, login_required, process_image, make_external, redirect_url
 from werkzeug import secure_filename
 import os
 from datetime import datetime
@@ -11,6 +11,7 @@ from werkzeug.contrib.atom import AtomFeed
 @app.before_request
 def load_vars():
     g.title = app.config["TITLE"]
+    g.prev = redirect_url()
 
 
 @app.route("/", defaults={"page": 1})
