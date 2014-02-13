@@ -1,71 +1,54 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
 	<meta charset="UTF-8">
 	<title>{{ g.title }}</title>
 	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>	
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/bootstrap.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/main.css') }}" media="all" />
-    </head>
-    <body>
+</head>
+<body>
 	<div class="container-full">
-	<div class="content">
-	    {% if session.user %}
-<!-- 	    <nav class=" head-title navbar navbar-default"  role="navigation">
-	    <div class="navbar-header">
-		<a class="navbar-brand" href="{{ url_for('index') }}">Subrosa</a>
-	    </div>
-	    <div class="nav navbar-nav navbar-left">
-		<a class="btn btn-primary btn-xs navbar-btn" href="{{ url_for('create_article') }}">Create Article</a>
-		<a class="btn btn-info btn-xs navbar-btn" href="{{ url_for('upload_image') }}">Upload Image</a>
-	    </div>
+		<div class="content">
+			{% if session.user %}
+			<div id="admin-panel" class="admin-panel" style="display: none;">
+				<h2>Subrosa</h2>
+				<hr>
 
-	    <ul class="nav navbar-nav navbar-right head-inner" style="padding-right: 50px" style="text-align: center">
-		<li> <a  href="{{ url_for('user_images', username=session.user) }}">Images</a> </li>
-		<li> <a  href="{{ url_for('account', username=session.user) }}">Account</a> </li>
-		<li> <a href="{{ url_for('logout') }}">Logout</a> </li>
-	    </ul>
-	    </nav>
+				<ul class="admin-panel-links list-unstyled">
+					<li><a href="{{ url_for('account', username = session.user) }} ">Dashboard</a></li>
+					<li><a href="{{ url_for('create_article') }} ">Create Article</a></li>
+					<li><a href="{{ url_for('upload_image') }} ">Upload image</a></li>
+					<li><a href="{{ url_for('user_images', username = session.user) }} ">Images</a></li>
+					<li><a href="{{ url_for('logout') }} ">Logout</a></li>
+				</ul>
 
- -->
- <div id="admin-panel" class="admin-panel" style="display: none;">
- 	<h2>Subrosa</h2>
- 	<hr>
+			</div>
+			<a id="sidepanel-toggler" href="#admin-panel">deprofundis</a>
 
- 	<ul class="admin-panel-links list-unstyled">
- 		<li><a href="{{ url_for('create_article') }} ">Create Article</a></li>
- 		<li><a href="{{ url_for('upload_image') }} ">Upload image</a></li>
- 		<li><a href="{{ url_for('user_images', username = session.user) }} ">Images</a></li>
- 		<li><a href="{{ url_for('account', username = session.user) }} ">Dashboard</a></li>
- 		<li><a href="{{ url_for('logout') }} ">Logout</a></li>
- 	</ul>
+			{% endif %}
 
- </div>
- <a id="sidepanel-toggler" href="#admin-panel">deprofundis</a>
-
- 	    {% endif %}
- 	    
-	    {% block titlebar %} 
-	    {% endblock %}
-
-	    {% block sidebar %}
-	    {% endblock %}
-
-		<div class="row main-matter">
-		    <div class="col-md-8 col-md-offset-2">
-			{% block content %} 
+			{% block titlebar %} 
 			{% endblock %}
-		    </div>
-		</div>
 
-		<div class="push"></div>
-	</div>
-	<div class="footer">
-	    {% include "footer.html" %}
-	</div></div>
-	<script src="{{ url_for('static', filename='src/js/jquery.min.js') }} "></script>
-	<script src="{{ url_for('static', filename='src/js/jquery.pageslide.min.js') }} "></script>
-	<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
-	<script src="//localhost:35729/livereload.js"></script>
-    </body>
-</html>
+			{% block sidebar %}
+			{% endblock %}
+
+			<div class="row main-matter">
+				<div class="col-md-8 col-md-offset-2">
+					{% block content %} 
+					{% endblock %}
+				</div>
+			</div>
+
+			<div class="push"></div>
+		</div>
+		<div class="footer">
+			{% include "footer.html" %}
+		</div></div>
+		<script src="{{ url_for('static', filename='src/js/jquery.min.js') }} "></script>
+		<script src="{{ url_for('static', filename='src/js/jquery.pageslide.min.js') }} "></script>
+		<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
+		<script src="//localhost:35729/livereload.js"></script>
+	</body>
+	</html>

@@ -105,10 +105,6 @@ def account(username):
     user_articles = Articles.query.filter_by(author = user).all()
     return render_template("dashboard.html",user = user, articles = user_articles)
 
-@app.route("/admin_panel")
-@login_required
-def admin_panel():
-    return render_template("admin_panel.html")
 
 @app.route("/create_article", methods = ["GET", "POST"])
 @login_required
