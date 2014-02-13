@@ -26,12 +26,16 @@
 		<td><a href="{{ url_for('article_view', id = article.id) }} ">{{ article.title | truncate(35) }} </a></td>
 		<td>{{ article.date_updated.strftime('%Y-%m-%d %H:%M') }} </td>
 		<td>{% if article.draft == False %}
-			Published
+		<span class="text-success"><i class="icon-ok"></i>Published</span>
 			{% else %}
-			Draft
+			<span class="text-warning">Draft</span>
 			{% endif %}</td>
 			<td>
+			{% if article.draft == False %}
+			<span class="text-muted mini-icon" > <i class="icon-link-ext-alt"></i></span>
+			{% else %}
 			<a href="{{ url_for('publish_article', id = article.id) }}" class="mini-icon"><i class="icon-link-ext-alt"></i></a>
+			{% endif %}
 			<a href="{{ url_for('edit_article', id = article.id) }}" class="mini-icon"><i class="icon-pencil-squared"></i></a>
 			<a href="{{ url_for('delete_article', id = article.id) }}" class="mini-icon"><i class="icon-minus-squared"></i></a>
 			</td>

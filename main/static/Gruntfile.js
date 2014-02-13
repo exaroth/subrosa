@@ -11,6 +11,7 @@ module.exports = function(grunt) {
 			main: {
 				files: [
 					"src/css/*.less",
+					"src/css/_partials/*.less",
 					"src/js/*.js",
 					"../templates/*.html"
 				],
