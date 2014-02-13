@@ -1,0 +1,124 @@
+
+// Styles related to Single article view
+
+
+.article-main {
+	
+	// overflow: hidden;
+}
+.article-main h2 {
+	text-align:center;
+}
+.article-main p {
+	font-size: 18px;
+	color: rgba(0,0,0,.8);
+}
+.article-main a {
+	color: rgba(0,0,0,.6);
+}
+
+.article-main p,
+.article-main h1,
+.article-main h2,
+.article-main h3,
+.article-main h4,
+.article-main h5,
+.article-main h6,
+.article-main li,
+.article-main a  {
+	font-family: @body-font;
+	color: @black-70;
+}
+
+.article-main h2 {
+	font-weight: bold;
+	font-size: 3em;
+	margin-bottom: 2em;
+	color: @black-80;
+}
+.article-main p {
+	@media screen and (min-width: @md){
+		
+		font-size: 1.4em;
+		line-height: 1.6em;
+	}
+}
+.article-main .article-body a {
+	color: #69a0cd;
+}
+blockquote {
+	border: none;
+	position: relative;
+	// background-color: red;
+	width: 80%;
+	margin: 2em auto 2em auto;
+	&:before {
+		content: open-quote;
+		font-size: 5em;
+		position: absolute;
+		left: -20px;
+		top: -20px;
+		font-family: @body-font;
+		display: block;
+	}
+	p {
+	font-weight: bold !important ;
+	text-align: justify;
+	}
+}
+
+// Double blockquote ( >> ) doesnt work TODO
+
+
+.content-header {
+	height: 10em;
+	position: relative;
+}
+
+
+.article-main .article-body > p:first-of-type {
+	font-size: 1.4em;
+	margin-top: 1em;
+	font-weight: bold;
+	margin-bottom: 4em;
+	text-align: center;
+	&::after {
+		content: "\2026";
+		position: relative;
+		display: block;
+		text-align: center;
+		margin-top: 0.5em;
+		font-size: 2em;
+		width: 100%;
+	}
+}
+.article-main .article-timesince {
+	border-bottom: 2px dotted @black-60;
+	padding-bottom: 10px;
+	text-align: right;
+	margin-bottom: 1em;
+	@media screen and (max-width: @md) {
+		padding: 0 1em;
+		width: 80%;
+		display: block;
+		margin: 0 auto;
+	}
+}
+.article-main .article-body a img{
+	width: 50%;
+	max-width: 80%;
+	position: relative;
+	// left: 50%;
+	padding: 0.8em;
+	// .translateX(-50%);
+	.box-shadow(1px, 1px, 1px, @black-20);
+	border: 1px solid @black-30;
+	display: block;
+	float: right;
+	margin: 1em 0 1em 0;
+	@media screen and (min-width: @md){
+		
+		right: -2em
+	}
+}
+

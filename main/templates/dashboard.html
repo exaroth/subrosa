@@ -21,9 +21,7 @@
 		</thead>
 
 		{% for article in articles %}
-		<tr {% if article.draft == False %}
-		class = "success"
-		{% endif %}>
+		<tr >
 		<td> {{ loop.index }} </td>
 		<td><a href="{{ url_for('article_view', id = article.id) }} ">{{ article.title | truncate(35) }} </a></td>
 		<td>{{ article.date_updated.strftime('%Y-%m-%d %H:%M') }} </td>
@@ -33,9 +31,9 @@
 			Draft
 			{% endif %}</td>
 			<td>
-			<a href="{{ url_for('publish_article', id = article.id) }}">Publish</a>
-			<a href="{{ url_for('edit_article', id = article.id) }}">Edit</a>
-			<a href="{{ url_for('delete_article', id = article.id) }}">Delete</a>
+			<a href="{{ url_for('publish_article', id = article.id) }}" class="mini-icon"><i class="icon-link-ext-alt"></i></a>
+			<a href="{{ url_for('edit_article', id = article.id) }}" class="mini-icon"><i class="icon-pencil-squared"></i></a>
+			<a href="{{ url_for('delete_article', id = article.id) }}" class="mini-icon"><i class="icon-minus-squared"></i></a>
 			</td>
 		</tr>
 		{% endfor %}

@@ -1,10 +1,10 @@
 @import "lesshat.less";
 @import "utils.less";
-@import "article-view";
-@import "admin";
-@import "article-edit";
-@import "index";
-@import "media";
+@import "_partials/article-view";
+@import "_partials/admin";
+@import "_partials/article-edit";
+@import "_partials/index";
+@import "_partials/media";
 
 // Variables
 
@@ -24,7 +24,6 @@ body {
 	overflow-x: hidden;
 }
 
-// ---- Sticky footer code -----
 .content {
 	min-height: 100%;
 	height: auto !important;
@@ -73,4 +72,88 @@ body {
 }
 
 // -------- End Pagination Restyle----------
+
+// -------- Icon styling ---------------
+
+.icon-holder {
+	display: inline-block;
+	position: relative;
+	// background-color: rgba(0,0,0,.5);
+	text-align: center;
+	i {
+		display: block;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		margin: auto;
+	}
+}
+
+.menu-icon {
+	float: right;
+	width: 60px;
+	height: 60px;
+	i {
+		font-size: 2em;
+
+	}
+
+	@media screen and (max-width: @md){
+		width: 50px;
+		height: 50px; }
+
+}
+
+#sidepanel-toggler {
+	width: 60px;
+	height: 60px;
+	position: absolute;
+	z-index: 999;
+	top: 5%;
+	left: 50px;
+	i {
+		font-size: 3em;
+	}
+}
+.content-header-btns {
+	display: inline-block;
+	top: 20%;
+	right: 10%;
+	position: absolute;
+	text-align: center;
+	a {
+		padding-right: 10px;
+	display: inline-block;
+		height: 50px;
+		width: 50px;
+	}
+	@media screen and (max-width: @md){
+		left: 0;
+		right: 0;
+		margin: 0 auto
+	}
+}
+.editing-button {
+		width: 60px;
+		height: 60px;
+		float: left;
+		clear: both;
+		display: block;
+		margin-bottom: 10px;
+}
+.mini-icon {
+	i {
+		font-size: 1.4em;
+		display: inline-block;
+		top: 10px;
+	}
+}
+
+// --------- End Icon styling -----------
+
+
+
+
+
 

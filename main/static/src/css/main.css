@@ -64,27 +64,6 @@ blockquote p {
   height: 10em;
   position: relative;
 }
-.content-header-btns {
-  display: inline-block;
-  top: 20%;
-  right: 10%;
-  position: absolute;
-  text-align: center;
-}
-.content-header-btns a {
-  padding-right: 10px;
-  background-color: #4d4d4d;
-  display: inline-block;
-  height: 50px;
-  width: 50px;
-}
-@media screen and (max-width: 970px) {
-  .content-header-btns {
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-}
 .article-main .article-body > p:first-of-type {
   font-size: 1.4em;
   margin-top: 1em;
@@ -132,15 +111,6 @@ blockquote p {
   .article-main .article-body a img {
     right: -2em;
   }
-}
-#sidepanel-toggler {
-  width: 60px;
-  height: 60px;
-  background-color: #333333;
-  position: absolute;
-  z-index: 999;
-  top: 50px;
-  left: 50px;
 }
 #pageslide {
   display: none;
@@ -206,16 +176,6 @@ textarea.article-title {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-.editing-tools a,
-.editing-tools input[type='submit'] {
-  width: 60px;
-  height: 60px;
-  float: left;
-  clear: both;
-  display: block;
-  background-color: #4d4d4d;
-  margin-bottom: 10px;
-}
 .title-img {
   -webkit-border-radius: 50%;
   -webkit-background-clip: padding-box;
@@ -252,23 +212,26 @@ textarea.article-title {
   position: absolute;
   right: 10%;
   top: 30%;
+  width: 400px;
 }
-.header-field .toolbar-buttons ul li {
+.header-field .toolbar-buttons ul > li {
+  margin-right: 20px;
   display: inline-block;
-  float: left;
-  padding: 0 20px;
+  float: right;
 }
 @media screen and (max-width: 970px) {
   .header-field .toolbar-buttons {
-    position: absolute;
-    width: 400px;
-    top: 96%;
-    left: 0;
+    width: 100%;
+    top: 94%;
     right: 0;
-    margin: 0 auto;
   }
-  .header-field .toolbar-buttons li {
-    width: 25%;
+  .header-field .toolbar-buttons ul {
+    text-align: center;
+  }
+  .header-field .toolbar-buttons ul li {
+    float: none;
+    display: inline-block;
+    margin-right: 10px;
   }
 }
 .article-list .timesince {
@@ -361,4 +324,75 @@ body {
   -moz-background-clip: padding;
   border-radius: 0;
   background-clip: padding-box;
+}
+.icon-holder {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+}
+.icon-holder i {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+}
+.menu-icon {
+  float: right;
+  width: 60px;
+  height: 60px;
+}
+.menu-icon i {
+  font-size: 2em;
+}
+@media screen and (max-width: 970px) {
+  .menu-icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+#sidepanel-toggler {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  z-index: 999;
+  top: 5%;
+  left: 50px;
+}
+#sidepanel-toggler i {
+  font-size: 3em;
+}
+.content-header-btns {
+  display: inline-block;
+  top: 20%;
+  right: 10%;
+  position: absolute;
+  text-align: center;
+}
+.content-header-btns a {
+  padding-right: 10px;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+@media screen and (max-width: 970px) {
+  .content-header-btns {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}
+.editing-button {
+  width: 60px;
+  height: 60px;
+  float: left;
+  clear: both;
+  display: block;
+  margin-bottom: 10px;
+}
+.mini-icon i {
+  font-size: 1.4em;
+  display: inline-block;
+  top: 10px;
 }

@@ -1,0 +1,36 @@
+textarea {
+	outline: none;
+	border: none !important;
+	box-shadow: none !important;
+	font-size: 24px !important;
+	resize: none;
+	overflow-y: hidden;
+	&.article-title {
+		font-size: 48px !important ;
+		text-align: center !important;
+		font-weight: bold !important;
+		width: 100%;
+		color: rgba(0,0,0,.8) !important;
+		overflow-x: hidden;
+		padding: 0 1em;
+	}
+
+}
+
+.article-entry {
+	overflow: hidden;
+	margin-top: 3em;
+	@media screen and (max-width: @md){
+		padding: 0 8em 0 1em;
+	}
+}
+
+.editing-tools {
+	position: fixed;
+	right: 5%;
+	top: 50%;
+	.translateY(-50%);
+	// a, input[type='submit'] {
+		
+	// }
+}
