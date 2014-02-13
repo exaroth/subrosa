@@ -133,7 +133,7 @@ blockquote p {
     right: -2em;
   }
 }
-.admin-icon-holder {
+#sidepanel-toggler {
   width: 60px;
   height: 60px;
   background-color: #333333;
@@ -141,6 +141,34 @@ blockquote p {
   z-index: 999;
   top: 50px;
   left: 50px;
+}
+#pageslide {
+  display: none;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  z-index: 999999;
+  width: 260px;
+  padding: 20px;
+  background-color: #333;
+  color: #FFF;
+  -webkit-box-shadow: inset 0 0 5px 5px #222;
+  -moz-shadow: inset 0 0 5px 5px #222;
+  box-shadow: inset 0 0 5px 5px #222;
+}
+.admin-panel {
+  padding: 0;
+  margin: 0;
+}
+.admin-panel h2 {
+  text-align: center;
+}
+.admin-panel li {
+  text-align: center;
+}
+.admin-panel a {
+  color: white;
 }
 textarea {
   outline: none;
@@ -284,21 +312,6 @@ a {
 }
 body {
   overflow-x: hidden;
-}
-#pageslide {
-  display: none;
-  position: absolute;
-  position: fixed;
-  top: 0;
-  height: 100%;
-  z-index: 999999;
-  width: 260px;
-  padding: 20px;
-  background-color: #333;
-  color: #FFF;
-  -webkit-box-shadow: inset 0 0 5px 5px #222;
-  -moz-shadow: inset 0 0 5px 5px #222;
-  box-shadow: inset 0 0 5px 5px #222;
 }
 .content {
   min-height: 100%;

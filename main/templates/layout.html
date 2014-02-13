@@ -28,11 +28,20 @@
 	    </nav>
 
  -->
- <div class="admin-icon-holder hidden-xs">
- <a id="sidepanel-toggler" href="{{ url_for('admin_panel') }} ">deprofundis</a>
+ <div id="admin-panel" class="admin-panel" style="display: none;">
+ 	<h2>Subrosa</h2>
+ 	<hr>
 
- 	
+ 	<ul class="admin-panel-links list-unstyled">
+ 		<li><a href="{{ url_for('create_article') }} ">Create Article</a></li>
+ 		<li><a href="{{ url_for('upload_image') }} ">Upload image</a></li>
+ 		<li><a href="{{ url_for('user_images', username = session.user) }} ">Images</a></li>
+ 		<li><a href="{{ url_for('account', username = session.user) }} ">Dashboard</a></li>
+ 		<li><a href="{{ url_for('logout') }} ">Logout</a></li>
+ 	</ul>
+
  </div>
+ <a id="sidepanel-toggler" href="#admin-panel">deprofundis</a>
 
  	    {% endif %}
  	    
