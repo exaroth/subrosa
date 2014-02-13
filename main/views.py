@@ -61,8 +61,10 @@ def create_account():
             username = request.form.get("username")
             email = request.form.get("email")
             password = request.form.get("password")
+            real_name = request.form.get("real_name", None)
             if username and email and password:
-                new_user = User(username = username, email = email, password = password)
+                new_user = User(username = username, email = email,\
+                                real_name = real_name, password = password)
                 try:
                     db.session.add(new_user)
                     db.session.commit()
@@ -102,7 +104,7 @@ def account(username):
     if username is None:
         return redirect("/admin")
     user = User.query.filter_by(username = username).first()
-    user_articles = Articles.query.filter_by(author = user).all()
+    user_articles = Articles.query.filter_by(author = user).order_by("date_created").all()
     return render_template("dashboard.html",user = user, articles = user_articles)
 
 
@@ -122,7 +124,7 @@ def create_article():
                 error = "Entry with that title already exists, choose a new one.."
                 return render_template("new_article.html", error = error, title = title, body = body)
             else:
-                article = Articles(title = title, author = user, body = body)
+                article = Articles(title = title, draft = True, author = user, body = body)
                 db.session.add(article)
                 try:
                     db.session.commit()
@@ -158,6 +160,7 @@ def edit_article(id):
                 else:
                     article.title = title
                     article.body = body
+                    article.date_updated = datetime.utcnow()
                     db.session.add(article)
                     try:
                         db.session.commit()
@@ -190,14 +193,31 @@ def delete_article(id):
         db.session.delete(article)
         db.session.commit()
         flash("Article has been deleted")
+        return redirect(url_for("account", username = session["user"]))
+
+@app.route("/publish_article/<int:id>")
+@login_required
+def publish_article(id):
+    article = Articles.query.get_or_404(id)
+    if article.author.username != session["user"]:
+        flash("You can\'t publish other\'s peoples posts")
         return redirect(url_for("index"))
+    else:
+        article.draft = False
+        db.session.add(article)
+        db.session.commit()
+        flash("Article has been published")
+        return redirect(url_for("account", username = session["user"]))
+
 
 @app.route("/upload_image", methods = ["GET", "POST"])
 @login_required
 def upload_image():
+    # Refactor this mess
     error = None
     if request.method == "POST":
         image = request.files["image"]
+        gallery_include = request.form.get("gallery_include", False)
         if image:
             if os.path.splitext(image.filename)[1][1:] in app.config["ALLOWED_FILENAMES"]:
                 filename = secure_filename(request.form.get("image-name")) or secure_filename(image.filename)
@@ -206,7 +226,7 @@ def upload_image():
                     print image_filename, thumb_filename, show_filename
                     try:
                         user = User.query.filter_by(username = session["user"]).first()
-                        user_image = UserImages(filename = image_filename, thumbnail = thumb_filename, showcase = show_filename, owner = user)
+                        user_image = UserImages(filename = image_filename, thumbnail = thumb_filename, showcase = show_filename, gallery = gallery_include, owner = user)
                         db.session.add(user_image)
                         db.session.commit()
                         return redirect(url_for("user_images", username = session["user"]))

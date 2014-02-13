@@ -6,29 +6,40 @@
 {% if articles %}
 <div class="article-table col-md-8 col-md-offset-2">
 
-<table class="table table-hover">
-<legend>Your articles</legend>
-<thead>
-	<tr>
-		<th>#</th>
-		<th>Title</th>
-		<th>Last updated</th>
-		<th>Status</th>
-	</tr>
+	<table class="table table-hover">
+		<legend>Your articles</legend>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Title</th>
+				<th>Last updated</th>
+				<th>Status</th>
+				<th>Actions</th>
+			</tr>
 
 
-</thead>
+		</thead>
 
-{% for article in articles %}
-<tr>
-	<td> {{ loop.index }} </td>
-	<td><a href="{{ url_for('article_view', id = article.id) }} ">{{ article.title | truncate(35) }} </a></td>
-	<td>{{ article.date_created.strftime('%Y-%m-%d %H:%M') }} </td>
-	<td>Published</td>
-
-</tr>
-{% endfor %}
-</table>
+		{% for article in articles %}
+		<tr {% if article.draft == False %}
+		class = "success"
+		{% endif %}>
+		<td> {{ loop.index }} </td>
+		<td><a href="{{ url_for('article_view', id = article.id) }} ">{{ article.title | truncate(35) }} </a></td>
+		<td>{{ article.date_updated.strftime('%Y-%m-%d %H:%M') }} </td>
+		<td>{% if article.draft == False %}
+			Published
+			{% else %}
+			Draft
+			{% endif %}</td>
+			<td>
+			<a href="{{ url_for('publish_article', id = article.id) }}">Publish</a>
+			<a href="{{ url_for('edit_article', id = article.id) }}">Edit</a>
+			<a href="{{ url_for('delete_article', id = article.id) }}">Delete</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
 </div>
 {% else %}
 <h2 class="text-center">No articles written yet</h2>

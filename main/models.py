@@ -13,12 +13,14 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(80), unique = True)
     email = db.Column(db.String(120), unique = True)
+    real_name = db.Column(db.String(120), nullable = True)
     hash = db.Column(db.String(120))
 
 
-    def __init__(self, username, email, password):
+    def __init__(self, username, email, real_name, password):
         self.username = username
         self.email = email
+        self.real_name = real_name
         self.hash = generate_password_hash(password)
 
     @property
@@ -39,22 +41,26 @@ class Articles(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(120))
     slug = db.Column(db.String(120))
+    draft = db.Column(db.Boolean, default = True)
     date_created = db.Column(db.DateTime, default = datetime.datetime.utcnow)
+    date_updated = db.Column(db.DateTime, default = datetime.datetime.utcnow)
     body = db.Column(db.Text)
     author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     author = db.relationship("User", backref = db.backref("articles", lazy = "dynamic"))
 
-    def __init__(self, title, body, author):
+    def __init__(self, title, body, draft, author):
         self.title = title
         self.slug = slugify(title)
+        self.draft = draft
         self.body = body
         self.author = author
 
 
     @staticmethod
     def get_article_by_author(name):
-        user = User.query.filter_by(username = name).first()
-        return Articles.query.filter_by(author = user).order_by("date_created").all()
+        return Articles.query.join(Users).\
+                filter(Users.username == name).\
+                order_by("date_created").all()
 
     def __repr__(self):
         return "<Article: {0}>".format(truncate(self.title))
@@ -67,13 +73,15 @@ class UserImages(db.Model):
     filename = db.Column(db.String(120), unique = True)
     thumbnail = db.Column(db.String(120))
     showcase = db.Column(db.String(120))
+    gallery = db.Column(db.Boolean, default = False)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     owner = db.relationship("User", backref = db.backref("user_images", lazy = "dynamic"))
 
-    def __init__(self, filename, thumbnail, showcase, owner):
+    def __init__(self, filename, thumbnail, showcase, gallery, owner):
         self.filename = filename
         self.thumbnail = thumbnail
         self.showcase = showcase
+        self.gallery = gallery
         self.owner = owner
 
     def __repr__(self):

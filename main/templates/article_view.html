@@ -21,7 +21,10 @@
 
  <span><a href="{{ url_for('delete_article', id = article.id) }} "></a></span>
  {% endif %}
-     Written {{ article.date_created | timesince }} by {{ article.author.username }}</h5>
+     Written {{ article.date_created | timesince }}
+     {% if article.author.real_name %}
+      by {{ article.author.real_name }}</h5>
+     {% endif %}
 </div>
 <div class="row">
 	
