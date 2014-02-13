@@ -11,6 +11,14 @@
 
 @body-font: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
+@yellow: #fcc41e;
+@rose-red: #ff5c39;
+@cerulean: #47b1ff;
+@green: #98cd45;
+@orange: #ffb126;
+
+
+
 // Uncomment this to see the grid of the site
 
 // .edit();
@@ -31,6 +39,14 @@ body {
 	height: 100%;
 	/* Negative indent footer by it's height */
 	margin: 0 auto -60px;
+}
+a:hover,
+a:active {
+	text-decoration: none;
+	color: @rose-red;
+}
+a {
+	.transition(all, 0.1s, ease-in)
 }
 .push,
 .footer {
@@ -113,6 +129,9 @@ body {
 	z-index: 999;
 	top: 5%;
 	left: 50px;
+	&:hover {
+		color: @cerulean
+	}
 	i {
 		font-size: 3em;
 	}
@@ -142,6 +161,19 @@ body {
 		clear: both;
 		display: block;
 		margin-bottom: 10px;
+}
+.create-button:hover,
+.update-button:hover {
+	color: @green;
+}
+.cancel-button:hover {
+	color: @rose-red;
+}
+.lamp-button:hover {
+	color: @yellow;
+}
+.cheatsheet-button:hover {
+	color: @cerulean;
 }
 .mini-icon {
 	i {

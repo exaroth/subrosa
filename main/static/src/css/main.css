@@ -281,6 +281,17 @@ body {
   /* Negative indent footer by it's height */
   margin: 0 auto -60px;
 }
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #ff5c39;
+}
+a {
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
 .push,
 .footer {
   height: 60px;
@@ -358,6 +369,9 @@ body {
   top: 5%;
   left: 50px;
 }
+#sidepanel-toggler:hover {
+  color: #47b1ff;
+}
 #sidepanel-toggler i {
   font-size: 3em;
 }
@@ -388,6 +402,19 @@ body {
   clear: both;
   display: block;
   margin-bottom: 10px;
+}
+.create-button:hover,
+.update-button:hover {
+  color: #98cd45;
+}
+.cancel-button:hover {
+  color: #ff5c39;
+}
+.lamp-button:hover {
+  color: #fcc41e;
+}
+.cheatsheet-button:hover {
+  color: #47b1ff;
 }
 .mini-icon i {
   font-size: 1.4em;
