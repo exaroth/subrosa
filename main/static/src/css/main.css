@@ -61,7 +61,7 @@ blockquote p {
   text-align: justify;
 }
 .content-header {
-  height: 10em;
+  height: 6em;
   position: relative;
 }
 .article-main .article-body > p:first-of-type {
@@ -129,6 +129,11 @@ textarea.article-title {
   overflow-x: hidden;
   padding: 0 1em;
 }
+.warning-holder {
+  height: 4em;
+  width: 60%;
+  margin: 0 auto;
+}
 .article-entry {
   overflow: hidden;
   margin-top: 3em;
@@ -140,7 +145,7 @@ textarea.article-title {
 }
 .editing-tools {
   position: fixed;
-  right: 5%;
+  right: 8%;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -165,7 +170,9 @@ textarea.article-title {
   background-image: url("../img/kermit.jpg");
   background-size: contain;
   background-position: center center;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 1px 1px 7px #333333;
+  -moz-box-shadow: 1px 1px 7px #333333;
+  box-shadow: 1px 1px 7px #333333;
 }
 .header-field .site-title {
   margin: 1em 0 0.5em 0;
@@ -176,10 +183,8 @@ textarea.article-title {
   padding: 0 2em;
 }
 .header-field {
-  background-color: #e6e6e6;
   margin-bottom: 2em;
   padding-bottom: 4em;
-  border-bottom: 1px solid #666666;
   position: relative;
   background-image: url("../img/bg.jpg");
   background-position: center center;
@@ -227,16 +232,15 @@ textarea.article-title {
 }
 .article-list {
   font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  position: relative;
 }
-.article-list a.article-title {
-  color: red;
-}
-.article-list h1 {
-  color: #333333;
-  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+.article-list .article-title {
+  font-size: 1.6em;
   font-weight: bold;
-  text-align: center;
-  margin-bottom: 0.5em;
+  margin: 1.4em 0;
+}
+.article-list .article-title:hover {
+  color: #ff5c39;
 }
 #pageslide {
   /* These styles MUST be included. Do not change. */

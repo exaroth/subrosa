@@ -9,7 +9,7 @@
 	background-image: url("../img/kermit.jpg");
 	background-size: contain;
 	background-position: center center;
-	border: 1px solid rgba(0,0,0,.8);
+	.box-shadow(1px, 1px, 7px @black-80)
 }
 .header-field .site-title {
 	margin: 1em 0 0.5em 0;
@@ -20,15 +20,14 @@
 	padding: 0 2em;
 }
 .header-field {
-	background-color: @black-10;
 	margin-bottom: 2em;
 	padding-bottom: 4em;
-	border-bottom: 1px solid @black-60;
 	position: relative;
 	background-image: url("../img/bg.jpg");
 	background-position: center center;
 	background-size: 100%;
 	background-repeat: no-repeat;
+	// .box-shadow(1px, 0 , 10px, @black-80)
 	
 }
 
@@ -42,7 +41,6 @@
 		display: inline-block;
 		float: right;
 	}
-
 	@media screen and (max-width: @md){
 		width: 100%;
 		top: 94%;
@@ -73,15 +71,14 @@
 }
 .article-list {
 	font-family: @body-font;
-	a.article-title {
-		color: red;
-	}
+	position: relative;
 }
 
-.article-list h1 {
-	color: @black-80;
-	font-family: @body-font;
+.article-list .article-title {
+	font-size: 1.6em;
 	font-weight: bold;
-	text-align: center;
-	margin-bottom: 0.5em;
+	margin: 1.4em 0;
+	&:hover{
+		color: @rose-red;
+	}
 }

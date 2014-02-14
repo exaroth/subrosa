@@ -14,10 +14,10 @@
 				<a href="{{ url_for('recent_feeds') }}" class=" rss-button icon-holder menu-icon"><i class="icon-rss"></i></a>
 			</li>
 			
-			<li>
+<!-- 			<li>
 				<a href="{{ url_for('index') }}" class="icon-holder menu-icon"><i class="icon-home"></i></a>
 			</li>
-		</ul>
+		-->		</ul>
 	</div>
 </div>
 {% endblock %}
@@ -39,44 +39,46 @@
 	<div class="row">
 		<h6 class="timesince pull-right ">Written {{ article.date_created | timesince }}</h6>
 	</div>
-	<a href="{{ url_for('article_view', id = article.id) }}" class="article-title">
-		<h1>{{ article.title }}</h1></a>
-			<div class="article-body col-xs-12">
-				{{ article.body |truncate(800)|markdown }}
-			</div>
-			{% if not loop.last %}
-			<h1 style="text-align: center">&hellip;</h1>
-			{% endif %}
-		</article>
-		{% endfor %}
-		{% else %}
-		<h2 class="text-center" style="margin: 4em 0">No articles here yet, maybe write some cowboy...</h2>
-		{% endif %}
-		{% if articles.items and articles.pages > 1 %}
-		<div class="bottom-pagination col-xs-4 col-xs-offset-4" style="text-align: center; margin-top: 1em" >
-			<ul class="pagination" >
-				{% if articles.has_prev %}
-				<li><a href="{{ url_for('index', page = articles.page -1) }}">&laquo;</a></li>
-				{% else %}
-				<li class="disabled"><a href="">&laquo;</a></li>
-				{% endif %}
-				{% for pagination_page in articles.iter_pages() %}
-				{% if pagination_page %}
-				{% if pagination_page != articles.page %}
-				<li><a href="{{ url_for('index', page = pagination_page) }}">{{ pagination_page }}</a></li>
-				{% else %}
-				<li class="active"><a href="#">{{ pagination_page }}</a></li>
-				{% endif %}
-				{% endif %}
-				{% endfor %}
-				{% if articles.has_next %}
-				<li><a href="{{ url_for('index', page = articles.page + 1) }}">&laquo;</a></li>
-				{% else %}
-				<li class="disabled"><a href="">&raquo;</a></li>
-
-				{% endif %}
-			</ul>
+	<div class="article-title text-center">
+	<a href="{{ url_for('article_view', id = article.id) }}" class="article-title text-center">{{ article.title }}</a>
+		
+	</div>
+	 <div class="article-body col-xs-12">
+			{{ article.body |truncate(800)|markdown }}
 		</div>
-
+		{% if not loop.last %}
+		<h1 style="text-align: center">&hellip;</h1>
 		{% endif %}
-		{% endblock %}
+	</article>
+	{% endfor %}
+	{% else %}
+	<h2 class="text-center" style="margin: 4em 0">No articles here yet, maybe write some cowboy...</h2>
+	{% endif %}
+	{% if articles.items and articles.pages > 1 %}
+	<div class="bottom-pagination col-xs-4 col-xs-offset-4" style="text-align: center; margin-top: 1em" >
+		<ul class="pagination" >
+			{% if articles.has_prev %}
+			<li><a href="{{ url_for('index', page = articles.page -1) }}">&laquo;</a></li>
+			{% else %}
+			<li class="disabled"><a href="">&laquo;</a></li>
+			{% endif %}
+			{% for pagination_page in articles.iter_pages() %}
+			{% if pagination_page %}
+			{% if pagination_page != articles.page %}
+			<li><a href="{{ url_for('index', page = pagination_page) }}">{{ pagination_page }}</a></li>
+			{% else %}
+			<li class="active"><a href="#">{{ pagination_page }}</a></li>
+			{% endif %}
+			{% endif %}
+			{% endfor %}
+			{% if articles.has_next %}
+			<li><a href="{{ url_for('index', page = articles.page + 1) }}">&laquo;</a></li>
+			{% else %}
+			<li class="disabled"><a href="">&raquo;</a></li>
+
+			{% endif %}
+		</ul>
+	</div>
+
+	{% endif %}
+	{% endblock %}
