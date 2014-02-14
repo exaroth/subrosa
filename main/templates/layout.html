@@ -5,6 +5,7 @@
 	<title>{{ g.title }}</title>
 	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>	
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/bootstrap.css') }}" media="all" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/pygments.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/fontello.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/main.css') }}" media="all" />
 </head>
@@ -51,6 +52,7 @@
 			{% include "footer.html" %}
 		</div></div>
 		<script src="{{ url_for('static', filename='src/js/jquery.min.js') }} "></script>
+		<script src="{{ url_for('static', filename='src/js/bootstrap.min.js') }} "></script>
 		<script src="{{ url_for('static', filename='src/js/bootstrap.min.js') }} "></script>
 		<script src="{{ url_for('static', filename='src/js/jquery.pageslide.min.js') }} "></script>
 		<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>

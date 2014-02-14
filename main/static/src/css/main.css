@@ -112,6 +112,23 @@ blockquote p {
     right: -2em;
   }
 }
+.article-main pre {
+  background-color: inherit;
+}
+.article-main .codehilite {
+  width: 90%;
+  margin: 0 auto;
+  border: none;
+}
+.article-main .codehilite pre {
+  -webkit-border-radius: 5px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 5px;
+  -moz-background-clip: padding;
+  border-radius: 5px;
+  background-clip: padding-box;
+  padding: 1em;
+}
 textarea {
   outline: none;
   border: none !important;

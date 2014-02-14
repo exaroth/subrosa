@@ -303,7 +303,7 @@ def recent_feeds():
         feed.add(article.title, unicode(article.body)[:320],
             content_type = "html",
             author = article.author,
-            updated = article.date_created,
+            updated = article.date_updated,
             url = make_external(article.id),
             published = article.date_created
             )
