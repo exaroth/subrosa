@@ -31,7 +31,7 @@ python run.py
 ```
 
 NOTE: for deployment you dont want to host it with development server
-use Gunicorn over Nginx (reccomended) or similar solution
+use Gunicorn over Nginx (recommended) or similar solution
 
 The server runs by default on
 
