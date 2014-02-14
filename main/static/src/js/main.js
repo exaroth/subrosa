@@ -61,32 +61,58 @@
 // ------------------------------ My code here -----------------------------
 
 
-	$textarea = $("textarea");
-    $editForm = $(".edit-article-form");
-    $createForm = $(".new-article-form");
-    $updateArticleButton = $(".update-button");
-    $createArticleButton = $(".create-button");
-    $sidepanelToggler = $("#sidepanel-toggler")
-    $miniIcons = $(".mini-icon")
-    $editingButtons = $(".editing-button")
+$textarea = $("textarea");
+$articleInputBody = $(".article-input-body");
+$editForm = $(".edit-article-form");
+$createForm = $(".new-article-form");
+$updateArticleButton = $(".update-button");
+$createArticleButton = $(".create-button");
+$sidepanelToggler = $("#sidepanel-toggler")
+$miniIcons = $(".mini-icon")
+$editingButtons = $(".editing-button")
 
-    $updateArticleButton.click(function(e){
-        e.preventDefault();
-        $editForm.submit();
-    });
-    $createArticleButton.click(function(e){
-        e.preventDefault();
-        $createForm.submit();
-    });
+$updateArticleButton.click(function(e){
+    e.preventDefault();
+    $editForm.submit();
+});
+$createArticleButton.click(function(e){
+    e.preventDefault();
+    $createForm.submit();
+});
+
+enableTab($articleInputBody);
+
+// Disable tab trigger in textarea
+function enableTab(el) {
+    el.on("keydown", function(e){
+        if (e.keyCode === 9) { // tab was pressed
+
+            // get caret position/selection
+            var val = this.value,
+            start = this.selectionStart,
+            end = this.selectionEnd;
+
+            // set textarea value to: text before caret + tab + text after caret
+            this.value = val.substring(0, start) + '\t' + val.substring(end);
+
+            // put caret at right position again
+            this.selectionStart = this.selectionEnd = start + 1;
+
+            // prevent the focus lose
+            return false;
+
+        }
+
+    })
+}
 
 
 
+$textarea.autogrow();
+$sidepanelToggler.pageslide();
+$miniIcons.tooltip();
+$editingButtons.tooltip();
 
-	$textarea.autogrow();
-    $sidepanelToggler.pageslide();
-    $miniIcons.tooltip();
-    $editingButtons.tooltip();
-	
 })(jQuery);
 
 

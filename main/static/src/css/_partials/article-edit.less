@@ -6,7 +6,9 @@ textarea {
 	font-size: 24px !important;
 	resize: none;
 	overflow-y: hidden;
-	&.article-title {
+	// Fix for tab in chrome
+	text-rendering: optimizeSpeed;
+		&.article-title {
 		font-size: 48px !important ;
 		text-align: center !important;
 		font-weight: bold !important;

@@ -117,7 +117,7 @@ blockquote p {
 }
 .article-main .codehilite {
   width: 90%;
-  margin: 0 auto;
+  margin: 2em auto 2em auto;
   border: none;
 }
 .article-main .codehilite pre {
@@ -136,6 +136,7 @@ textarea {
   font-size: 24px !important;
   resize: none;
   overflow-y: hidden;
+  text-rendering: optimizeSpeed;
 }
 textarea.article-title {
   font-size: 48px !important ;

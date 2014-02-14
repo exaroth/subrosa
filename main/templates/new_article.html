@@ -18,10 +18,10 @@
 <form action="" method="POST" role="form" class="new-article-form" accept-charset="utf-8">
     <div class="form-group">
 
-    <textarea name="title" id="article-title" class="article-title" placeholder="Title of your Article here...">{{ title }}</textarea>
+    <textarea name="title" id="article-input-title" class="article-title" placeholder="Title of your Article here...">{{ title }}</textarea>
     </div>
     <div class="form-group">
-	<textarea id="body" class="body form-control entry-input" name="body"  rows="16" placeholder=" And content here...">{{ body }}</textarea>
+	<textarea id="article-body" class="article-input-body form-control entry-input" name="body"  rows="16" placeholder=" And content here...">{{ body }}</textarea>
     </div>
     <input type="submit" value="" style="display: none"  />
 </form>
