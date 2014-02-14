@@ -148,6 +148,12 @@ textarea.article-title {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+@media screen and (max-width: 970px) {
+  .editing-tools {
+    right: 10%;
+    z-index: 99;
+  }
+}
 .title-img {
   -webkit-border-radius: 50%;
   -webkit-background-clip: padding-box;
@@ -222,7 +228,7 @@ textarea.article-title {
 .article-list {
   font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-.article-list:a.article-title {
+.article-list a.article-title {
   color: red;
 }
 .article-list h1 {
@@ -391,12 +397,10 @@ a {
   }
 }
 .editing-button {
-  width: 60px;
-  height: 60px;
   float: left;
   clear: both;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 6em;
 }
 .create-button:hover,
 .update-button:hover {

@@ -67,6 +67,8 @@
     $updateArticleButton = $(".update-button");
     $createArticleButton = $(".create-button");
     $sidepanelToggler = $("#sidepanel-toggler")
+    $miniIcons = $(".mini-icon")
+    $editingButtons = $(".editing-button")
 
     $updateArticleButton.click(function(e){
         e.preventDefault();
@@ -79,8 +81,11 @@
 
 
 
+
 	$textarea.autogrow();
     $sidepanelToggler.pageslide();
+    $miniIcons.tooltip();
+    $editingButtons.tooltip();
 	
 })(jQuery);
 
