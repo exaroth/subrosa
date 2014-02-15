@@ -12,6 +12,10 @@ TITLE = "Kermit's Blog"
 
 UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
 
+# Set it to False if you dont want to modify filesystem
+
+DYNAMIC_SITE = True
+
 # path to your database
 
 SQLALCHEMY_DATABASE_URI = "sqlite:////" + ROOT_PATH + "/test.db"

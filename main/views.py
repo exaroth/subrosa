@@ -16,7 +16,9 @@
 from main import app, db
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
 from .models import User, Articles, UserImages
-from .helpers import Pagination, login_required, process_image, make_external, redirect_url, handle_errors
+from .helpers import Pagination, login_required,\
+process_image, make_external, redirect_url, handle_errors,\
+dynamic_content
 from werkzeug import secure_filename
 import os
 from datetime import datetime
@@ -251,6 +253,7 @@ def publish_article(id):
 
 @app.route("/upload_image", methods = ["GET", "POST"])
 @login_required
+@dynamic_content
 def upload_image():
     # Refactor this mess
     error = None

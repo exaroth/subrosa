@@ -37,6 +37,19 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated
 
+def dynamic_content(f):
+    """
+    Redirects to index if DYNAMIC_SITE
+    variable is set to False
+    """
+
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not app.config.get("DYNAMIC_SITE", False):
+            return redirect(url_for("index"))
+        return f(*args, **kwargs)
+    return decorated
+
 def handle_errors(mess = "Unknown Error"):
     """
     Small function that logs exceptions
@@ -146,7 +159,6 @@ def process_image(image, filename, username):
             img.save(img_path + full_filename, "JPEG")
             return (full_filename, thumb_filename, show_filename)
         except IOError, e:
-                print e
-                raise IOError("Could not save the file")
+                raise 
     except Exception as e:
-        raise IOError("Could not open the file")
+        raise 
