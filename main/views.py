@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+
+"""
+
+    main.views
+    ~~~~~~~~~~
+
+    This module implements all the basic views of Subrosa
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: BSD, see LICENSE for more details
+
+
+"""
+
 from main import app, db
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
 from .models import User, Articles, UserImages
@@ -18,10 +33,12 @@ def load_vars():
 @app.route("/<int:page>")
 def index(page):
     pages_per_page = app.config["ARTICLES_PER_PAGE"]
-    pagination = Articles.query.paginate(page, pages_per_page)
-    if not pagination.items and page != 1:
+    articles = Articles.\
+                 get_articles_by_date().\
+                 paginate(page, pages_per_page)
+    if not articles.items and page != 1:
         abort(404)
-    return render_template("index.html", title = "Main Content", articles = pagination)
+    return render_template("index.html", title = "Main Content", articles = articles)
 
 @app.route("/index", methods = ["GET"])
 def redirect_index():
@@ -55,7 +72,17 @@ def admin_login():
 
 @app.route("/create_account", methods = ["POST", "GET"])
 def create_account():
+    """
+    View for creating user account
+    - Checks if no users have been created - if yes redirect
+    - Gets Credentials from the form
+    - Writes data to db
+    - Creates user directory in /uploads
+    - Logs user in
+
+    """
     error = None
+    # check if no users created yet
     user_check = User.query.all()
     if not user_check:
         if request.method == "POST":
@@ -105,7 +132,7 @@ def account(username):
     if username is None:
         return redirect("/admin")
     user = User.query.filter_by(username = username).first()
-    user_articles = Articles.query.filter_by(author = user).order_by("date_created").all()
+    user_articles = Articles.query.filter_by(author = user).order_by(Articles.date_created.desc()).all()
     return render_template("dashboard.html",user = user, articles = user_articles)
 
 
@@ -219,30 +246,29 @@ def upload_image():
     if request.method == "POST":
         image = request.files["image"]
         gallery_include = request.form.get("gallery_include", False)
-        if image:
-            if os.path.splitext(image.filename)[1][1:] in app.config["ALLOWED_FILENAMES"]:
-                filename = secure_filename(request.form.get("image-name")) or secure_filename(image.filename)
+        if not image:
+            error = "No image chosen"
+            return render_template("upload_image.html", error = error)
+        if os.path.splitext(image.filename)[1][1:] in app.config["ALLOWED_FILENAMES"]:
+            filename = secure_filename(request.form.get("image-name"))\
+                                      or secure_filename(image.filename)
+            try:
+                image_filename, thumb_filename, show_filename = process_image(image = image, filename = filename , username = session["user"])
+                print image_filename, thumb_filename, show_filename
                 try:
-                    image_filename, thumb_filename, show_filename = process_image(image = image, filename = filename , username = session["user"])
-                    print image_filename, thumb_filename, show_filename
-                    try:
-                        user = User.query.filter_by(username = session["user"]).first()
-                        user_image = UserImages(filename = image_filename, thumbnail = thumb_filename, showcase = show_filename, gallery = gallery_include, owner = user)
-                        db.session.add(user_image)
-                        db.session.commit()
-                        return redirect(url_for("user_images", username = session["user"]))
-                    except Exception, e:
-                        error = "Error writing to database"
-                        return render_template("upload_image.html", error = error)
+                    user = User.query.filter_by(username = session["user"]).first()
+                    user_image = UserImages(filename = image_filename, thumbnail = thumb_filename, showcase = show_filename, gallery = gallery_include, owner = user)
+                    db.session.add(user_image)
+                    db.session.commit()
+                    return redirect(url_for("user_images", username = session["user"]))
                 except Exception, e:
-                    error = "Error occured while processing the image"
-                   
+                    error = "Error writing to database"
                     return render_template("upload_image.html", error = error)
-            else:
-                error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
+            except Exception, e:
+                error = "Error occured while processing the image"
                 return render_template("upload_image.html", error = error)
         else:
-            error = "No image chosen"
+            error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
             return render_template("upload_image.html", error = error)
     else:
         return render_template("upload_image.html")

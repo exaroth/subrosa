@@ -1,3 +1,15 @@
+# -*- coding: utf-8 -*-
+
+"""
+    Database models file for Subrosa
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: BSD, see LICENSE for more details
+
+"""
+
+
+
 from main import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
@@ -56,11 +68,16 @@ class Articles(db.Model):
         self.author = author
 
 
+    # @staticmethod
+    # def get_article_by_author(name):
+    #     return Articles.query.join(Users).\
+    #             filter(Users.username == name).\
+    #             order_by("date_created").all()
+
     @staticmethod
-    def get_article_by_author(name):
-        return Articles.query.join(Users).\
-                filter(Users.username == name).\
-                order_by("date_created").all()
+    def get_articles_by_date():
+        return Articles.query\
+                .order_by(Articles.date_created.desc())\
 
     def __repr__(self):
         return "<Article: {0}>".format(truncate(self.title))
