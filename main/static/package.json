@@ -1,12 +1,12 @@
 {
-  "name": "simple_blog",
+  "name": "Subrosa",
   "version": "0.0.0",
-  "description": "Just a simple blog",
-  "main": "index.js",
+  "description": "Blogging platform for elegant hackers",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Exaroth",
+  "author": "Konrad Wasowicz",
   "license": "BSD-2-Clause",
   "devDependencies": {
     "grunt-cli": "~0.1.13",

@@ -102,8 +102,10 @@ def create_account():
                     db.session.add(new_user)
                     db.session.commit()
                 except IOError, e:
+                    db.session.rollback()
                     error = "Could not write to database, check if\
                             you have proper access\n or double check configuration options"
+                    handle_errors(error)
                     return render_template("create_account.html", error = error)
                 try:
                     os.mkdir(app.config["UPLOAD_FOLDER"] + username, 0755)
@@ -292,6 +294,7 @@ def upload_image():
 @app.route("/images/<username>", defaults={"page": 1})
 @app.route("/images/<username>/<int:page>")
 @login_required
+@dynamic_content
 def user_images(username, page):
     images = UserImages.query.join(User).paginate(page, 9)
     url_path = request.url_root +"uploads/"
@@ -301,6 +304,7 @@ def user_images(username, page):
 
 @app.route("/delete_image/<int:id>")
 @login_required
+@dynamic_content
 def delete_image(id):
     image = UserImages.query.get(id)
     # prevent from deleting images by people other by the owner
@@ -326,7 +330,10 @@ def delete_image(id):
             return redirect(url_for("index"))
         return redirect(url_for("user_images", username = session["user"]))
 
+
+# probably needs auth
 @app.route("/image_details/<int:id>")
+@dynamic_content
 def image_details(id):
     image = UserImages.query.get_or_404(id)
     path = request.url_root
@@ -358,6 +365,7 @@ def recent_feeds():
     return feed.get_response()
 
 @app.route("/uploads/<path:filename>")
+@dynamic_content
 def send_image(filename):
     """
     Allows sending images from upload folder

@@ -23,7 +23,7 @@
 .article-main h6,
 .article-main li,
 .article-main a {
-  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
   color: #4d4d4d;
 }
 .article-main h2 {
@@ -53,7 +53,7 @@ blockquote:before {
   position: absolute;
   left: -20px;
   top: -20px;
-  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
   display: block;
 }
 blockquote p {
@@ -136,7 +136,7 @@ img.floated-image {
   -o-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
   font-style: italic;
   color: #808080;
   font-size: 0.6em;
@@ -311,7 +311,7 @@ textarea.article-title {
   padding-right: 0;
 }
 .article-list {
-  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
   position: relative;
 }
 .article-list .article-list-title {
@@ -347,6 +347,9 @@ textarea.article-title {
 #admin-panel a:hover {
   text-decoration: none;
   color: white;
+}
+.image-gallery-wrapper {
+  margin-bottom: 12px;
 }
 * {
   box-sizing: border-box;

@@ -60,6 +60,10 @@
 
 // ------------------------------ My code here -----------------------------
 
+
+})(jQuery);
+
+$(window).load(function(){
 var
 $textarea = $("textarea"),
 $articleInputBody = $(".article-input-body"),
@@ -70,7 +74,8 @@ $createArticleButton = $(".create-button"),
 $sidepanelToggler = $("#sidepanel-toggler"),
 $miniIcons = $(".mini-icon"),
 $editingButtons = $(".editing-button"),
-$articleBody = $(".article-body")
+$articleBody = $(".article-body"),
+$gallery = $(".gallery-wrapper");
 
 $updateArticleButton.click(function(e){
     e.preventDefault();
@@ -154,7 +159,11 @@ $textarea.autogrow();
 $sidepanelToggler.pageslide();
 $miniIcons.tooltip();
 $editingButtons.tooltip();
-
-})(jQuery);
+$gallery.masonry({
+    columnWidth: 200,
+    itemSelector: '.image-gallery-wrapper',
+    gutter: 12
+})
+})
 
 

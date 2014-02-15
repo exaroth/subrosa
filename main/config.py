@@ -20,6 +20,12 @@ DYNAMIC_SITE = True
 
 SQLALCHEMY_DATABASE_URI = "sqlite:////" + ROOT_PATH + "/test.db"
 
+FACEBOOK = "http://www.mojfacebook.pl"
+
+TWITTER = "http://www.twitter.com"
+
+GALLERY = False
+
 # Number of pages that shows up on page
 
 ARTICLES_PER_PAGE = 3
