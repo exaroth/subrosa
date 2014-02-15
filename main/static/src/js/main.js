@@ -60,16 +60,17 @@
 
 // ------------------------------ My code here -----------------------------
 
-
-$textarea = $("textarea");
-$articleInputBody = $(".article-input-body");
-$editForm = $(".edit-article-form");
-$createForm = $(".new-article-form");
-$updateArticleButton = $(".update-button");
-$createArticleButton = $(".create-button");
-$sidepanelToggler = $("#sidepanel-toggler")
-$miniIcons = $(".mini-icon")
-$editingButtons = $(".editing-button")
+var
+$textarea = $("textarea"),
+$articleInputBody = $(".article-input-body"),
+$editForm = $(".edit-article-form"),
+$createForm = $(".new-article-form"),
+$updateArticleButton = $(".update-button"),
+$createArticleButton = $(".create-button"),
+$sidepanelToggler = $("#sidepanel-toggler"),
+$miniIcons = $(".mini-icon"),
+$editingButtons = $(".editing-button"),
+$articleBody = $(".article-body")
 
 $updateArticleButton.click(function(e){
     e.preventDefault();
@@ -81,6 +82,8 @@ $createArticleButton.click(function(e){
 });
 
 enableTab($articleInputBody);
+
+processArticleImages($articleBody)
 
 // Disable tab trigger in textarea
 function enableTab(el) {
@@ -104,7 +107,46 @@ function enableTab(el) {
         }
 
     })
-}
+};
+
+// Check if image is Horizontal
+
+function imgIsHorizontal(el){
+    return el.width() > el.height();
+};
+
+function processArticleImages(articleBody){
+
+    articleBody.find("img").each(function(e){
+
+        var self = $(this);
+
+        // If parent element is anchor move it otherwise move image
+        var elToMove = self.parent().is("a") ? self.parent() : self;
+        // Wrap image element or anchor with div and return it
+        var imgWrapper = elToMove
+                     .wrap('<div class="image-wrapper"></div>')
+                     .parent();
+        if (imgIsHorizontal(self)){
+            elToMove.addClass("centered-image");
+            imgWrapper.addClass("centered-image-wrapper");
+            } else {
+            elToMove.addClass("floated-image");
+            imgWrapper.addClass("floated-image-wrapper");
+            }
+
+
+        elToMove.addClass("centered-image");
+        var imageDescription = $("<span></span>")
+                             .text(self.attr("alt"))
+                             .addClass("image-desc")
+                             .appendTo(imgWrapper)
+        console.log(imageDescription)
+
+
+    })
+
+};
 
 
 

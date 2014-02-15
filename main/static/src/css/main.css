@@ -94,23 +94,84 @@ blockquote p {
     margin: 0 auto;
   }
 }
-.article-main .article-body a img {
-  width: 50%;
-  max-width: 80%;
+.article-main .article-body {
   position: relative;
-  padding: 0.8em;
-  -webkit-box-shadow: 1px 1px 1px #cccccc;
-  -moz-box-shadow: 1px 1px 1px #cccccc;
-  box-shadow: 1px 1px 1px #cccccc;
-  border: 1px solid #b3b3b3;
+}
+a.centered-image {
+  display: block;
+  margin: 1em auto 1em auto;
+  width: 400px;
+  max-width: 500px;
+}
+a.centered-image img {
+  max-width: 100%;
+  width: 100%;
+  border: 1px solid #333333;
+}
+img.centered-image {
+  display: block;
+  margin: 1em auto 1em auto;
+  width: 400px;
+  max-width: 500px;
+  max-width: 100%;
+  border: 1px solid #333333;
+}
+a.floated-image {
   display: block;
   float: right;
-  margin: 1em 0 1em 0;
+  width: 300px;
 }
-@media screen and (min-width: 970px) {
-  .article-main .article-body a img {
-    right: -2em;
+a.floated-image img {
+  border: 1px solid #333333;
+}
+img.floated-image {
+  width: 300px;
+  float: right;
+}
+.image-desc {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: italic;
+  color: #808080;
+  font-size: 0.6em;
+  line-height: 2em;
+  width: 10em;
+  vertical-align: center;
+}
+@media screen and (max-width: 970px) {
+  .image-desc {
+    display: none;
   }
+}
+.centered-image ~ .image-desc {
+  left: 0;
+}
+.floated-image ~ .image-desc {
+  left: 108%;
+}
+.floated-image-wrapper {
+  float: right;
+  clear: right;
+  margin-left: 1em;
+}
+.centered-image-wrapper {
+  clear: both;
+  width: 100%;
+  margin: 1em 0 ;
+}
+.centered-image-wrapper span {
+  text-align: right;
+}
+.image-wrapper {
+  position: relative;
+  display: inline-block;
+  vertical-align: center;
 }
 .article-main pre {
   background-color: inherit;
@@ -252,12 +313,12 @@ textarea.article-title {
   font-family: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   position: relative;
 }
-.article-list .article-title {
-  font-size: 1.6em;
+.article-list .article-list-title {
+  font-size: 2.5em;
   font-weight: bold;
   margin: 1.4em 0;
 }
-.article-list .article-title:hover {
+.article-list .article-list-title:hover {
   color: #ff5c39;
 }
 #pageslide {
