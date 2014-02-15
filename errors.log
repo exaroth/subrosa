@@ -1,0 +1,29 @@
+2014-02-15 18:54:55,479 : DEBUG ::: ==============================
+2014-02-15 18:54:55,479 : DEBUG ::: Error occured on line 49 in file /home/konrad/.venv/sub_rosa/main/views.py
+2014-02-15 18:54:55,480 : DEBUG ::: Message: Incorrect Credentials
+2014-02-15 18:54:55,480 : DEBUG ::: Details:
+2014-02-15 18:54:55,480 : DEBUG ::: Type: None
+2014-02-15 18:54:55,480 : DEBUG :::  Value: None
+2014-02-15 18:54:55,480 : DEBUG ::: Traceback None
+2014-02-15 18:55:31,681 : DEBUG ::: ==============================
+2014-02-15 18:55:31,681 : DEBUG ::: Error occured on line 49 in file /home/konrad/.venv/sub_rosa/main/views.py
+2014-02-15 18:55:31,682 : DEBUG ::: Message: Incorrect Credentials
+2014-02-15 18:55:31,682 : DEBUG ::: Details:
+2014-02-15 18:55:31,682 : DEBUG ::: Type: None
+2014-02-15 18:55:31,682 : DEBUG ::: Value: None
+2014-02-15 18:55:31,682 : DEBUG ::: Traceback None
+2014-02-15 18:59:29,377 : DEBUG ::: ==============================
+2014-02-15 18:59:29,377 : DEBUG ::: Error occured on line 49 in file /home/konrad/.venv/sub_rosa/main/views.py
+2014-02-15 18:59:29,377 : DEBUG ::: Message: Incorrect Credentials
+2014-02-15 18:59:29,377 : DEBUG ::: Details:
+2014-02-15 18:59:29,377 : DEBUG :::    Type: None
+2014-02-15 18:59:29,377 : DEBUG :::    Value: None
+2014-02-15 18:59:29,377 : DEBUG :::    Traceback None
+2014-02-15 19:00:18,790 : DEBUG ::: ==============================
+2014-02-15 19:00:18,791 : DEBUG ::: Error occured on line 49 in file /home/konrad/.venv/sub_rosa/main/views.py
+2014-02-15 19:00:18,791 : DEBUG ::: Message: Incorrect Credentials
+2014-02-15 19:00:18,791 : DEBUG ::: Details:
+2014-02-15 19:00:18,791 : DEBUG ::: --------
+2014-02-15 19:00:18,791 : DEBUG ::: Type: None
+2014-02-15 19:00:18,791 : DEBUG ::: Value: None
+2014-02-15 19:00:18,791 : DEBUG ::: Traceback: None

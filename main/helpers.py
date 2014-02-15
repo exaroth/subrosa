@@ -37,6 +37,36 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated
 
+def handle_errors(mess = "Unknown Error"):
+    """
+    Small function that logs exceptions
+    """
+    if app.config.get("LOGGING", False):
+        import logging, inspect, datetime, sys
+
+        # Get the function that called it
+        func = inspect.currentframe().f_back.f_code
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+
+
+        logger = logging.getLogger("errors")
+        logger.setLevel(logging.DEBUG)
+        handler = logging.FileHandler("errors.log")
+        formatter = logging.Formatter("%(asctime)s : %(levelname)s ::: %(message)s")
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        logger.debug("==============================")
+        logger.debug("Error occured on line %i in file %s" % (func.co_firstlineno, func.co_filename))
+        logger.debug("Message: %s" % mess)
+        logger.debug("Details:")
+        logger.debug("--------")
+        logger.debug("Type: %s" % exc_type)
+        logger.debug("Value: %s" % exc_value)
+        logger.debug("Traceback: %s" % exc_traceback)
+    return
+
+
+
 
 
 class Pagination(object):
