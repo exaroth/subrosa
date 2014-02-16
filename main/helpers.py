@@ -125,9 +125,7 @@ def process_image(image, filename, username):
     """
     # Base width of longer edge
     base = app.config["THUMBNAIL_SIZE"]
-    square_dim = (200,200)
     try:
-        print filename
         # Open an image for processing
         img = Image.open(image)
 
@@ -143,21 +141,18 @@ def process_image(image, filename, username):
 
         shorter = int(img.size[not vertical] * ratio)
         dim = (shorter, base) if vertical else (base, shorter)
-        thumb = img.resize(dim, Image.ANTIALIAS)
-        showcase_img = img.resize(square_dim, Image.ANTIALIAS)
+        showcase_img = img.resize(dim, Image.ANTIALIAS)
         img_path = os.path.join(app.config["UPLOAD_FOLDER"], username + "/")
         print img_path
 
         # Create thumbnail filename - extension is the same as base file
 
-        thumb_filename = os.path.splitext(filename)[0] + ".thumbnail" + os.path.splitext(image.filename)[1]
         show_filename = os.path.splitext(filename)[0] + ".showcase" + os.path.splitext(image.filename)[1]
         full_filename = os.path.splitext(filename)[0] + os.path.splitext(image.filename)[1]
         try:
-            thumb.save(os.path.join(img_path, "thumbnails/" , thumb_filename),"JPEG" )
             showcase_img.save(os.path.join(img_path, "showcase/" , show_filename),"JPEG" )
             img.save(img_path + full_filename, "JPEG")
-            return (full_filename, thumb_filename, show_filename)
+            return (full_filename, show_filename, int(vertical))
         except IOError, e:
                 raise 
     except Exception as e:

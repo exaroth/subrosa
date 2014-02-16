@@ -1,0 +1,14 @@
+{
+  "name": "nested",
+  "homepage": "https://github.com/suprb/Nested",
+  "_release": "0fc86c1833",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0fc86c1833d4815cd5e3cdc7a9cd568258728eac"
+  },
+  "_source": "git://github.com/suprb/Nested.git",
+  "_target": "*",
+  "_originalSource": "nested",
+  "_direct": true
+}

@@ -1,6 +1,6 @@
 {
-  "name": "Subrosa",
-  "version": "0.0.0",
+  "name": "subrosa",
+  "version": "0.0.1",
   "authors": [
     "Konrad Wasowicz <exaroth@gmail.com>>"
   ],
@@ -12,5 +12,12 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "nested": "*",
+    "jquery": "~2.1.0",
+    "jquery-leanmodal": "*",
+    "jquery-pageslide": "*",
+    "bootstrap": "~3.1.1"
+  }
 }

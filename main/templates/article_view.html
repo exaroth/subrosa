@@ -27,7 +27,7 @@
 </div>
 <div class="row">
 	
-    <h2 class="article-title" >{{ article.title }}</h2>
+    <h2 class="article-title" >{{ article.title | upper }}</h2>
 </div>
     <div class="article-body">
 	{{ article.body | markdown }}

@@ -28,9 +28,11 @@
 }
 .article-main h2 {
   font-weight: bold;
-  font-size: 3em;
-  margin-bottom: 2em;
-  color: #333333;
+  font-family: 'Helvetica Neue', Helvetica, Tahoma, Arial, serif;
+  font-size: 2.8em;
+  margin-bottom: 1em;
+  color: #4d4d4d;
+  padding: 1.2em 0.8em 1.4em 0.8em;
 }
 @media screen and (min-width: 970px) {
   .article-main p {
@@ -348,8 +350,54 @@ textarea.article-title {
   text-decoration: none;
   color: white;
 }
-.image-gallery-wrapper {
-  margin-bottom: 12px;
+.gallery-image {
+  background-position: center center;
+  color: white;
+  font-size: 0.8em;
+  font-style: italic;
+  border-radius: 3px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+}
+.gallery-image:hover {
+  color: white;
+}
+.gallery-image .img-desc {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  opacity: 0;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.gallery-image .img-overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 100%;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+  opacity: 0;
+}
+.gallery-image:hover .img-overlay {
+  opacity: 1;
+}
+.gallery-image:hover .img-desc {
+  opacity: 1;
 }
 * {
   box-sizing: border-box;

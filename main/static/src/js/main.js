@@ -64,31 +64,33 @@
 })(jQuery);
 
 $(window).load(function(){
-var
-$textarea = $("textarea"),
-$articleInputBody = $(".article-input-body"),
-$editForm = $(".edit-article-form"),
-$createForm = $(".new-article-form"),
-$updateArticleButton = $(".update-button"),
-$createArticleButton = $(".create-button"),
-$sidepanelToggler = $("#sidepanel-toggler"),
-$miniIcons = $(".mini-icon"),
-$editingButtons = $(".editing-button"),
-$articleBody = $(".article-body"),
-$gallery = $(".gallery-wrapper");
+    var
+    $textarea = $("textarea"),
+    $articleInputBody = $(".article-input-body"),
+    $editForm = $(".edit-article-form"),
+    $createForm = $(".new-article-form"),
+    $updateArticleButton = $(".update-button"),
+    $createArticleButton = $(".create-button"),
+    $sidepanelToggler = $("#sidepanel-toggler"),
+    $miniIcons = $(".mini-icon"),
+    $editingButtons = $(".editing-button"),
+    $articleBody = $(".article-body"),
+    $gallery = $(".gallery-wrapper"),
+    thumbSize = 200;
 
-$updateArticleButton.click(function(e){
-    e.preventDefault();
-    $editForm.submit();
-});
-$createArticleButton.click(function(e){
-    e.preventDefault();
-    $createForm.submit();
-});
+    $updateArticleButton.click(function(e){
+        e.preventDefault();
+        $editForm.submit();
+    });
+    $createArticleButton.click(function(e){
+        e.preventDefault();
+        $createForm.submit();
+    });
 
-enableTab($articleInputBody);
+    enableTab($articleInputBody);
 
-processArticleImages($articleBody)
+    processArticleImages($articleBody);
+    processGalleryImages($gallery);
 
 // Disable tab trigger in textarea
 function enableTab(el) {
@@ -120,6 +122,14 @@ function imgIsHorizontal(el){
     return el.width() > el.height();
 };
 
+// Get random value from given range
+
+function getRandomArbitary (min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+
+
 function processArticleImages(articleBody){
 
     articleBody.find("img").each(function(e){
@@ -130,22 +140,22 @@ function processArticleImages(articleBody){
         var elToMove = self.parent().is("a") ? self.parent() : self;
         // Wrap image element or anchor with div and return it
         var imgWrapper = elToMove
-                     .wrap('<div class="image-wrapper"></div>')
-                     .parent();
+        .wrap('<div class="image-wrapper"></div>')
+        .parent();
         if (imgIsHorizontal(self)){
             elToMove.addClass("centered-image");
             imgWrapper.addClass("centered-image-wrapper");
-            } else {
+        } else {
             elToMove.addClass("floated-image");
             imgWrapper.addClass("floated-image-wrapper");
-            }
+        }
 
 
         elToMove.addClass("centered-image");
         var imageDescription = $("<span></span>")
-                             .text(self.attr("alt"))
-                             .addClass("image-desc")
-                             .appendTo(imgWrapper)
+        .text(self.attr("alt"))
+        .addClass("image-desc")
+        .appendTo(imgWrapper)
         console.log(imageDescription)
 
 
@@ -153,16 +163,54 @@ function processArticleImages(articleBody){
 
 };
 
+// Randomize Image width in gallery
+
+function processGalleryImages(galleryBody){
+
+
+    galleryBody.find(".gallery-image").each(function(){
+
+        var self = $(this);
+
+        var isSmall = Math.round(Math.random() - 0.2);
+
+        if (isSmall) {
+            self.addClass("size11");
+
+        }
+        else {
+            var isSquare = Math.round(Math.random());
+            var imageIsVertical = self.data('vert')
+            if (isSquare){
+                self.addClass("size22");
+            } else {
+                if (imageIsVertical) {
+                    self.addClass("size12");
+                } else {
+                    self.addClass("size21")
+                }
+            }
+
+        }
+
+        // Get number to multiply it by
+
+        // var num = Number((getRandomArbitary(0.7, 1.4)).toFixed(2))
+
+        // self.css("width", (self.width() * num));
+
+    })
+}
 
 
 $textarea.autogrow();
 $sidepanelToggler.pageslide();
 $miniIcons.tooltip();
 $editingButtons.tooltip();
-$gallery.masonry({
-    columnWidth: 200,
-    itemSelector: '.image-gallery-wrapper',
-    gutter: 12
+$gallery.nested({
+    selector: '.gallery-image',
+    minWidth: 200,
+    gutter: 10,
 })
 })
 

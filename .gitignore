@@ -13,6 +13,7 @@ sdist
 develop-eggs
 .installed.cfg
 node_modules
+errors.log
 
 # Installer logs
 pip-log.txt

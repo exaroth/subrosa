@@ -23,6 +23,8 @@ from werkzeug import secure_filename
 import os
 from datetime import datetime
 from werkzeug.contrib.atom import AtomFeed
+import urllib
+from urlparse import urljoin
 
 
 
@@ -87,7 +89,6 @@ def create_account():
 
     """
     error = None
-    # check if no users created yet
     user_check = User.query.all()
     if not user_check:
         if request.method == "POST":
@@ -109,7 +110,6 @@ def create_account():
                     return render_template("create_account.html", error = error)
                 try:
                     os.mkdir(app.config["UPLOAD_FOLDER"] + username, 0755)
-                    os.mkdir(app.config["UPLOAD_FOLDER"] + username + "/thumbnails", 0755)
                     os.mkdir(app.config["UPLOAD_FOLDER"] + username + "/showcase", 0755)
                 except IOError, e:
                     error = "Could not create user directories, check\
@@ -257,11 +257,11 @@ def publish_article(id):
 @login_required
 @dynamic_content
 def upload_image():
-    # Refactor this mess
     error = None
     if request.method == "POST":
         image = request.files["image"]
         gallery_include = request.form.get("gallery_include", False)
+        description = request.form.get("description", None)
         if not image:
             error = "No image chosen"
             return render_template("upload_image.html", error = error)
@@ -271,15 +271,27 @@ def upload_image():
         # add checkbox functionality
         filename = secure_filename(request.form.get("image-name"))\
                                   or secure_filename(image.filename)
-        # add gallery functionality
+        image_exists = UserImages.query.filter_by(filename = filename).first()
+        if image_exists:
+            error = "Image with this filename already exists"
+            return render_template("upload_image.html", error = error)
+
+        user = User.query.filter_by(username = session["user"]).first()
+        print user
         try:
-            image_filename, thumb_filename, show_filename = process_image(image = image, filename = filename , username = session["user"])
+            image_filename, show_filename, is_vertical = process_image(image = image, filename = filename , username = user.username)
+            show_path = user.username + "/showcase/" + show_filename
+            full_path = user.username + "/" + image_filename
             try:
-                user = User.query.filter_by(username = session["user"]).first()
-                user_image = UserImages(filename = image_filename, thumbnail = thumb_filename, showcase = show_filename, gallery = gallery_include, owner = user)
+                user_image = UserImages(filename = full_path,\
+                                        showcase = show_path,\
+                                        description = description,\
+                                        is_vertical = is_vertical,\
+                                        gallery = gallery_include,\
+                                        owner = user)
                 db.session.add(user_image)
                 db.session.commit()
-                return redirect(url_for("user_images", username = session["user"]))
+                return redirect(url_for("user_images", username = user.username))
             except Exception, e:
                 error = "Error writing to database"
                 handle_errors(error)
@@ -297,7 +309,8 @@ def upload_image():
 @dynamic_content
 def user_images(username, page):
     images = UserImages.query.join(User).paginate(page, 9)
-    url_path = request.url_root +"uploads/"
+    # url_path = urllib.urlencode(request.url_root, "uploads")
+    url_path = urljoin(request.url_root, "uploads/")
     if not images.items and page != 1:
         abort(404)
     return render_template("user_images.html", images = images, url_path = url_path)
@@ -313,9 +326,8 @@ def delete_image(id):
         return redirect(url_for("index"))
     else:
         try:
-            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], session["user"], image.filename))
-            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], session["user"],"thumbnails", image.thumbnail))
-            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], session["user"], "showcase", image.showcase))
+            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.filename))
+            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.showcase))
         except IOError, e:
             flash("Can\'t delete files from disk")
             return redirect(url_for("index"))
@@ -336,8 +348,8 @@ def delete_image(id):
 @dynamic_content
 def image_details(id):
     image = UserImages.query.get_or_404(id)
-    path = request.url_root
-    return render_template("image_details.html",path = path, image = image)
+    url_path = urljoin(request.url_root, "uploads/")
+    return render_template("image_details.html",url_path = url_path, image = image)
 
 
 @app.route("/recent.atom")

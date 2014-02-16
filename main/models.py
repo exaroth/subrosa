@@ -88,15 +88,18 @@ class UserImages(db.Model):
     
     id = db.Column(db.Integer, primary_key = True)
     filename = db.Column(db.String(120), unique = True)
-    thumbnail = db.Column(db.String(120))
+    # thumbnail = db.Column(db.String(120))
     showcase = db.Column(db.String(120))
+    description = db.Column(db.String(120), nullable = True)
+    is_vertical = db.Column(db.SmallInteger)
     gallery = db.Column(db.Boolean, default = False)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     owner = db.relationship("User", backref = db.backref("user_images", lazy = "dynamic"))
 
-    def __init__(self, filename, thumbnail, showcase, gallery, owner):
+    def __init__(self, filename, showcase, description, is_vertical, gallery, owner):
         self.filename = filename
-        self.thumbnail = thumbnail
+        self.description = description
+        self.is_vertical = is_vertical
         self.showcase = showcase
         self.gallery = gallery
         self.owner = owner

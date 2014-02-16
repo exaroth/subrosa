@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Nested</title>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="jquery.nested.js"></script>
+<script src="makeboxes.js"></script>
+</head>
+<body>
+
+<a class="btn" id="prepend">Prepend</a>
+
+<div id="container">
+  <div class="box size11">1</div>
+  <div class="box size21">2</div>
+  <div class="box size32">3</div>
+  <div class="box size11">4</div>
+  <div class="box size21">5</div>
+  <div class="box size12">6</div>
+  <div class="box size21">7</div>
+  <div class="box size11">8</div>
+  <div class="box size31">9</div>
+  <div class="box size22">10</div>
+  <div class="box size11">11</div>
+  <div class="box size21">12</div>
+  <div class="box size12">13</div>
+  <div class="box size21">14</div>
+  <div class="box size23">15</div>
+  <div class="box size22">16</div>
+  <div class="box size11">17</div>
+  <div class="box size21">18</div>
+  <div class="box size12">19</div>
+  <div class="box size21">20</div>
+  <div class="box size22">21</div>
+  <div class="box size23">22</div>
+  <div class="box size11">23</div>
+  <div class="box size21">24</div>
+  <div class="box size12">25</div>
+  <div class="box size21">26</div>
+  <div class="box size22">27</div>
+  <div class="box size22">28</div>
+</div>
+
+<a class="btn" id="append">Append</a>
+
+<script type="text/javascript" >
+  
+  $(function() { 
+   
+    $('#container').nested(); 
+    
+    $('#prepend').click(function(){
+      var boxes = makeBoxes();
+      $('#container').prepend(boxes).nested('prepend',boxes);
+    })
+    $('#append').click(function(){
+      var boxes = makeBoxes();
+      $('#container').append(boxes).nested('append',boxes);     
+    })
+
+  });
+  
+  
+</script>
+  
+</body>
+</html>    

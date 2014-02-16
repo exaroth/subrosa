@@ -22,14 +22,28 @@
     </div>
 </div>
  -->
- <div class="col-md-10 col-md-offset-1 gallery-wrapper ">
+ <div class="gallery-wrapper col-md-8 col-md-offset-2 ">
  {% for image in images.items %}
- <div class="image-gallery-wrapper">
- 	<a href="{{ url_for('image_details', id = image.id)}}" class="image-gallery-link">
- 		<img src="{{ url_for('send_image', filename = session.user + '/showcase/' + image.showcase )}}" alt=" {{ image.filename }}" class="gallery-image">
- 	</a>
+
+
+ <a href="{{ url_for('image_details', id = image.id)}}">
+ <div class="gallery-image size22" data-vert="{{ image.is_vertical}}" data-desc="{{ image.description }}" style="background-image: url({{ url_path }}{{ image.showcase }})">
+ <div class="img-overlay"></div>
+ <div class="img-desc">
+
+ {% if image.description %}
+ {{ image.description }}
+ {% else %}
+ <i class="icon-search" style="font-size: 2em; opacity: 0.8"></i>
+ {% endif %}
+ 	
  </div>
- {% endfor %}
+ </div>
+ </a>
+
+
+
+  {% endfor %}
  	
  </div>
 
