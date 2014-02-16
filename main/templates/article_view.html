@@ -3,35 +3,35 @@
 {% block titlebar %}
 
 <div class="content-header col-xs-12">
-<nav class="content-header-btns">
-	<a href="{{ url_for('index') }}" class="icon-holder menu-icon"><i class="icon-home"></i></a>
-    <a href="{{ g.prev }}" class="icon-holder menu-icon "><i class="icon-reply"></i></a>
-</nav>
+    <nav class="content-header-btns">
+       <a href="{{ url_for('index') }}" class="icon-holder menu-icon"><i class="icon-home"></i></a>
+       <a href="{{ g.prev }}" class="icon-holder menu-icon "><i class="icon-reply"></i></a>
+   </nav>
 </div>
 {% endblock %}
 
 {% block content %} 
-<article class=" article-main col-md-8 col-md-offset-2 ">
-<div class="row">
-<h5 class="article-timesince">
-{% if session.user and session.user == article.author.username %}
-<a class="btn btn-default btn-xs"  href="{{ url_for('delete_article', id = article.id) }}">Delete</a>
-<a class="btn btn-default btn-xs" href="{{ url_for('edit_article', id = article.id) }}" style="padding-right: 10px;" >Edit</a>
+<article class="col-md-8 col-md-offset-2 ">
+    <div class="row article-header">
+        <h5 class="article-timesince">
+            {% if session.user and session.user == article.author.username %}
+            <a class="btn btn-default btn-xs"  href="{{ url_for('delete_article', id = article.id) }}">Delete</a>
+            <a class="btn btn-default btn-xs" href="{{ url_for('edit_article', id = article.id) }}" style="padding-right: 10px;" >Edit</a>
 
- <span><a href="{{ url_for('delete_article', id = article.id) }} "></a></span>
- {% endif %}
-     Written {{ article.date_created | timesince }}
-     {% if article.author.real_name %}
-      by {{ article.author.real_name }}</h5>
-     {% endif %}
-</div>
-<div class="row">
-	
-    <h2 class="article-title" >{{ article.title | upper }}</h2>
-</div>
-    <div class="article-body">
-	{{ article.body | markdown }}
-    </div>
-</article>
+            <span><a href="{{ url_for('delete_article', id = article.id) }} "></a></span>
+            {% endif %}
+            Written {{ article.date_created | timesince }}
+            {% if article.author.real_name %}
+            by {{ article.author.real_name }}</h5>
+            {% endif %}
+        </div>
+        <div class="article-main">
+           
+            <h1 class="article-title" >{{ article.title }}</h2>
+                <div class="article-body">
+                   {{ article.body | markdown }}
+               </div>
+           </article>
+       </div>
 
-{% endblock %}
+       {% endblock %}

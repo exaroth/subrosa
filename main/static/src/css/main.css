@@ -4,9 +4,6 @@
   left: -999em;
   right: auto;
 }
-.article-main h2 {
-  text-align: center;
-}
 .article-main p {
   font-size: 18px;
   color: rgba(0, 0, 0, 0.8);
@@ -26,16 +23,19 @@
   font-family: 'Georgia', 'Times New Roman', Times, serif;
   color: #4d4d4d;
 }
-.article-main h2 {
+.article-main .article-title {
   font-weight: bold;
-  font-family: 'Helvetica Neue', Helvetica, Tahoma, Arial, serif;
-  font-size: 2.8em;
-  margin-bottom: 1em;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Tahoma, Arial, serif;
+  font-size: 3em;
+  text-align: center;
   color: #4d4d4d;
+  line-height: 1.4em;
   padding: 1.2em 0.8em 1.4em 0.8em;
 }
 @media screen and (min-width: 970px) {
-  .article-main p {
+  .article-main p,
+  .article-main li,
+  .article-main a {
     font-size: 1.4em;
     line-height: 1.6em;
   }
@@ -82,14 +82,16 @@ blockquote p {
   font-size: 2em;
   width: 100%;
 }
-.article-main .article-timesince {
+.article-header .article-timesince {
   border-bottom: 2px dotted #666666;
   padding-bottom: 10px;
   text-align: right;
   margin-bottom: 1em;
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  color: #666666;
 }
 @media screen and (max-width: 970px) {
-  .article-main .article-timesince {
+  .article-header .article-timesince {
     padding: 0 1em;
     width: 80%;
     display: block;
@@ -350,6 +352,11 @@ textarea.article-title {
   text-decoration: none;
   color: white;
 }
+.gallery-wrapper {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 4em;
+}
 .gallery-image {
   background-position: center center;
   color: white;
@@ -408,6 +415,14 @@ textarea.article-title {
 }
 body {
   overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-rendering: optimizeLegibility;
 }
 .content {
   min-height: 100%;

@@ -22,12 +22,10 @@
     </div>
 </div>
  -->
- <div class="gallery-wrapper col-md-8 col-md-offset-2 ">
+ <div class="gallery-wrapper">
  {% for image in images.items %}
-
-
  <a href="{{ url_for('image_details', id = image.id)}}">
- <div class="gallery-image size22" data-vert="{{ image.is_vertical}}" data-desc="{{ image.description }}" style="background-image: url({{ url_path }}{{ image.showcase }})">
+ <div class="gallery-image size22" data-vert="{{ image.is_vertical}}" style="background-image: url({{ url_path }}{{ image.showcase }})">
  <div class="img-overlay"></div>
  <div class="img-desc">
 

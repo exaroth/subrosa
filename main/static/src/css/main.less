@@ -12,7 +12,7 @@
 
 // @body-font: 'Libre Baskerville', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 @body-font: 'Georgia', 'Times New Roman', Times, serif;
-@serif-font: 'Helvetica Neue', Helvetica, Tahoma, Arial, serif;
+@sans-font: 'Open Sans', 'Helvetica Neue', Helvetica, Tahoma, Arial, serif;
 
 @yellow: #fcc41e;
 @rose-red: #ff5c39;
@@ -34,6 +34,10 @@
 
 body {
 	overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-rendering: optimizeLegibility;
 }
 
 .content {
