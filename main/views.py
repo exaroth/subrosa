@@ -153,23 +153,11 @@ def create_article():
         if not title or not body:
             error = "Article can\'t have empty title or body"
             return render_template("new_article.html", error = error, title=title, body=body)
-        # if title is unique
         article_check = Articles.check_exists(title)
         if article_check:
             error = "Entry with that title already exists, choose a new one.."
             return render_template("new_article.html", error = error, title = title, body = body)
         else:
-            # article = Articles(title = title, draft = True, author = user, body = body)
-            # db.session.add(article)
-            # try:
-            #     db.session.commit()
-            #     flash("Article created")
-            #     return redirect(url_for("index"))
-            # except Exception, e:
-            #     if app.config.debug:
-            #         error = "Error occured when writing to database... Try again"
-            #         handle_errors(error)
-            #         return render_template("new_article.html",  title = title, body = body , error = error)
             try:
                 Articles.create_article(title = title,\
                                         body = body,\

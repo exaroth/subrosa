@@ -16,6 +16,7 @@ import datetime
 from .helpers import slugify, handle_errors
 from webhelpers.text import truncate
 import os
+from sqlalchemy.sql import exists
 
 
 class User(db.Model):
@@ -112,7 +113,7 @@ class Articles(db.Model):
     @staticmethod
     def check_exists(title):
         try:
-            Articles.query.filter_by(title = title).first()
+            return db.session.query(exists().where(Articles.title == title)).scalar()
         except:
             handle_errors()
 
@@ -131,6 +132,20 @@ class Articles(db.Model):
         except Exception as e:
             db.sessin.rollback()
             handle_errors("Error creating article")
+
+    @staticmethod
+    def update_article(article, title, body):
+        article.title = title
+        article.body = body
+        article.date_updated = datetime.datetime.utcnow()
+        try:
+            db.session.add(article)
+            db.session.commit()
+
+        except Exception as e:
+            db.session.rollback()
+            handle_errors(e)
+
 
     def __repr__(self):
         return "<Article: {0}>".format(truncate(self.title))
