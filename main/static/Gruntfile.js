@@ -25,6 +25,11 @@ module.exports = function(grunt) {
 				files: {
 					"src/css/main.css": "src/css/main.less"
 				}
+			},
+			bootstrap: {
+				files: {
+					"src/css/bootstrap.css": "src/css/bootstrap_custom.less" 
+				}
 			}
 
 		}
@@ -36,5 +41,6 @@ module.exports = function(grunt) {
 
 
 	grunt.registerTask("default", ["watch:main"]);
+	grunt.registerTask("bootstrap_compile", ["less:bootstrap"]);
 
 }

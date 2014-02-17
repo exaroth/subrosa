@@ -8,7 +8,8 @@ ROOT_PATH = os.path.dirname(BASE_PATH + "..")
 
 TITLE = "Kermit's Blog"
 
-# Set it to False if you dont want to modify filesystem
+# Set it to False if you dont want to modify filesystem,
+# prevents writing images to disk, only remote links are allowed 
 
 DYNAMIC_SITE = True
 
@@ -61,4 +62,3 @@ LOGGING = True
 # Path to upload folder
 
 UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
-
