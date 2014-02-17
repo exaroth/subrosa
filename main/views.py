@@ -43,9 +43,7 @@ def load_vars():
 @app.route("/<int:page>")
 def index(page):
     pages_per_page = app.config["ARTICLES_PER_PAGE"]
-    articles = Articles\
-               .get_articles_by_date()\
-               .paginate(page, pages_per_page)
+    articles = Articles.paginate_articles(page, pages_per_page)
     if not articles.items and page != 1:
         abort(404)
     return render_template("index.html", articles = articles)
@@ -56,9 +54,7 @@ def redirect_index():
 
 @app.route("/admin", methods = ["GET", "POST"] )
 def admin_login():
-    # Check if any users exist
     user_check = User.query.all()
-    # If not redirect to account creation screen
     if not user_check:
         return redirect(url_for("create_account"))
     if "user" in session:
@@ -100,32 +96,28 @@ def create_account():
             email = request.form.get("email")
             password = request.form.get("password")
             real_name = request.form.get("real_name", None)
-            if username and email and password:
-                new_user = User(username = username, email = email,\
-                                real_name = real_name, password = password)
-                try:
-                    db.session.add(new_user)
-                    db.session.commit()
-                except IOError, e:
-                    db.session.rollback()
-                    error = "Could not write to database, check if\
-                            you have proper access\n or double check configuration options"
-                    handle_errors(error)
-                    return render_template("create_account.html", error = error)
-                try:
-                    os.mkdir(app.config["UPLOAD_FOLDER"] + username, 0755)
-                    os.mkdir(app.config["UPLOAD_FOLDER"] + username + "/showcase", 0755)
-                except IOError, e:
-                    error = "Could not create user directories, check\
-                            if you have proper credentials"
-                    hendle_errors(error)
-                    return render_template("create_account.html", error = error)
-                session["user"] = username
-                flash("Account created")
-                return redirect(url_for("account", username = username))
-            else:
+            if not username or not email or not password:
                 error = "All fields are required"
                 return render_template("create_account.html", error = error)
+            try:
+                User.add_user(username = username, email = email,\
+                             password = password, real_name = real_name)
+            except IOError, e:
+                error = "Could not write to database, check if\
+                        you have proper access\n or double check configuration options"
+                handle_errors(error)
+                return render_template("create_account.html", error = error)
+            try:
+                os.mkdir(app.config["UPLOAD_FOLDER"] + username, 0755)
+                os.mkdir(app.config["UPLOAD_FOLDER"] + username + "/showcase", 0755)
+            except IOError, e:
+                error = "Could not create user directories, check\
+                        if you have proper credentials"
+                hendle_errors(error)
+                return render_template("create_account.html", error = error)
+            session["user"] = username
+            flash("Account created")
+            return redirect(url_for("account", username = username))
         else:
             return render_template("create_account.html")
     else:
@@ -143,12 +135,11 @@ def logout():
 def account(username):
     if username is None:
         return redirect("/admin")
-    user = User.query.filter_by(username = username).first()
-    user_articles = Articles.query\
-                    .filter_by(author = user)\
-                    .order_by(Articles.date_created.desc())\
-                    .all()
-    return render_template("dashboard.html",user = user, articles = user_articles)
+    user = User.get_user_by_username(username)
+    if not user:
+        abort(404)
+    articles = Articles.get_user_articles(user)
+    return render_template("dashboard.html",user = user, articles = articles)
 
 
 @app.route("/create_article", methods = ["GET", "POST"])
@@ -158,30 +149,40 @@ def create_article():
     if request.method == "POST":
         title = request.form.get("title")
         body = request.form.get("body")
-        user = User.query\
-               .filter_by(username = session["user"])\
-               .first()
-        # if body and title exists
+        user = User.get_user_by_username(session["user"])
         if not title or not body:
             error = "Article can\'t have empty title or body"
             return render_template("new_article.html", error = error, title=title, body=body)
         # if title is unique
-        article_check = Articles.query.filter_by(title = title).first()
+        article_check = Articles.check_exists(title)
         if article_check:
             error = "Entry with that title already exists, choose a new one.."
             return render_template("new_article.html", error = error, title = title, body = body)
         else:
-            article = Articles(title = title, draft = True, author = user, body = body)
-            db.session.add(article)
+            # article = Articles(title = title, draft = True, author = user, body = body)
+            # db.session.add(article)
+            # try:
+            #     db.session.commit()
+            #     flash("Article created")
+            #     return redirect(url_for("index"))
+            # except Exception, e:
+            #     if app.config.debug:
+            #         error = "Error occured when writing to database... Try again"
+            #         handle_errors(error)
+            #         return render_template("new_article.html",  title = title, body = body , error = error)
             try:
-                db.session.commit()
+                Articles.create_article(title = title,\
+                                        body = body,\
+                                        author = user,\
+                                        draft = True)
                 flash("Article created")
                 return redirect(url_for("index"))
-            except Exception, e:
-                if app.config.debug:
-                    error = "Error occured when writing to database... Try again"
-                    handle_errors(error)
-                    return render_template("new_article.html",  title = title, body = body , error = error)
+            except:
+                error = "Error occured when writing to database"
+                return render_template("new_article.html",\
+                                       title = title,\
+                                       body = body,\
+                                       error = error)
     else:
         return render_template("new_article.html")
 
@@ -273,15 +274,13 @@ def upload_image():
             error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
             return render_template("upload_image.html", error = error)
         # add checkbox functionality
-        filename = secure_filename(request.form.get("image-name"))\
-                                  or secure_filename(image.filename)
+        filename = secure_filename(image.filename)
         image_exists = UserImages.query.filter_by(filename = filename).first()
         if image_exists:
             error = "Image with this filename already exists"
             return render_template("upload_image.html", error = error)
 
         user = User.query.filter_by(username = session["user"]).first()
-        print user
         try:
             image_filename, show_filename, is_vertical = process_image(image = image, filename = filename , username = user.username)
             show_path = user.username + "/showcase/" + show_filename
@@ -313,7 +312,6 @@ def upload_image():
 @dynamic_content
 def user_images(username, page):
     images = UserImages.query.join(User).paginate(page, 9)
-    # url_path = urllib.urlencode(request.url_root, "uploads")
     url_path = urljoin(request.url_root, "uploads/")
     if not images.items and page != 1:
         abort(404)

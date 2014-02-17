@@ -9,18 +9,14 @@
     <legend>Upload Image</legend>
     <div class="form-group">
     	<label for="image">Choose File:</label>
-	<input type="file" name="image" class="form-control" id="image" value="" />
+	<input type="file" name="image" class="form-control" id="image-upload-filename" value="" />
     </div>
     <div class="form-group">
-	<label for="image-name">Filename</label>
-	<input type="text" name="image-name" id="image-name" class="form-control" value="" />
-    </div>
     <div class="form-group">
-	<label >
-	    <input id="create-thumbnail" type="checkbox" name="create-thumbnail" />
-	    Custom Filename
-	</label>
+        <label for="description">Description for your Image (optional)</label>
+        <input type="text" name="description" class="form-control" id="image-upload-description" >
     </div>
+
     <div class="form-group">
 	<input class="btn btn-sm btn-primary" type="submit" value="Submit" />
     </div>

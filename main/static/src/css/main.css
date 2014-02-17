@@ -330,6 +330,10 @@ textarea.article-title {
 .article-list .article-list-body {
   font-size: 1.3em;
 }
+.article-list .article-list-body .codehilite {
+  width: 80%;
+  margin: 0 auto;
+}
 #pageslide {
   /* These styles MUST be included. Do not change. */
   display: none;
@@ -377,6 +381,7 @@ textarea.article-title {
 .gallery-image .img-desc {
   position: absolute;
   top: 50%;
+  text-align: center;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);

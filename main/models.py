@@ -13,7 +13,7 @@
 from main import app, db
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
-from .helpers import slugify
+from .helpers import slugify, handle_errors
 from webhelpers.text import truncate
 import os
 
@@ -38,6 +38,27 @@ class User(db.Model):
     @property
     def get_articles(self):
         return self.articles.order_by("date_created").all()
+
+    @staticmethod
+    def add_user(username, email, password, real_name):
+        new_user = User(username = username,\
+                        password = password,\
+                        email = email, \
+                        real_name = real_name)
+
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            raise
+
+    @staticmethod
+    def get_user_by_username(username):
+        try:
+            return User.query.filter_by(username = username).first()
+        except Exception as e:
+            handle_errors(e)
 
     def check_password(self, password):
         return check_password_hash(self.hash, password)
@@ -68,16 +89,48 @@ class Articles(db.Model):
         self.author = author
 
 
-    # @staticmethod
-    # def get_article_by_author(name):
-    #     return Articles.query.join(Users).\
-    #             filter(Users.username == name).\
-    #             order_by("date_created").all()
 
     @staticmethod
-    def get_articles_by_date():
-        return Articles.query\
-                .order_by(Articles.date_created.desc())\
+    def paginate_articles(page, pages_per_page):
+        try:
+            return Articles.query.\
+                    order_by(Articles.date_created.desc()).\
+                    paginate(page, pages_per_page)
+        except:
+            handle_errors()
+
+    @staticmethod
+    def get_user_articles(user):
+        try:
+            return Articles.query.\
+                    filter_by(author = user).\
+                    order_by(Articles.date_created.desc()).\
+                    all()
+        except Exception as e:
+            handle_errors()
+
+    @staticmethod
+    def check_exists(title):
+        try:
+            Articles.query.filter_by(title = title).first()
+        except:
+            handle_errors()
+
+
+
+    @staticmethod
+    def create_article(title, body, author, draft):
+        new_article = Articles(title = title,\
+                               body = body,\
+                               author = author,\
+                               draft = draft)
+
+        try:
+            db.session.add(new_article)
+            db.session.commit()
+        except Exception as e:
+            db.sessin.rollback()
+            handle_errors("Error creating article")
 
     def __repr__(self):
         return "<Article: {0}>".format(truncate(self.title))
