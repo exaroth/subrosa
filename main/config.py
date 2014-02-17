@@ -8,10 +8,6 @@ ROOT_PATH = os.path.dirname(BASE_PATH + "..")
 
 TITLE = "Kermit's Blog"
 
-# Path to upload folder
-
-UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
-
 # Set it to False if you dont want to modify filesystem
 
 DYNAMIC_SITE = True
@@ -20,30 +16,41 @@ DYNAMIC_SITE = True
 
 SQLALCHEMY_DATABASE_URI = "sqlite:////" + ROOT_PATH + "/test.db"
 
+# Set this variables to adress of your liking eg "http://www.facebook.com/johndoe"
+
 FACEBOOK = "http://www.mojfacebook.pl"
 
 TWITTER = "http://www.twitter.com"
 
+GITHUB = False
+
+# Set it to True if you want gallery link on your main page
+
 GALLERY = False
 
-# Number of pages that shows up on page
+# Number of pages that shows up on index page
 
 ARTICLES_PER_PAGE = 3
-
-# Size of longer edge of thumbnail picture (in pixels)
-
-THUMBNAIL_SIZE = 300
-
-# Allowed filenames for image upload
-
-ALLOWED_FILENAMES = ["jpg", "jpeg", "gif", "png", "JPG", "JPEG", "GIF", "PNG"]
 
 # Your secret key
 
 SECRET_KEY = "\xdb\x81\xd4\xef\xeb\xf5z.\xd9\xf2\xd6R\xd7m1wv\xf34@\xb52\xe6\r\x0f\xc8r%\xdf\xb0\x06 \xc8\xd94O)\xd2\x1a\xca\x86\xc4\xf5\xce\x99\x88\xe1mn\xae&1hqO\x95~\xa7LW+\xd6Dl\xd2\x17\x93}\x0b\x0b\x06\xf6B\x88Oe@F\xef\x81\x8cqA\xd2=g\xd8\xaf\xf1p\x10$\t7\x8ch\x994m\xe5\xafY\x17)I\xc9NK{\xceb\x8c\xc8P\x885\xa5\x12^\x157&'\xdc\xc6%"
 
+# =======================================================================
+# ======================== Advanced Settings ============================
+# =========== Change them only if you know what you're doing ============
+# =======================================================================
 
-# Set it to True only for development purposes
+# Allowed filenames for image upload
+
+ALLOWED_FILENAMES = ["jpg", "jpeg", "gif", "png", "JPG", "JPEG", "GIF", "PNG"]
+
+
+# Size of longer edge of thumbnail picture (in pixels)
+
+THUMBNAIL_SIZE = 300
+
+# Set it to True only for development purposes, outputs errors straight to the browser
 
 DEBUG = True
 
@@ -51,5 +58,7 @@ DEBUG = True
 
 LOGGING = True
 
+# Path to upload folder
 
+UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
 

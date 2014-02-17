@@ -33,6 +33,10 @@ from urlparse import urljoin
 def load_vars():
     g.title = app.config["TITLE"]
     g.prev = redirect_url()
+    g.facebook = app.config.get("FACEBOOK", False)
+    g.twitter = app.config.get("TWITTER", False)
+    g.github = app.config.get("GITHUB", False)
+    g.gallery = app.config.get("GALLERY", False)
 
 
 @app.route("/", defaults={"page": 1})

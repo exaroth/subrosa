@@ -10,14 +10,40 @@
 	<div class="toolbar-buttons">
 		<ul class="list-unstyled">
 
+			{% if g.facebook %}
+			    <li>
+			    	<a href="{{ g.faceboook }}" class="facebook-button icon-holder menu-icon">
+			    		<i class="icon-facebook"></i>
+			    	</a>
+			    </li>
+			{% endif %}
+
+			{% if g.twitter %}
+			<li>
+				<a href="{{ g.twitter }}" class="twitter-button icon-holder menu-icon">
+					<i class="icon-twitter"></i>
+				</a>
+			</li>
+			{% endif %}
+			
+			{% if g.github %}
+			<li>
+				<a href="{{ g.gitgub }}" class="github-button icon-holder menu-icon">
+					<i class="icon-github-1"></i>
+				</a>
+			</li>
+			{% endif %}
+			{% if g.gallery %}
+			<li>
+				<a href="#" class="gallery-button icon-holder menu-icon">
+					<i class="icon-picture-1"></i>
+				</a>
+			</li>
+			{% endif %}
 			<li>
 				<a href="{{ url_for('recent_feeds') }}" class=" rss-button icon-holder menu-icon"><i class="icon-rss"></i></a>
 			</li>
-			
-<!-- 			<li>
-				<a href="{{ url_for('index') }}" class="icon-holder menu-icon"><i class="icon-home"></i></a>
-			</li>
-		-->		</ul>
+		</ul>
 	</div>
 </div>
 {% endblock %}
@@ -39,12 +65,12 @@
 	<div class="row">
 		<h6 class="timesince pull-right ">Written {{ article.date_created | timesince }}</h6>
 	</div>
-	<div class="article-list-title text-center">
+	<div class="article-list-title col-xs-12">
 	<a href="{{ url_for('article_view', id = article.id) }}" class="article-title text-center">{{ article.title }}</a>
 		
 	</div>
 	 <div class="article-list-body col-xs-12">
-			{{ article.body |truncate(800)|markdown }}
+			{{ article.body |truncate(500)|markdown }}
 		</div>
 		{% if not loop.last %}
 		<h1 style="text-align: center">&hellip;</h1>

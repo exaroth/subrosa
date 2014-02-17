@@ -308,7 +308,6 @@ textarea.article-title {
   font-weight: bold;
   border-bottom: 1px dotted rgba(0, 0, 0, 0.7);
   display: block;
-  text-align: right;
   margin-right: 5em;
   width: auto;
   padding-bottom: 2px;
@@ -319,12 +318,17 @@ textarea.article-title {
   position: relative;
 }
 .article-list .article-list-title {
-  font-size: 2.5em;
+  font-size: 2.7em;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Tahoma, Arial, serif;
   font-weight: bold;
-  margin: 1em 0 1.4em 0;
+  text-align: left;
+  margin: 1em 0 1em 0;
 }
 .article-list .article-list-title:hover {
   color: #ff5c39;
+}
+.article-list .article-list-body {
+  font-size: 1.3em;
 }
 #pageslide {
   /* These styles MUST be included. Do not change. */
@@ -567,6 +571,18 @@ a {
 }
 .rss-button:hover {
   color: #ffb126;
+}
+.github-button:hover {
+  color: #70C951;
+}
+.twitter-button:hover {
+  color: #40d3fc;
+}
+.facebook-button:hover {
+  color: #3b5998;
+}
+.gallery-button:hover {
+  color: #47b1ff;
 }
 .mini-icon i {
   font-size: 1.4em;
