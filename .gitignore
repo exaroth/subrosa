@@ -13,6 +13,7 @@ sdist
 develop-eggs
 .installed.cfg
 node_modules
+bower_components
 errors.log
 
 # Installer logs
