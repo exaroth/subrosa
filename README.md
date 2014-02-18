@@ -13,6 +13,10 @@ virtualenv create subrosa
 cd subrosa
 source bin/activate
 pip install -r requirements.txt
+# Install bower packages
+
+cd main/static
+bower install
 ```
 
 Next configure connection to db in config.py
