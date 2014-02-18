@@ -10,45 +10,67 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/main.css') }}" media="all" />
 </head>
 <body>
+	<div id="wrap">
 	<div class="container-full">
-		<div class="content">
-			{% if session.user %}
-			<div id="admin-panel" class="admin-panel" style="display: none;">
-				<a href="{{ url_for('index')}} ">
-					<h2>Subrosa</h2>
-					
-				</a>
-				<hr>
+			<div class="content">
+				{% if session.user %}
+				<div id="admin-panel" class="admin-panel" style="display: none;">
+					<a href="{{ url_for('index')}} ">
+						<h2>Subrosa</h2>
 
-				<ul class="admin-panel-links list-unstyled">
-					<li><a href="{{ url_for('account', username = session.user) }} ">Dashboard</a></li>
-					<li><a href="{{ url_for('create_article') }} ">Create Article</a></li>
-					<li><a href="{{ url_for('user_images', username = session.user) }} ">Images</a></li>
-					<li><a href="{{ url_for('logout') }} ">Logout</a></li>
-				</ul>
+					</a>
+					<hr>
 
-			</div>
-			<a id="sidepanel-toggler" class="icon-holder" href="#admin-panel"><i class="icon-cog"></i></a>
+					<ul class="admin-panel-links list-unstyled">
+						<li><a href="{{ url_for('account', username = session.user) }} ">Dashboard</a></li>
+						<li><a href="{{ url_for('create_article') }} ">Create Article</a></li>
+						<li><a href="{{ url_for('user_images', username = session.user) }} ">Images</a></li>
+						<li><a href="{{ url_for('logout') }} ">Logout</a></li>
+					</ul>
 
-			{% endif %}
-
-			{% block titlebar %} 
-			{% endblock %}
-
-			{% block sidebar %}
-			{% endblock %}
-
-			<div class="row main-matter">
-				<div class="col-md-8 col-md-offset-2">
-					{% block content %} 
-					{% endblock %}
 				</div>
+				<a id="sidepanel-toggler" class="icon-holder" href="#admin-panel"><i class="icon-cog"></i></a>
+
+				{% endif %}
+
+				{% block titlebar %} 
+				{% endblock %}
+
+				{% block sidebar %}
+				{% endblock %}
+
+				<div class="row main-matter">
+					<div class="col-md-8 col-md-offset-2">
+						{% block content %} 
+						{% endblock %}
+					</div>
+				</div>
+
 			</div>
 
-			<div class="push"></div>
+			<div id="push"></div>
 		</div>
-		<div class="footer">
-			{% include "footer.html" %}
+		</div>
+		<div id="footer">
+<!--  			<div class="container-full">
+				<div class="navbar navbar-default">
+
+					<div class="navbar-inner navbar-content-center">
+						<small class="text-muted">
+							Built with &hearts; using Flask microframework.<br />
+							<a href="https://github.com/exaroth/subrosa.git">https://github.com/exaroth/subrosa.git</a>
+						</small>
+					</div>
+				</div>
+				
+
+ -->
+				<div class="container">
+				<p class="muted credit text-center text-muted"><small>Build with &hearts; using Flask microframework</small></p>
+				<!-- <p class="text-center credit"><small> <a href="https://github.com/exaroth/subrosa.git">https://github.com/exaroth/subrosa.git</a> </small> </p> -->
+				<!-- <a href="https://github.com/exaroth/subrosa.git" class="text-center credit"><small>https://github.com/exaroth/subrosa.git</small></a> -->
+				</div>
+
 		</div>
 	</div>
 	<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>

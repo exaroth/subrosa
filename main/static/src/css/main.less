@@ -29,22 +29,35 @@
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 }
+html, body {
+	height: 100%;
+}
 
 body {
 	overflow-x: hidden;
+}
+#wrap {
+	min-height: 100%;
+	height: 100%;
+	margin: 0 auto -60px;
+}
+
+#push,
+#footer {
+	height: 60px;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	text-rendering: optimizeLegibility;
 }
 
-.content {
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	/* Negative indent footer by it's height */
-	margin: 0 auto -60px;
-}
+// .content {
+// 	min-height: 100%;
+// 	height: auto !important;
+// 	height: 100%;
+// 	/* Negative indent footer by it's height */
+// 	margin: 0 auto -60px;
+// }
 a:hover,
 a:active {
 	text-decoration: none;
@@ -54,10 +67,6 @@ a {
 	.transition(all, 0.1s, ease-in);
 	color: @black-70;
 }
-.push,
-.footer {
-	height: 60px;
-}
 
 .footer small {
 	text-align: center;
@@ -65,7 +74,8 @@ a {
 }
 
 .navbar-default {
-	background-color: white;
+	background-color: red;
+
 }
 .navbar-inner small {
 	text-align: center;
