@@ -301,14 +301,16 @@ def user_images(username, page):
 @dynamic_content
 def delete_image(id):
     image = UserImages.query.get_or_404(id)
+    filename = image.filename.rsplit('/', 1)[-1]
+    showcase = image.showcase.rsplit('/', 1)[-1]
     # prevent from deleting images by people other by the owner
     if image.owner.username != session["user"]:
         flash("Don't try to delete other\'s dude\'s pictures...dude")
         return redirect(url_for("index"))
     else:
         try:
-            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.filename))
-            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.showcase))
+            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.owner.username, filename))
+            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.owner.username, 'showcase', showcase))
         except IOError, e:
             flash("Can\'t delete files from disk")
             return redirect(url_for("index"))
