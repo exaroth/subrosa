@@ -13,18 +13,19 @@
 
 """
 
-from main import app, db
+import os
+from datetime import datetime
+from urlparse import urljoin
+import urllib
+from main import app, db, cache
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
 from .models import User, Articles, UserImages
 from .helpers import Pagination, login_required,\
 process_image, make_external, redirect_url, handle_errors,\
 dynamic_content
 from werkzeug import secure_filename
-import os
-from datetime import datetime
+from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
-import urllib
-from urlparse import urljoin
 
 
 
@@ -41,6 +42,7 @@ def load_vars():
 
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
+@cache.cached(timeout=50)
 def index(page):
     pages_per_page = app.config["ARTICLES_PER_PAGE"]
     articles = Articles.paginate_articles(page, pages_per_page)

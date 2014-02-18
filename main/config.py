@@ -55,9 +55,6 @@ THUMBNAIL_SIZE = 300
 
 DEBUG = True
 
-# Define memchached adress here if not set defaults to buil in caching system (optional)
-
-MEMCACHED = False
 
 # Set it to True if you want detailed error messages written to a file
 
@@ -66,3 +63,9 @@ LOGGING = True
 # Path to upload folder
 
 UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
+
+# Cache options
+
+CACHE_TYPE = "simple"
+
+CACHE_KEY_PREFIX = "subrosa_"

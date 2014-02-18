@@ -179,9 +179,11 @@ class UserImages(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     filename = db.Column(db.String(120), unique = True)
     showcase = db.Column(db.String(120))
+    date_added = db.Column(db.DateTime, default = datetime.datetime.utcnow)
     description = db.Column(db.String(120), nullable = True)
     is_vertical = db.Column(db.SmallInteger)
     gallery = db.Column(db.Boolean, default = False)
+    external = db.Column(db.Boolean, default = True)
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     owner = db.relationship("User", backref = db.backref("user_images", lazy = "dynamic"))
 
