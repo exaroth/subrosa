@@ -4,22 +4,41 @@
 {% if error %}
 <div class="alert alert-dismissable alert-danger"><strong>Error:</strong><p>{{ error }}</p></div>
 {% endif %}
-<div class="well">
-<form action="" role="form" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
-    <legend>Upload Image</legend>
-    <div class="form-group">
-    	<label for="image">Choose File:</label>
-	<input type="file" name="image" class="form-control" id="image-upload-filename" value="" />
-    </div>
-    <div class="form-group">
-    <div class="form-group">
-        <label for="description">Description for your Image (optional)</label>
-        <input type="text" name="description" class="form-control" id="image-upload-description" >
+
+<div class="image-upload-wrapper col-md-8 col-md-offset-2">
+    <div class="well internal-upload upload-image-box">
+        <form action="" role="form" method="POST" accept-charset="utf-8" class="form-horizontal" enctype="multipart/form-data">
+            <legend class="text-muted"><small>Here you can either upload your own image to the server or save link to use on the site. Saving images to disk is only available in dynamic option setting.</small></legend>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <input class="btn btn-default" type="submit" value="Upload Image" style="width: 120px;" />
+
+                    </div>
+                    <input type="file" name="image" class="form-control" style="display: inline" id="image-upload-filename" value="" />
+                </div>
+                
+            </div>
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <input type="submit" class="btn btn-default" value="Save Link" style="width: 120px">
+                </div>
+                <input type="text" name="image-link" id="image-link" class="form-control" placeholder="eg. http://google.com/kittens.jpg">
+                
+            </div>
+                
+            </div>
+
+            <div class="form-group input-group">
+                <textarea name="description" id="" cols="100" rows="4" class="form-control" placeholder="Image description (optional)" style="width: 100%;"></textarea>
+            </div>
+
+        </form>
     </div>
 
-    <div class="form-group">
-	<input class="btn btn-sm btn-primary" type="submit" value="Submit" />
-    </div>
 
-</form></div>
+</div>
+
+
 {% endblock %}

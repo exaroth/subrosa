@@ -415,6 +415,12 @@ textarea.article-title {
 .gallery-image:hover .img-desc {
   opacity: 1;
 }
+.image-upload-wrapper textarea {
+  outline: 1px solid #cccccc;
+}
+.image-upload-wrapper textarea:focus {
+  outline: 2px solid #b3b3b3;
+}
 * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;

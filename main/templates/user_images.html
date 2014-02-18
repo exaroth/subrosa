@@ -1,27 +1,6 @@
 ﻿{% extends "layout.html" %}
 
 {% block content %} 
-<h2 style="text-align: center">Your Images</h2>
-<!-- <div class="panel panel-default">
-    <div class="panel-body" style="padding: 30px 0 0 0">
-	{% for row in images.items | batch(3) %}
-	<div class="row">
-	    {% for column in row %}
-	    <div class="col-md-4">
-		<a href="{{ url_for('image_details', id = column.id) }}" style="margin: 0 auto; position: relative" class="center-block">
-		    <img src="{{ url_for('send_image', filename = session.user + '/showcase/' +  column.showcase ) }}" alt="" style="margin: 0 auto; display: block; position: relative" /></a>
-		<div class="row" style="margin-bottom: 0; margin-top: 10px; padding: 0 10px">
-		    <label for="" class="center-block" style="text-align: center; padding">
-			<div class="well well-sm center-block" style="padding: 10px 0; overflow: hidden"><small>{{ column.filename }}</small></div>
-		    </label>
-		</div>
-	    </div>
-	    {% endfor %}
-	</div>
-    {% endfor %}
-    </div>
-</div>
- -->
  <div class="gallery-wrapper">
  {% for image in images.items %}
  <a href="{{ url_for('image_details', id = image.id)}}">
@@ -44,7 +23,6 @@
   {% endfor %}
  	
  </div>
-
 
 
 
