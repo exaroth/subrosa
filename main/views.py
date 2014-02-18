@@ -33,6 +33,7 @@ from werkzeug.contrib.atom import AtomFeed
 @app.before_request
 def load_vars():
     g.title = app.config["TITLE"]
+    g.dynamic = app.config.get("DYNAMIC_SITE")
     g.prev = redirect_url()
     g.facebook = app.config.get("FACEBOOK", False)
     g.twitter = app.config.get("TWITTER", False)
@@ -264,8 +265,8 @@ def upload_image():
         try:
             image_filename, show_filename, is_vertical = process_image(image = image, filename = filename , username = user.username)
             # mess
-            show_path = user.username + "/showcase/" + show_filename
-            full_path = user.username + "/" + image_filename
+            show_path = request.url_root + "uploads/" + user.username + "/showcase/" + show_filename
+            full_path = request.url_root + "uploads/" + user.username + "/" + image_filename
             try:
                 UserImages.add_image(filename = full_path,\
                                     showcase = show_path,\
@@ -325,8 +326,9 @@ def delete_image(id):
 @dynamic_content
 def image_details(id):
     image = UserImages.query.get_or_404(id)
-    url_path = urljoin(request.url_root, "uploads/")
-    return render_template("image_details.html",url_path = url_path, image = image)
+    # name = image.filename.rsplit('/', 1)
+    filename = image.filename.rsplit('/', 1)[1]
+    return render_template("image_details.html",filename = filename, image = image)
 
 
 @app.route("/recent.atom")

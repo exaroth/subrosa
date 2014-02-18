@@ -421,6 +421,14 @@ textarea.article-title {
 .image-upload-wrapper textarea:focus {
   outline: 2px solid #b3b3b3;
 }
+.image-upload-wrapper {
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
 * {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -594,6 +602,11 @@ a {
 }
 .gallery-button:hover {
   color: #47b1ff;
+}
+.add-images {
+  top: -48px;
+  position: absolute;
+  color: #4d4d4d;
 }
 .mini-icon i {
   font-size: 1.4em;

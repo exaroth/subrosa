@@ -15,7 +15,7 @@
 			{% if session.user %}
 			<div id="admin-panel" class="admin-panel" style="display: none;">
 				<a href="{{ url_for('index')}} ">
-				<h2>Subrosa</h2>
+					<h2>Subrosa</h2>
 					
 				</a>
 				<hr>
@@ -23,7 +23,6 @@
 				<ul class="admin-panel-links list-unstyled">
 					<li><a href="{{ url_for('account', username = session.user) }} ">Dashboard</a></li>
 					<li><a href="{{ url_for('create_article') }} ">Create Article</a></li>
-					<li><a href="{{ url_for('upload_image') }} ">Upload image</a></li>
 					<li><a href="{{ url_for('user_images', username = session.user) }} ">Images</a></li>
 					<li><a href="{{ url_for('logout') }} ">Logout</a></li>
 				</ul>
@@ -50,13 +49,14 @@
 		</div>
 		<div class="footer">
 			{% include "footer.html" %}
-		</div></div>
-		<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>
-		<script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
-		<script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
-		<script src="{{ url_for('static', filename='bower_components/jquery-pageslide/jquery.pageslide.min.js')}}"></script>
-		<script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
-		<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
-		<script src="//localhost:35729/livereload.js"></script>
-	</body>
-	</html>
+		</div>
+	</div>
+	<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>
+	<script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
+	<script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
+	<script src="{{ url_for('static', filename='bower_components/jquery-pageslide/jquery.pageslide.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
+	<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
+	<script src="//localhost:35729/livereload.js"></script>
+</body>
+</html>

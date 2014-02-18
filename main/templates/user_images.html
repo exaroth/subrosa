@@ -1,55 +1,55 @@
 ﻿{% extends "layout.html" %}
 
 {% block content %} 
- <div class="gallery-wrapper">
- {% for image in images.items %}
- <a href="{{ url_for('image_details', id = image.id)}}">
- <div class="gallery-image size22" data-vert="{{ image.is_vertical}}" style="background-image: url({{ url_path }}{{ image.showcase }})">
- <div class="img-overlay"></div>
- <div class="img-desc">
-
- {% if image.description %}
- {{ image.description }}
- {% else %}
- <i class="icon-search" style="font-size: 2em; opacity: 0.8"></i>
- {% endif %}
- 	
- </div>
- </div>
- </a>
 
 
+<div class="gallery-wrapper">
+<a href="{{ url_for('upload_image')}}" class="add-images btn btn-default"><i class="icon-plus"></i>Add Image</a>
+	{% for image in images.items %}
+	<a href="{{ url_for('image_details', id = image.id)}}">
+		<div class="gallery-image size22" data-vert="{{ image.is_vertical}}" style="background-image: url({{ image.showcase }})">
+			<div class="img-overlay"></div>
+			<div class="img-desc">
+				{% if image.description %}
+				{{ image.description }}
+				{% else %}
+				<i class="icon-search" style="font-size: 2em; opacity: 0.8"></i>
+				{% endif %}
+			</div>
+		</div>
+	</a>
 
-  {% endfor %}
- 	
- </div>
 
-
-
- {% if images.items and images.pages > 1 %}
-<div class="bottom-pagination col-md-4 col-md-offset-4">
-    <ul class="pagination">
-	{% if images.has_prev %}
-	<li><a href="{{ url_for('user_images', username = session.user, page = images.page -1) }}">&laquo;</a></li>
-	{% else %}
-	<li class="disabled"><a href="">&laquo;</a></li>
-	{% endif %}
-	{% for pagination_page in images.iter_pages() %}
-	{% if pagination_page %}
-	{% if pagination_page != images.page %}
-	<li><a href="{{ url_for('user_images', username = session.user, page = pagination_page) }}">{{ pagination_page }}</a></li>
-	{% else %}
-	<li class="active"><a href="#">{{ pagination_page }}</a></li>
-	{% endif %}
-	{% endif %}
 	{% endfor %}
-	{% if images.has_next %}
-	<li><a href="{{ url_for('user_images', username = session.user, page = images.page + 1) }}">&laquo;</a></li>
-	{% else %}
-	<li class="disabled"><a href="">&raquo;</a></li>
 
-	{% endif %}
-    </ul>
+</div>
+
+
+
+{% if images.items and images.pages > 1 %}
+<div class="bottom-pagination col-md-4 col-md-offset-4">
+	<ul class="pagination">
+		{% if images.has_prev %}
+		<li><a href="{{ url_for('user_images', username = session.user, page = images.page -1) }}">&laquo;</a></li>
+		{% else %}
+		<li class="disabled"><a href="">&laquo;</a></li>
+		{% endif %}
+		{% for pagination_page in images.iter_pages() %}
+		{% if pagination_page %}
+		{% if pagination_page != images.page %}
+		<li><a href="{{ url_for('user_images', username = session.user, page = pagination_page) }}">{{ pagination_page }}</a></li>
+		{% else %}
+		<li class="active"><a href="#">{{ pagination_page }}</a></li>
+		{% endif %}
+		{% endif %}
+		{% endfor %}
+		{% if images.has_next %}
+		<li><a href="{{ url_for('user_images', username = session.user, page = images.page + 1) }}">&laquo;</a></li>
+		{% else %}
+		<li class="disabled"><a href="">&raquo;</a></li>
+
+		{% endif %}
+	</ul>
 </div>
 
 {% endif %}
