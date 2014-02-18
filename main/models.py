@@ -52,6 +52,7 @@ class User(db.Model):
             db.session.commit()
         except Exception as e:
             db.session.rollback()
+            handle_errors("Error creating user")
             raise
 
     @staticmethod
@@ -115,6 +116,7 @@ class Articles(db.Model):
         try:
             return db.session.query(exists().where(Articles.title == title)).scalar()
         except:
+            db.session.rollback()
             handle_errors()
 
 
@@ -144,8 +146,28 @@ class Articles(db.Model):
 
         except Exception as e:
             db.session.rollback()
-            handle_errors(e)
+            handle_errors("Error updating article")
 
+    @staticmethod
+    def publish_article(article):
+        try:
+            article.draft = False
+            db.session.add(article)
+            db.session.commit()
+
+        except:
+            db.session.rollback()
+            handle_errors()
+
+
+    @staticmethod
+    def delete_article(article):
+        try:
+            db.session.delete(article)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            handle_errors()
 
     def __repr__(self):
         return "<Article: {0}>".format(truncate(self.title))
@@ -156,7 +178,6 @@ class UserImages(db.Model):
     
     id = db.Column(db.Integer, primary_key = True)
     filename = db.Column(db.String(120), unique = True)
-    # thumbnail = db.Column(db.String(120))
     showcase = db.Column(db.String(120))
     description = db.Column(db.String(120), nullable = True)
     is_vertical = db.Column(db.SmallInteger)
@@ -171,6 +192,31 @@ class UserImages(db.Model):
         self.showcase = showcase
         self.gallery = gallery
         self.owner = owner
+
+    @staticmethod
+    def add_image(filename, showcase, description, is_vertical, gallery, owner):
+        try:
+            user_image = UserImages(filename = filename,\
+                                    showcase = showcase,\
+                                    description = description,\
+                                    is_vertical = is_vertical,\
+                                    gallery = gallery,\
+                                    owner = owner)
+            db.session.add(user_image)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            handle_errors("Error creating image")
+            raise
+    @staticmethod
+    def delete_image(image):
+        try:
+            db.session.delete(image)
+            db.session.commit()
+        except:
+            db.session.rollback()
+            handle_errors("Error deleting image")
+            raise
 
     def __repr__(self):
         return "<Image: {0}>".format(self.filename)

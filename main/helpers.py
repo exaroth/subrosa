@@ -79,9 +79,6 @@ def handle_errors(mess = "Unknown Error"):
     return
 
 
-
-
-
 class Pagination(object):
 
     """
@@ -154,6 +151,8 @@ def process_image(image, filename, username):
             img.save(img_path + full_filename, "JPEG")
             return (full_filename, show_filename, int(vertical))
         except IOError, e:
+                handle_errors(e)
                 raise 
     except Exception as e:
+        handle_errors(e)
         raise 

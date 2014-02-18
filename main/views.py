@@ -105,7 +105,6 @@ def create_account():
             except IOError, e:
                 error = "Could not write to database, check if\
                         you have proper access\n or double check configuration options"
-                handle_errors(error)
                 return render_template("create_account.html", error = error)
             try:
                 os.mkdir(app.config["UPLOAD_FOLDER"] + username, 0755)
@@ -147,7 +146,7 @@ def account(username):
 def create_article():
     error = None
     if request.method == "POST":
-        title = request.form.get("title")
+        title = request.form.get("title").strip()
         body = request.form.get("body")
         user = User.get_user_by_username(session["user"])
         if not title or not body:
@@ -185,7 +184,7 @@ def edit_article(id):
        return redirect(url_for("index"))
 
     if request.method == "POST":
-        title = request.form.get("title")
+        title = request.form.get("title").strip()
         body = request.form.get("body")
         if not title or not body:
             error = "Article can\'t have empty title or body"
@@ -197,17 +196,12 @@ def edit_article(id):
             error = "Article with this title already exists, please choose another"
             return render_template("edit_article.html", error = error, article = article )
         else:
-            article.title = title
-            article.body = body
-            article.date_updated = datetime.utcnow()
-            db.session.add(article)
+
             try:
-                db.session.commit()
+                Articles.update_article(article, title, body)
                 return redirect(url_for("account", username = session["user"]))
-            except Exception, e:
-                db.session.rollback()
+            except:
                 error = "Error writing to database"
-                handle_errors(error)
                 return render_template("edit_article.html", error = error, article = article )
     else:
         return render_template("edit_article.html", article = article)
@@ -225,8 +219,7 @@ def delete_article(id):
         flash("You can\'t delete other people\'s posts")
         return redirect(url_for("index"))
     else:
-        db.session.delete(article)
-        db.session.commit()
+        Articles.delete_article(article)
         flash("Article has been deleted")
         return redirect(url_for("account", username = session["user"]))
 
@@ -238,10 +231,7 @@ def publish_article(id):
         flash("You can\'t publish other\'s peoples posts")
         return redirect(url_for("index"))
     else:
-        # add except here
-        article.draft = False
-        db.session.add(article)
-        db.session.commit()
+        Articles.publish_article(article)
         flash("Article has been published")
         return redirect(url_for("account", username = session["user"]))
 
@@ -271,21 +261,19 @@ def upload_image():
         user = User.query.filter_by(username = session["user"]).first()
         try:
             image_filename, show_filename, is_vertical = process_image(image = image, filename = filename , username = user.username)
+            # mess
             show_path = user.username + "/showcase/" + show_filename
             full_path = user.username + "/" + image_filename
             try:
-                user_image = UserImages(filename = full_path,\
-                                        showcase = show_path,\
-                                        description = description,\
-                                        is_vertical = is_vertical,\
-                                        gallery = gallery_include,\
-                                        owner = user)
-                db.session.add(user_image)
-                db.session.commit()
+                UserImages.add_image(filename = full_path,\
+                                    showcase = show_path,\
+                                    description = description,\
+                                    is_vertical = is_vertical,\
+                                    gallery = gallery_include,\
+                                    owner = user)
                 return redirect(url_for("user_images", username = user.username))
-            except Exception, e:
+            except:
                 error = "Error writing to database"
-                handle_errors(error)
                 return render_template("upload_image.html", error = error)
         except Exception, e:
             error = "Error occured while processing the image"
@@ -299,7 +287,7 @@ def upload_image():
 @login_required
 @dynamic_content
 def user_images(username, page):
-    images = UserImages.query.join(User).paginate(page, 9)
+    images = UserImages.query.join(User).filter_by(username = username).paginate(page, 9)
     url_path = urljoin(request.url_root, "uploads/")
     if not images.items and page != 1:
         abort(404)
@@ -309,7 +297,7 @@ def user_images(username, page):
 @login_required
 @dynamic_content
 def delete_image(id):
-    image = UserImages.query.get(id)
+    image = UserImages.query.get_or_404(id)
     # prevent from deleting images by people other by the owner
     if image.owner.username != session["user"]:
         flash("Don't try to delete other\'s dude\'s pictures...dude")
@@ -322,12 +310,9 @@ def delete_image(id):
             flash("Can\'t delete files from disk")
             return redirect(url_for("index"))
         try:
-            db.session.delete(image)
-            db.session.commit()
-        except IOError, e:
-            db.session.rollback()
+            UserImages.delete_image(image)
+        except:
             error = "Error occured when writing to database"
-            handle_errors(error)
             flash(error)
             return redirect(url_for("index"))
         return redirect(url_for("user_images", username = session["user"]))
