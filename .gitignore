@@ -28,7 +28,7 @@ pip-log.txt
 # Mr Developer
 .mr.developer.cfg
 
-uploads/*
+uploads/*/
 test.db
 
 # Django files
