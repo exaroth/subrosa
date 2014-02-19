@@ -1,9 +1,6 @@
 ﻿{% extends "layout.html" %}
 
 {% block content %} 
-{% if error %}
-<div class="alert alert-dismissable alert-danger"><strong>Error:</strong><p>{{ error }}</p></div>
-{% endif %}
 
 <div class="image-upload-wrapper col-md-8 col-md-offset-2">
     <div class="well internal-upload upload-image-box">
@@ -12,7 +9,7 @@
             <div class="form-group">
                 <div class="input-group">
                     <div class="input-group-btn">
-                        <input class="btn btn-default" type="submit" value="Upload Image" style="width: 120px;" />
+                        <input class="btn btn-default" type="submit" value="Upload Image" name="upload-img" style="width: 120px;" />
 
                     </div>
                     <input type="file" name="image" class="form-control" style="display: inline" id="image-upload-filename" value="" />
@@ -20,13 +17,13 @@
                 
             </div>
             <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-btn">
-                    <input type="submit" class="btn btn-default" value="Save Link" style="width: 120px">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <input type="submit" class="btn btn-default" name="save-link" value="Save Link" style="width: 120px">
+                    </div>
+                    <input type="text" name="image-link" id="image-link" class="form-control" placeholder="eg. http://google.com/kittens.jpg">
+
                 </div>
-                <input type="text" name="image-link" id="image-link" class="form-control" placeholder="eg. http://google.com/kittens.jpg">
-                
-            </div>
                 
             </div>
 
@@ -35,10 +32,18 @@
             </div>
 
         </form>
+        {% if error %}
+        <div class="alert alert-dismissable alert-danger">
+    <button class="close" data-dismiss="alert">x</button>
+        <strong>Error:</strong><p>{{ error }}</p></div>
+        {% endif %}
     </div>
 
 
 </div>
 
 
+
+{% endblock %}
+{% block footer %}
 {% endblock %}

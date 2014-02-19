@@ -3,7 +3,9 @@
 @import "_partials/article-view";
 @import "_partials/article-edit";
 @import "_partials/index";
-@import "_partials/media"; @import "_partials/dashboard"; @import "_partials/gallery";
+@import "_partials/media";
+@import "_partials/dashboard";
+@import "_partials/gallery";
 
 
 // Variables
@@ -51,13 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 	text-rendering: optimizeLegibility;
 }
 
-// .content {
-// 	min-height: 100%;
-// 	height: auto !important;
-// 	height: 100%;
-// 	/* Negative indent footer by it's height */
-// 	margin: 0 auto -60px;
-// }
+
 a:hover,
 a:active {
 	text-decoration: none;
@@ -93,7 +89,7 @@ a {
 // ---------- Pagination Restyle -----------
 
 .pagination .active a{
-	background-color: @black-80;
+background-color: @black-80;
 	border: none;
 	.border-radius(0);
 	&:hover {

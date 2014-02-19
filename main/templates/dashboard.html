@@ -12,8 +12,7 @@
 			<tr>
 				<th>#</th>
 				<th>Title</th>
-				<th>Last updated</th>
-				<th>Status</th>
+				<th>Last updated</th> <th>Status</th>
 				<th>Actions</th>
 			</tr>
 
@@ -47,4 +46,12 @@
 <h2 class="text-center">No articles written yet</h2>
 {% endif %}
 
+{% endblock %}
+{% block footer %}
+	<div id="footer">
+		<div class="container">
+			<p class="muted credit text-center text-muted"><small>Build with &hearts; using Flask microframework</small></p>
+		</div>
+
+	</div>
 {% endblock %}

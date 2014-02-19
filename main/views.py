@@ -17,7 +17,7 @@ import os
 from datetime import datetime
 from urlparse import urljoin
 import urllib
-from main import app, db, cache
+from main import app, db, cache, c
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
 from .models import User, Articles, UserImages
 from .helpers import Pagination, login_required,\
@@ -115,7 +115,7 @@ def create_account():
             except IOError, e:
                 error = "Could not create user directories, check\
                         if you have proper credentials"
-                hendle_errors(error)
+                handle_errors(error)
                 return render_template("create_account.html", error = error)
             session["user"] = username
             flash("Account created")
@@ -245,43 +245,64 @@ def publish_article(id):
 def upload_image():
     error = None
     if request.method == "POST":
-        image = request.files["image"]
-        gallery_include = request.form.get("gallery_include", False)
-        description = request.form.get("description", None)
-        if not image:
-            error = "No image chosen"
-            return render_template("upload_image.html", error = error)
-        if os.path.splitext(image.filename)[1][1:] not in app.config["ALLOWED_FILENAMES"]:
-            error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
-            return render_template("upload_image.html", error = error)
-        # add checkbox functionality
-        filename = secure_filename(image.filename)
-        image_exists = UserImages.query.filter_by(filename = filename).first()
-        if image_exists:
-            error = "Image with this filename already exists"
-            return render_template("upload_image.html", error = error)
-
-        user = User.query.filter_by(username = session["user"]).first()
-        try:
-            image_filename, show_filename, is_vertical = process_image(image = image, filename = filename , username = user.username)
-            # mess
-            show_path = request.url_root + "uploads/" + user.username + "/showcase/" + show_filename
-            full_path = request.url_root + "uploads/" + user.username + "/" + image_filename
+        if request.form.get("upload-img"):
+            image = request.files["image"]
+            description = request.form.get("description", None)
+            if not image:
+                error = "No image chosen"
+                return render_template("upload_image.html", error = error)
+            if os.path.splitext(image.filename)[1][1:] not in app.config["ALLOWED_FILENAMES"]:
+                error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
+                return render_template("upload_image.html", error = error)
+            # add checkbox functionality
+            filename = secure_filename(image.filename)
+            image_exists = UserImages.query.filter_by(filename = filename).first()
+            if image_exists:
+                error = "Image with this filename already exists"
+                return render_template("upload_image.html", error = error)
+            # !db fn
+            user = User.query.filter_by(username = session["user"]).first()
             try:
-                UserImages.add_image(filename = full_path,\
-                                    showcase = show_path,\
+                image_filename, show_filename, is_vertical = process_image(image = image, filename = filename , username = user.username)
+                # mess
+                show_path = request.url_root + "uploads/" + user.username + "/showcase/" + show_filename
+                full_path = request.url_root + "uploads/" + user.username + "/" + image_filename
+                try:
+                    UserImages.add_image(filename = full_path,\
+                                        showcase = show_path,\
+                                        description = description,\
+                                        is_vertical = is_vertical,\
+                                        external = False,\
+                                        owner = user)
+                    return redirect(url_for("user_images", username = user.username))
+                except:
+                    error = "Error writing to database"
+                    return render_template("upload_image.html", error = error)
+            except Exception, e:
+                error = "Error occured while processing the image"
+                handle_errors(error)
+                return render_template("upload_image.html", error = error)
+        elif request.form.get('save-link'):
+            link = request.form.get('image-link', None)
+            if not link:
+                error = "No link given"
+                return render_template("upload_image.html", error = error)
+            # check for existence
+            description = request.form.get('description', None)
+            user = User.query.filter_by(username = session["user"]).first()
+            try:
+                UserImages.add_image(filename = link,\
+                                    showcase = link,\
                                     description = description,\
-                                    is_vertical = is_vertical,\
-                                    gallery = gallery_include,\
+                                    # mess
+                                    is_vertical = True,\
+                                    external = True,\
                                     owner = user)
                 return redirect(url_for("user_images", username = user.username))
-            except:
+            except Exception as e:
                 error = "Error writing to database"
+                print e
                 return render_template("upload_image.html", error = error)
-        except Exception, e:
-            error = "Error occured while processing the image"
-            handle_errors(error)
-            return render_template("upload_image.html", error = error)
     else:
         return render_template("upload_image.html")
 
@@ -308,12 +329,13 @@ def delete_image(id):
         flash("Don't try to delete other\'s dude\'s pictures...dude")
         return redirect(url_for("index"))
     else:
-        try:
-            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.owner.username, filename))
-            os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.owner.username, 'showcase', showcase))
-        except IOError, e:
-            flash("Can\'t delete files from disk")
-            return redirect(url_for("index"))
+        if not image.external:
+            try:
+                os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.owner.username, filename))
+                os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.owner.username, 'showcase', showcase))
+            except IOError, e:
+                flash("Can\'t delete files from disk")
+                return redirect(url_for("index"))
         try:
             UserImages.delete_image(image)
         except:
@@ -328,7 +350,6 @@ def delete_image(id):
 @dynamic_content
 def image_details(id):
     image = UserImages.query.get_or_404(id)
-    # name = image.filename.rsplit('/', 1)
     filename = image.filename.rsplit('/', 1)[1]
     return render_template("image_details.html",filename = filename, image = image)
 

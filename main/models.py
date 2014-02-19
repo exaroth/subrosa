@@ -187,22 +187,22 @@ class UserImages(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     owner = db.relationship("User", backref = db.backref("user_images", lazy = "dynamic"))
 
-    def __init__(self, filename, showcase, description, is_vertical, gallery, owner):
+    def __init__(self, filename, showcase, description, is_vertical, owner, external):
         self.filename = filename
         self.description = description
         self.is_vertical = is_vertical
         self.showcase = showcase
-        self.gallery = gallery
         self.owner = owner
+        self.external = external
 
     @staticmethod
-    def add_image(filename, showcase, description, is_vertical, gallery, owner):
+    def add_image(filename, showcase, external, description, is_vertical, owner):
         try:
             user_image = UserImages(filename = filename,\
                                     showcase = showcase,\
                                     description = description,\
                                     is_vertical = is_vertical,\
-                                    gallery = gallery,\
+                                    external = external,\
                                     owner = owner)
             db.session.add(user_image)
             db.session.commit()

@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="wrap">
-	<div class="container-full">
+		<div class="container-full">
 			<div class="content">
 				{% if session.user %}
 				<div id="admin-panel" class="admin-panel" style="display: none;">
@@ -50,35 +50,18 @@
 
 			<div id="push"></div>
 		</div>
-		</div>
-		<div id="footer">
-<!--  			<div class="container-full">
-				<div class="navbar navbar-default">
-
-					<div class="navbar-inner navbar-content-center">
-						<small class="text-muted">
-							Built with &hearts; using Flask microframework.<br />
-							<a href="https://github.com/exaroth/subrosa.git">https://github.com/exaroth/subrosa.git</a>
-						</small>
-					</div>
-				</div>
-				
-
- -->
-				<div class="container">
-				<p class="muted credit text-center text-muted"><small>Build with &hearts; using Flask microframework</small></p>
-				<!-- <p class="text-center credit"><small> <a href="https://github.com/exaroth/subrosa.git">https://github.com/exaroth/subrosa.git</a> </small> </p> -->
-				<!-- <a href="https://github.com/exaroth/subrosa.git" class="text-center credit"><small>https://github.com/exaroth/subrosa.git</small></a> -->
-				</div>
-
-		</div>
 	</div>
-	<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>
-	<script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
-	<script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
-	<script src="{{ url_for('static', filename='bower_components/jquery-pageslide/jquery.pageslide.min.js')}}"></script>
-	<script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
-	<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
-	<script src="//localhost:35729/livereload.js"></script>
+	{% block footer %}
+
+
+	{% endblock %}
+</div>
+<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>
+<script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
+<script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
+<script src="{{ url_for('static', filename='bower_components/jquery-pageslide/jquery.pageslide.min.js')}}"></script>
+<script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
+<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
+<script src="//localhost:35729/livereload.js"></script>
 </body>
 </html>

@@ -116,6 +116,12 @@ class Pagination(object):
                 yield num
                 last = num
 
+def process_bg(bg):
+
+    img1 = Image.open(bg)
+
+    return img1
+
 def process_image(image, filename, username):
     """
     Simple image processing function 
@@ -140,7 +146,6 @@ def process_image(image, filename, username):
         dim = (shorter, base) if vertical else (base, shorter)
         showcase_img = img.resize(dim, Image.ANTIALIAS)
         img_path = os.path.join(app.config["UPLOAD_FOLDER"], username + "/")
-        print img_path
 
         # Create thumbnail filename - extension is the same as base file
 
