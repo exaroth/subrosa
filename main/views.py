@@ -43,7 +43,7 @@ def load_vars():
 
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
-# @cache.cached(timeout=50)
+@cache.cached(timeout=50)
 def index(page):
     pages_per_page = app.config["ARTICLES_PER_PAGE"]
     articles = Articles.paginate_articles(page, pages_per_page)
@@ -65,8 +65,8 @@ def admin_login():
 
     error = None
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+        username = request.form.get("username").strip()
+        password = request.form.get("password").strip()
         user = User.query.filter_by(username = username).first()
         if not user:
             error = "Incorrect Credentials"
@@ -95,10 +95,10 @@ def create_account():
     user_check = User.query.all()
     if not user_check:
         if request.method == "POST":
-            username = request.form.get("username")
-            email = request.form.get("email")
-            password = request.form.get("password")
-            real_name = request.form.get("real_name", None)
+            username = request.form.get("username").strip()
+            email = request.form.get("email").strip()
+            password = request.form.get("password").strip()
+            real_name = request.form.get("real_name", None).strip()
             if not username or not email or not password:
                 error = "All fields are required"
                 return render_template("create_account.html", error = error)
@@ -150,7 +150,7 @@ def create_article():
     error = None
     if request.method == "POST":
         title = request.form.get("title").strip()
-        body = request.form.get("body")
+        body = request.form.get("body").strip()
         user = User.get_user_by_username(session["user"])
         if not title or not body:
             error = "Article can\'t have empty title or body"
@@ -165,6 +165,8 @@ def create_article():
                                         body = body,\
                                         author = user,\
                                         draft = True)
+                with app.app_context():
+                    cache.clear()
                 flash("Article created")
                 return redirect(url_for("index"))
             except:
@@ -188,7 +190,7 @@ def edit_article(id):
 
     if request.method == "POST":
         title = request.form.get("title").strip()
-        body = request.form.get("body")
+        body = request.form.get("body").strip()
         if not title or not body:
             error = "Article can\'t have empty title or body"
             return render_template("edit_article.html", error = error, article = article)
@@ -202,6 +204,8 @@ def edit_article(id):
 
             try:
                 Articles.update_article(article, title, body)
+                with app.app_context():
+                    cache.clear()
                 return redirect(url_for("account", username = session["user"]))
             except:
                 error = "Error writing to database"
@@ -210,6 +214,7 @@ def edit_article(id):
         return render_template("edit_article.html", article = article)
 
 @app.route("/article/<int:id>")
+@cache.cached(timeout=50)
 def article_view(id):
     article = Articles.query.get_or_404(id)
     return render_template("article_view.html", article = article)

@@ -257,11 +257,6 @@ textarea.article-input-body {
   width: 590px;
   height: 760px;
   background-color: white;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
   z-index: 999;
   padding: 2em 1em 0 1em;
   -webkit-border-radius: 4px;
@@ -342,6 +337,7 @@ textarea.article-input-body {
 .header-field {
   margin-bottom: 2em;
   padding-bottom: 3em;
+  height: 400px;
   position: relative;
   background-image: url("../img/bg.jpg");
   background-position: center center;
