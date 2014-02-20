@@ -36,8 +36,7 @@
 }
 
 .article-main p,
-.article-main li,
-.article-main a {
+{
 	@media screen and (min-width: @md){
 		
 		font-size: 1.4em;
@@ -45,8 +44,14 @@
 	}
 }
 
+
+
 .article-main .article-body a {
-	color: #69a0cd;
+	color: @black-60;
+	text-decoration: underline;
+	&:hover {
+		color: @cerulean;
+	}
 }
 
 blockquote {

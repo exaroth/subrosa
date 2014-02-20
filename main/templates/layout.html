@@ -10,6 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/main.css') }}" media="all" />
 </head>
 <body>
+	{% block modals %}
+	{% endblock %}
 	<div id="wrap">
 		<div class="container-full">
 			<div class="content">
@@ -61,6 +63,7 @@
 <script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
 <script src="{{ url_for('static', filename='bower_components/jquery-pageslide/jquery.pageslide.min.js')}}"></script>
 <script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
+<script src="{{ url_for('static', filename='bower_components/jquery-leanmodal/jquery.leanModal.js')}}"></script>
 <script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
 <script src="//localhost:35729/livereload.js"></script>
 </body>

@@ -5,6 +5,8 @@ from PIL import Image
 from main import app
 import os
 from urlparse import urljoin
+from main import c
+
 
 def slugify(text):
     return text.strip().replace(" ", "-")
@@ -116,11 +118,6 @@ class Pagination(object):
                 yield num
                 last = num
 
-def process_bg(bg):
-
-    img1 = Image.open(bg)
-
-    return img1
 
 def process_image(image, filename, username):
     """

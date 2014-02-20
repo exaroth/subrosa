@@ -53,3 +53,55 @@ textarea {
 		z-index: 99;
 	}
 }
+
+.markdown-cheatsheet {
+	position: absolute;
+	width: 590px;
+	height: 760px;
+	background-color: white;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 999;
+	padding: 2em 1em 0 1em;
+	.border-radius(4px);
+	.bs-shadow();
+	display: none;
+	h2 {
+		text-align: center;
+		font-size: 1.6em;
+		background-color: @black-80;
+		.border-radius(2px);
+		color: white;
+		padding: 10px 0;
+	}
+	.typography {
+		.column-count(3);
+		.column-gap(4px);
+		text-align: center;
+	}
+	.code-example {
+		width: 100%;
+		position: relative;
+		span {
+			width: 50%;
+			float: left;
+			padding: 0;
+		}
+	}
+
+	.close {
+		position: absolute;
+		right: 20px;
+		top: 20px;
+	}
+	@media screen and (max-width: @md){
+		width: 98%;
+		height: 98%;
+	}
+
+
+}
+

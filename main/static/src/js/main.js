@@ -203,6 +203,9 @@ $textarea.autogrow();
 $sidepanelToggler.pageslide();
 $miniIcons.tooltip();
 $editingButtons.tooltip();
+$(".cheatsheet-button").leanModal({
+    closeButton: ".modal_close"
+});
 $gallery.nested({
     selector: '.gallery-image',
     minWidth: 200,
