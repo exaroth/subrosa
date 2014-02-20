@@ -8,7 +8,7 @@ textarea {
 	overflow-y: hidden;
 	// Fix for tab in chrome
 	text-rendering: optimizeSpeed;
-		&.article-title {
+		&.article-input-title {
 		font-size: 48px !important ;
 		text-align: center !important;
 		font-weight: bold !important;
@@ -16,8 +16,22 @@ textarea {
 		color: rgba(0,0,0,.8) !important;
 		overflow-x: hidden;
 		padding: 0 1em;
+		margin-top: 1em;
+		color: @black-90;
+	}
+	&.article-input-body {
+		width: 100%;
 	}
 
+}
+.article-input::-moz-placeholder {
+  color: @black-10;
+}
+.article-input:-ms-input-placeholder {
+  color: @black-10;
+}
+.article-input::-webkit-input-placeholder {
+  color: @black-10;
 }
 
 .warning-holder {
@@ -25,13 +39,8 @@ textarea {
 	width: 60%;
 	margin: 0 auto;
 }
-
-.article-entry {
-	overflow: hidden;
-	margin-top: 3em;
-	@media screen and (max-width: @md){
-		padding: 0 8em 0 1em;
-	}
+.article-input {
+	color: @black-60;
 }
 
 .editing-tools {

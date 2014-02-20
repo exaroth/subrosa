@@ -16,7 +16,14 @@
 			</div>
 		</div>
 		<div class="row">
-			<a href="{{ url_for('send_image', filename = image.owner.username + '/' + filename) }}"> <img class="image-preview" style="margin: 0 auto; position: relative; display: block" src="{{ image.filename }}" alt="{{ image.filename }}" width="800px" /></a>
+		{% if image.external %}
+		<a href="{{ image.filename }}">
+		{% else %}
+		<a href="{{ url_for('send_image', filename = image.owner.username + '/' + filename) }}">
+
+		{% endif %}
+			 <img class="image-preview" style="margin: 0 auto; position: relative; display: block" src="{{ image.filename }}" alt="{{ image.filename }}" width="800px" />
+			 </a>
 		</div>
 	</div>
 </div>

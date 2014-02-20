@@ -203,7 +203,7 @@ textarea {
   overflow-y: hidden;
   text-rendering: optimizeSpeed;
 }
-textarea.article-title {
+textarea.article-input-title {
   font-size: 48px !important ;
   text-align: center !important;
   font-weight: bold !important;
@@ -211,20 +211,28 @@ textarea.article-title {
   color: rgba(0, 0, 0, 0.8) !important;
   overflow-x: hidden;
   padding: 0 1em;
+  margin-top: 1em;
+  color: #191919;
+}
+textarea.article-input-body {
+  width: 100%;
+}
+.article-input::-moz-placeholder {
+  color: #e6e6e6;
+}
+.article-input:-ms-input-placeholder {
+  color: #e6e6e6;
+}
+.article-input::-webkit-input-placeholder {
+  color: #e6e6e6;
 }
 .warning-holder {
   height: 4em;
   width: 60%;
   margin: 0 auto;
 }
-.article-entry {
-  overflow: hidden;
-  margin-top: 3em;
-}
-@media screen and (max-width: 970px) {
-  .article-entry {
-    padding: 0 8em 0 1em;
-  }
+.article-input {
+  color: #666666;
 }
 .editing-tools {
   position: fixed;
@@ -371,6 +379,8 @@ textarea.article-title {
   font-size: 0.8em;
   font-style: italic;
   border-radius: 3px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -428,6 +438,18 @@ textarea.article-title {
   top: 0;
   bottom: 0;
   position: absolute;
+}
+.external {
+  border: 1px solid;
+  border-color: #66afe9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.9);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.9);
+}
+.galleried {
+  border: 1px solid;
+  border-color: #66afe9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(66, 198, 152, 0.8);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(66, 198, 152, 0.8);
 }
 * {
   box-sizing: border-box;

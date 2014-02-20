@@ -14,10 +14,10 @@
 <div class="article-entry">
 <form action="" role="form" class="edit-article-form" method="POST" accept-charset="utf-8">
     <div class="form-group">
-    <textarea name="title" id="article-input-title" class="article-title"> {{ article.title }} </textarea>
+    <textarea name="title" id="article-input-title" class="article-input-title article-input"> {{ article.title }} </textarea>
     </div>
     <div class="form-group">
-	<textarea id="article-input-body" class="article-input-body form-control entry-input" name="body">{{ article.body }}</textarea>
+	<textarea id="article-input-body" class="article-input-body article-input " name="body">{{ article.body }}</textarea>
     </div>
     <input type="submit" value="" class="btn btn-primary" style="display: none" />
 
