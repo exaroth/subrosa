@@ -83,7 +83,7 @@ $(window).load(function(){
     // variables referring to color of input fields in article edit
     articleTitleLight = "#191919",
     articleBodyLight = "#666",
-    articleTitleDark = "#a3a1a1",
+    articleTitleDark = "#b7b7b7",
     articleBodyDark = "#848383"
 
     $updateArticleButton.click(function(e){

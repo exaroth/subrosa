@@ -96,6 +96,7 @@ class Articles(db.Model):
     def paginate_articles(page, pages_per_page):
         try:
             return Articles.query.\
+                    filter_by(draft = False).\
                     order_by(Articles.date_created.desc()).\
                     paginate(page, pages_per_page)
         except:

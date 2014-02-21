@@ -219,13 +219,13 @@ textarea.article-input.article-input-body {
   width: 100%;
 }
 .article-input::-moz-placeholder {
-  color: #e6e6e6;
+  color: rgba(128, 128, 128, 0.4);
 }
 .article-input:-ms-input-placeholder {
-  color: #e6e6e6;
+  color: rgba(128, 128, 128, 0.4);
 }
 .article-input::-webkit-input-placeholder {
-  color: #e6e6e6;
+  color: rgba(128, 128, 128, 0.4);
 }
 .warning-holder {
   height: 4em;

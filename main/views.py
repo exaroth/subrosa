@@ -228,6 +228,8 @@ def delete_article(id):
         return redirect(url_for("index"))
     else:
         Articles.delete_article(article)
+        with app.app_context():
+            cache.clear()
         flash("Article has been deleted")
         return redirect(url_for("account", username = session["user"]))
 
@@ -240,6 +242,8 @@ def publish_article(id):
         return redirect(url_for("index"))
     else:
         Articles.publish_article(article)
+        with app.app_context():
+            cache.clear()
         flash("Article has been published")
         return redirect(url_for("account", username = session["user"]))
 
