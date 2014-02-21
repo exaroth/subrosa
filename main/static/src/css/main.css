@@ -196,7 +196,7 @@ img.floated-image {
   background-clip: padding-box;
   padding: 1em;
 }
-textarea {
+textarea.article-input {
   outline: none;
   border: none !important;
   box-shadow: none !important;
@@ -205,18 +205,17 @@ textarea {
   overflow-y: hidden;
   text-rendering: optimizeSpeed;
 }
-textarea.article-input-title {
+textarea.article-input.article-input-title {
   font-size: 48px !important ;
   text-align: center !important;
   font-weight: bold !important;
   width: 100%;
-  color: rgba(0, 0, 0, 0.8) !important;
   overflow-x: hidden;
   padding: 0 1em;
   margin-top: 1em;
   color: #191919;
 }
-textarea.article-input-body {
+textarea.article-input.article-input-body {
   width: 100%;
 }
 .article-input::-moz-placeholder {
@@ -497,10 +496,8 @@ textarea.article-input-body {
   opacity: 1;
 }
 .image-upload-wrapper textarea {
-  outline: 1px solid #cccccc;
-}
-.image-upload-wrapper textarea:focus {
-  outline: 2px solid #b3b3b3;
+  background-color: #fff !important;
+  width: 100% !important;
 }
 .image-upload-wrapper {
   margin: auto;
@@ -551,6 +548,10 @@ body {
   width: 100%;
   background: #000;
   display: none;
+}
+textarea {
+  background-color: transparent !important;
+  resize: none;
 }
 #push,
 #footer {

@@ -1,41 +1,41 @@
 (function($)
 {
    // Autogrowing textarea
-     $.fn.autogrow = function(options)
-     {
-     	return this.filter('textarea').each(function() {
-     		var self         = this;
-     		var $self        = $(self);
-     		var minHeight    = $self.height();
-     		var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
+   $.fn.autogrow = function(options)
+   {
+      return this.filter('textarea').each(function() {
+         var self         = this;
+         var $self        = $(self);
+         var minHeight    = $self.height();
+         var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
 
-     		var shadow = $('<div></div>').css({
-     			position:    'absolute',
-     			top:         -10000,
-     			left:        -10000,
-     			width:       $self.width(),
-     			fontSize:    $self.css('fontSize'),
-     			fontFamily:  $self.css('fontFamily'),
-     			fontWeight:  $self.css('fontWeight'),
-     			lineHeight:  $self.css('lineHeight'),
-     			resize:      'none',
-     			'word-wrap': 'break-word'
-     		}).appendTo(document.body);
+         var shadow = $('<div></div>').css({
+            position:    'absolute',
+            top:         -10000,
+            left:        -10000,
+            width:       $self.width(),
+            fontSize:    $self.css('fontSize'),
+            fontFamily:  $self.css('fontFamily'),
+            fontWeight:  $self.css('fontWeight'),
+            lineHeight:  $self.css('lineHeight'),
+            resize:      'none',
+            'word-wrap': 'break-word'
+        }).appendTo(document.body);
 
-     		var update = function(event)
-     		{
-     			var times = function(string, number)
-     			{
-     				for (var i=0, r=''; i<number; i++) r += string;
-     					return r;
-     			};
+         var update = function(event)
+         {
+            var times = function(string, number)
+            {
+               for (var i=0, r=''; i<number; i++) r += string;
+                  return r;
+          };
 
-     			var val = self.value.replace(/</g, '&lt;')
-     			.replace(/>/g, '&gt;')
-     			.replace(/&/g, '&amp;')
-     			.replace(/\n$/, '<br/>&nbsp;')
-     			.replace(/\n/g, '<br/>')
-     			.replace(/ {2,}/g, function(space){ return times('&nbsp;', space.length - 1) + ' ' });
+          var val = self.value.replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/&/g, '&amp;')
+          .replace(/\n$/, '<br/>&nbsp;')
+          .replace(/\n/g, '<br/>')
+          .replace(/ {2,}/g, function(space){ return times('&nbsp;', space.length - 1) + ' ' });
 
 				// Did enter get pressed?  Resize in this keydown event so that the flicker doesn't occur.
 				if (event && event.data && event.data.event === 'keydown' && event.keyCode === 13) {
@@ -61,18 +61,30 @@
 
 $(window).load(function(){
     var
+    $body = $('body'),
+    $window = $(window),
     $textarea = $("textarea"),
     $articleInputBody = $(".article-input-body"),
+    $articleInputTitle = $(".article-input-title"),
     $editForm = $(".edit-article-form"),
     $createForm = $(".new-article-form"),
     $updateArticleButton = $(".update-button"),
     $createArticleButton = $(".create-button"),
     $sidepanelToggler = $("#sidepanel-toggler"),
     $miniIcons = $(".mini-icon"),
+    $articleBody = $(".article-main").find(".article-body"),
     $editingButtons = $(".editing-button"),
-    $articleBody = $(".article-body"),
     $gallery = $(".gallery-wrapper"),
-    thumbSize = 200;
+    $lamp = $(".lamp-button"),
+    // base thumbnail size for gallery
+    thumbSize = 200,
+    // variable referring to whether editing window is darkened
+    dark = false,
+    // variables referring to color of input fields in article edit
+    articleTitleLight = "#191919",
+    articleBodyLight = "#666",
+    articleTitleDark = "#a3a1a1",
+    articleBodyDark = "#848383"
 
     $updateArticleButton.click(function(e){
         e.preventDefault();
@@ -127,6 +139,9 @@ function getRandomArbitary (min, max) {
 
 
 function processArticleImages(articleBody){
+    // Find images in article body,
+    // and float it or center it depending
+    // on whether they are vertical or not
 
     articleBody.find("img").each(function(e){
 
@@ -189,23 +204,54 @@ function processGalleryImages(galleryBody){
 
         }
 
-        // Get number to multiply it by
-
-        // var num = Number((getRandomArbitary(0.7, 1.4)).toFixed(2))
-
-        // self.css("width", (self.width() * num));
-
     })
-}
+};
+
+$lamp.on('click', function(e){
+    e.preventDefault();
+    dimLight();
+})
+
+function dimLight(){
+    if (!dark){
+        $body.stop().animate({
+            backgroundColor: "#222"
+        }, 1200);
+        $articleInputTitle.stop().animate({
+            color: articleTitleDark
+        }, 1200);
+        $articleInputBody.stop().animate({
+            color: articleBodyDark
+        }, 1200);
+        dark = true;
+
+    } else {
+       $body.stop().animate({
+        backgroundColor: "#fff"
+    }, 1200);
+       $articleInputTitle.stop().animate({
+        color: articleTitleLight
+        }, 1200);
+       $articleInputBody.stop().animate({
+        color: articleBodyLight
+       }, 1200);
+        dark = false;
+
+    }
+
+
+};
 
 
 $textarea.autogrow();
 $sidepanelToggler.pageslide();
 $miniIcons.tooltip();
 $editingButtons.tooltip();
+
 $(".cheatsheet-button").leanModal({
     closeButton: ".modal_close"
 });
+
 $gallery.nested({
     selector: '.gallery-image',
     minWidth: 200,
