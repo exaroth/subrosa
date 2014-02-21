@@ -353,6 +353,11 @@ def delete_image(id):
             return redirect(url_for("index"))
         return redirect(url_for("user_images", username = session["user"]))
 
+@app.route("/gallerify/<int:id>")
+@login_required
+def gallerify(id):
+    return "yes"
+
 
 # probably needs auth
 @app.route("/image_details/<int:id>")

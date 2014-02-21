@@ -17,6 +17,15 @@ DYNAMIC_SITE = True
 
 SQLALCHEMY_DATABASE_URI = "sqlite:////" + ROOT_PATH + "/test.db"
 
+# Available fields are
+# * sqlite
+# * postrges
+# * mysql
+
+DATABASE = "sqlite"
+
+DATABASE_NAME = "test.db"
+
 # Set this variables to adress of your liking eg "http://www.facebook.com/johndoe"
 
 FACEBOOK = "http://www.mojfacebook.pl"
