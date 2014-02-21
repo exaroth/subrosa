@@ -215,8 +215,18 @@ textarea.article-input.article-input-title {
   margin-top: 1em;
   color: #191919;
 }
+@media screen and (max-width: 970px) {
+  textarea.article-input.article-input-title {
+    font-size: 2em !important;
+  }
+}
 textarea.article-input.article-input-body {
   width: 100%;
+}
+@media screen and (max-width: 970px) {
+  textarea.article-input.article-input-body {
+    font-size: 1.3em !important;
+  }
 }
 .article-input::-moz-placeholder {
   color: rgba(128, 128, 128, 0.4);
@@ -247,8 +257,13 @@ textarea.article-input.article-input-body {
 }
 @media screen and (max-width: 970px) {
   .editing-tools {
-    right: 10%;
+    right: 8%;
     z-index: 99;
+  }
+}
+@media screen and (max-width: 970px) {
+  .article-entry {
+    margin: 0 11% 0 1em;
   }
 }
 .markdown-cheatsheet {
@@ -435,8 +450,8 @@ textarea.article-input.article-input-body {
 .article-table a {
   color: #666666;
 }
-.article-table a[title="Publish"]:hover {
-  color: #47b1ff;
+.article-table a:hover {
+  color: black;
 }
 .gallery-wrapper {
   width: 80%;
@@ -448,12 +463,10 @@ textarea.article-input.article-input-body {
   color: white;
   font-size: 0.8em;
   font-style: italic;
-  border-radius: 3px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+  overflow: hidden;
 }
 .gallery-image:hover {
   color: white;
@@ -489,11 +502,31 @@ textarea.article-input.article-input-body {
   transition: all 0.2s ease-in;
   opacity: 0;
 }
+.gallery-image .img-info {
+  position: absolute;
+  height: 36px;
+  background-color: white;
+  width: 100%;
+  color: #4d4d4d;
+  vertical-align: middle !important;
+  padding: 16px;
+  top: -36px;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.gallery-image .img-info .img-action {
+  display: inline-block;
+}
 .gallery-image:hover .img-overlay {
   opacity: 1;
 }
 .gallery-image:hover .img-desc {
   opacity: 1;
+}
+.gallery-image:hover .img-info {
+  top: 0;
 }
 .image-upload-wrapper textarea {
   background-color: #fff !important;
@@ -548,6 +581,12 @@ body {
   width: 100%;
   background: #000;
   display: none;
+}
+.text-warning {
+  color: #fcc41e !important;
+}
+.text-success {
+  color: #98cd45 !important;
 }
 textarea {
   background-color: transparent !important;
@@ -714,6 +753,15 @@ a {
 }
 .gallery-button:hover {
   color: #47b1ff;
+}
+.pub-ico:hover {
+  color: #98cd45 !important;
+}
+.edit-ico:hover {
+  color: #47b1ff !important;
+}
+.del-ico:hover {
+  color: #ff5c39 !important;
 }
 .add-images {
   top: -48px;

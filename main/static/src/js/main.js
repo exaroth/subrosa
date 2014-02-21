@@ -256,6 +256,7 @@ $gallery.nested({
     selector: '.gallery-image',
     minWidth: 200,
     gutter: 10,
+    resizeToFit: true
 })
 })
 

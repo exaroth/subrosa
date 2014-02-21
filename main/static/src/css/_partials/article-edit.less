@@ -18,9 +18,15 @@ textarea.article-input {
 		padding: 0 1em;
 		margin-top: 1em;
 		color: @black-90;
+		@media screen and (max-width: @md){
+			font-size: 2em !important;
+		}
 	}
 	&.article-input-body {
 		width: 100%;
+		@media screen and (max-width: @md){
+			font-size: 1.3em !important;
+		}
 	}
 
 }
@@ -49,8 +55,15 @@ textarea.article-input {
 	top: 50%;
 	.translateY(-50%);
 	@media screen and (max-width: @md){
-		right: 10%;
+		right: 8%;
 		z-index: 99;
+	}
+}
+
+.article-entry {
+	@media screen and (max-width: @md){
+		margin: 0 11% 0 1em;
+		
 	}
 }
 
