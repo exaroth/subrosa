@@ -7,9 +7,6 @@ import os
 from urlparse import urljoin
 
 
-def slugify(text):
-    return text.strip().replace(" ", "-")
-
 def make_external(id):
     """
     Returns external url for article based on id

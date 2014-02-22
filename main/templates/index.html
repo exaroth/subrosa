@@ -59,7 +59,7 @@
 </div>
 {% endfor %}
 {% endwith %}
-{% if articles %}
+{% if articles.count() %}
 {% for article in articles %}
 <article class="article-list col-md-10 col-md-offset-1">
 	<div class="row">

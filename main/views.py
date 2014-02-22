@@ -47,7 +47,6 @@ def load_vars():
 def index(page):
     pages_per_page = app.config.get("ARTICLES_PER_PAGE", 5)
     articles = Articles.get_index_articles(page, pages_per_page)
-    print list(articles)
     if not tuple(articles) and page != 1:
         abort(404)
     return render_template("index.html", articles = articles)
@@ -377,7 +376,10 @@ def image_details(id):
     image = UserImages.get_image(id)
     if not image:
         abort(404)
-    filename = image.filename.rsplit('/', 1)[1]
+    try:
+        filename = image.filename.rsplit('/', 1)[1] 
+    except:
+        filename = image.filename
     return render_template("image_details.html",filename = filename, image = image)
 
 
