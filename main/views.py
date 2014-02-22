@@ -49,7 +49,7 @@ def index(page):
     articles = Articles.get_index_articles(page, pages_per_page)
     if not tuple(articles) and page != 1:
         abort(404)
-    return render_template("index.html", articles = articles)
+    return render_template("index.html", settings = settings, articles = articles)
 
 @app.route("/index", methods = ["GET"])
 def redirect_index():
@@ -168,7 +168,7 @@ def create_article():
                 with app.app_context():
                     cache.clear()
                 flash("Article created")
-                return redirect(url_for("index"))
+                return redirect(url_for("account", username = session["user"]))
             except:
                 error = "Error occured when writing to database"
                 return render_template("new_article.html",\

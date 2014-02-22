@@ -13,9 +13,8 @@ TITLE = "Kermit's Blog"
 
 DYNAMIC_SITE = True
 
-# path to your database
 
-SQLALCHEMY_DATABASE_URI = "sqlite:////" + ROOT_PATH + "/test.db"
+# ========== Database Configuration =================
 
 # Available fields are
 # * sqlite
@@ -25,6 +24,12 @@ SQLALCHEMY_DATABASE_URI = "sqlite:////" + ROOT_PATH + "/test.db"
 DATABASE = "sqlite"
 
 DATABASE_NAME = "test.db"
+
+USERNAME = False # Only for mysql and postgresql
+
+PASSWORD = False # Only for mysql and postgresql
+
+# ===================================================
 
 # Set this variables to adress of your liking eg "http://www.facebook.com/johndoe"
 
@@ -40,7 +45,7 @@ GALLERY = False
 
 # Number of pages that shows up on index page
 
-ARTICLES_PER_PAGE = 3
+ARTICLES_PER_PAGE = 10
 
 # Number of images showing on page
 

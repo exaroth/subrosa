@@ -174,6 +174,10 @@ img.floated-image {
 .centered-image-wrapper span {
   text-align: right;
 }
+.article-main ol li,
+.article-main ul li {
+  font-size: 18px;
+}
 .image-wrapper {
   position: relative;
   display: inline-block;
@@ -333,27 +337,46 @@ textarea.article-input.article-input-body {
   border-radius: 50%;
   background-clip: padding-box;
   background-color: white;
-  background-image: url("../img/kermit.jpg");
   background-size: contain;
   background-position: center center;
-  -webkit-box-shadow: 1px 1px 7px #333333;
-  -moz-box-shadow: 1px 1px 7px #333333;
-  box-shadow: 1px 1px 7px #333333;
+  -webkit-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.2);
+  width: 90px;
+  height: 90px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: 0 auto;
+  bottom: 20%;
+  display: none;
+}
+@media screen and (max-width: 970px) {
+  .title-img {
+    width: 80px;
+    height: 80px;
+  }
 }
 .header-field .site-title {
   margin: 1em 0 0.5em 0;
   font-size: 60px;
+  position: relative;
+  top: 13%;
   font-weight: bold;
-  color: #333333;
+  color: #4d4d4d;
   font-family: sans-serif;
   padding: 0 2em;
+}
+@media screen and (max-width: 750px) {
+  .header-field .site-title {
+    font-size: 48px;
+  }
 }
 .header-field {
   margin-bottom: 2em;
   padding-bottom: 3em;
   height: 400px;
   position: relative;
-  background-image: url("../img/bg.jpg");
   background-position: center center;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -452,6 +475,9 @@ textarea.article-input.article-input-body {
 }
 .article-table a:hover {
   color: black;
+}
+.dashboard-header {
+  height: 4em;
 }
 .gallery-wrapper {
   width: 80%;

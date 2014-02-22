@@ -1,12 +1,35 @@
 {% extends "layout.html" %}
 
 {% block titlebar %} 
+<style>
+{% if settings.bg %}
+	.header-field {
+		background-image: url({{ url_for('send_image', filename = settings.bg) }});
+		display: block;
+	}
+{% endif %}
+
+{% if settings.bg_small %}
+	@media screen and (max-width: 970px){
+		.header-field {
+		background-image: url({{ url_for('send_image', filename = settings.bg_small) }});
+		display: block;
+		}
+	}
+{% endif %}
+
+{% if settings.portrait %}
+	.title-img {
+		background-image: url({{ url_for('send_image', filename = settings.portrait) }});
+		display: block;
+	}
+{% endif %}
+</style>
+
+
 <div class="row header-field">
-	<div class="col-md-12">
 		<h1 class="text-center site-title" style="">{{ g.title }}</h1>
-		<div class="title-img" style="width: 90px; height: 90px;red; position:
-		relative; margin: 0 auto; "></div>
-	</div>
+		<div class="title-img"></div>
 	<div class="toolbar-buttons">
 		<ul class="list-unstyled">
 
