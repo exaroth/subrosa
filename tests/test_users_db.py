@@ -3,8 +3,9 @@ import unittest
 
 sys.path.append("..")
 
-from main.models_p import Users, BaseModel, db
-from main import app
+from main.models import Users, BaseModel
+from main import app, db
+
 
 
 class TestUserModel(unittest.TestCase):

@@ -3,7 +3,7 @@ import os, sys
 
 sys.path.append("..")
 
-from main.models_p import Users, Articles, db
+from main.models import Users, Articles, db
 from main import app
 import time
 import datetime

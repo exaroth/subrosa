@@ -1,241 +1,270 @@
-# -*- coding: utf-8 -*-
-
-"""
-    Database models file for Subrosa
-
-    :copyright: (c) 2014 by Konrad Wasowicz
-    :license: BSD, see LICENSE for more details
-
-"""
-
-
+from peewee import *
 
 from main import app, db
+
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
-from .helpers import slugify, handle_errors
+
+from .helpers import handle_errors
 from webhelpers.text import truncate
-import os
-from sqlalchemy.sql import exists
+
+from slugify import slugify
 
 
-class User(db.Model):
-
-    __tablename__ = "users"
-
-    id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(80), unique = True)
-    email = db.Column(db.String(120), unique = True)
-    real_name = db.Column(db.String(120), nullable = True)
-    hash = db.Column(db.String(120))
 
 
-    def __init__(self, username, email, real_name, password):
-        self.username = username
-        self.email = email
-        self.real_name = real_name
-        self.hash = generate_password_hash(password)
+class BaseModel(Model):
 
-    @property
-    def get_articles(self):
-        return self.articles.order_by("date_created").all()
+    class Meta:
+        database = db
+
+
+class Users(BaseModel):
+
+    username = CharField( max_length = 40, unique = True, index = True )
+    email = CharField(max_length = 40, unique = True )
+    hash = CharField()
+    real_name = CharField(max_length = 40, null = True )
+
 
     @staticmethod
-    def add_user(username, email, password, real_name):
-        new_user = User(username = username,\
-                        password = password,\
-                        email = email, \
-                        real_name = real_name)
+    @db.commit_on_success
+    def create_user(username, email, password, real_name = None):
+
+        """ Create new user """
 
         try:
-            db.session.add(new_user)
-            db.session.commit()
-        except Exception as e:
-            db.session.rollback()
+            return Users.create(username = username, email = email, hash = generate_password_hash(password), real_name = real_name).get_id()
+
+        except:
             handle_errors("Error creating user")
             raise
 
     @staticmethod
-    def get_user_by_username(username):
+    def check_any_exist():
+        return len(list(Users.select())) > 0
+
+    @staticmethod
+    def check_exists(username, email):
+
+        """ Check if user with given username or email already exists """
+
+        return Users.select()\
+                .where((Users.username == username) | (Users.email == email))\
+                .exists()
+
+    @staticmethod
+    def get_user(id):
         try:
-            return User.query.filter_by(username = username).first()
-        except Exception as e:
-            handle_errors(e)
+            return Users.select().where(Users.id == id).get()
+        except:
+            return 0
+
+    @staticmethod
+    def get_user_by_username(username):
+
+        """ Get user by his username , returns 0 if not exists """
+
+        try:
+            return Users.select().where(Users.username == username).get()
+        except:
+            return 0
 
     def check_password(self, password):
+
+        """ Compare password against the one in db """
+
         return check_password_hash(self.hash, password)
 
     def __repr__(self):
-        return "<User: {0}>".format(self.username)
+        return "<User: %s>" % self.username
+
+    class Meta:
+        order_by = ("username",)
 
 
-class Articles(db.Model):
+class Articles(BaseModel):
 
-    __tablename__ = "articles"
-
-    id = db.Column(db.Integer, primary_key = True)
-    title = db.Column(db.String(120))
-    slug = db.Column(db.String(120))
-    draft = db.Column(db.Boolean, default = True)
-    date_created = db.Column(db.DateTime, default = datetime.datetime.utcnow)
-    date_updated = db.Column(db.DateTime, default = datetime.datetime.utcnow)
-    body = db.Column(db.Text)
-    author_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    author = db.relationship("User", backref = db.backref("articles", lazy = "dynamic"))
-
-    def __init__(self, title, body, draft, author):
-        self.title = title
-        self.slug = slugify(title)
-        self.draft = draft
-        self.body = body
-        self.author = author
-
-
+    title = TextField(unique = True)
+    slug = TextField()
+    draft = BooleanField(default = True)
+    date_created = DateTimeField(default = datetime.datetime.utcnow())
+    date_updated = DateTimeField(default = datetime.datetime.utcnow())
+    body = TextField()
+    author = ForeignKeyField(Users, related_name = "articles")
 
     @staticmethod
-    def paginate_articles(page, pages_per_page):
+    def get_article(id):
         try:
-            return Articles.query.\
-                    filter_by(draft = False).\
-                    order_by(Articles.date_created.desc()).\
-                    paginate(page, pages_per_page)
+            return Articles.select().where(Articles.id == id).get()
         except:
-            handle_errors()
+            return 0
 
     @staticmethod
-    def get_user_articles(user):
-        try:
-            return Articles.query.\
-                    filter_by(author = user).\
-                    order_by(Articles.date_created.desc()).\
-                    all()
-        except Exception as e:
-            handle_errors()
-
+    def get_count(drafts = False):
+        """ Return count of articles """
+        q = Articles.select()
+        if drafts:
+            return q.count()
+        return q.where(Articles.draft == False).count()
+    
     @staticmethod
-    def check_exists(title):
+    def get_index_articles(page, per_page):
+        """ Returns paginated articles for the for index """
+
         try:
-            return db.session.query(exists().where(Articles.title == title)).scalar()
+            return Articles\
+                    .select()\
+                    .where(Articles.draft == False)\
+                    .paginate(page, per_page)
         except:
-            db.session.rollback()
-            handle_errors()
-
-
+            handle_errors("Error getting articles")
 
     @staticmethod
+    def get_user_articles(username):
+        """ Get all articles belonging to user """
+        try:
+            return Articles.select()\
+                    .join(Users)\
+                    .where(Users.username == username)
+
+        except:
+            handle_errors("Error getting articles")
+
+    @staticmethod
+    def check_exists(title, id = False):
+
+        """
+        Check if article exists, if id is given checks if title 
+        of article has different id (for updating articles)
+        """
+
+        try:
+           q =  Articles.select().where((Articles.title == title))
+           if not id:
+               return q.get()
+           return q.where(Articles.id != id).get()
+        except:
+            return False
+
+    @staticmethod
+    @db.commit_on_success
     def create_article(title, body, author, draft):
-        new_article = Articles(title = title,\
-                               body = body,\
-                               author = author,\
-                               draft = draft)
-
         try:
-            db.session.add(new_article)
-            db.session.commit()
+            Articles.create(title = title, slug = slugify(title), body = body, author = author, draft = draft)
         except Exception as e:
-            db.sessin.rollback()
             handle_errors("Error creating article")
+            raise
 
     @staticmethod
+    @db.commit_on_success
     def update_article(article, title, body):
-        article.title = title
-        article.body = body
-        article.date_updated = datetime.datetime.utcnow()
         try:
-            db.session.add(article)
-            db.session.commit()
-
+            article.title = title
+            article.body = body
+            article.date_updated = datetime.datetime.utcnow()
+            article.save()
         except Exception as e:
-            db.session.rollback()
             handle_errors("Error updating article")
+            raise
 
     @staticmethod
+    @db.commit_on_success
     def publish_article(article):
         try:
             article.draft = False
-            db.session.add(article)
-            db.session.commit()
+            article.save()
 
-        except:
-            db.session.rollback()
-            handle_errors()
-
+        except Exception as e:
+            handle_errors("Error publishing article")
+            raise
 
     @staticmethod
+    @db.commit_on_success
     def delete_article(article):
         try:
-            db.session.delete(article)
-            db.session.commit()
-        except:
-            db.session.rollback()
-            handle_errors()
+            article.delete_instance()
+            return 1
+        except Exception as e:
+            handle_errors("Error delting article")
+            raise
+            
 
     def __repr__(self):
-        return "<Article: {0}>".format(truncate(self.title))
 
-class UserImages(db.Model):
+        return "<Article: %s>" % self.title
 
-    __tablename__ = "user_images"
-    
-    id = db.Column(db.Integer, primary_key = True)
-    filename = db.Column(db.String(120), unique = True)
-    showcase = db.Column(db.String(120))
-    date_added = db.Column(db.DateTime, default = datetime.datetime.utcnow)
-    description = db.Column(db.String(120), nullable = True)
-    is_vertical = db.Column(db.SmallInteger)
-    gallery = db.Column(db.Boolean, default = False)
-    external = db.Column(db.Boolean, default = True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    owner = db.relationship("User", backref = db.backref("user_images", lazy = "dynamic"))
+    class Meta:
+        order_by = ("-date_created",)
 
-    def __init__(self, filename, showcase, description, is_vertical, owner, external):
-        self.filename = filename
-        self.description = description
-        self.is_vertical = is_vertical
-        self.showcase = showcase
-        self.owner = owner
-        self.external = external
+
+class UserImages(BaseModel):
+
+    filename = TextField(unique = True)
+    showcase = TextField()
+    date_added = DateTimeField(default = datetime.datetime.utcnow())
+    description = TextField(null = True)
+    is_vertical = IntegerField(null = True)
+    gallery = BooleanField(default = False)
+    external = BooleanField(default = False)
+    owner = ForeignKeyField(Users, related_name = "images" )
+
 
     @staticmethod
+    def get_image(id):
+        try:
+            return UserImages.select().where(UserImages.id == id).get()
+        except:
+            return 0
+
+    @staticmethod
+    def check_exists(filename):
+        return UserImages.select().where(UserImages.filename == filename).exists()
+
+    @staticmethod
+    def get_gallery_images(username, page, per_page, gallery = False):
+        q = UserImages.select().join(Users).where(Users.username == username)
+        if gallery:
+            return q.where(UserImages.gallery == True).paginate(page, per_page)
+        return q.paginate(page, per_page)
+
+    @staticmethod
+    @db.commit_on_success
+    def gallerify(image):
+
+        try:
+            is_gallerified = image.gallery
+            image.gallery = not is_gallerified
+            image.save()
+
+        except Exception as e:
+            handle_errors("Error updating image")
+
+
+    @staticmethod
+    @db.commit_on_success
     def add_image(filename, showcase, external, description, is_vertical, owner):
         try:
-            user_image = UserImages(filename = filename,\
-                                    showcase = showcase,\
-                                    description = description,\
-                                    is_vertical = is_vertical,\
-                                    external = external,\
-                                    owner = owner)
-            db.session.add(user_image)
-            db.session.commit()
-        except:
-            db.session.rollback()
+            UserImages.create(
+                filename = filename,
+                showcase = showcase,
+                external = external,
+                description = description,
+                is_vertical = is_vertical,
+                owner = owner
+            )
+            return 1
+        except Exception as e:
             handle_errors("Error creating image")
             raise
+
     @staticmethod
+    @db.commit_on_success
     def delete_image(image):
         try:
-            db.session.delete(image)
-            db.session.commit()
-        except:
-            db.session.rollback()
+            image.delete_instance()
+            return 1
+        except Exception as e:
             handle_errors("Error deleting image")
             raise
 
-    def __repr__(self):
-        return "<Image: {0}>".format(self.filename)
-
-class ArticleTags(db.Model):
-
-    __tablename__ = "article_tags"
-
-    id = db.Column(db.Integer, primary_key = True)
-    tag_name = db.Column(db.String(30), unique = True, nullable = False)
-    article_id = db.Column(db.Integer, db.ForeignKey("articles.id"))
-    article = db.relationship("Articles", backref = db.backref("article_tags", lazy = "dynamic"))
-
-    def __init__(self, tag_name, article):
-        self.tag_name = tag_name
-        self.article = article
-
-    def __repr__(self):
-        return "<Tag Name: {0}".format(self.tag_name)

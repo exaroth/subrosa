@@ -17,9 +17,9 @@ import os
 from datetime import datetime
 from urlparse import urljoin
 import urllib
-from main import app, db, cache, c
+from main import app, db, cache, settings
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
-from .models import User, Articles, UserImages
+from .models import Users, Articles, UserImages
 from .helpers import Pagination, login_required,\
 process_image, make_external, redirect_url, handle_errors,\
 dynamic_content
@@ -45,9 +45,10 @@ def load_vars():
 @app.route("/<int:page>")
 @cache.cached(timeout=50)
 def index(page):
-    pages_per_page = app.config["ARTICLES_PER_PAGE"]
-    articles = Articles.paginate_articles(page, pages_per_page)
-    if not articles.items and page != 1:
+    pages_per_page = app.config.get("ARTICLES_PER_PAGE", 5)
+    articles = Articles.get_index_articles(page, pages_per_page)
+    print list(articles)
+    if not tuple(articles) and page != 1:
         abort(404)
     return render_template("index.html", articles = articles)
 
@@ -57,7 +58,7 @@ def redirect_index():
 
 @app.route("/admin", methods = ["GET", "POST"] )
 def admin_login():
-    user_check = User.query.all()
+    user_check = Users.check_any_exist()
     if not user_check:
         return redirect(url_for("create_account"))
     if "user" in session:
@@ -67,7 +68,7 @@ def admin_login():
     if request.method == "POST":
         username = request.form.get("username").strip()
         password = request.form.get("password").strip()
-        user = User.query.filter_by(username = username).first()
+        user = Users.get_user_by_username(username)
         if not user:
             error = "Incorrect Credentials"
             return render_template("login.html", error = error)
@@ -92,7 +93,7 @@ def create_account():
 
     """
     error = None
-    user_check = User.query.all()
+    user_check = Users.check_any_exist()
     if not user_check:
         if request.method == "POST":
             username = request.form.get("username").strip()
@@ -103,7 +104,7 @@ def create_account():
                 error = "All fields are required"
                 return render_template("create_account.html", error = error)
             try:
-                User.add_user(username = username, email = email,\
+                Users.create_user(username = username, email = email,\
                              password = password, real_name = real_name)
             except IOError, e:
                 error = "Could not write to database, check if\
@@ -137,10 +138,10 @@ def logout():
 def account(username):
     if username is None:
         return redirect("/admin")
-    user = User.get_user_by_username(username)
+    user = Users.get_user_by_username(username)
     if not user:
         abort(404)
-    articles = Articles.get_user_articles(user)
+    articles = Articles.get_user_articles(user.username)
     return render_template("dashboard.html",user = user, articles = articles)
 
 
@@ -151,7 +152,7 @@ def create_article():
     if request.method == "POST":
         title = request.form.get("title").strip()
         body = request.form.get("body").strip()
-        user = User.get_user_by_username(session["user"])
+        user = Users.get_user_by_username(session["user"])
         if not title or not body:
             error = "Article can\'t have empty title or body"
             return render_template("new_article.html", error = error, title=title, body=body)
@@ -181,7 +182,9 @@ def create_article():
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 @login_required
 def edit_article(id):
-    article = Articles.query.get_or_404(id)
+    article = Articles.get_article(id)
+    if not article:
+        abort(404)
     error = None
 
     if article.author.username != session["user"]:
@@ -195,9 +198,9 @@ def edit_article(id):
             error = "Article can\'t have empty title or body"
             return render_template("edit_article.html", error = error, article = article)
 
-        article_check = Articles.query.filter_by(title = title).first()
+        article_check = Articles.check_exists(title, article.id)
 
-        if article_check and article_check.id != article.id:
+        if article_check:
             error = "Article with this title already exists, please choose another"
             return render_template("edit_article.html", error = error, article = article )
         else:
@@ -216,13 +219,17 @@ def edit_article(id):
 @app.route("/article/<int:id>")
 @cache.cached(timeout=50)
 def article_view(id):
-    article = Articles.query.get_or_404(id)
+    article = Articles.get_article(id)
+    if not article:
+        abort(404)
     return render_template("article_view.html", article = article)
 
 @app.route("/delete_article/<int:id>")
 @login_required
 def delete_article(id):
-    article = Articles.query.get_or_404(id)
+    article = Articles.get_article(id)
+    if not article:
+        abort(404)
     if article.author.username != session["user"]:
         flash("You can\'t delete other people\'s posts")
         return redirect(url_for("index"))
@@ -236,7 +243,9 @@ def delete_article(id):
 @app.route("/publish_article/<int:id>")
 @login_required
 def publish_article(id):
-    article = Articles.query.get_or_404(id)
+    article = Articles.get_article(id)
+    if not article:
+        abort(404)
     if article.author.username != session["user"]:
         flash("You can\'t publish other\'s peoples posts")
         return redirect(url_for("index"))
@@ -264,13 +273,13 @@ def upload_image():
                 error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
                 return render_template("upload_image.html", error = error)
             # add checkbox functionality
-            filename = secure_filename(image.filename)
-            image_exists = UserImages.query.filter_by(filename = filename).first()
+            filename = secure_filename(image.filename.strip())
+            image_exists = UserImages.check_exists(filename)
             if image_exists:
                 error = "Image with this filename already exists"
                 return render_template("upload_image.html", error = error)
             # !db fn
-            user = User.query.filter_by(username = session["user"]).first()
+            user = Users.get_user_by_username(session["user"])
             try:
                 image_filename, show_filename, is_vertical = process_image(image = image, filename = filename , username = user.username)
                 # mess
@@ -298,7 +307,7 @@ def upload_image():
                 return render_template("upload_image.html", error = error)
             # check for existence
             description = request.form.get('description', None)
-            user = User.query.filter_by(username = session["user"]).first()
+            user = Users.get_user_by_username(session["user"])
             try:
                 UserImages.add_image(filename = link,\
                                     showcase = link,\
@@ -320,9 +329,9 @@ def upload_image():
 @login_required
 @dynamic_content
 def user_images(username, page):
-    images = UserImages.query.join(User).filter_by(username = username).paginate(page, 9)
+    images = UserImages.get_gallery_images(username, page, app.config.get("IMAGES_PER_PAGE"))
     url_path = urljoin(request.url_root, "uploads/")
-    if not images.items and page != 1:
+    if not tuple(images) and page != 1:
         abort(404)
     return render_template("user_images.html", images = images, url_path = url_path)
 
@@ -330,7 +339,9 @@ def user_images(username, page):
 @login_required
 @dynamic_content
 def delete_image(id):
-    image = UserImages.query.get_or_404(id)
+    image = UserImages.get_image(id)
+    if not image:
+        abort(404)
     filename = image.filename.rsplit('/', 1)[-1]
     showcase = image.showcase.rsplit('/', 1)[-1]
     # prevent from deleting images by people other by the owner
@@ -363,7 +374,9 @@ def gallerify(id):
 @app.route("/image_details/<int:id>")
 @dynamic_content
 def image_details(id):
-    image = UserImages.query.get_or_404(id)
+    image = UserImages.get_image(id)
+    if not image:
+        abort(404)
     filename = image.filename.rsplit('/', 1)[1]
     return render_template("image_details.html",filename = filename, image = image)
 
@@ -376,10 +389,8 @@ def recent_feeds():
     """
     feed = AtomFeed("Recent Posts", 
         feed_url = request.url, url = request.url_root)
-    articles = Articles.query\
-               .order_by(Articles.date_created.desc())\
-               .limit(15)\
-               .all()
+
+    articles = Articles.select().limit(15)
 
     for article in articles:
         feed.add(article.title, unicode(article.body)[:320],

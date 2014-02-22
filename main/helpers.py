@@ -5,7 +5,6 @@ from PIL import Image
 from main import app
 import os
 from urlparse import urljoin
-from main import c
 
 
 def slugify(text):

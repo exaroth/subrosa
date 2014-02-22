@@ -1,0 +1,7 @@
+* fix splitting image filename
+
+* refactor database defining function to accept additional arguments
+
+* add disqus comments
+
+* fix index page for nonexistent articles

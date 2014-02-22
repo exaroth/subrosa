@@ -82,3 +82,5 @@ UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
 CACHE_TYPE = "simple"
 
 CACHE_KEY_PREFIX = "subrosa_"
+
+TESTING = False
