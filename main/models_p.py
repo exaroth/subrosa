@@ -139,7 +139,7 @@ class Articles(BaseModel):
         return q.where(Articles.draft == False).count()
     
     @staticmethod
-    def get_index_articles(page, per_page = 3):
+    def get_index_articles(page, per_page = app.config.get("ARTICLES_PER_PAGE", 3)):
         """ Returns paginated articles for the for page """
 
         # note: use tuple(returned_val) to check for existence
@@ -149,8 +149,7 @@ class Articles(BaseModel):
                     .select()\
                     .where(Articles.draft == False)\
                     .order_by(Articles.date_created.desc())\
-                    .limit(per_page)\
-                    .offset((page - 1) * per_page)
+                    .paginate(page, per_page)
         except:
             handle_errors("Error getting articles")
 
@@ -250,6 +249,13 @@ class UserImages(BaseModel):
             return UserImages.select().where(UserImages.filename == filename)
         except:
             return 0
+
+    @staticmethod
+    def get_gallery_images(page, per_page = app.config.get("IMAGES_PER_PAGE", 10), gallery = False):
+        q = UserImages.select()
+        if gallery:
+            return q.where(UserImages.gallery == True).paginate(page, per_page)
+        return q.paginate(page, per_page)
 
     @staticmethod
     @db.commit_on_success
