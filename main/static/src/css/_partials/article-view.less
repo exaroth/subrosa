@@ -3,61 +3,78 @@
 
 
 
-.article-main p {
-	font-size: 18px;
+.article-body p {
+	font-size: 1.6em;
+	line-height: 1.6em;
 	color: rgba(0,0,0,.8);
-}
+	margin-bottom: 2em;
+	&:first-of-type {
+			font-weight: bold;
+			margin-bottom: 4em;
+			text-align: center;
 
-.article-main a {
-	color: rgba(0,0,0,.6);
-}
+		@media screen and (min-width: @md){
+			font-size: 1.4em;
+			margin-top: 1em;
+			font-weight: bold;
+			margin-bottom: 4em;
+			text-align: center;
+			&::after {
+				content: "\2026";
+				position: relative;
+				display: block;
+				text-align: center;
+				margin-top: 0.5em;
+				font-size: 2em;
+				width: 100%;
+			}
 
-.article-main p,
-.article-main h1,
-.article-main h2,
-.article-main h3,
-.article-main h4,
-.article-main h5,
-.article-main h6,
-.article-main li,
-.article-main a  {
-	font-family: @body-font;
-	color: @black-70;
-}
-
-.article-main .article-title {
-	font-weight: bold;
-	font-family: @sans-font;
-	font-size: 3em; 
-	text-align: center;
-	color: @black-70;
-	line-height: 1.4em;
-	padding: 1.2em 0.8em 1.4em 0.8em; 
-}
-
-.article-main p,
-{
+		}
+	}
 	@media screen and (min-width: @md){
 		
-		font-size: 1.4em;
-		line-height: 1.6em;
+		font-size: 1.5em !important;
+		line-height: 1.6em !important;
+	}
+}
+.article-main {
+	padding: 6%;
+	position: relative;
+	@media screen and (min-width: @md){
+		padding: 0;
 	}
 }
 
 
+.article-body p,
+.article-body h3,
+.article-body h4,
+.article-body h5,
+.article-body h6,
+.article-body li,
+.article-body a  {
+	font-family: @body-font;
+	color: @black-70 !important;
+}
+.article-body h1,
+.article-body h2 {
+	font-family: @sans-font !important;
+	font-weight: bold;
+	color: @black-70 !important;
+	margin-bottom: 0.6em;
 
-.article-main .article-body a {
+}
+.article-body a {
 	color: @black-60;
 	text-decoration: underline;
 	&:hover {
-		color: @cerulean;
+		color: @black-60 !important;
 	}
+	
 }
-
-blockquote {
+.article-main blockquote {
 	border: none;
 	position: relative;
-	// background-color: red;
 	width: 80%;
 	margin: 2em auto 2em auto;
 	&:before {
@@ -75,28 +92,24 @@ blockquote {
 	}
 }
 
+.article-main .article-title {
+	font-weight: bold;
+	font-family: @sans-font;
+	font-size: 3em; 
+	text-align: center;
+	color: @black-70;
+	line-height: 1.4em;
+	padding: 1.2em 0.8em 1.4em 0.8em; 
+}
+
+
+
 
 .content-header {
 	height: 6em;
 	position: relative;
 }
 
-.article-main .article-body > p:first-of-type {
-	font-size: 1.4em;
-	margin-top: 1em;
-	font-weight: bold;
-	margin-bottom: 4em;
-	text-align: center;
-	&::after {
-		content: "\2026";
-		position: relative;
-		display: block;
-		text-align: center;
-		margin-top: 0.5em;
-		font-size: 2em;
-		width: 100%;
-	}
-}
 
 
 .article-header .article-timesince {
@@ -114,52 +127,10 @@ blockquote {
 	}
 }
 
-.article-main .article-body {
-	position: relative;
-}
 
-// I hope they have special place in hell for the cocksucker who invented css
-
-a.centered-image {
-	display: block;
-	margin: 1em auto 1em auto;
-	width: 400px;
-	max-width: 500px;
-	img {
-		max-width: 100%;
-		width: 100%;
-		border: 1px solid @black-80;
-	}
-}
-
-img.centered-image {
-	display: block;
-	margin: 1em auto 1em auto;
-	width: 400px;
-	max-width: 500px;
-	max-width: 100%;
-	border: 1px solid @black-80;
-	
-}
-
-a.floated-image {
-	display: block;
-	float: right;
-	width: 300px;
-	img {
-		border: 1px solid @black-80;
-	}
-}
-
-img.floated-image {
-	width: 300px;
-	float: right;
-}
 
 .image-desc {
 	position: absolute;
-	top: 50%;
-	.translateY(-50%);
 	font-family: @body-font;
 	font-style: italic;
 	color: @black-50;
@@ -171,26 +142,42 @@ img.floated-image {
 		display: none;
 	}
 }
-.centered-image ~ .image-desc {
-	left: 0;
-	
-}
-.floated-image ~ .image-desc {
-	left: 108%;
-}
+
 .floated-image-wrapper {
 	float: right;
 	clear: right;
-	margin-left: 1em;
+	margin: 1em 0 1em 1em;
+	img {
+		width: 300px;
+		@media screen and (max-width: @md){
+			width: 220px;
+
+		}
+	}
+	span {
+	left: 108%;
+	top: 50%;
+	.translateY(-50%);
+	}
 }
 .centered-image-wrapper {
+	position: relative;
 	clear: both;
 	width: 100%;
-	margin: 1em 0 ;
-	span {
-		text-align: right;
+	max-width: 100%;
+	font-size: 1em;
+	margin: 2em 0 2.6em 0 ;
+	img {
+		width: 100%;
+		max-width: 100%;
 	}
-	
+	span {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -3em;
+	}
+
 }
 .article-main ol li,
 .article-main ul li {

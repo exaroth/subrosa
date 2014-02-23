@@ -4,24 +4,92 @@
   left: -999em;
   right: auto;
 }
-.article-main p {
-  font-size: 18px;
+.article-body p {
+  font-size: 1.6em;
+  line-height: 1.6em;
   color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 2em;
 }
-.article-main a {
-  color: rgba(0, 0, 0, 0.6);
+.article-body p:first-of-type {
+  font-weight: bold;
+  margin-bottom: 4em;
+  text-align: center;
 }
-.article-main p,
-.article-main h1,
-.article-main h2,
-.article-main h3,
-.article-main h4,
-.article-main h5,
-.article-main h6,
-.article-main li,
-.article-main a {
+@media screen and (min-width: 970px) {
+  .article-body p:first-of-type {
+    font-size: 1.4em;
+    margin-top: 1em;
+    font-weight: bold;
+    margin-bottom: 4em;
+    text-align: center;
+  }
+  .article-body p:first-of-type::after {
+    content: "\2026";
+    position: relative;
+    display: block;
+    text-align: center;
+    margin-top: 0.5em;
+    font-size: 2em;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 970px) {
+  .article-body p {
+    font-size: 1.5em !important;
+    line-height: 1.6em !important;
+  }
+}
+.article-main {
+  padding: 6%;
+  position: relative;
+}
+@media screen and (min-width: 970px) {
+  .article-main {
+    padding: 0;
+  }
+}
+.article-body p,
+.article-body h3,
+.article-body h4,
+.article-body h5,
+.article-body h6,
+.article-body li,
+.article-body a {
   font-family: 'Georgia', 'Times New Roman', Times, serif;
-  color: #4d4d4d;
+  color: #4d4d4d !important;
+}
+.article-body h1,
+.article-body h2 {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif !important;
+  font-weight: bold;
+  color: #4d4d4d !important;
+  margin-bottom: 0.6em;
+}
+.article-body a {
+  color: #666666;
+  text-decoration: underline;
+}
+.article-body a:hover {
+  color: #666666 !important;
+}
+.article-main blockquote {
+  border: none;
+  position: relative;
+  width: 80%;
+  margin: 2em auto 2em auto;
+}
+.article-main blockquote:before {
+  content: open-quote;
+  font-size: 5em;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  display: block;
+}
+.article-main blockquote p {
+  font-weight: bold !important ;
+  text-align: justify;
 }
 .article-main .article-title {
   font-weight: bold;
@@ -32,57 +100,9 @@
   line-height: 1.4em;
   padding: 1.2em 0.8em 1.4em 0.8em;
 }
-@media screen and (min-width: 970px) {
-  .article-main p {
-    font-size: 1.4em;
-    line-height: 1.6em;
-  }
-}
-.article-main .article-body a {
-  color: #666666;
-  text-decoration: underline;
-}
-.article-main .article-body a:hover {
-  color: #47b1ff;
-}
-blockquote {
-  border: none;
-  position: relative;
-  width: 80%;
-  margin: 2em auto 2em auto;
-}
-blockquote:before {
-  content: open-quote;
-  font-size: 5em;
-  position: absolute;
-  left: -20px;
-  top: -20px;
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  display: block;
-}
-blockquote p {
-  font-weight: bold !important ;
-  text-align: justify;
-}
 .content-header {
   height: 6em;
   position: relative;
-}
-.article-main .article-body > p:first-of-type {
-  font-size: 1.4em;
-  margin-top: 1em;
-  font-weight: bold;
-  margin-bottom: 4em;
-  text-align: center;
-}
-.article-main .article-body > p:first-of-type::after {
-  content: "\2026";
-  position: relative;
-  display: block;
-  text-align: center;
-  margin-top: 0.5em;
-  font-size: 2em;
-  width: 100%;
 }
 .article-header .article-timesince {
   border-bottom: 2px dotted #666666;
@@ -100,48 +120,8 @@ blockquote p {
     margin: 0 auto;
   }
 }
-.article-main .article-body {
-  position: relative;
-}
-a.centered-image {
-  display: block;
-  margin: 1em auto 1em auto;
-  width: 400px;
-  max-width: 500px;
-}
-a.centered-image img {
-  max-width: 100%;
-  width: 100%;
-  border: 1px solid #333333;
-}
-img.centered-image {
-  display: block;
-  margin: 1em auto 1em auto;
-  width: 400px;
-  max-width: 500px;
-  max-width: 100%;
-  border: 1px solid #333333;
-}
-a.floated-image {
-  display: block;
-  float: right;
-  width: 300px;
-}
-a.floated-image img {
-  border: 1px solid #333333;
-}
-img.floated-image {
-  width: 300px;
-  float: right;
-}
 .image-desc {
   position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
   font-family: 'Georgia', 'Times New Roman', Times, serif;
   font-style: italic;
   color: #808080;
@@ -155,24 +135,45 @@ img.floated-image {
     display: none;
   }
 }
-.centered-image ~ .image-desc {
-  left: 0;
-}
-.floated-image ~ .image-desc {
-  left: 108%;
-}
 .floated-image-wrapper {
   float: right;
   clear: right;
-  margin-left: 1em;
+  margin: 1em 0 1em 1em;
+}
+.floated-image-wrapper img {
+  width: 300px;
+}
+@media screen and (max-width: 970px) {
+  .floated-image-wrapper img {
+    width: 220px;
+  }
+}
+.floated-image-wrapper span {
+  left: 108%;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .centered-image-wrapper {
+  position: relative;
   clear: both;
   width: 100%;
-  margin: 1em 0 ;
+  max-width: 100%;
+  font-size: 1em;
+  margin: 2em 0 2.6em 0 ;
+}
+.centered-image-wrapper img {
+  width: 100%;
+  max-width: 100%;
 }
 .centered-image-wrapper span {
-  text-align: right;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3em;
 }
 .article-main ol li,
 .article-main ul li {
@@ -449,144 +450,6 @@ textarea.article-input.article-input-body {
   width: 80%;
   margin: 0 auto;
 }
-.admin-panel,
-.admin-subrosa,
-.admin-write,
-.admin-menu,
-.menu-item {
-  text-align: center;
-  height: 40px;
-  background-color: #4d4d4d;
-}
-@media screen and (max-width: 750px) {
-  .admin-panel,
-  .admin-subrosa,
-  .admin-write,
-  .admin-menu,
-  .menu-item {
-    height: 50px;
-  }
-}
-.admin-subrosa,
-.admin-write {
-  width: 40px;
-  font-size: 2em;
-  position: relative;
-}
-.admin-subrosa i,
-.admin-write i {
-  display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  color: #cccccc !important;
-  -webkit-transition: all 0.1s ease-in;
-  -moz-transition: all 0.1s ease-in;
-  -o-transition: all 0.1s ease-in;
-  transition: all 0.1s ease-in;
-}
-.admin-subrosa i:hover,
-.admin-write i:hover {
-  color: #fff !important;
-}
-@media screen and (max-width: 750px) {
-  .admin-subrosa,
-  .admin-write {
-    width: 50px;
-  }
-  .admin-subrosa a,
-  .admin-write a {
-    height: 50px;
-    width: 50px;
-  }
-}
-.admin-panel {
-  width: 240px;
-  position: absolute;
-  top: 40px;
-  left: 60px;
-  z-index: 999;
-  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
-  -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-border-radius: 2px;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 2px;
-  -moz-background-clip: padding;
-  border-radius: 2px;
-  background-clip: padding-box;
-}
-.admin-panel a {
-  color: #b3b3b3;
-}
-.admin-panel .admin-subrosa {
-  background-color: #47b1ff;
-  float: left;
-  position: relative;
-}
-.admin-panel .admin-subrosa a {
-  color: white;
-  opacity: 1;
-}
-.admin-panel .admin-subrosa a:hover {
-  opacity: 0.9;
-}
-.admin-panel .admin-write {
-  border-left: 1px solid #5e5e5e;
-  right: 0;
-  float: right;
-}
-.admin-panel .admin-menu {
-  cursor: pointer;
-  overflow: hidden;
-  position: relative;
-  color: #b3b3b3;
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  -o-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-}
-.admin-panel .admin-menu:hover {
-  height: 400%;
-}
-.admin-panel .admin-menu:hover .menu-item:nth-child(n+2) {
-  opacity: 1;
-}
-.admin-panel .admin-menu .menu-item:nth-child(n+2) {
-  opacity: 0;
-}
-.admin-panel .admin-menu .menu-item {
-  position: relative;
-  -webkit-transition: all 0.3s ease-in;
-  -moz-transition: all 0.3s ease-in;
-  -o-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-  color: #cccccc;
-  display: block;
-  line-height: 300%;
-}
-.admin-panel .admin-menu .menu-item:hover > a {
-  color: #e6e6e6;
-}
-@media screen and (max-width: 750px) {
-  .admin-panel {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-  }
-}
 .article-table a {
   color: #666666;
 }
@@ -694,6 +557,152 @@ textarea.article-input.article-input-body {
   border-color: #66afe9;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(66, 198, 152, 0.8);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(66, 198, 152, 0.8);
+}
+.admin-panel,
+.admin-subrosa,
+.admin-write,
+.admin-menu,
+.admin-pic,
+.menu-item {
+  text-align: center;
+  height: 40px;
+  background-color: #4d4d4d;
+}
+@media screen and (max-width: 750px) {
+  .admin-panel,
+  .admin-subrosa,
+  .admin-write,
+  .admin-menu,
+  .admin-pic,
+  .menu-item {
+    height: 50px;
+  }
+}
+.admin-subrosa,
+.admin-write,
+.admin-pic {
+  width: 40px;
+  font-size: 2em;
+  position: relative;
+}
+.admin-subrosa i,
+.admin-write i,
+.admin-pic i {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #cccccc !important;
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
+.admin-subrosa i:hover,
+.admin-write i:hover,
+.admin-pic i:hover {
+  color: #fff !important;
+}
+@media screen and (max-width: 750px) {
+  .admin-subrosa,
+  .admin-write,
+  .admin-pic {
+    width: 50px;
+  }
+  .admin-subrosa a,
+  .admin-write a,
+  .admin-pic a {
+    height: 50px;
+    width: 50px;
+  }
+}
+.admin-panel {
+  width: 240px;
+  position: absolute;
+  top: 40px;
+  left: 60px;
+  z-index: 999;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
+  -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-border-radius: 2px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 2px;
+  -moz-background-clip: padding;
+  border-radius: 2px;
+  background-clip: padding-box;
+}
+.admin-panel a {
+  color: #b3b3b3;
+}
+.admin-panel .admin-subrosa {
+  background-color: #47b1ff;
+  float: left;
+  position: relative;
+}
+.admin-panel .admin-subrosa a {
+  color: white;
+  opacity: 1;
+}
+.admin-panel .admin-subrosa a:hover {
+  opacity: 0.9;
+}
+.admin-panel .admin-write,
+.admin-panel .admin-pic {
+  border-left: 1px solid #5e5e5e;
+  right: 0;
+  float: right;
+}
+.admin-panel .admin-menu {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  color: #b3b3b3;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.admin-panel .admin-menu:hover {
+  height: 400%;
+}
+.admin-panel .admin-menu:hover .menu-item:nth-child(n+2) {
+  opacity: 1;
+}
+.admin-panel .admin-menu .menu-item:nth-child(n+2) {
+  opacity: 0;
+}
+.admin-panel .admin-menu .menu-item {
+  position: relative;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  color: #cccccc;
+  display: block;
+  line-height: 300%;
+}
+.admin-panel .admin-menu .menu-item:hover > a {
+  color: #e6e6e6;
+}
+@media screen and (max-width: 750px) {
+  .admin-panel {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
 }
 * {
   box-sizing: border-box;

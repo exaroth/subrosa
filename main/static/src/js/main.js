@@ -72,7 +72,7 @@ $(window).load(function(){
     $createArticleButton = $(".create-button"),
     $miniIcons = $(".mini-icon"),
     $articleBody = $(".article-main").find(".article-body"),
-    $editingButtons = $(".editing-button"),
+    $editingBkuttons = $(".editing-button"),
     $gallery = $(".gallery-wrapper"),
     $lamp = $(".lamp-button"),
     // base thumbnail size for gallery
@@ -154,10 +154,8 @@ function processArticleImages(articleBody){
         .wrap('<div class="image-wrapper"></div>')
         .parent();
         if (imgIsHorizontal(self)){
-            elToMove.addClass("centered-image");
             imgWrapper.addClass("centered-image-wrapper");
         } else {
-            elToMove.addClass("floated-image");
             imgWrapper.addClass("floated-image-wrapper");
         }
 
@@ -245,7 +243,7 @@ function dimLight(){
 
 $textarea.autogrow();
 $miniIcons.tooltip();
-$editingButtons.tooltip();
+// $editingButtons.tooltip();
 
 $(".cheatsheet-button").leanModal({
     closeButton: ".modal_close"

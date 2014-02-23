@@ -4,7 +4,6 @@
 
 
 <div class="gallery-wrapper">
-<a href="{{ url_for('upload_image')}}" class="add-images btn btn-default"><i class="icon-plus"></i>Add Image</a>
 	{% for image in images %}
 	<a href="{{ url_for('image_details', id = image.id)}}">
 		<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'external' if image.external }}" data-vert="{{ image.is_vertical}}" style="background-image: url({{ image.showcase }})">

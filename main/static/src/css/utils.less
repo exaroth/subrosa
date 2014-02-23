@@ -20,10 +20,9 @@
 @brand-info:              #5bc0de;
 
 
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
 @font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
+@font-family-serif: 'Georgia', 'Times New Roman', Times, serif;
+@font-family-sans-serif: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Georgia, Verdana, sans-serif;
 
 // Breakpoints
 
@@ -31,14 +30,16 @@
 @md: 970px;
 @lg: 1170px;
 
-// Quick and dirty trick to see all elements on the page
 
 .text-color(@col) {
-	p, h1, h2, h3, h4, h5, h6, li, dl, dt, a{
+	p, h1, h2, h3, h4, h5, h6, li, dl, dt, a, blockquote, pre{
 		color: @col;
 		}
 
 }
+
+// Quick and dirty trick to see all elements on the page
+
 .edit() {
 	* {
 		background: #eee;

@@ -4,6 +4,12 @@ from flask.ext.cache import Cache
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
 import pathlib
 import os, sys
+import logging
+
+
+__version__ = "0.0.3.dev"
+
+logger = logging.getLogger(__name__)
 
 
 
@@ -13,77 +19,97 @@ cache = Cache(app)
 Markdown(app,
          extensions = ["footnotes", "fenced_code", "codehilite" ])
 
-settings = dict()
-
-images = ('bg', 'bg_small', 'logo', 'portrait')
-
-settings["facebook"] = app.config.get("FACEBOOK", False)
-settings["twitter"] = app.config.get("TWITTER", False)
-settings["github"] = app.config.get("GITHUB", False)
-settings["gallery"] = app.config.get("GALLERY", False)
-settings["dynamic"] = app.config.get("DYNAMIC_SITE", False)
-settings["title"] = app.config.get("SITE_TITLE", "Awesome site")
-settings["articles_per_page"] = app.config.get("ARTICLES_PER_PAGE", 3)
-settings['bg'] = False
-settings['bg_small'] = False
-settings['portrait'] = False
-settings['logo'] = False
 
 
 
-def user_img_exists(file):
-    p = pathlib.Path(file)
-    if p.exists():
-        return True
-    return False
+class Subrosa(object):
+
+    """
+    Initialization class for subrosa 
+    """
+
+    def __init__(self):
+
+        self.settings = dict()
+
+        self.images = ('bg', 'bg_small', 'logo', 'portrait')
+
+        self.db_types = dict(
+            sqlite = SqliteDatabase,
+            postrges = PostgresqlDatabase,
+            mysql = MySQLDatabase
+        ) 
+
+        self.options = ("facebook", "twitter", "github", "dynamic_site", "title",\
+                       "articles_per_page" )
+
+        for option in self.options:
+            self.settings[option] = app.config.get(option.upper(), None)
+
+        self.get_user_images()
 
 
 
-def select_db(db_type):
+    def get_user_images(self):
+        for name in self.images:
+            self.settings[name] = None
+            for ext in app.config["ALLOWED_FILENAMES"]:
+                filename = name + "." + ext
+                path = os.path.join(app.config["UPLOAD_FOLDER"], filename )
+                if self.user_img_exists(path):
+                    self.settings[name] = filename
 
 
-    db_types = dict(
-        sqlite = SqliteDatabase,
-        postrges = PostgresqlDatabase,
-        mysql = MySQLDatabase
-    ) 
 
-    db = db_types.get(db_type, None)
+    def user_img_exists(self, file):
+        p = pathlib.Path(file)
+        if p.exists():
+            return True
+        return False
 
-    if not db:
-        raise ValueError("Wrong database name selected")
-    return db
+    def select_db(self, db_type):
+        db = self.db_types.get(db_type, None)
 
-
-def define_db_connection(db_type, db_name, **kwargs):
-    try:
-        db_conn = select_db(db_type)
-        db = db_conn(db_name, kwargs)
+        if not db:
+            raise ValueError("Wrong database name selected")
         return db
-    except:
-        raise
+
+    def define_db_connection(self, db_type, db_name, **kwargs):
+        try:
+            db_conn = self.select_db(db_type)
+            db = db_conn(db_name, **kwargs)
+            return db
+        except:
+            raise
+
+    def get_db(self, **kwargs):
+
+        if app.config.get("TESTING", False):
+            db = define_db_ckonnection("sqlite", ":memory:")
+        else:
+            dtype = app.config.get("DATABASE", None)
+            dname = app.config.get("DATABASE_NAME", None)
+            if not dtype or not dname:
+                raise ValueError("Database type and name must be defined")
+            try:
+                # Get additional arguments
+                return  self.define_db_connection(dtype, dname)
+            except:
+                raise
+    
+    def get_settings(self):
+        return self.settings
 
 
-db = None
-if app.config.get("TESTING", False):
-    db = define_db_connection("sqlite", ":memory:")
-else:
-    dtype = app.config.get("DATABASE", None)
-    dname = app.config.get("DATABASE_NAME", None)
-    if not dtype or not dname:
-        raise ValueError("Database type and name must be defined")
-    try:
-        # Get additional arguments
-        db = define_db_connection(dtype, dname)
-    except:
-        raise
 
-for file in images:
-    for ext in app.config["ALLOWED_FILENAMES"]:
-        filename = file + "." + ext
-        path = os.path.join(app.config["UPLOAD_FOLDER"], filename )
-        if user_img_exists(path):
-            settings[file] = filename
+
+
+subrosa = Subrosa()
+
+settings = subrosa.get_settings()
+
+db = subrosa.get_db()
+
 
 
 from main import views, models

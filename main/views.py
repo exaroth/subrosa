@@ -332,7 +332,7 @@ def user_images(username, page):
     url_path = urljoin(request.url_root, "uploads/")
     if not tuple(images) and page != 1:
         abort(404)
-    return render_template("user_images.html", images = images, url_path = url_path)
+    return render_template("user_images.html", show_upload_btn = True, images = images, url_path = url_path)
 
 @app.route("/delete_image/<int:id>")
 @login_required
