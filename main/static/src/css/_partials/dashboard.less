@@ -16,18 +16,19 @@
 .admin-write {
     width: 40px;
     font-size: 2em;
-    padding: 0;
     position: relative;
-    a {
+    i {
         display: block;
         position: absolute;
-        width: 40px;
-        height: 40px;
-        top: 0;
-        bottom: 0;
         left: 0;
         right: 0;
-        margin: auto;
+        top: 50%;
+        .translateY(-50%);
+        color: @black-20 !important;
+        .transition(all, 0.1s ease-in);
+        &:hover {
+            color: #fff !important;
+        }
     }
     @media screen and (max-width: @sm){
         width: 50px;
@@ -86,7 +87,6 @@
         }
         .menu-item {
             position: relative;
-            border-bottom: 1px solid @black-60;
             .transition(all, 0.3s, ease-in);
             color: @black-20;
             display: block;

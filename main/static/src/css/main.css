@@ -471,20 +471,29 @@ textarea.article-input.article-input-body {
 .admin-write {
   width: 40px;
   font-size: 2em;
-  padding: 0;
   position: relative;
 }
-.admin-subrosa a,
-.admin-write a {
+.admin-subrosa i,
+.admin-write i {
   display: block;
   position: absolute;
-  width: 40px;
-  height: 40px;
-  top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
-  margin: auto;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #cccccc !important;
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
+}
+.admin-subrosa i:hover,
+.admin-write i:hover {
+  color: #fff !important;
 }
 @media screen and (max-width: 750px) {
   .admin-subrosa,
@@ -559,7 +568,6 @@ textarea.article-input.article-input-body {
 }
 .admin-panel .admin-menu .menu-item {
   position: relative;
-  border-bottom: 1px solid #666666;
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;

@@ -74,7 +74,6 @@ $(window).load(function(){
     $articleBody = $(".article-main").find(".article-body"),
     $editingButtons = $(".editing-button"),
     $gallery = $(".gallery-wrapper"),
-    $menuBtn = $(".admin-panel").find(".menu-item").eq(0),
     $lamp = $(".lamp-button"),
     // base thumbnail size for gallery
     thumbSize = 200,
@@ -243,13 +242,8 @@ function dimLight(){
 
 };
 
-// $menuBtn.click(function(e){
-//     e.preventDefault();
-//     $(".admin-panel").css("overflow", "visible")
-// })
 
 $textarea.autogrow();
-// $sidepanelToggler.pageslide();
 $miniIcons.tooltip();
 $editingButtons.tooltip();
 
