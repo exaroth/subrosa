@@ -16,26 +16,19 @@
 		<div class="container-full">
 			<div class="content">
 				{% if session.user %}
-<!-- 				<div id="admin-panel" class="admin-panel" style="display: none;">
-					<a href="{{ url_for('index')}} ">
-						<h2>Subrosa</h2>
-
-					</a>
-					<hr>
-
-					<ul class="admin-panel-links list-unstyled">
-						<li><a href="{{ url_for('account', username = session.user) }} ">Dashboard</a></li>
-						<li><a href="{{ url_for('create_article') }} ">Create Article</a></li>
-						<li><a href="{{ url_for('user_images', username = session.user) }} ">Images</a></li>
-						<li><a href="{{ url_for('logout') }} ">Logout</a></li>
-					</ul>
-
-				</div>
-				<a id="sidepanel-toggler" class="icon-holder" href="#admin-panel"><i class="icon-cog"></i></a>
- -->
 				<div class="admin-panel">
+					<div class="admin-subrosa"><a href="{{ url_for('index')}}"><i class="icon-cog"></i></a></div>
+					<div class="admin-write"></div>
+					<div class="admin-menu">
+					<ul class="list-unstyled">
+						<li class="menu-item"><a href="#">Menu</a></li>
+						<li class="menu-item"><a href="{{ url_for('user_images', username = session.user )}}">Gallery</a></li>
+						<li class="menu-item"><a href="{{ url_for('account', username = session.user)}}">Dashboard</a></li>
+						<li class="menu-item"><a href="{{ url_for('logout')}}">Logout</a></li>
+					</ul>
+					</div>
 
-					
+
 				</div>
 				{% endif %}
 
@@ -62,13 +55,10 @@
 
 
 	{% endblock %}
-</div>
 <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>
 <script src="{{ url_for('static', filename='bower_components/jquery-color/jquery.color.js') }} "></script>
 <script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
 <script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
-<script src="{{ url_for('static', filename='bower_components/bootstrap/js/dropdown.js')}}"></script>
-<!-- <script src="{{ url_for('static', filename='bower_components/jquery-pageslide/jquery.pageslide.min.js')}}"></script> -->
 <script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
 <script src="{{ url_for('static', filename='bower_components/jquery-leanmodal/jquery.leanModal.js')}}"></script>
 <script src="{{ url_for('static', filename='src/js/main.js') }} "></script>

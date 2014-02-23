@@ -43,7 +43,7 @@ def load_vars():
 
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
-@cache.cached(timeout=50)
+# @cache.cached(timeout=50)
 def index(page):
     pages_per_page = app.config.get("ARTICLES_PER_PAGE", 5)
     articles = Articles.get_index_articles(page, pages_per_page)

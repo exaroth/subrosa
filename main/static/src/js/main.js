@@ -54,10 +54,10 @@
         });
 };
 
-// ------------------------------ My code here -----------------------------
 
 
 })(jQuery);
+// ------------------------------ My code here -----------------------------
 
 $(window).load(function(){
     var
@@ -70,11 +70,11 @@ $(window).load(function(){
     $createForm = $(".new-article-form"),
     $updateArticleButton = $(".update-button"),
     $createArticleButton = $(".create-button"),
-    $sidepanelToggler = $("#sidepanel-toggler"),
     $miniIcons = $(".mini-icon"),
     $articleBody = $(".article-main").find(".article-body"),
     $editingButtons = $(".editing-button"),
     $gallery = $(".gallery-wrapper"),
+    $menuBtn = $(".admin-panel").find(".menu-item").eq(0),
     $lamp = $(".lamp-button"),
     // base thumbnail size for gallery
     thumbSize = 200,
@@ -85,6 +85,7 @@ $(window).load(function(){
     articleBodyLight = "#666",
     articleTitleDark = "#b7b7b7",
     articleBodyDark = "#848383"
+
 
     $updateArticleButton.click(function(e){
         e.preventDefault();
@@ -242,6 +243,10 @@ function dimLight(){
 
 };
 
+// $menuBtn.click(function(e){
+//     e.preventDefault();
+//     $(".admin-panel").css("overflow", "visible")
+// })
 
 $textarea.autogrow();
 // $sidepanelToggler.pageslide();

@@ -6,10 +6,9 @@
 .title-img {
 	.border-radius(50%);
 	background-color: white;
-	background-size: contain;
+	// background-size: contain;
+	.background-size(contain);
 	background-position: center center;
-	// mess
-	.box-shadow(0px, 1px, 5px, rgba(255, 255, 255, 0.5));
 	width: 90px;
 	height: 90px;
 	left: 0;
@@ -30,10 +29,8 @@
 	top: 13%;
 	font-weight: bold;
 	color: @black-70;
-	// color: white;
 	font-family: @sans-font;
 	padding: 0 2em;
-	// .text-shadow(0px, 1px, 1px #4d4d4d);
 	text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6);
 	@media screen and (max-width: @sm){
 		font-size: 48px;
@@ -46,9 +43,12 @@
 	padding-bottom: 3em;
 	height: 400px;
 	position: relative;
-	background-position: center center;
+	// Add prefixes here
+	// background-position: % 0%;
 	background-size: 100%;
+	.background-size(contain);
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 .header-field .toolbar-buttons {
