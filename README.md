@@ -1,6 +1,6 @@
 # Subrosa
 
-Subrosa is simple blogging platform with built-in Markdown parser, simple image processing function and elegant styling built with Flask microframework.
+Subrosa is simple blogging platform with built-in Markdown parser, code highligting, gallery and elegant styling built with Flask microframework.
 
 
 ## Installation
