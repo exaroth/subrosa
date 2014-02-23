@@ -244,7 +244,7 @@ function dimLight(){
 
 
 $textarea.autogrow();
-$sidepanelToggler.pageslide();
+// $sidepanelToggler.pageslide();
 $miniIcons.tooltip();
 $editingButtons.tooltip();
 

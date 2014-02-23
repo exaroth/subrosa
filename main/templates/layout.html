@@ -16,7 +16,7 @@
 		<div class="container-full">
 			<div class="content">
 				{% if session.user %}
-				<div id="admin-panel" class="admin-panel" style="display: none;">
+<!-- 				<div id="admin-panel" class="admin-panel" style="display: none;">
 					<a href="{{ url_for('index')}} ">
 						<h2>Subrosa</h2>
 
@@ -32,8 +32,13 @@
 
 				</div>
 				<a id="sidepanel-toggler" class="icon-holder" href="#admin-panel"><i class="icon-cog"></i></a>
+ -->
+				<div class="admin-panel">
 
+					
+				</div>
 				{% endif %}
+
 
 				{% block titlebar %} 
 				{% endblock %}
@@ -62,7 +67,8 @@
 <script src="{{ url_for('static', filename='bower_components/jquery-color/jquery.color.js') }} "></script>
 <script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
 <script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
-<script src="{{ url_for('static', filename='bower_components/jquery-pageslide/jquery.pageslide.min.js')}}"></script>
+<script src="{{ url_for('static', filename='bower_components/bootstrap/js/dropdown.js')}}"></script>
+<!-- <script src="{{ url_for('static', filename='bower_components/jquery-pageslide/jquery.pageslide.min.js')}}"></script> -->
 <script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
 <script src="{{ url_for('static', filename='bower_components/jquery-leanmodal/jquery.leanModal.js')}}"></script>
 <script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
