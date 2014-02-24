@@ -4,38 +4,38 @@
    $.fn.autogrow = function(options)
    {
       return this.filter('textarea').each(function() {
-         var self         = this;
-         var $self        = $(self);
-         var minHeight    = $self.height();
-         var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
+       var self         = this;
+       var $self        = $(self);
+       var minHeight    = $self.height();
+       var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
 
-         var shadow = $('<div></div>').css({
-            position:    'absolute',
-            top:         -10000,
-            left:        -10000,
-            width:       $self.width(),
-            fontSize:    $self.css('fontSize'),
-            fontFamily:  $self.css('fontFamily'),
-            fontWeight:  $self.css('fontWeight'),
-            lineHeight:  $self.css('lineHeight'),
-            resize:      'none',
-            'word-wrap': 'break-word'
-        }).appendTo(document.body);
+       var shadow = $('<div></div>').css({
+        position:    'absolute',
+        top:         -10000,
+        left:        -10000,
+        width:       $self.width(),
+        fontSize:    $self.css('fontSize'),
+        fontFamily:  $self.css('fontFamily'),
+        fontWeight:  $self.css('fontWeight'),
+        lineHeight:  $self.css('lineHeight'),
+        resize:      'none',
+        'word-wrap': 'break-word'
+    }).appendTo(document.body);
 
-         var update = function(event)
-         {
-            var times = function(string, number)
-            {
-               for (var i=0, r=''; i<number; i++) r += string;
-                  return r;
-          };
+       var update = function(event)
+       {
+        var times = function(string, number)
+        {
+         for (var i=0, r=''; i<number; i++) r += string;
+          return r;
+  };
 
-          var val = self.value.replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/&/g, '&amp;')
-          .replace(/\n$/, '<br/>&nbsp;')
-          .replace(/\n/g, '<br/>')
-          .replace(/ {2,}/g, function(space){ return times('&nbsp;', space.length - 1) + ' ' });
+  var val = self.value.replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/&/g, '&amp;')
+  .replace(/\n$/, '<br/>&nbsp;')
+  .replace(/\n/g, '<br/>')
+  .replace(/ {2,}/g, function(space){ return times('&nbsp;', space.length - 1) + ' ' });
 
 				// Did enter get pressed?  Resize in this keydown event so that the flicker doesn't occur.
 				if (event && event.data && event.data.event === 'keydown' && event.keyCode === 13) {
@@ -160,11 +160,10 @@ function processArticleImages(articleBody){
         }
 
 
-        elToMove.addClass("centered-image");
         var imageDescription = $("<span></span>")
         .text(self.attr("alt"))
         .addClass("image-desc")
-        .appendTo(imgWrapper)
+        .appendTo(imgWrapper);
         console.log(imageDescription)
 
 
@@ -177,32 +176,48 @@ function processArticleImages(articleBody){
 function processGalleryImages(galleryBody){
 
 
-    galleryBody.find(".gallery-image").each(function(){
+    var imgs = galleryBody.find(".gallery-image");
 
-        var self = $(this);
+    if(!imgs) { return }
 
-        var isSmall = Math.round(Math.random() - 0.2);
+        if(imgs.length < 5) {
 
-        if (isSmall) {
-            self.addClass("size11");
+        // If less than 5 images make each one big square;
 
-        }
-        else {
-            var isSquare = Math.round(Math.random());
-            var imageIsVertical = self.data('vert')
-            if (isSquare){
-                self.addClass("size22");
-            } else {
-                if (imageIsVertical) {
-                    self.addClass("size12");
+        imgs.each(function(){
+
+            $(this).addClass("size22");
+        })
+    } else {
+        imgs.each(function(){
+
+            var self = $(this);
+
+            var isSmall = Math.round(Math.random() - 0.2);
+
+            if (isSmall) {
+                self.addClass("size11");
+
+            }
+            else {
+                var isSquare = Math.round(Math.random());
+                var imageIsVertical = self.data('vert')
+                if (isSquare){
+                    self.addClass("size22");
                 } else {
-                    self.addClass("size21")
+                    if (imageIsVertical) {
+                        self.addClass("size12");
+                    } else {
+                        self.addClass("size21")
+                    }
                 }
+
             }
 
-        }
+        })
 
-    })
+    }
+
 };
 
 $lamp.on('click', function(e){
@@ -224,18 +239,18 @@ function dimLight(){
         dark = true;
 
     } else {
-       $body.stop().animate({
+     $body.stop().animate({
         backgroundColor: "#fff"
     }, 1200);
-       $articleInputTitle.stop().animate({
+     $articleInputTitle.stop().animate({
         color: articleTitleLight
-        }, 1200);
-       $articleInputBody.stop().animate({
+    }, 1200);
+     $articleInputBody.stop().animate({
         color: articleBodyLight
-       }, 1200);
-        dark = false;
+    }, 1200);
+     dark = false;
 
-    }
+ }
 
 
 };
@@ -243,7 +258,6 @@ function dimLight(){
 
 $textarea.autogrow();
 $miniIcons.tooltip();
-// $editingButtons.tooltip();
 
 $(".cheatsheet-button").leanModal({
     closeButton: ".modal_close"

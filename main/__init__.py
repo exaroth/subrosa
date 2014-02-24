@@ -40,6 +40,8 @@ class Subrosa(object):
             mysql = MySQLDatabase
         ) 
 
+        # List of options that should be passed to views
+
         self.options = ("facebook", "twitter", "github", "dynamic_site", "title",\
                        "articles_per_page" )
 
@@ -58,8 +60,6 @@ class Subrosa(object):
                 path = os.path.join(app.config["UPLOAD_FOLDER"], filename )
                 if self.user_img_exists(path):
                     self.settings[name] = filename
-
-
 
     def user_img_exists(self, file):
         p = pathlib.Path(file)
@@ -91,16 +91,20 @@ class Subrosa(object):
             dname = app.config.get("DATABASE_NAME", None)
             if not dtype or not dname:
                 raise ValueError("Database type and name must be defined")
+            if dtype in ("postgres", "mysql"):
+                username = app.config.get("DB_USERNAME")
+                password = app.config.get("DB_PASSWORD", None)
+                if not username or not password:
+                    raise ValueError("%s requires username and password to connect" % dtype)
+                kwargs["user"] = username
+                kwargs["password"] = password
             try:
-                # Get additional arguments
-                return  self.define_db_connection(dtype, dname)
+                return  self.define_db_connection(dtype, dname, **kwargs)
             except:
                 raise
     
     def get_settings(self):
         return self.settings
-
-
 
 
 

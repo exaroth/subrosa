@@ -13,21 +13,28 @@ TITLE = "Kermit's Blog"
 
 DYNAMIC_SITE = True
 
-
 # ========== Database Configuration =================
 
-# Available fields are
+# Define database connection
+
+# Avaliable databases are:
 # * sqlite
 # * postrges
 # * mysql
 
+# Database type
+
 DATABASE = "sqlite"
+
+# Database name
 
 DATABASE_NAME = "test.db"
 
-USERNAME = False # Only for mysql and postgresql
+#This options apply only if you are using postgresql or mysql
 
-PASSWORD = False # Only for mysql and postgresql
+DB_USERNAME = None 
+
+DB_PASSWORD = None 
 
 # ===================================================
 
