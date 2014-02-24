@@ -331,6 +331,134 @@ textarea.article-input.article-input-body {
     height: 98%;
   }
 }
+.icon-holder {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  color: #4d4d4d;
+}
+.icon-holder i {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: auto;
+}
+.menu-icon {
+  float: right;
+  width: 60px;
+  height: 60px;
+}
+.menu-icon a {
+  color: #4d4d4d;
+}
+.menu-icon i {
+  font-size: 2em;
+}
+@media screen and (max-width: 970px) {
+  .menu-icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+#sidepanel-toggler {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  z-index: 999;
+  top: 5%;
+  left: 50px;
+}
+#sidepanel-toggler:hover {
+  color: #47b1ff;
+}
+#sidepanel-toggler i {
+  font-size: 3em;
+}
+.content-header-btns {
+  display: inline-block;
+  top: 20%;
+  right: 10%;
+  position: absolute;
+  text-align: center;
+}
+.content-header-btns a {
+  padding-right: 10px;
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  color: #4d4d4d;
+}
+@media screen and (max-width: 970px) {
+  .content-header-btns {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+}
+.editing-button {
+  float: left;
+  clear: both;
+  display: block;
+  margin-bottom: 6em;
+}
+.create-button:hover,
+.update-button:hover {
+  color: #98cd45;
+}
+.cancel-button:hover {
+  color: #ff5c39;
+}
+.lamp-button:hover {
+  color: #fcc41e;
+}
+.cheatsheet-button:hover {
+  color: #47b1ff;
+}
+.rss-button:hover {
+  color: #ffb126;
+}
+.github-button:hover {
+  color: #70C951;
+}
+.twitter-button:hover {
+  color: #40d3fc;
+}
+.facebook-button:hover {
+  color: #3b5998;
+}
+.gallery-button:hover {
+  color: #47b1ff;
+}
+.pub-ico:hover {
+  color: #98cd45 !important;
+}
+.edit-ico:hover {
+  color: #47b1ff !important;
+}
+.del-ico:hover {
+  color: #ff5c39 !important;
+}
+.add-images {
+  top: -48px;
+  position: absolute;
+  color: #4d4d4d;
+}
+.mini-icon i {
+  font-size: 1.4em;
+  display: inline-block;
+  top: 10px;
+}
+.btn-confirm:hover {
+  background-color: #e6e6e6;
+}
+.btn-confirm:hover i {
+  color: #98cd45;
+}
+.btn-cancel:hover i {
+  color: #ff5c39;
+}
 .title-img {
   -webkit-border-radius: 50%;
   -webkit-background-clip: padding-box;
@@ -461,12 +589,13 @@ textarea.article-input.article-input-body {
 }
 .gallery-wrapper {
   width: 80%;
+  left: 0;
+  right: 0;
   margin: 0 auto;
+  position: absolute;
   margin-top: 4em;
 }
 .gallery-image {
-  background-position: center center;
-  color: white;
   font-size: 0.8em;
   font-style: italic;
   -webkit-background-size: cover;
@@ -474,8 +603,29 @@ textarea.article-input.article-input-body {
   background-size: cover;
   overflow: hidden;
 }
-.gallery-image:hover {
+.gallery-image .image-toolbar {
   color: white;
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  top: -40px;
+  padding: 0 1em;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.gallery-image .image-toolbar span.img-icons {
+  float: right;
+  font-size: 2em;
+}
+.gallery-image .image-toolbar span.img-icons a {
+  color: rgba(255, 255, 255, 0.7);
+  display: block;
+  margin-top: 10px;
+}
+.gallery-image .image-toolbar span.img-icons a:hover {
+  color: #ff5c39;
 }
 .gallery-image .img-desc {
   position: absolute;
@@ -508,22 +658,13 @@ textarea.article-input.article-input-body {
   transition: all 0.2s ease-in;
   opacity: 0;
 }
-.gallery-image .img-info {
-  position: absolute;
-  height: 36px;
-  background-color: white;
+.gallery-image .img-holder {
   width: 100%;
-  color: #4d4d4d;
-  vertical-align: middle !important;
-  padding: 16px;
-  top: -36px;
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  -o-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
-}
-.gallery-image .img-info .img-action {
-  display: inline-block;
+  height: 100%;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
 }
 .gallery-image:hover .img-overlay {
   opacity: 1;
@@ -531,7 +672,7 @@ textarea.article-input.article-input-body {
 .gallery-image:hover .img-desc {
   opacity: 1;
 }
-.gallery-image:hover .img-info {
+.gallery-image:hover .image-toolbar {
   top: 0;
 }
 .image-upload-wrapper textarea {
@@ -698,7 +839,7 @@ textarea.article-input.article-input-body {
 }
 @media screen and (max-width: 750px) {
   .admin-panel {
-    position: absolute;
+    position: relative;
     width: 100%;
     top: 0;
     left: 0;
@@ -766,7 +907,6 @@ a {
   -moz-transition: all 0.1s ease-in;
   -o-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
-  color: #ff5c39;
 }
 .footer small {
   text-align: center;
@@ -805,123 +945,4 @@ a {
   -moz-background-clip: padding;
   border-radius: 0;
   background-clip: padding-box;
-}
-.icon-holder {
-  display: inline-block;
-  position: relative;
-  text-align: center;
-  color: #4d4d4d;
-}
-.icon-holder i {
-  display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  margin: auto;
-}
-.menu-icon {
-  float: right;
-  width: 60px;
-  height: 60px;
-}
-.menu-icon a {
-  color: #4d4d4d;
-}
-.menu-icon i {
-  font-size: 2em;
-}
-@media screen and (max-width: 970px) {
-  .menu-icon {
-    width: 50px;
-    height: 50px;
-  }
-}
-#sidepanel-toggler {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  z-index: 999;
-  top: 5%;
-  left: 50px;
-}
-#sidepanel-toggler:hover {
-  color: #47b1ff;
-}
-#sidepanel-toggler i {
-  font-size: 3em;
-}
-.content-header-btns {
-  display: inline-block;
-  top: 20%;
-  right: 10%;
-  position: absolute;
-  text-align: center;
-}
-.content-header-btns a {
-  padding-right: 10px;
-  display: inline-block;
-  height: 50px;
-  width: 50px;
-  color: #4d4d4d;
-}
-@media screen and (max-width: 970px) {
-  .content-header-btns {
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
-}
-.editing-button {
-  float: left;
-  clear: both;
-  display: block;
-  margin-bottom: 6em;
-}
-.create-button:hover,
-.update-button:hover {
-  color: #98cd45;
-}
-.cancel-button:hover {
-  color: #ff5c39;
-}
-.lamp-button:hover {
-  color: #fcc41e;
-}
-.cheatsheet-button:hover {
-  color: #47b1ff;
-}
-.rss-button:hover {
-  color: #ffb126;
-}
-.github-button:hover {
-  color: #70C951;
-}
-.twitter-button:hover {
-  color: #40d3fc;
-}
-.facebook-button:hover {
-  color: #3b5998;
-}
-.gallery-button:hover {
-  color: #47b1ff;
-}
-.pub-ico:hover {
-  color: #98cd45 !important;
-}
-.edit-ico:hover {
-  color: #47b1ff !important;
-}
-.del-ico:hover {
-  color: #ff5c39 !important;
-}
-.add-images {
-  top: -48px;
-  position: absolute;
-  color: #4d4d4d;
-}
-.mini-icon i {
-  font-size: 1.4em;
-  display: inline-block;
-  top: 10px;
 }

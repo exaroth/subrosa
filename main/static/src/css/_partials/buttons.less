@@ -1,0 +1,136 @@
+// -------- Icon styling ---------------
+
+.icon-holder {
+	display: inline-block;
+	position: relative;
+	// background-color: rgba(0,0,0,.5);
+	text-align: center;
+	color: @black-70;
+	i {
+		display: block;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		margin: auto;
+	}
+}
+
+.menu-icon {
+	float: right;
+	width: 60px;
+	height: 60px;
+	a {
+		
+		color: @black-70;
+	}
+	i {
+		font-size: 2em;
+
+	}
+
+	@media screen and (max-width: @md){
+		width: 50px;
+		height: 50px; }
+
+	}
+
+	#sidepanel-toggler {
+		width: 60px;
+		height: 60px;
+		position: absolute;
+		z-index: 999;
+		top: 5%;
+		left: 50px;
+		&:hover {
+			color: @cerulean
+		}
+		i {
+			font-size: 3em;
+		}
+	}
+	.content-header-btns {
+		display: inline-block;
+		top: 20%;
+		right: 10%;
+		position: absolute;
+		text-align: center;
+		a {
+			padding-right: 10px;
+			display: inline-block;
+			height: 50px;
+			width: 50px;
+			color: @black-70;
+		}
+		@media screen and (max-width: @md){
+			left: 0;
+			right: 0;
+			margin: 0 auto
+		}
+	}
+	.editing-button {
+		float: left;
+		clear: both;
+		display: block;
+		margin-bottom: 6em;
+	}
+	.create-button:hover,
+	.update-button:hover {
+		color: @green;
+	}
+	.cancel-button:hover {
+		color: @rose-red;
+	}
+	.lamp-button:hover {
+		color: @yellow;
+	}
+	.cheatsheet-button:hover {
+		color: @cerulean;
+	}
+	.rss-button:hover {
+		color: @orange;
+	}
+	.github-button:hover {
+		color: #70C951;
+	}
+	.twitter-button:hover {
+		color: #40d3fc;
+	}
+	.facebook-button:hover {
+		color: #3b5998;
+	}
+	.gallery-button:hover {
+		color: @cerulean;
+	}
+	.pub-ico:hover{
+		color: @green !important;
+	}
+	.edit-ico:hover{
+		color: @cerulean !important;
+	}
+	.del-ico:hover {
+		color: @rose-red !important;
+	}
+	.add-images {
+		top: -48px;
+		position: absolute;
+		color: @black-70;
+	}
+	.mini-icon {
+		i {
+			font-size: 1.4em;
+			display: inline-block;
+			top: 10px;
+		}
+	}
+
+.btn-confirm:hover {
+	background-color: @black-10;
+	i {
+	color: @green;
+		
+	}
+}
+.btn-cancel:hover i{
+	color: @rose-red;
+}

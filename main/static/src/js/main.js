@@ -249,6 +249,16 @@ $(".cheatsheet-button").leanModal({
     closeButton: ".modal_close"
 });
 
+$('[data-toggle="confirmation"]').confirmation({
+    popout: true,
+    singleton: true,
+    container: 'body',
+    btnOkClass: 'btn btn-default btn-sm btn-confirm',
+    btnCancelClass: 'btn btn-default btn-sm btn-cancel',
+    btnOkLabel: '<i class="icon-ok"></i>Yes',
+    btnCancelLabel: '<i class="icon-cancel"></i>No'
+})
+
 $gallery.nested({
     selector: '.gallery-image',
     minWidth: 200,

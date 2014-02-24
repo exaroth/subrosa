@@ -20,9 +20,9 @@ import urllib
 from main import app, db, cache, settings
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
 from .models import Users, Articles, UserImages
-from .helpers import Pagination, login_required,\
-process_image, make_external, redirect_url, handle_errors,\
-dynamic_content
+from .helpers import process_image, make_external, redirect_url, handle_errors
+from .pagination import Pagination
+from .decorators import dynamic_content, login_required
 from werkzeug import secure_filename
 from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
@@ -39,6 +39,16 @@ def load_vars():
     g.twitter = app.config.get("TWITTER", False)
     g.github = app.config.get("GITHUB", False)
     g.gallery = app.config.get("GALLERY", False)
+
+@app.before_request
+def db_connect():
+    g.db = db
+    g.db.connect()
+
+@app.teardown_request
+def db_disconnect(response):
+    g.db.close()
+    return response
 
 
 @app.route("/", defaults={"page": 1})

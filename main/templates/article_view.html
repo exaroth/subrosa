@@ -15,10 +15,9 @@
     <div class="row article-header">
         <h5 class="article-timesince">
             {% if session.user and session.user == article.author.username %}
-            <a class="btn btn-default btn-xs"  href="{{ url_for('delete_article', id = article.id) }}">Delete</a>
+            <a class="btn btn-default btn-xs" data-href="{{ url_for('delete_article', id = article.id) }}" data-toggle="confirmation" href="#">Delete</a>
             <a class="btn btn-default btn-xs" href="{{ url_for('edit_article', id = article.id) }}" style="padding-right: 10px;" >Edit</a>
 
-            <span><a href="{{ url_for('delete_article', id = article.id) }} "></a></span>
             {% endif %}
             Written {{ article.date_created | timesince }}
             {% if article.author.real_name %}

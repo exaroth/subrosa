@@ -17,8 +17,7 @@
     "nested": "*",
     "jquery": "~2.1.0",
     "jquery-leanmodal": "*",
-    "jquery-pageslide": "*",
     "bootstrap": "~3.1.1",
-    "jquery-color": "~2.1.2"
+    "jquery-color": "~2.1.2",
   }
 }
