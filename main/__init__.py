@@ -5,6 +5,7 @@ from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
 import pathlib
 import os, sys
 import logging
+from jinja2htmlcompress import HTMLCompress
 
 
 __version__ = "0.0.3.dev"
@@ -15,6 +16,7 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.config.from_object("main.config")
+# app.jinja_env.add_extension(HTMLCompress)
 cache = Cache(app)
 Markdown(app,
          extensions = ["footnotes", "fenced_code", "codehilite" ])

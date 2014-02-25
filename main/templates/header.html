@@ -1,8 +1,15 @@
-﻿<div class="row title-field">
-    <div class="col-md-12">
-	<h1 class="text-center" style="margin: 1em 0 0.5em 0; font-size: 60px;font-weight: bold">{{ g.title }}</h1>
-	<div class="title-img" style="width: 90px; height: 90px;red; position:
-	    relative; margin: 0 auto; "></div>
-    </div>
-<hr />
+﻿<div class="content-header col-xs-12">
+	{%- if settings.logo -%}
+	<div class="logo-header">
+		<img src="{{url_for('send_image', filename = settings.logo)}}" alt="settings.title">
+	</div>
+	{%- else -%}
+	<div class="title-header">
+		<h2>{{ settings.title }}</h2>
+	</div>
+	<nav class="content-header-btns">
+		<a href="{{ url_for('index') }}" class="icon-holder menu-icon"><i class="icon-home"></i></a>
+		<a href="{{ g.prev }}" class="icon-holder menu-icon "><i class="icon-left-big"></i></a>
+	</nav>
+	{%- endif -%}
 </div>

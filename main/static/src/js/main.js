@@ -164,7 +164,6 @@ function processArticleImages(articleBody){
         .text(self.attr("alt"))
         .addClass("image-desc")
         .appendTo(imgWrapper);
-        console.log(imageDescription)
 
 
     })

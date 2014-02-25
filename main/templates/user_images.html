@@ -1,33 +1,39 @@
-﻿{% extends "layout.html" %}
+{% extends "layout.html" %}
+
+{% block titlebar %}
+
+{% include 'header.html' %}
+
+{% endblock %}
 
 {% block content %} 
 
 
 <div class="gallery-wrapper">
 	{% for image in images %}
-<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'external' if image.external }}" data-vert="{{ image.is_vertical }}" >
-	<a href="{{ image.filename }}" style="color: #fff">
-		<div class="img-holder" style="background-image: url({{ image.showcase }})">
-			<div class="img-overlay"></div>
-			<div class="img-desc">
-				{% if image.description %}
-				{{ image.description }}
-				{% else %}
-				<i class="icon-search" style="font-size: 2em; opacity: 0.8"></i>
-				{% endif %}
+	<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'external' if image.external }}" data-vert="{{ image.is_vertical }}" >
+		<a href="{{ image.filename }}" style="color: #fff">
+			<div class="img-holder" style="background-image: url({{ image.showcase }})">
+				<div class="img-overlay"></div>
+				<div class="img-desc">
+					{% if image.description %}
+					{{ image.description }}
+					{% else %}
+					<i class="icon-search" style="font-size: 2em; opacity: 0.8"></i>
+					{% endif %}
+				</div>
+
 			</div>
 
+		</a>
+		<div class="image-toolbar">
+			<span class="img-icons"><a href="#" data-toggle="confirmation" data-href="{{ url_for('delete_image', id = image.id)}}"><i class="icon-cancel"></i></a></span>
+
+
 		</div>
-
-	</a>
-	<div class="image-toolbar">
-	<span class="img-icons"><a href="#" data-toggle="confirmation" data-href="{{ url_for('delete_image', id = image.id)}}"><i class="icon-cancel"></i></a></span>
-
-		
 	</div>
-</div>
 
-{% endfor %}
+	{% endfor %}
 
 </div>
 

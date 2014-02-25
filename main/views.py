@@ -32,13 +32,7 @@ from werkzeug.contrib.atom import AtomFeed
 
 @app.before_request
 def load_vars():
-    g.title = app.config["TITLE"]
-    g.dynamic = app.config.get("DYNAMIC_SITE")
     g.prev = redirect_url()
-    g.facebook = app.config.get("FACEBOOK", False)
-    g.twitter = app.config.get("TWITTER", False)
-    g.github = app.config.get("GITHUB", False)
-    g.gallery = app.config.get("GALLERY", False)
 
 @app.before_request
 def db_connect():
@@ -59,7 +53,7 @@ def index(page):
     articles = Articles.get_index_articles(page, pages_per_page)
     if not tuple(articles) and page != 1:
         abort(404)
-    return render_template("index.html", settings = settings, articles = articles)
+    return render_template("index.html", articles = articles)
 
 @app.route("/index", methods = ["GET"])
 def redirect_index():
@@ -446,6 +440,10 @@ def timesince(dt, default="just now"):
         if period:
             return "%d %s ago" % (period, singular if period == 1 else plural)
     return default
+
+@app.context_processor
+def utility_processor():
+    return dict(settings = settings)
 
 @app.errorhandler(404)
 def http_not_found(err):

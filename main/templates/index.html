@@ -26,17 +26,30 @@
 		background-image: url({{ url_for('send_image', filename = settings.portrait) }});
 		display: block;
 	}
+	.header-field {
+		height: 400px;
+	}
 	{% endif %}
 </style>
 
 
 <div class="row header-field">
-	<h1 class="text-center site-title" style="">{{ g.title }}</h1>
+
+	{% if settings.logo %}
+	<div class="logo-holder">
+	<a href="#">
+	<img src="{{url_for('send_image', filename = settings.logo)}}" alt="">
+	</a>
+
+	</div>
+	{% else %}
+	<h1 class="text-center site-title" style="">{{ settings.title }}</h1>
+	{% endif %}
 	<div class="title-img"></div>
 	<div class="toolbar-buttons">
 		<ul class="list-unstyled">
 
-			{% if g.facebook %}
+			{% if settings.facebook %}
 			<li>
 				<a href="{{ g.faceboook }}" class="facebook-button icon-holder menu-icon">
 					<i class="icon-facebook"></i>
@@ -44,7 +57,7 @@
 			</li>
 			{% endif %}
 
-			{% if g.twitter %}
+			{% if settings.twitter %}
 			<li>
 				<a href="{{ g.twitter }}" class="twitter-button icon-holder menu-icon">
 					<i class="icon-twitter"></i>
@@ -52,14 +65,14 @@
 			</li>
 			{% endif %}
 			
-			{% if g.github %}
+			{% if settings.github %}
 			<li>
 				<a href="{{ g.gitgub }}" class="github-button icon-holder menu-icon">
 					<i class="icon-github-1"></i>
 				</a>
 			</li>
 			{% endif %}
-			{% if g.gallery %}
+			{% if settings.gallery %}
 			<li>
 				<a href="#" class="gallery-button icon-holder menu-icon">
 					<i class="icon-picture-1"></i>

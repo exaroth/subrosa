@@ -1,35 +1,36 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>{{ g.title }}</title>
-	<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<title>{{ settings.title }}</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/bootstrap.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/pygments.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/fontello.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/main.css') }}" media="all" />
 </head>
 <body>
-	{% block modals %}
-	{% endblock %}
+	{%- block modals -%}
+	{%- endblock -%}
 	<div id="wrap">
 		<div class="container-full">
 			<div class="content">
-				{% if session.user %}
-				{% include 'admin-panel.html' %}
-				{% endif %}
 
+				{%- if session.user -%}
+				{%- include 'adminpanel.html' -%}
+				{%- endif -%}
 
-				{% block titlebar %} 
-				{% endblock %}
+				{%- block titlebar -%} 
+				{%- endblock -%}
 
-				{% block sidebar %}
-				{% endblock %}
+				{%- block sidebar -%}
+				{%- endblock -%}
 
-				<div class="row main-matter">
+				<div class="main-matter">
 					<div class="col-md-8 col-md-offset-2">
-						{% block content %} 
-						{% endblock %}
+						{%- block content -%} 
+						{%- endblock -%}
 					</div>
 				</div>
 
@@ -38,10 +39,9 @@
 			<div id="push"></div>
 		</div>
 	</div>
-	{% block footer %}
+	{%- block footer -%}
+	{%- endblock -%}
 
-
-	{% endblock %}
 <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>
 <script src="{{ url_for('static', filename='bower_components/jquery-color/jquery.color.js') }} "></script>
 <script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
@@ -52,5 +52,6 @@
 <script src="{{ url_for('static', filename='src/js/bootstrap3-confirmation.js') }} "></script>
 <script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
 <script src="//localhost:35729/livereload.js"></script>
+
 </body>
 </html>

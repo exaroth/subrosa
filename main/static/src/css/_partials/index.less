@@ -6,7 +6,6 @@
 .title-img {
 	.border-radius(50%);
 	background-color: white;
-	// background-size: contain;
 	.background-size(contain);
 	background-position: center center;
 	width: 90px;
@@ -15,7 +14,7 @@
 	right: 0;
 	position: absolute;
 	margin: 0 auto;
-	bottom: 20%;
+	bottom: 16%;
 	display: none;
 	@media screen and (max-width: @md){
 		width: 80px;
@@ -38,10 +37,31 @@
 
 	}
 }
+.logo-holder {
+	position: relative;
+	top: 13%;
+	margin: 0 auto;
+	img {
+		max-height: 150px;
+		max-width: 700px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		@media screen and (max-width: @md){
+			max-height: 100px;
+			max-width: 80%;
+
+		}
+	}
+	@media screen and (max-width: @md){
+		top: 20%;
+	}
+}
 .header-field {
 	margin-bottom: 2em;
 	padding-bottom: 3em;
-	height: 400px;
+	height: 300px;
 	position: relative;
 	// Add prefixes here
 	.background-size(100%, auto);
@@ -51,7 +71,7 @@
 
 .header-field .toolbar-buttons {
 	position: absolute;
-	right: 10%;
+	right: 6%;
 	top: 30%;
 	width: 400px;
 	ul > li {

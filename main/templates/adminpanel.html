@@ -8,14 +8,15 @@
 			
 		</a>
 	</div>
-	{% if show_upload_btn %}
+	{%- if show_upload_btn -%}
 	<div class="admin-pic">
 		<a href="{{ url_for('upload_image') }}">
 			<i class="icon-picture" style="font-size: 0.7em;"></i>
 			
 		</a>
 	</div>
-	{% endif %}
+	{%- endif -%}
+
 	<div class="admin-menu">
 		<ul class="list-unstyled">
 			<li class="menu-item"><a href="#">Menu</a></li>
@@ -24,6 +25,4 @@
 			<li class="menu-item"><a href="{{ url_for('logout')}}">Logout</a></li>
 		</ul>
 	</div>
-
-
 </div>
