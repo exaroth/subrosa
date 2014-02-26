@@ -443,7 +443,9 @@ def timesince(dt, default="just now"):
 
 @app.context_processor
 def utility_processor():
-    return dict(settings = settings)
+    return dict(settings = settings,\
+                current_path = request.url_root + request.path[1:]
+        )
 
 @app.errorhandler(404)
 def http_not_found(err):

@@ -1,65 +1,10 @@
-(function($)
-{
-   // Autogrowing textarea
-   $.fn.autogrow = function(options)
-   {
-      return this.filter('textarea').each(function() {
-       var self         = this;
-       var $self        = $(self);
-       var minHeight    = $self.height();
-       var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
-
-       var shadow = $('<div></div>').css({
-        position:    'absolute',
-        top:         -10000,
-        left:        -10000,
-        width:       $self.width(),
-        fontSize:    $self.css('fontSize'),
-        fontFamily:  $self.css('fontFamily'),
-        fontWeight:  $self.css('fontWeight'),
-        lineHeight:  $self.css('lineHeight'),
-        resize:      'none',
-        'word-wrap': 'break-word'
-    }).appendTo(document.body);
-
-       var update = function(event)
-       {
-        var times = function(string, number)
-        {
-         for (var i=0, r=''; i<number; i++) r += string;
-          return r;
-  };
-
-  var val = self.value.replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
-  .replace(/&/g, '&amp;')
-  .replace(/\n$/, '<br/>&nbsp;')
-  .replace(/\n/g, '<br/>')
-  .replace(/ {2,}/g, function(space){ return times('&nbsp;', space.length - 1) + ' ' });
-
-				// Did enter get pressed?  Resize in this keydown event so that the flicker doesn't occur.
-				if (event && event.data && event.data.event === 'keydown' && event.keyCode === 13) {
-					val += '<br />';
-				}
-
-				shadow.css('width', $self.width());
-                shadow.html(val + (noFlickerPad === 0 ? '...' : '')); // Append '...' to resize pre-emptively.
-                $self.height(Math.max(shadow.height() + noFlickerPad, minHeight));
-            }
-
-            $self.change(update).keyup(update).keydown({event:'keydown'},update);
-            $(window).resize(update);
-
-            update();
-        });
-};
+(function($) {
 
 
+    $(document).ready(function(){
 
-})(jQuery);
-// ------------------------------ My code here -----------------------------
+    // Variables
 
-$(window).load(function(){
     var
     $body = $('body'),
     $window = $(window),
@@ -83,22 +28,119 @@ $(window).load(function(){
     articleTitleLight = "#191919",
     articleBodyLight = "#666",
     articleTitleDark = "#b7b7b7",
-    articleBodyDark = "#848383"
+    articleBodyDark = "#848383";
+
+    // initialization function
+    // =======================
 
 
-    $updateArticleButton.click(function(e){
-        e.preventDefault();
-        $editForm.submit();
-    });
-    $createArticleButton.click(function(e){
-        e.preventDefault();
-        $createForm.submit();
-    });
+    function init(){
 
-    enableTab($articleInputBody);
+        $updateArticleButton.click(function(e){
+            e.preventDefault();
+            $editForm.submit();
+        });
+        $createArticleButton.click(function(e){
+            e.preventDefault();
+            $createForm.submit();
+        });
 
-    processArticleImages($articleBody);
-    processGalleryImages($gallery);
+        enableTab($articleInputBody);
+
+
+        $lamp.on('click', function(e){
+            e.preventDefault();
+            dimLight();
+        })
+
+
+        $(".cheatsheet-button").leanModal({
+            closeButton: ".modal_close"
+        });
+
+        $('[data-toggle="confirmation"]').confirmation({
+            popout: true,
+            singleton: true,
+            container: 'body',
+            btnOkClass: 'btn btn-default btn-sm btn-confirm',
+            btnCancelClass: 'btn btn-default btn-sm btn-cancel',
+            btnOkLabel: '<i class="icon-ok"></i>Yes',
+            btnCancelLabel: '<i class="icon-cancel"></i>No'
+        })
+
+
+    };
+
+    //functions to be initialised when window has loaded
+
+    function start(){
+
+        processArticleImages($articleBody);
+        processGalleryImages($gallery);
+        $textarea.autogrow();
+        $miniIcons.tooltip();
+        $gallery.nested({
+            selector: '.gallery-image',
+            minWidth: 200,
+            gutter: 10,
+            resizeToFit: true,
+            resizeToFitOptions: {
+                resizeAny: true
+            }
+        });
+        positionFooter();
+
+    };
+
+    // ========================================
+
+    function dimLight(){
+        if (!dark){
+            $body.stop().animate({
+                backgroundColor: "#222"
+            }, 1200);
+            $articleInputTitle.stop().animate({
+                color: articleTitleDark
+            }, 1200);
+            $articleInputBody.stop().animate({
+                color: articleBodyDark
+            }, 1200);
+            dark = true;
+
+        } else {
+           $body.stop().animate({
+            backgroundColor: "#fff"
+        }, 1200);
+           $articleInputTitle.stop().animate({
+            color: articleTitleLight
+        }, 1200);
+           $articleInputBody.stop().animate({
+            color: articleBodyLight
+        }, 1200);
+           dark = false;
+
+       }
+
+
+   };
+
+
+   function positionFooter(){
+    // Sticky footer code
+    if($(document.body).height() < $(window).height()){
+        $('#footer').css({
+            position: 'absolute',
+            top:  ( $(window).scrollTop() + $(window).height()
+              - $("#footer").height() ) + "px",
+            width: "100%"
+        });
+    } else {
+        $('#footer').css({
+            position: 'relative'
+        });
+    }   
+
+}
 
 // Disable tab trigger in textarea
 function enableTab(el) {
@@ -151,8 +193,8 @@ function processArticleImages(articleBody){
         var elToMove = self.parent().is("a") ? self.parent() : self;
         // Wrap image element or anchor with div and return it
         var imgWrapper = elToMove
-        .wrap('<div class="image-wrapper"></div>')
-        .parent();
+            .wrap('<div class="image-wrapper"></div>')
+            .parent();
         if (imgIsHorizontal(self)){
             imgWrapper.addClass("centered-image-wrapper");
         } else {
@@ -219,68 +261,82 @@ function processGalleryImages(galleryBody){
 
 };
 
-$lamp.on('click', function(e){
-    e.preventDefault();
-    dimLight();
-})
 
-function dimLight(){
-    if (!dark){
-        $body.stop().animate({
-            backgroundColor: "#222"
-        }, 1200);
-        $articleInputTitle.stop().animate({
-            color: articleTitleDark
-        }, 1200);
-        $articleInputBody.stop().animate({
-            color: articleBodyDark
-        }, 1200);
-        dark = true;
+   // Autogrowing textarea
+   $.fn.autogrow = function(options)
+   {
+      return this.filter('textarea').each(function() {
+         var self         = this;
+         var $self        = $(self);
+         var minHeight    = $self.height();
+         var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
 
-    } else {
-     $body.stop().animate({
-        backgroundColor: "#fff"
-    }, 1200);
-     $articleInputTitle.stop().animate({
-        color: articleTitleLight
-    }, 1200);
-     $articleInputBody.stop().animate({
-        color: articleBodyLight
-    }, 1200);
-     dark = false;
+         var shadow = $('<div></div>').css({
+            position:    'absolute',
+            top:         -10000,
+            left:        -10000,
+            width:       $self.width(),
+            fontSize:    $self.css('fontSize'),
+            fontFamily:  $self.css('fontFamily'),
+            fontWeight:  $self.css('fontWeight'),
+            lineHeight:  $self.css('lineHeight'),
+            resize:      'none',
+            'word-wrap': 'break-word'
+        }).appendTo(document.body);
 
- }
+         var update = function(event)
+         {
+            var times = function(string, number)
+            {
+               for (var i=0, r=''; i<number; i++) r += string;
+                  return r;
+          };
 
+          var val = self.value.replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/&/g, '&amp;')
+          .replace(/\n$/, '<br/>&nbsp;')
+          .replace(/\n/g, '<br/>')
+          .replace(/ {2,}/g, function(space){ return times('&nbsp;', space.length - 1) + ' ' });
 
+                // Did enter get pressed?  Resize in this keydown event so that the flicker doesn't occur.
+                if (event && event.data && event.data.event === 'keydown' && event.keyCode === 13) {
+                    val += '<br />';
+                }
+
+                shadow.css('width', $self.width());
+                shadow.html(val + (noFlickerPad === 0 ? '...' : '')); // Append '...' to resize pre-emptively.
+                $self.height(Math.max(shadow.height() + noFlickerPad, minHeight));
+            }
+
+            $self.change(update).keyup(update).keydown({event:'keydown'},update);
+            $(window).resize(update);
+
+            update();
+        });
 };
 
+// ================================================================================
 
-$textarea.autogrow();
-$miniIcons.tooltip();
+init();
 
-$(".cheatsheet-button").leanModal({
-    closeButton: ".modal_close"
+$window.load(function(){
+    start();
+})
+
+$window.bind('resize scroll', function(){
+    positionFooter();
 });
 
-$('[data-toggle="confirmation"]').confirmation({
-    popout: true,
-    singleton: true,
-    container: 'body',
-    btnOkClass: 'btn btn-default btn-sm btn-confirm',
-    btnCancelClass: 'btn btn-default btn-sm btn-cancel',
-    btnOkLabel: '<i class="icon-ok"></i>Yes',
-    btnCancelLabel: '<i class="icon-cancel"></i>No'
+$window.resize(processGalleryImages($gallery));
+$window.scroll(positionFooter);
+
+
 })
 
-$gallery.nested({
-    selector: '.gallery-image',
-    minWidth: 200,
-    gutter: 10,
-    resizeToFit: true,
-    resizeToFitOptions: {
-        resizeAny: true
-    }
-})
-})
+
+
+})(jQuery);
+
 
 

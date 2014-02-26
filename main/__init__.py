@@ -115,8 +115,6 @@ subrosa = Subrosa()
 settings = subrosa.get_settings()
 
 db = subrosa.get_db()
-print settings["disqus"]
-
 
 
 from main import views, models

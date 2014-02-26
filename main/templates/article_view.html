@@ -32,12 +32,13 @@
  </div>
  {% if settings.disqus %}
 
- 
- <div id="disqus_thread"></div>
+
+ <div id="disqus_thread" style="margin-bottom: 2em;"></div>
  <script type="text/javascript">
         var disqus_shortname = '{{ settings.disqus }}';
-        var disqus_identifier = '{{ article.id }}';
+        var disqus_identifier = '{{ article.slug }}';
         var disqus_title = '{{ article.title }}';
+        var disqus_url = '{{ current_path }}';
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
@@ -55,3 +56,7 @@
     </article>
 
     {% endblock %}
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock %}

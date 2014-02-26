@@ -9,6 +9,7 @@
 @import "_partials/gallery";
 @import "_partials/admin-panel";
 @import "_partials/header";
+@import "_partials/footer";
 
 
 // Variables
@@ -42,13 +43,26 @@ body {
 	position: relative;
 }
 
-h1,h2,h3,h4,h5.h6
+h1,h2,h3,h4,h5, h6
 {
 	font-family: @sans-font;
+	text-rendering: optimizeLegibility;
 }
+
+a:hover,
+a:active {
+	text-decoration: none;
+	color: @rose-red;
+}
+
+a {
+	.transition(all, 0.1s, ease-in);
+}
+
 #wrap {
 	min-height: 100%;
 	height: 100%;
+	height: auto !important;
 	margin: 0 auto -60px;
 }
 
@@ -78,43 +92,8 @@ textarea {
 
 
 
-#push,
-#footer {
-	height: 60px;
-}
 
-h1, h2, h3, h4, h5, h6 {
-	text-rendering: optimizeLegibility;
-}
 
-a:hover,
-a:active {
-	text-decoration: none;
-	color: @rose-red;
-}
-a {
-	.transition(all, 0.1s, ease-in);
-}
-
-.footer small {
-	text-align: center;
-	display: block;
-}
-
-.navbar-default {
-	background-color: red;
-
-}
-.navbar-inner small {
-	text-align: center;
-}
-.navbar-inner {
-	padding: 2em 0;
-}
-.navbar .navbar-nav {
-	display: inline-block;
-	float: none;
-}
 
 // --------- End Sticky footer ------------
 
