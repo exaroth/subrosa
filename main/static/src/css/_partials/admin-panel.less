@@ -46,6 +46,7 @@
     left: 60px;
     z-index: 999;
     font-family: @sans-font;
+    z-index: 999999;
     .box-shadow(0, 0, 9px, rgba(0,0,0,.15));
     .transition(all, 0.2s, ease-in-out);
     .border-radius(2px);
@@ -53,15 +54,18 @@
         color: @black-30;
     }
     .admin-subrosa {
-        background-color: @cerulean;
+        // background-color: @cerulean;
         float: left;
         position: relative;
+        background-color: rgba(73,155,234,1);
+        .background-image(radial-gradient(rgba(112,176,237,1) 0%, rgba(42,120,189,1) 100%));
         a {
-            color: white;
-                opacity: 1;
             &:hover {
                 opacity: 0.9;
             }
+        }
+        i {
+            color: white !important;
         }
 
     }

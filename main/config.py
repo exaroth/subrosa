@@ -38,6 +38,10 @@ DB_PASSWORD = None
 
 # ===================================================
 
+# Set this variable to your === disqus shortname === to have comments on your blog
+
+DISQUS = "kermitsblog"
+
 # Set this variables to adress of your liking eg "http://www.facebook.com/johndoe"
 
 FACEBOOK = "http://www.mojfacebook.pl"

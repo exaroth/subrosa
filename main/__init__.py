@@ -44,7 +44,7 @@ class Subrosa(object):
 
         # List of options that should be passed to views
 
-        self.options = ("facebook", "twitter", "github", "dynamic_site", "title",\
+        self.options = ("disqus", "facebook", "twitter", "github", "dynamic_site", "title",\
                        "articles_per_page" )
 
         for option in self.options:
@@ -115,6 +115,7 @@ subrosa = Subrosa()
 settings = subrosa.get_settings()
 
 db = subrosa.get_db()
+print settings["disqus"]
 
 
 

@@ -8,7 +8,7 @@
 
 {% block content %} 
 
-
+{% if images.count() %}
 <div class="gallery-wrapper">
 	{% for image in images %}
 	<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'external' if image.external }}" data-vert="{{ image.is_vertical }}" >
@@ -34,8 +34,18 @@
 	</div>
 
 	{% endfor %}
+</div>
+
+{% else %}
+
+<div class="alert alert-info col-md-8 col-md-offset-2">
+
+    <p class="text-center">
+    No images in gallery
+    </p>
 
 </div>
+{% endif %}
 
 
 

@@ -48,6 +48,7 @@
 .article-main {
   padding: 6%;
   position: relative;
+  margin-bottom: 100px;
 }
 @media screen and (min-width: 970px) {
   .article-main {
@@ -221,7 +222,7 @@ textarea.article-input.article-input-title {
   overflow-x: hidden;
   padding: 0 1em;
   margin-top: 1em;
-  color: #191919;
+  color: #4d4d4d;
 }
 @media screen and (max-width: 970px) {
   textarea.article-input.article-input-title {
@@ -614,12 +615,19 @@ textarea.article-input.article-input-body {
   height: 4em;
 }
 .gallery-wrapper {
-  width: 80%;
+  width: 840px;
   left: 0;
   right: 0;
   margin: 0 auto;
-  position: absolute;
+  position: relative;
   margin-top: 4em;
+  margin-bottom: 4em;
+}
+@media screen and (max-width: 970px) {
+  .gallery-wrapper {
+    width: 420px;
+    top: 100px;
+  }
 }
 .gallery-image {
   font-size: 0.8em;
@@ -796,6 +804,7 @@ textarea.article-input.article-input-body {
   left: 60px;
   z-index: 999;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
+  z-index: 999999;
   -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
@@ -814,16 +823,19 @@ textarea.article-input.article-input-body {
   color: #b3b3b3;
 }
 .admin-panel .admin-subrosa {
-  background-color: #47b1ff;
   float: left;
   position: relative;
-}
-.admin-panel .admin-subrosa a {
-  color: white;
-  opacity: 1;
+  background-color: #499bea;
+  background-image: -webkit-radial-gradient(#70b0ed 0%, #2a78bd 100%);
+  background-image: -moz-radial-gradient(#70b0ed 0%, #2a78bd 100%);
+  background-image: -o-radial-gradient(#70b0ed 0%, #2a78bd 100%);
+  background-image: radial-gradient(#70b0ed 0%, #2a78bd 100%);
 }
 .admin-panel .admin-subrosa a:hover {
   opacity: 0.9;
+}
+.admin-panel .admin-subrosa i {
+  color: white !important;
 }
 .admin-panel .admin-write,
 .admin-panel .admin-pic {
@@ -874,7 +886,6 @@ textarea.article-input.article-input-body {
 .logo-header {
   position: relative;
   width: 100%;
-  margin-bottom: 3em;
 }
 .logo-header img {
   max-width: 620px;
@@ -892,7 +903,6 @@ textarea.article-input.article-input-body {
   width: 100%;
   height: 4em;
   text-align: center;
-  margin-bottom: 3em;
 }
 .title-header h2 {
   font-weight: bold;
@@ -900,6 +910,8 @@ textarea.article-input.article-input-body {
   color: #4d4d4d;
 }
 .content-header {
+  margin-top: 3em;
+  margin-bottom: 4em;
   position: relative;
 }
 .content-header-btns {

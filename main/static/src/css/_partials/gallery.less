@@ -3,12 +3,18 @@
 // Styles related to gallery pages
 
 .gallery-wrapper {
-	width: 80%;
+	// width: 80%;
+	width: 840px;
 	left: 0;
 	right: 0;
 	margin: 0 auto;
-	position: absolute;
+	position: relative;
 	margin-top: 4em;
+	margin-bottom: 4em;
+	@media screen and (max-width: @md){
+		width: 420px;
+		top: 100px;
+	}
 }
 .gallery-image {
 	font-size: 0.8em;
