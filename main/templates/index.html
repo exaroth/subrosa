@@ -79,10 +79,7 @@
 				</a>
 			</li>
 			{% endif %}
-			<li>
-				<a href="{{ url_for('recent_feeds') }}" class=" rss-button icon-holder menu-icon"><i class="icon-rss"></i></a>
-			</li>
-		</ul>
+	</ul>
 	</div>
 </div>
 {% endblock %}
@@ -90,34 +87,26 @@
 
 {% block content %} 
 
-{% with messages = get_flashed_messages() %}
-{% for message in mesages %}
-<div class="alert alert-dismissable alert-danger">
-	<strong>Error:</strong>
-	<p>{{ message }}</p>
-</div>
-{% endfor %}
-{% endwith %}
 {% if articles.count() %}
+<div class="article-list">
 {% for article in articles %}
-<article class="article-list col-md-10 col-md-offset-1">
-	<div class="row">
-		<h6 class="timesince pull-right ">Written {{ article.date_created | timesince }}</h6>
-	</div>
+<article class="article-list-entry col-md-8 col-md-offset-2">
 	<div class="article-list-title col-xs-12">
-		<a href="{{ url_for('article_view', id = article.id) }}" class="article-title text-center">{{ article.title }}</a>
+	<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
+		<a href="{{ url_for('article_view', id = article.id) }}" class="article-title text-center"><h3>{{ article.title }}</h3></a>
 		
 	</div>
 	<div class="article-list-body col-xs-12">
-		{{ article.body |truncate(500)|markdown }}
+		{{ article.body |truncate(200)|markdown }}
 	</div>
 	{% if not loop.last %}
 	<h1 style="text-align: center">&hellip;</h1>
 	{% endif %}
 </article>
 {% endfor %}
+</div>
 {% else %}
-<h2 class="text-center" style="margin: 4em 0">No articles here yet, maybe write some cowboy...</h2>
+<h4 class="text-center text-muted" style="margin: 4em 0">No articles here yet, maybe write some cowboy...</h4>
 {% endif %}
 {% if articles.items and articles.pages > 1 %}
 <div class="bottom-pagination col-xs-4 col-xs-offset-4" style="text-align: center; margin-top: 1em" >

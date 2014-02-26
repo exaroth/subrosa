@@ -1,15 +1,12 @@
 ﻿<div class="content-header col-xs-12">
-	{%- if settings.logo -%}
-	<div class="logo-header">
-		<img src="{{url_for('send_image', filename = settings.logo)}}" alt="settings.title">
-	</div>
-	{%- else -%}
 	<div class="title-header">
 		<h2>{{ settings.title }}</h2>
+		{% if header_context %}
+		<p class="text-muted">{{ header_context }}</p>
+		{% endif %}
 	</div>
-	<nav class="content-header-btns">
+ 	<nav class="content-header-btns">
 		<a href="{{ url_for('index') }}" class="icon-holder menu-icon"><i class="icon-home"></i></a>
 		<a href="{{ g.prev }}" class="icon-holder menu-icon "><i class="icon-left-big"></i></a>
 	</nav>
-	{%- endif -%}
 </div>

@@ -20,6 +20,7 @@
     $editingBkuttons = $(".editing-button"),
     $gallery = $(".gallery-wrapper"),
     $lamp = $(".lamp-button"),
+    $adminToggle = $(".admin-panel").find(".admin-subrosa a"),
     // base thumbnail size for gallery
     thumbSize = 200,
     // variable referring to whether editing window is darkened
@@ -28,7 +29,9 @@
     articleTitleLight = "#191919",
     articleBodyLight = "#666",
     articleTitleDark = "#b7b7b7",
-    articleBodyDark = "#848383";
+    articleBodyDark = "#848383",
+    adminPanelVisible = true;
+
 
     // initialization function
     // =======================
@@ -51,7 +54,7 @@
         $lamp.on('click', function(e){
             e.preventDefault();
             dimLight();
-        })
+        });
 
 
         $(".cheatsheet-button").leanModal({
@@ -203,9 +206,9 @@ function processArticleImages(articleBody){
 
 
         var imageDescription = $("<span></span>")
-        .text(self.attr("alt"))
-        .addClass("image-desc")
-        .appendTo(imgWrapper);
+            .text(self.attr("alt"))
+            .addClass("image-desc")
+            .appendTo(imgWrapper);
 
 
     })
@@ -219,16 +222,16 @@ function processGalleryImages(galleryBody){
 
     var imgs = galleryBody.find(".gallery-image");
 
-    if(!imgs) { return }
+    if(!imgs) { return };
 
-        if(imgs.length < 5) {
+    if(imgs.length < 5) {
 
         // If less than 5 images make each one big square;
 
         imgs.each(function(){
-
             $(this).addClass("size22");
-        })
+        });
+
     } else {
         imgs.each(function(){
 
@@ -331,8 +334,7 @@ $window.bind('resize scroll', function(){
 $window.resize(processGalleryImages($gallery));
 $window.scroll(positionFooter);
 
-
-})
+});
 
 
 

@@ -220,7 +220,7 @@ def edit_article(id):
         return render_template("edit_article.html", article = article)
 
 @app.route("/article/<int:id>")
-# @cache.cached(timeout=50)
+@cache.cached(timeout=50)
 def article_view(id):
     article = Articles.get_article(id)
     if not article:
@@ -373,7 +373,6 @@ def gallerify(id):
     return "yes"
 
 
-# probably needs auth
 @app.route("/image_details/<int:id>")
 @dynamic_content
 def image_details(id):
