@@ -60,7 +60,7 @@ ARTICLES_PER_PAGE = 5
 
 # Number of images showing on page
 
-IMAGES_PER_PAGE = 3 
+IMAGES_PER_PAGE = 10
 
 # Your secret key
 
