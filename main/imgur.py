@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import urllib.request
-from main import app
 import json, base64
+import requests
 
 
 
@@ -23,34 +22,49 @@ class ImgurHandler(object):
 			self.API_URL = self.config['api']
 
 
-	def add_authorization_header(self, request):
+        def get_api(self):
+            return self.API_URL
 
-		return request.add_header('Authorization', 'Client-ID ' + self.client_id)
 
-	def build_request(self, data):
+	def add_authorization_header(self, additional = dict()):
+            """
+            Builds authorization headers for anonymous users 
+            """
 
-		url = self.API_URL
+            headers = dict(
+                Authorization = "Client-ID " + self.client_id
+            )
+            headers.update(additional)
+            return headers
 
-		req = urlib.request.Request(url)
-
-		if data is not None:
-			req.add_data(urllib.parse.urlencode(data).encode('utf-8'))
-		return req
 
 	def build_send_request(self, params = dict()):
-		b64 = base64.b64encode(config['image'])
+            """
+            Build request for sending an image 
+            """
 
-		data = dict(
-			image = b64,
-			type = 'base64',
-			name = config['name'],
-			description = config['description']
-			)
+            img = config.get("image", None)
+            if not img:
+                raise Exception("Missing image file")
 
-		data.update(params)
+            b64 = base64.b64encode(img)
 
-		return self.build_request(data)
+            data = dict(
+                    image = b64,
+                    type = 'base64',
+                    name = config['name'],
+                    description = config.get("description", None)
+                    )
 
-	def send_image(self):
+            data.update(params)
 
+            return json.dumps(data)
+
+
+	def send_image(self, params = dict(), additional = dict()):
+            req = requests.post(self.get_api(),\
+                                data = self.build_send_request(params),\
+                                headers = add_authorization_header(additional))
+
+            return req.json()
 
