@@ -1,4 +1,5 @@
-﻿
+﻿from math import ceil
+
 class Pagination(object):
 
     """

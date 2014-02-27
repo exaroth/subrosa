@@ -45,19 +45,17 @@ def db_disconnect(response):
     return response
 
 
+@app.route("/index", defaults={"page": 1})
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
 # @cache.cached(timeout=50)
 def index(page):
-    pages_per_page = app.config.get("ARTICLES_PER_PAGE", 5)
+    pages_per_page = settings.get("articles_per_page") 
     articles = Articles.get_index_articles(page, pages_per_page)
     if not tuple(articles) and page != 1:
         abort(404)
-    return render_template("index.html", articles = articles)
-
-@app.route("/index", methods = ["GET"])
-def redirect_index():
-    return redirect(url_for("index"))
+    pagination = Pagination(page, pages_per_page, Articles.get_count())
+    return render_template("index.html", pagination = pagination, articles = articles)
 
 @app.route("/admin", methods = ["GET", "POST"] )
 def admin_login():

@@ -56,7 +56,7 @@ GALLERY = False
 
 # Number of pages that shows up on index page
 
-ARTICLES_PER_PAGE = 10
+ARTICLES_PER_PAGE = 8 
 
 # Number of images showing on page
 

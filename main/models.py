@@ -113,10 +113,13 @@ class Articles(BaseModel):
         """ Returns paginated articles for the for index """
 
         try:
-            return Articles\
+            x =  Articles\
                     .select()\
                     .where(Articles.draft == False)\
                     .paginate(page, per_page)
+            for m in x:
+                print m.title
+            return x
         except:
             handle_errors("Error getting articles")
 

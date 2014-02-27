@@ -63,10 +63,28 @@
 	padding-bottom: 3em;
 	height: 300px;
 	position: relative;
-	// Add prefixes here
 	.background-size(100%, auto);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+
+.article-list-pagination {
+	position: relative;
+	height: 80px;
+	bottom: 0;
+	clear: both;
+	padding: 40px 10% 0 10%;
+	margin-bottom: 2em;
+	#prev {
+		float: left;
+	}
+	#next {
+		float: right;
+	}
+
+}
+.articles-pagination-btn {
+	width: 100px;
 }
 
 .header-field .toolbar-buttons {
@@ -118,6 +136,7 @@
 	.date-created {
 		margin: 0;
 		color: @black-60;
+		// color: darken(@cerulean, 30%);
 
 	}
 }

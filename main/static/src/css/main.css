@@ -545,6 +545,23 @@ textarea.article-input.article-input-body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+.article-list-pagination {
+  position: relative;
+  height: 80px;
+  bottom: 0;
+  clear: both;
+  padding: 40px 10% 0 10%;
+  margin-bottom: 2em;
+}
+.article-list-pagination #prev {
+  float: left;
+}
+.article-list-pagination #next {
+  float: right;
+}
+.articles-pagination-btn {
+  width: 100px;
+}
 .header-field .toolbar-buttons {
   position: absolute;
   right: 6%;
@@ -974,6 +991,12 @@ h5,
 h6 {
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+a,
+p,
+li {
+  -webkit-font-smoothing: antialiased;
 }
 a:hover,
 a:active {
