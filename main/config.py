@@ -56,11 +56,11 @@ GALLERY = False
 
 # Number of pages that shows up on index page
 
-ARTICLES_PER_PAGE = 8 
+ARTICLES_PER_PAGE = 5 
 
 # Number of images showing on page
 
-IMAGES_PER_PAGE = 20
+IMAGES_PER_PAGE = 3 
 
 # Your secret key
 

@@ -225,6 +225,11 @@ class UserImages(BaseModel):
         return UserImages.select().where(UserImages.filename == filename).exists()
 
     @staticmethod
+    def get_count(drafts = False):
+        """ Return count of images """
+        return UserImages.select().count()
+
+    @staticmethod
     def get_gallery_images(username, page, per_page, gallery = False):
         q = UserImages.select().join(Users).where(Users.username == username)
         if gallery:

@@ -135,3 +135,34 @@
 .btn-cancel:hover i{
 	color: @rose-red;
 }
+
+// =========== pagination buttons ===============
+.articles-pagination-btn,
+.gallery-pagination-btn {
+	background-color: transparent;
+	color: @black-50 !important;
+	&:hover {
+		background-color: transparent;
+
+	}
+}
+.articles-pagination-btn {
+	width: 100px;
+	.border-radius(20px);
+}
+.gallery-pagination-btn {
+	border-color: transparent !important;
+	position: relative;
+	padding: none !important;
+	margin: none !important;
+	display: block;
+	i {
+		font-size: 2em;
+	}
+}
+a[disabled=disabled],
+a[disabled] {
+	cursor: default;
+	color: @black-10 !important;
+	pointer-events: none;
+}

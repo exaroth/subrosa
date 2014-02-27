@@ -8,7 +8,7 @@
 
 {% block content %} 
 
-{% if images.count() %}
+{% if images %}
 <div class="gallery-wrapper">
 	{% for image in images %}
 	<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'external' if image.external }}" data-vert="{{ image.is_vertical }}" >
@@ -34,6 +34,21 @@
 	</div>
 
 	{% endfor %}
+		{% if pagination.has_prev %}
+		<a href="{{ url_for('user_images', username = session.user, page = pagination.page - 1)}}" class="gallery-pagination-btn" id="prev"><i class="icon-angle-left"></i></a>
+		{% else %}
+
+		<a href="#" class="gallery-pagination-btn" id="prev" disabled><i class="icon-angle-left"></i></a>
+
+		{% endif %}
+
+		{% if pagination.has_next %}
+
+		<a href="{{ url_for('user_images', username = session.user, page = pagination.page + 1)}}" id = "next" class="gallery-pagination-btn"><i class="icon-angle-right"></i></a>
+		{% else %}
+
+		<a href="#" class="gallery-pagination-btn" id = "next" disabled><i class="icon-angle-right"></i></a>
+		{% endif %}
 </div>
 
 {% else %}

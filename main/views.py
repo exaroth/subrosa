@@ -330,11 +330,13 @@ def upload_image():
 @login_required
 @dynamic_content
 def user_images(username, page):
-    images = UserImages.get_gallery_images(username, page, app.config.get("IMAGES_PER_PAGE"))
+    per_page = settings.get("images_per_page", 10)
+    images = UserImages.get_gallery_images(username, page, per_page)
     url_path = urljoin(request.url_root, "uploads/")
     if not tuple(images) and page != 1:
         abort(404)
-    return render_template("user_images.html", show_upload_btn = True, images = images, url_path = url_path)
+    pagination = Pagination(page, per_page, UserImages.get_count())
+    return render_template("user_images.html",pagination = pagination, show_upload_btn = True, images = images, url_path = url_path)
 
 @app.route("/delete_image/<int:id>")
 @login_required

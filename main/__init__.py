@@ -45,7 +45,7 @@ class Subrosa(object):
         # List of options that should be passed to views
 
         self.options = ("disqus", "facebook", "twitter", "github", "dynamic_site", "title",\
-                       "articles_per_page" )
+                       "articles_per_page", "images_per_page")
 
         for option in self.options:
             self.settings[option] = app.config.get(option.upper(), None)
