@@ -52,10 +52,11 @@ def db_disconnect(response):
 def index(page):
     pages_per_page = settings.get("articles_per_page") 
     articles = Articles.get_index_articles(page, pages_per_page)
-    if not tuple(articles) and page != 1:
+    articles_written = bool(tuple(articles))
+    if not articles_written and page != 1:
         abort(404)
     pagination = Pagination(page, pages_per_page, Articles.get_count())
-    return render_template("index.html", pagination = pagination, articles = articles)
+    return render_template("index.html", pagination = pagination, articles = articles, articles_written = articles_written)
 
 @app.route("/admin", methods = ["GET", "POST"] )
 def admin_login():
