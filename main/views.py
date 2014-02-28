@@ -55,13 +55,18 @@ def db_disconnect(response):
 @app.route("/<int:page>")
 # @cache.cached(timeout=50)
 def index(page):
-    pages_per_page = settings.get("articles_per_page") 
-    articles = Articles.get_index_articles(page, pages_per_page)
+    articles_per_page = settings.get("articles_per_page") 
+    articles = Articles.get_index_articles(page, articles_per_page)
     articles_written = bool(tuple(articles))
+    show_pagination = articles.count() > articles_per_page
     if not articles_written and page != 1:
         abort(404)
-    pagination = Pagination(page, pages_per_page, Articles.get_count())
-    return render_template("index.html", pagination = pagination, articles = articles, articles_written = articles_written)
+    pagination = Pagination(page, articles_per_page, Articles.get_count())
+    return render_template("index.html",\
+                           pagination = pagination,\
+                           articles = articles,\
+                           articles_written = articles_written,\
+                           show_pagination = show_pagination)
 
 @app.route("/admin", methods = ["GET", "POST"] )
 def admin_login():

@@ -764,6 +764,11 @@ a[disabled] {
   bottom: 0;
   position: absolute;
 }
+@media screen and (max-width: 970px) {
+  .image-upload-wrapper {
+    margin: 0 2em;
+  }
+}
 .image-upload-wrapper #imgur-credit {
   margin: 0 0 6px 0;
 }
