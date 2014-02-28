@@ -50,6 +50,10 @@ TWITTER = "http://www.twitter.com"
 
 GITHUB = False
 
+# If you want gallery integrated with Imgur service put your Imgur user_id here
+
+IMGUR_ID = "2d8bf53ae7b7e27"
+
 # Set it to True if you want gallery link on your main page
 
 GALLERY = False
@@ -75,10 +79,18 @@ SECRET_KEY = "\xdb\x81\xd4\xef\xeb\xf5z.\xd9\xf2\xd6R\xd7m1wv\xf34@\xb52\xe6\r\x
 
 ALLOWED_FILENAMES = ["jpg", "jpeg", "gif", "png", "JPG", "JPEG", "GIF", "PNG"]
 
+# Thumbnail size for imgur images
 
-# Size of longer edge of thumbnail picture (in pixels)
+# Available sizes :
+    # s -- 90x90 square
+    # b -- 160x160 square
+    # t -- 160x160
+    # m -- 320x320
+    # l -- 640x640
+    # h -- 1024x1024
 
-THUMBNAIL_SIZE = 300
+THUMBNAIL_SIZE = "m"
+
 
 # Set it to True only for development purposes, outputs errors straight to the browser
 

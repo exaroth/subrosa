@@ -203,13 +203,13 @@ class Articles(BaseModel):
 
 class UserImages(BaseModel):
 
-    filename = TextField(unique = True)
-    showcase = TextField()
+    image_link = TextField()
     date_added = DateTimeField(default = datetime.datetime.utcnow())
+    delete_hash = TextField(null = True)
     description = TextField(null = True)
     is_vertical = IntegerField(null = True)
     gallery = BooleanField(default = False)
-    external = BooleanField(default = False)
+    imgur_img = BooleanField(default = False)
     owner = ForeignKeyField(Users, related_name = "images" )
 
 
@@ -225,8 +225,7 @@ class UserImages(BaseModel):
         return UserImages.select().where(UserImages.filename == filename).exists()
 
     @staticmethod
-    def get_count(drafts = False):
-        """ Return count of images """
+    def get_count():
         return UserImages.select().count()
 
     @staticmethod
@@ -251,15 +250,15 @@ class UserImages(BaseModel):
 
     @staticmethod
     @db.commit_on_success
-    def add_image(filename, showcase, external, description, is_vertical, owner):
+    def add_image(image_link, description, is_vertical, owner, imgur_img = False, delete_hash = None):
         try:
             UserImages.create(
-                filename = filename,
-                showcase = showcase,
-                external = external,
+                image_link = image_link,
                 description = description,
                 is_vertical = is_vertical,
-                owner = owner
+                owner = owner,
+                imgur_img = imgur_img,
+                delete_hash = delete_hash,
             )
             return 1
         except Exception as e:

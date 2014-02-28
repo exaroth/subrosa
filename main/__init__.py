@@ -30,11 +30,14 @@ class Subrosa(object):
     Initialization class for subrosa 
     """
 
+    OPTIONS = ("disqus", "facebook", "twitter", "github", "dynamic_site", "title",\
+                       "articles_per_page", "images_per_page", "imgur_id", "thumbnail_size")
+
+    IMAGES = ('bg', 'bg_small', 'logo', 'portrait')
+
     def __init__(self):
 
         self.settings = dict()
-
-        self.images = ('bg', 'bg_small', 'logo', 'portrait')
 
         self.db_types = dict(
             sqlite = SqliteDatabase,
@@ -44,10 +47,8 @@ class Subrosa(object):
 
         # List of options that should be passed to views
 
-        self.options = ("disqus", "facebook", "twitter", "github", "dynamic_site", "title",\
-                       "articles_per_page", "images_per_page")
 
-        for option in self.options:
+        for option in self.OPTIONS:
             self.settings[option] = app.config.get(option.upper(), None)
 
         self.get_user_images()
@@ -55,7 +56,7 @@ class Subrosa(object):
 
 
     def get_user_images(self):
-        for name in self.images:
+        for name in self.IMAGES:
             self.settings[name] = None
             for ext in app.config["ALLOWED_FILENAMES"]:
                 filename = name + "." + ext

@@ -1,7 +1,6 @@
 from main.models import Users, Articles, UserImages
-from main import db, define_db_connection, app
+from main import db, app
 
-db = define_db_connection(app.config["DATABASE"], app.config["DATABASE_NAME"])
 
 db.connect()
 
@@ -12,5 +11,5 @@ Users.create_table()
 Articles.create_table()
 UserImages.create_table()
 
-print database created
+print "database created"
 

@@ -17,15 +17,18 @@ import os
 from datetime import datetime
 from urlparse import urljoin
 import urllib
+import StringIO
 from main import app, db, cache, settings
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
 from .models import Users, Articles, UserImages
-from .helpers import process_image, make_external, redirect_url, handle_errors
+from .helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix
 from .pagination import Pagination
 from .decorators import dynamic_content, login_required
 from werkzeug import secure_filename
 from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
+from imgur import ImgurHandler
+
 
 
 
@@ -111,14 +114,6 @@ def create_account():
             except IOError, e:
                 error = "Could not write to database, check if\
                         you have proper access\n or double check configuration options"
-                return render_template("create_account.html", error = error)
-            try:
-                os.mkdir(app.config["UPLOAD_FOLDER"] + username, 0755)
-                os.mkdir(app.config["UPLOAD_FOLDER"] + username + "/showcase", 0755)
-            except IOError, e:
-                error = "Could not create user directories, check\
-                        if you have proper credentials"
-                handle_errors(error)
                 return render_template("create_account.html", error = error)
             session["user"] = username
             flash("Account created")
@@ -265,58 +260,59 @@ def publish_article(id):
 def upload_image():
     error = None
     if request.method == "POST":
-        if request.form.get("upload-img"):
+        description = request.form.get('description', None)
+        if request.form.get("imgur-img"):
+            user_id = settings.get("imgur_id", None)
+            if not user_id:
+                error = "User id is required to upload images to imgur"
+                return render_template("upload_image.html", error = error)
             image = request.files["image"]
-            description = request.form.get("description", None)
             if not image:
                 error = "No image chosen"
                 return render_template("upload_image.html", error = error)
-            if os.path.splitext(image.filename)[1][1:] not in app.config["ALLOWED_FILENAMES"]:
+            extension = split_filename(image.filename, True)
+            if extension not in app.config["ALLOWED_FILENAMES"]:
                 error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
                 return render_template("upload_image.html", error = error)
-            # add checkbox functionality
             filename = secure_filename(image.filename.strip())
-            image_exists = UserImages.check_exists(filename)
-            if image_exists:
-                error = "Image with this filename already exists"
-                return render_template("upload_image.html", error = error)
-            # !db fn
             user = Users.get_user_by_username(session["user"])
-            try:
-                image_filename, show_filename, is_vertical = process_image(image = image, filename = filename , username = user.username)
-                # mess
-                show_path = request.url_root + "uploads/" + user.username + "/showcase/" + show_filename
-                full_path = request.url_root + "uploads/" + user.username + "/" + image_filename
-                try:
-                    UserImages.add_image(filename = full_path,\
-                                        showcase = show_path,\
-                                        description = description,\
-                                        is_vertical = is_vertical,\
-                                        external = False,\
-                                        owner = user)
-                    return redirect(url_for("user_images", username = user.username))
-                except:
-                    error = "Error writing to database"
-                    return render_template("upload_image.html", error = error)
-            except Exception, e:
-                error = "Error occured while processing the image"
-                handle_errors(error)
+            config = dict(
+                image = image,
+                name = filename,
+                description = description
+            )
+            response = ImgurHandler(user_id, config).send_image()
+            if not response["success"]:
+                error = "Error uploading to imgur"
                 return render_template("upload_image.html", error = error)
+            response_data = response["data"]
+            image_link = response_data["link"]
+            is_vertical = response_data["width"] + 10 < response_data["height"]
+            delete_hash = response_data["deletehash"]
+            try:
+                UserImages.add_image(image_link = image_link,\
+                                    description = description,\
+                                    delete_hash = delete_hash,\
+                                    is_vertical = is_vertical,\
+                                    imgur_img = True,\
+                                    owner = user)
+                return redirect(url_for("user_images", username = user.username))
+            except:
+                error = "Error writing to database"
+                return render_template("upload_image.html", error = error)
+            return render_template("upload_image.html", error = response)
         elif request.form.get('save-link'):
             link = request.form.get('image-link', None)
             if not link:
                 error = "No link given"
                 return render_template("upload_image.html", error = error)
-            # check for existence
-            description = request.form.get('description', None)
             user = Users.get_user_by_username(session["user"])
             try:
-                UserImages.add_image(filename = link,\
-                                    showcase = link,\
+                UserImages.add_image(image_link = image_link,\
                                     description = description,\
                                     # mess
                                     is_vertical = True,\
-                                    external = True,\
+                                    imgur_img = False,\
                                     owner = user)
                 return redirect(url_for("user_images", username = user.username))
             except Exception as e:
@@ -333,11 +329,12 @@ def upload_image():
 def user_images(username, page):
     per_page = settings.get("images_per_page", 10)
     images = UserImages.get_gallery_images(username, page, per_page)
+    images_uploaded = bool(tuple(images))
     url_path = urljoin(request.url_root, "uploads/")
     if not tuple(images) and page != 1:
         abort(404)
     pagination = Pagination(page, per_page, UserImages.get_count())
-    return render_template("user_images.html",pagination = pagination, show_upload_btn = True, images = images, url_path = url_path)
+    return render_template("user_images.html", images_uploaded = images_uploaded, pagination = pagination, show_upload_btn = True, images = images, url_path = url_path)
 
 @app.route("/delete_image/<int:id>")
 @login_required
@@ -346,26 +343,21 @@ def delete_image(id):
     image = UserImages.get_image(id)
     if not image:
         abort(404)
-    filename = image.filename.rsplit('/', 1)[-1]
-    showcase = image.showcase.rsplit('/', 1)[-1]
     # prevent from deleting images by people other by the owner
     if image.owner.username != session["user"]:
         flash("Don't try to delete other\'s dude\'s pictures...dude")
         return redirect(url_for("index"))
     else:
-        if not image.external:
-            try:
-                os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.owner.username, filename))
-                os.remove(os.path.join(app.config["UPLOAD_FOLDER"], image.owner.username, 'showcase', showcase))
-            except IOError, e:
-                flash("Can\'t delete files from disk")
-                return redirect(url_for("index"))
         try:
             UserImages.delete_image(image)
         except:
             error = "Error occured when writing to database"
             flash(error)
             return redirect(url_for("index"))
+        if image.imgur_img:
+            resp = ImgurHandler(settings["imgur_id"]).delete_image(image.delete_hash)
+            if not resp["success"]:
+                handle_errors(resp)
         return redirect(url_for("user_images", username = session["user"]))
 
 @app.route("/gallerify/<int:id>")
@@ -444,7 +436,8 @@ def timesince(dt, default="just now"):
 @app.context_processor
 def utility_processor():
     return dict(settings = settings,\
-                current_path = request.url_root + request.path[1:]
+                current_path = request.url_root + request.path[1:],
+                add_thumbnail_affix = add_thumbnail_affix
         )
 
 @app.errorhandler(404)

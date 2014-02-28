@@ -49,14 +49,7 @@
 	</table>
 </div>
 {% else %}
-<div class="alert alert-info col-md-8 col-md-offset-2">
-
-    <p class="text-center"><strong>Oops
-	</strong>
-Seems you haven't written anything yet
-	    <a class="btn btn-danger btn-sm" href="{{ url_for('create_article') }}" style="margin-left: 1em">Do it now</a></p>
-
-</div>
+<h4 class="text-center text-muted" style="margin: 4em 0">No articles written yet</h4>
 {% endif %}
 
 {% endblock %}

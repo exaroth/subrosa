@@ -1,8 +1,7 @@
 from math import ceil
 from functools import wraps
 from flask import session, redirect, url_for, request
-from PIL import Image
-from main import app
+from main import app, settings
 import os
 from urlparse import urljoin
 
@@ -21,6 +20,22 @@ def redirect_url():
     return request.args.get('next') or \
            request.referrer or \
            url_for('index')
+
+def split_filename(filename, extension_only = False):
+    if "." in filename:
+        parts = os.path.splitext(filename)
+        if extension_only:
+            return parts[1][1:]
+        return parts
+    return ""
+
+def add_thumbnail_affix(url, affix = settings.get("thumbnail_size", "m")):
+    url_parts = url.rpartition("/")
+    parts = split_filename(url_parts[2])
+    return url_parts[0] + "/" + parts[0] + affix + parts[1]
+
+
+
 
 
 def handle_errors(mess = "Unknown Error"):
@@ -51,44 +66,3 @@ def handle_errors(mess = "Unknown Error"):
         logger.debug("Traceback: %s" % exc_traceback)
     return
 
-
-
-def process_image(image, filename, username):
-    """
-    Simple image processing function 
-    """
-    # Base width of longer edge
-    base = app.config["THUMBNAIL_SIZE"]
-    try:
-        # Open an image for processing
-        img = Image.open(image)
-
-        # Check if image is vertical
-
-        vertical = (img.size[0] < img.size[1])
-
-        # Get a ratio for processing shorter edge
-
-        ratio = base / float(img.size[vertical] )
-
-        # Compute width of shorter edge
-
-        shorter = int(img.size[not vertical] * ratio)
-        dim = (shorter, base) if vertical else (base, shorter)
-        showcase_img = img.resize(dim, Image.ANTIALIAS)
-        img_path = os.path.join(app.config["UPLOAD_FOLDER"], username + "/")
-
-        # Create thumbnail filename - extension is the same as base file
-
-        show_filename = os.path.splitext(filename)[0] + ".showcase" + os.path.splitext(image.filename)[1]
-        full_filename = os.path.splitext(filename)[0] + os.path.splitext(image.filename)[1]
-        try:
-            showcase_img.save(os.path.join(img_path, "showcase/" , show_filename),"JPEG" )
-            img.save(img_path + full_filename, "JPEG")
-            return (full_filename, show_filename, int(vertical))
-        except IOError, e:
-                handle_errors(e)
-                raise 
-    except Exception as e:
-        handle_errors(e)
-        raise 

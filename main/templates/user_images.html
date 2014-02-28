@@ -8,12 +8,12 @@
 
 {% block content %} 
 
-{% if images %}
+{% if images_uploaded %}
 <div class="gallery-wrapper">
 	{% for image in images %}
-	<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'external' if image.external }}" data-vert="{{ image.is_vertical }}" >
+	<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'imgur' if image.imgur_img }}" data-vert="{{ image.is_vertical }}" >
 		<a href="{{ image.filename }}" style="color: #fff">
-			<div class="img-holder" style="background-image: url({{ image.showcase }})">
+			<div class="img-holder" style="background-image: url({{ add_thumbnail_affix(image.image_link) if image.imgur_img else image.image_link }})">
 				<div class="img-overlay"></div>
 				<div class="img-desc">
 					{% if image.description %}
@@ -53,13 +53,8 @@
 
 {% else %}
 
-<div class="alert alert-info col-md-8 col-md-offset-2">
+<h4 class="text-center text-muted" style="margin: 4em 0">No images uploaded yet</h4>
 
-    <p class="text-center">
-    No images in gallery
-    </p>
-
-</div>
 {% endif %}
 
 
