@@ -19,6 +19,7 @@
     $articleBody = $(".article-main").find(".article-body"),
     $editingBkuttons = $(".editing-button"),
     $gallery = $(".gallery-wrapper"),
+    $galleryModal = $('.gallery-modal'),
     $lamp = $(".lamp-button"),
     $adminToggle = $(".admin-panel").find(".admin-subrosa a"),
     // base thumbnail size for gallery
@@ -32,7 +33,6 @@
     articleBodyDark = "#848383",
     adminPanelVisible = true;
 
-
     // initialization function
     // =======================
 
@@ -43,6 +43,7 @@
             e.preventDefault();
             $editForm.submit();
         });
+
         $createArticleButton.click(function(e){
             e.preventDefault();
             $createForm.submit();
@@ -63,10 +64,11 @@
         $('#imgur-upload').change(function(){
             console.log("changed")
            $('#subfile').val($(this).val());
-       });
+        });
+
         $('#upload-img').click(function(){
             $(".loading").fadeIn(200);
-        })
+        });
 
         $('[data-toggle="confirmation"]').confirmation({
             popout: true,
@@ -76,6 +78,28 @@
             btnCancelClass: 'btn btn-default btn-sm btn-cancel',
             btnOkLabel: '<i class="icon-ok"></i>Yes',
             btnCancelLabel: '<i class="icon-cancel"></i>No'
+        });
+
+
+        $(".show-img").click(function(e){
+            e.preventDefault();
+            $galleryModal.modal('show');
+            var href = $(this).data('href');
+            var newImg = new Image;
+            newImg.src = href;
+
+            $(newImg).load(function(){
+                $galleryModal.find('.modal-body').append(newImg);
+                $galleryModal.css({
+                    width: 'auto',
+                    height: 'auto'
+                });
+
+            });
+        });
+        $galleryModal.on('hide.bs.modal', function(){
+            $(this).find('.modal-body').empty();
+
         })
 
 

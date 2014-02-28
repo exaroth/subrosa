@@ -6,13 +6,26 @@
 {% endwith %}
 {% endblock %}
 
+{% block modals %}
+<div class="gallery-modal modal fade" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" type="button" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
 {% block content %} 
 
 {% if images_uploaded %}
 <div class="gallery-wrapper">
 	{% for image in images %}
 	<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'imgur' if image.imgur_img }}" data-vert="{{ image.is_vertical }}" >
-		<a href="{{ image.image_link }}" style="color: #fff">
+		<a href="#" class="show-img" data-href="{{ image.image_link }}" style="color: #fff">
 			<div class="img-holder" style="background-image: url({{ add_thumbnail_affix(image.image_link) if image.imgur_img else image.image_link }})">
 				<div class="img-overlay"></div>
 				<div class="img-desc">
@@ -34,21 +47,21 @@
 	</div>
 
 	{% endfor %}
-		{% if pagination.has_prev %}
-		<a href="{{ url_for('user_images', username = session.user, page = pagination.page - 1)}}" class="gallery-pagination-btn" id="prev"><i class="icon-angle-left"></i></a>
-		{% else %}
+	{% if pagination.has_prev %}
+	<a href="{{ url_for('user_images', username = session.user, page = pagination.page - 1)}}" class="gallery-pagination-btn" id="prev"><i class="icon-angle-left"></i></a>
+	{% else %}
 
-		<a href="#" class="gallery-pagination-btn" id="prev" disabled><i class="icon-angle-left"></i></a>
+	<a href="#" class="gallery-pagination-btn" id="prev" disabled><i class="icon-angle-left"></i></a>
 
-		{% endif %}
+	{% endif %}
 
-		{% if pagination.has_next %}
+	{% if pagination.has_next %}
 
-		<a href="{{ url_for('user_images', username = session.user, page = pagination.page + 1)}}" id = "next" class="gallery-pagination-btn"><i class="icon-angle-right"></i></a>
-		{% else %}
+	<a href="{{ url_for('user_images', username = session.user, page = pagination.page + 1)}}" id = "next" class="gallery-pagination-btn"><i class="icon-angle-right"></i></a>
+	{% else %}
 
-		<a href="#" class="gallery-pagination-btn" id = "next" disabled><i class="icon-angle-right"></i></a>
-		{% endif %}
+	<a href="#" class="gallery-pagination-btn" id = "next" disabled><i class="icon-angle-right"></i></a>
+	{% endif %}
 </div>
 
 {% else %}
