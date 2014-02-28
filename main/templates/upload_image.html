@@ -13,18 +13,26 @@
     <form action="" role="form" method="POST" accept-charset="utf-8" class="form-horizontal" enctype="multipart/form-data">
         {% if settings.imgur_id %}
         <div class="form-group">
-        <span>
-            <p id="imgur-credit"><small>Service provided by <a href="http://www.imgur.com"> <img src="{{ url_for('static', filename = 'src/img/imgur.png')}}" alt="imgur"> </a></small></p>
-            <div class="input-group">
-                <div class="input-group-btn">
-                    <input class="btn btn-default" type="submit" value="Upload Image" name="imgur-img" style="width: 120px;" />
+            <span>
+                <p id="imgur-credit"><small>Service provided by <a href="http://www.imgur.com">
+                <img src="{{ url_for('static', filename = 'src/img/imgur.png')}}" alt="imgur"> </a>
+                <img src="{{ url_for('static', filename = 'src/img/ajax-loader.gif')}}" alt="loading" style="display: none" class="loading"></small></p>
+                <div class="input-group">
 
-                    
+                    <div class="input-group-btn">
+                        <input class="btn btn-default" type="submit" value="Upload Image" name="imgur-img" id="upload-img" style="width: 120px;" />
+                    </div>
+
+                    <input type="file" name="image" title="Upload" class="" style="visibility: hidden; width: 0; height: 0; margin: 0;" id="imgur-upload" value="" />
+                    <input type="text" name="subfile" id="subfile" class="subfile form-control">
+
+                    <div class="input-group-btn">
+                        <a class="btn btn-default" onclick="$('#imgur-upload').click()">Browse</a>
+                    </div>
+
                 </div>
-                <input type="file" name="image" class="form-control" style="display: inline" id="image-upload-filename" value="" />
-            </div>
 
-        </span>
+            </span>
 
         </div>
         {% endif %}

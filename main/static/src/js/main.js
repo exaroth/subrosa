@@ -59,7 +59,14 @@
 
         $(".cheatsheet-button").leanModal({
             closeButton: ".modal_close"
-        });
+        }); 
+        $('#imgur-upload').change(function(){
+            console.log("changed")
+           $('#subfile').val($(this).val());
+       });
+        $('#upload-img').click(function(){
+            $(".loading").fadeIn(200);
+        })
 
         $('[data-toggle="confirmation"]').confirmation({
             popout: true,
@@ -111,24 +118,24 @@
             dark = true;
 
         } else {
-           $body.stop().animate({
+         $body.stop().animate({
             backgroundColor: "#fff"
         }, 1200);
-           $articleInputTitle.stop().animate({
+         $articleInputTitle.stop().animate({
             color: articleTitleLight
         }, 1200);
-           $articleInputBody.stop().animate({
+         $articleInputBody.stop().animate({
             color: articleBodyLight
         }, 1200);
-           dark = false;
+         dark = false;
 
-       }
-
-
-   };
+     }
 
 
-   function positionFooter(){
+ };
+
+
+ function positionFooter(){
     // Sticky footer code
     if($(document.body).height() < $(window).height()){
         $('#footer').css({
@@ -196,8 +203,8 @@ function processArticleImages(articleBody){
         var elToMove = self.parent().is("a") ? self.parent() : self;
         // Wrap image element or anchor with div and return it
         var imgWrapper = elToMove
-            .wrap('<div class="image-wrapper"></div>')
-            .parent();
+        .wrap('<div class="image-wrapper"></div>')
+        .parent();
         if (imgIsHorizontal(self)){
             imgWrapper.addClass("centered-image-wrapper");
         } else {
@@ -206,9 +213,9 @@ function processArticleImages(articleBody){
 
 
         var imageDescription = $("<span></span>")
-            .text(self.attr("alt"))
-            .addClass("image-desc")
-            .appendTo(imgWrapper);
+        .text(self.attr("alt"))
+        .addClass("image-desc")
+        .appendTo(imgWrapper);
 
 
     })
@@ -269,38 +276,38 @@ function processGalleryImages(galleryBody){
    $.fn.autogrow = function(options)
    {
       return this.filter('textarea').each(function() {
-         var self         = this;
-         var $self        = $(self);
-         var minHeight    = $self.height();
-         var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
+       var self         = this;
+       var $self        = $(self);
+       var minHeight    = $self.height();
+       var noFlickerPad = $self.hasClass('autogrow-short') ? 0 : parseInt($self.css('lineHeight')) || 0;
 
-         var shadow = $('<div></div>').css({
-            position:    'absolute',
-            top:         -10000,
-            left:        -10000,
-            width:       $self.width(),
-            fontSize:    $self.css('fontSize'),
-            fontFamily:  $self.css('fontFamily'),
-            fontWeight:  $self.css('fontWeight'),
-            lineHeight:  $self.css('lineHeight'),
-            resize:      'none',
-            'word-wrap': 'break-word'
-        }).appendTo(document.body);
+       var shadow = $('<div></div>').css({
+        position:    'absolute',
+        top:         -10000,
+        left:        -10000,
+        width:       $self.width(),
+        fontSize:    $self.css('fontSize'),
+        fontFamily:  $self.css('fontFamily'),
+        fontWeight:  $self.css('fontWeight'),
+        lineHeight:  $self.css('lineHeight'),
+        resize:      'none',
+        'word-wrap': 'break-word'
+    }).appendTo(document.body);
 
-         var update = function(event)
-         {
-            var times = function(string, number)
-            {
-               for (var i=0, r=''; i<number; i++) r += string;
-                  return r;
-          };
+       var update = function(event)
+       {
+        var times = function(string, number)
+        {
+         for (var i=0, r=''; i<number; i++) r += string;
+          return r;
+  };
 
-          var val = self.value.replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/&/g, '&amp;')
-          .replace(/\n$/, '<br/>&nbsp;')
-          .replace(/\n/g, '<br/>')
-          .replace(/ {2,}/g, function(space){ return times('&nbsp;', space.length - 1) + ' ' });
+  var val = self.value.replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/&/g, '&amp;')
+  .replace(/\n$/, '<br/>&nbsp;')
+  .replace(/\n/g, '<br/>')
+  .replace(/ {2,}/g, function(space){ return times('&nbsp;', space.length - 1) + ' ' });
 
                 // Did enter get pressed?  Resize in this keydown event so that the flicker doesn't occur.
                 if (event && event.data && event.data.event === 'keydown' && event.keyCode === 13) {
