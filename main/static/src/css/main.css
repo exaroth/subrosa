@@ -764,6 +764,14 @@ a[disabled] {
   bottom: 0;
   position: absolute;
 }
+.image-upload-wrapper #imgur-credit {
+  margin: 0 0 6px 0;
+}
+.image-upload-wrapper #imgur-credit img {
+  display: inline-block;
+  height: 20px;
+  margin-left: 4px;
+}
 .external {
   border: 1px solid;
   border-color: #66afe9;
@@ -1105,25 +1113,4 @@ a {
 textarea {
   background-color: transparent !important;
   resize: none;
-}
-.pagination .active a {
-  background-color: #333333;
-  border: none;
-  -webkit-border-radius: 0;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 0;
-  -moz-background-clip: padding;
-  border-radius: 0;
-  background-clip: padding-box;
-}
-.pagination .active a:hover {
-  background-color: #666666;
-}
-.pagination > li > a:hover {
-  -webkit-border-radius: 0;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 0;
-  -moz-background-clip: padding;
-  border-radius: 0;
-  background-clip: padding-box;
 }

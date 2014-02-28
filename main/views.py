@@ -20,7 +20,6 @@ import urllib
 import StringIO
 from main import app, db, cache, settings
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
-from .models import Users, Articles, UserImages
 from .helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix
 from .pagination import Pagination
 from .decorators import dynamic_content, login_required
@@ -28,6 +27,9 @@ from werkzeug import secure_filename
 from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
 from imgur import ImgurHandler
+from models.ArticlesModel import Articles
+from models.UserImagesModel import UserImages
+from models.UsersModel import Users
 
 
 
