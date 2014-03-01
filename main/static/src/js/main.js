@@ -71,15 +71,7 @@ $(document).ready(function(){
             $(".loading").fadeIn(200);
         });
 
-        $('[data-toggle="confirmation"]').confirmation({
-            popout: true,
-            singleton: true,
-            container: 'body',
-            btnOkClass: 'btn btn-default btn-sm btn-confirm',
-            btnCancelClass: 'btn btn-default btn-sm btn-cancel',
-            btnOkLabel: '<i class="icon-ok"></i>Yes',
-            btnCancelLabel: '<i class="icon-cancel"></i>No'
-        });
+        positionFooter();
 
         $imageLinks.magnificPopup({
             type: 'image',
@@ -93,6 +85,24 @@ $(document).ready(function(){
 
             }
         });
+        $('.show-src').magnificPopup({
+            type:'inline',
+            midClick: true,
+            callbacks: {
+                beforeOpen: function() {
+                    var mp   = $.magnificPopup.instance,
+                    t        = $(mp.st.el),
+                    full_src = t.data('fullsrc'),
+                    thumb    = t.data('thumb'),
+                    inputs   = $('.source-window').find('input[type="text"]');
+
+                    $(inputs[0]).val(full_src);
+                    $(inputs[1]).val(thumb);
+
+                }
+            }
+        });
+
         // Prevent double clicks
         $("a, button").one("click", function() {
             $(this).click(function () { return false; });
@@ -118,7 +128,15 @@ $(document).ready(function(){
                 resizeAny: true
             }
         });
-        positionFooter();
+        $('[data-toggle="confirmation"]').confirmation({
+            popout: true,
+            singleton: true,
+            container: 'body',
+            btnOkClass: 'btn btn-default btn-sm btn-confirm',
+            btnCancelClass: 'btn btn-default btn-sm btn-cancel',
+            btnOkLabel: '<i class="icon-ok"></i>Yes',
+            btnCancelLabel: '<i class="icon-cancel"></i>No'
+        });
 
     };
 

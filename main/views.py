@@ -80,6 +80,9 @@ def admin_login():
 
     error = None
     if request.method == "POST":
+        token = session.pop('_csrf_token', None)
+        if not token or token != request.form.get('_csrf_token'):
+            abort(403)
         username = request.form.get("username").strip()
         password = request.form.get("password").strip()
         user = Users.get_user_by_username(username)
@@ -476,13 +479,6 @@ def utility_processor():
 @app.errorhandler(404)
 def http_not_found(err):
     return render_template("error.html"), 404
-
-@app.before_request
-def csrf_protect():
-    if request.method == "POST":
-        token = session.pop('_csrf_token', None)
-        if not token or token != request.form.get('_csrf_token'):
-            abort(403)
 
 def generate_csrf_token():
     if '_csrf_token' not in session:

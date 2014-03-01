@@ -2,14 +2,12 @@
 // Styles related to Single article view
 
 
-
 .article-body  p,
 .article-body li  {
 	font-size: 1.6em;
 	line-height: 1.6em;
 	@media screen and (min-width: @md){
-		
-		font-size: 1.5em !important;
+		font-size: 1.4em !important;
 		line-height: 1.6em !important;
 	}
 }
@@ -23,15 +21,15 @@
 	line-height: 1.6em;
 	color: rgba(0,0,0,.8);
 	margin-bottom: 2em;
-		&::after {
-			content: "\2026";
-			position: relative;
-			display: block;
-			text-align: center;
-			margin-top: 0.5em;
-			font-size: 2em;
-			width: 100%;
-		}
+	&::after {
+		content: "\2026";
+		position: relative;
+		display: block;
+		text-align: center;
+		margin-top: 0.5em;
+		font-size: 2em;
+		width: 100%;
+	}
 
 	@media screen and (min-width: @md){
 		font-size: 1.4em;

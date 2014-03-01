@@ -135,6 +135,24 @@
 .btn-cancel:hover i{
 	color: @rose-red;
 }
+.image-toolbar {
+	i {
+		.transition(all, 0.2s, ease-in);
+	}
+	.icon-plus:hover,
+	.icon-plus:active {
+		color: @cerulean
+	}
+	.icon-minus:hover {
+		color: @orange
+	}
+	.icon-cancel:hover {
+		color: @rose-red;
+	}
+	.icon-at:hover {
+		color: @yellow
+	}
+}
 
 // =========== pagination buttons ===============
 .articles-pagination-btn,
@@ -143,7 +161,6 @@
 	color: @black-50 !important;
 	&:hover {
 		background-color: transparent;
-
 	}
 }
 .articles-pagination-btn {
