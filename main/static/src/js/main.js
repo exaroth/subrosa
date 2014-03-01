@@ -1,7 +1,7 @@
 (function($) {
 
 
-    $(document).ready(function(){
+$(document).ready(function(){
 
     // Variables
 
@@ -43,7 +43,7 @@
 
     function init(){
 
-        wWidth = $window.width();
+        wWidth  = $window.width();
         wHeight = $window.height();
 
         $updateArticleButton.click(function(e){

@@ -20,7 +20,7 @@
 	<div class="admin-menu">
 		<ul class="list-unstyled">
 			<li class="menu-item"><a href="#"><i class="icon-angle-down"></i>Menu</a></li>
-			<li class="menu-item"><a href="{{ url_for('user_images', username = session.user )}}">Gallery</a></li>
+			<li class="menu-item"><a href="{{ url_for('user_images', username = session.user )}}">Images</a></li>
 			<li class="menu-item"><a href="{{ url_for('account', username = session.user)}}">Dashboard</a></li>
 			<li class="menu-item"><a href="{{ url_for('logout')}}">Logout</a></li>
 		</ul>

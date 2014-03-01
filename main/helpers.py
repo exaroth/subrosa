@@ -4,6 +4,7 @@ from flask import session, redirect, url_for, request
 from main import app, settings
 import os
 from urlparse import urljoin
+import string, random
 
 
 def make_external(id):
@@ -30,11 +31,14 @@ def split_filename(filename, extension_only = False):
     return ""
 
 def add_thumbnail_affix(url, affix = settings.get("thumbnail_size", "m")):
+    """ add thumbnail affix to gallery picture """
     url_parts = url.rpartition("/")
     parts = split_filename(url_parts[2])
     return url_parts[0] + "/" + parts[0] + affix + parts[1]
 
-
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    """ Generate random string """
+    return ''.join(random.choice(chars) for _ in range(size))
 
 
 

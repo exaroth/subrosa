@@ -20,7 +20,7 @@ import urllib
 import StringIO
 from main import app, db, cache, settings
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
-from .helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix
+from .helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix, id_generator
 from .pagination import Pagination
 from .decorators import dynamic_content, login_required
 from werkzeug import secure_filename
@@ -477,3 +477,17 @@ def utility_processor():
 def http_not_found(err):
     return render_template("error.html"), 404
 
+@app.before_request
+def csrf_protect():
+    if request.method == "POST":
+        token = session.pop('_csrf_token', None)
+        if not token or token != request.form.get('_csrf_token'):
+            abort(403)
+
+def generate_csrf_token():
+    if '_csrf_token' not in session:
+        session['_csrf_token'] = id_generator()
+        print session['_csrf_token']
+    return session['_csrf_token']
+
+app.jinja_env.globals['csrf_token'] = generate_csrf_token  
