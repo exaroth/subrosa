@@ -19,8 +19,8 @@
     $articleBody = $(".article-main").find(".article-body"),
     $editingBkuttons = $(".editing-button"),
     $gallery = $(".gallery-wrapper"),
-    $galleryModal = $('.gallery-modal'),
     $lamp = $(".lamp-button"),
+    $imageLinks = $(".show-img"),
     $adminToggle = $(".admin-panel").find(".admin-subrosa a"),
     // base thumbnail size for gallery
     thumbSize = 200,
@@ -31,13 +31,19 @@
     articleBodyLight = "#666",
     articleTitleDark = "#b7b7b7",
     articleBodyDark = "#848383",
-    adminPanelVisible = true;
+    adminPanelVisible = true,
+    wWidth = null,
+    wHeight = null
 
     // initialization function
     // =======================
 
 
     function init(){
+
+        wWidth = $window.width();
+        wHeight = $window.height();
+        console.log(wHeight);
 
         $updateArticleButton.click(function(e){
             e.preventDefault();
@@ -58,9 +64,9 @@
         });
 
 
-        $(".cheatsheet-button").leanModal({
-            closeButton: ".modal_close"
-        }); 
+        // $(".cheatsheet-button").leanModal({
+        //     closeButton: ".modal_close"
+        // }); 
         $('#imgur-upload').change(function(){
             console.log("changed")
            $('#subfile').val($(this).val());
@@ -80,28 +86,18 @@
             btnCancelLabel: '<i class="icon-cancel"></i>No'
         });
 
+        $imageLinks.magnificPopup({
+            type: 'image',
+            closeBtnInside: false,
+            mainClass: 'mfp-fade',
+            gallery: {
+                enabled: true,
+                preload: [1,2],
+                navigateByImgClick: true,
+                arrowMarkup: '<button type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
 
-        $(".show-img").click(function(e){
-            e.preventDefault();
-            $galleryModal.modal('show');
-            var href = $(this).data('href');
-            var newImg = new Image;
-            newImg.src = href;
-
-            $(newImg).load(function(){
-                $galleryModal.find('.modal-body').append(newImg);
-                $galleryModal.css({
-                    width: 'auto',
-                    height: 'auto'
-                });
-
-            });
-        });
-        $galleryModal.on('hide.bs.modal', function(){
-            $(this).find('.modal-body').empty();
-
+            }
         })
-
 
     };
 
@@ -362,7 +358,11 @@ $window.bind('resize scroll', function(){
     positionFooter();
 });
 
-$window.resize(processGalleryImages($gallery));
+$window.resize(function(){
+    wHeight = $window.height();
+    wWidth = $window.width();
+})
+
 $window.scroll(positionFooter);
 
 });

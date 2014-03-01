@@ -6,26 +6,13 @@
 {% endwith %}
 {% endblock %}
 
-{% block modals %}
-<div class="gallery-modal modal fade" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button class="close" type="button" data-dismiss="modal">&times;</button>
-			</div>
-			<div class="modal-body"></div>
-		</div>
-	</div>
-</div>
-{% endblock %}
-
 {% block content %} 
 
 {% if images_uploaded %}
 <div class="gallery-wrapper">
 	{% for image in images %}
 	<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'imgur' if image.imgur_img }}" data-vert="{{ image.is_vertical }}" >
-		<a href="#" class="show-img" data-href="{{ image.image_link }}" style="color: #fff">
+		<a href="#" class="show-img ajax-popup-link" data-mfp-src="{{ image.image_link }}" style="color: #fff">
 			<div class="img-holder" style="background-image: url({{ add_thumbnail_affix(image.image_link) if image.imgur_img else image.image_link }})">
 				<div class="img-overlay"></div>
 				<div class="img-desc">
@@ -41,8 +28,6 @@
 		</a>
 		<div class="image-toolbar">
 			<span class="img-icons"><a href="#" data-toggle="confirmation" data-href="{{ url_for('delete_image', id = image.id)}}"><i class="icon-cancel"></i></a></span>
-
-
 		</div>
 	</div>
 

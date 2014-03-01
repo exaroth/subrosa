@@ -19,5 +19,6 @@
     "jquery-leanmodal": "*",
     "bootstrap": "~3.1.1",
     "jquery-color": "~2.1.2",
+    "magnific-popup": "~0.9.9"
   }
 }

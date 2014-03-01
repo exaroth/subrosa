@@ -315,7 +315,7 @@ def upload_image():
                 return render_template("upload_image.html", error = error)
             user = Users.get_user_by_username(session["user"])
             try:
-                UserImages.add_image(image_link = image_link,\
+                UserImages.add_image(image_link = link,\
                                     description = description,\
                                     # mess
                                     is_vertical = True,\
@@ -371,19 +371,6 @@ def delete_image(id):
 @login_required
 def gallerify(id):
     return "yes"
-
-
-@app.route("/image_details/<int:id>")
-@dynamic_content
-def image_details(id):
-    image = UserImages.get_image(id)
-    if not image:
-        abort(404)
-    try:
-        filename = image.filename.rsplit('/', 1)[1] 
-    except:
-        filename = image.filename
-    return render_template("image_details.html",filename = filename, image = image)
 
 
 @app.route("/recent.atom")
