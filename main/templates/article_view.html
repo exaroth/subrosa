@@ -1,60 +1,76 @@
 {% extends "layout.html" %}
 
+{% block modals %}
+<style>
+.content-header {
+    /*background-image: url({{ url_for("send_image", filename=settings.bg) }});*/
+    background-repeat: no-repeat;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    background-size: 100% auto;
+    background-attachment: fixed;
+  };
+</style>
+{% endblock %}
+
 {% block titlebar %}
 {% include "header.html" %}
 {% endblock %}
 
 {% block content %}
 
-<article class="col-md-8 col-md-offset-2 ">
+<div class="single-article">
+  <article class="col-md-8 col-md-offset-2 ">
 
-  <div class="row article-header">
-    <h5 class="article-timesince">
+    <div class="article-main">
       {% if session.user and session.user == article.author.username %}
-      <a class="btn btn-default btn-xs" data-href="{{ url_for('delete_article', id = article.id) }}" data-toggle="confirmation" href="#">Delete</a>
-      <a class="btn btn-default btn-xs" href="{{ url_for('edit_article', id = article.id) }}" style="margin-right: 10px;">Edit</a>
-      {%- endif -%}
-      Written {{ article.date_created | timesince }}
-      {% if article.author.real_name %}
-      by {{ article.author.real_name }}
-      {%- endif -%}
-    </h5>
-  </div>
+        <a class="btn btn-default btn-xs" data-href="{{ url_for('delete_article', id = article.id) }}" data-toggle="confirmation" href="#">Delete</a>
+        <a class="btn btn-default btn-xs" href="{{ url_for('edit_article', id = article.id) }}" style="margin-right: 10px;">Edit</a>
+      {% endif %}
+      <h5 class="article-timesince">
+        Published {{ article.date_created | timesince }} {% if article.author.real_name %} by {{ article.author.real_name }} {%- endif -%}
+      </h5>
 
-  <div class="article-main">
+      <h1 class="article-title" >{{ article.title }}</h1>
+      {% if article.header %}
+      <h2 class="article-header"> {{ article.header }}</h2>
+      {% endif %}
+      <div class="article-divider"></div>
+      <div class="article-body">
+       {{ article.body | markdown }}
+     </div>
 
-    <h1 class="article-title" >{{ article.title }}</h1>
-    <div class="article-body">
-     {{ article.body | markdown }}
    </div>
 
- </div>
- {% if settings.disqus %}
+   {% if settings.disqus %}
 
 
- <div id="disqus_thread" style="margin-bottom: 2em;"></div>
- <script type="text/javascript">
-        var disqus_shortname = '{{ settings.disqus }}';
-        var disqus_identifier = '{{ article.slug }}';
-        var disqus_title = '{{ article.title }}';
-        var disqus_url = '{{ current_path }}';
+   <div id="disqus_thread" style="margin-bottom: 2em;"></div>
+   <script type="text/javascript">
+    var disqus_shortname = '{{ settings.disqus }}';
+    var disqus_identifier = '{{ article.slug }}';
+    var disqus_title = '{{ article.title }}';
+    var disqus_url = '{{ current_path }}';
 
-        /* * * DON'T EDIT BELOW THIS LINE * * */
-        (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-      {% endif %}
+  {% endif %}
 
 
-    </article>
+</article>
 
-    {% endblock %}
+</div>
+
+
+{% endblock %}
 
 {% block footer %}
 {% include 'footer.html' %}

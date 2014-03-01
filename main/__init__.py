@@ -19,7 +19,7 @@ app.config.from_object("main.config")
 # app.jinja_env.add_extension(HTMLCompress)
 cache = Cache(app)
 Markdown(app,
-         extensions = ["footnotes", "fenced_code", "codehilite" ])
+         extensions = ["fenced_code", "codehilite" ])
 
 
 

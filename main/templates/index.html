@@ -99,7 +99,11 @@
 
 		</div>
 		<div class="article-list-body col-xs-12">
+		{% if article.header %}
+			{{ article.header }}
+		{% else %}
 			{{ article.body |truncate(200)|markdown }}
+		{% endif %}
 		</div>
 
 		{% if not loop.last %}

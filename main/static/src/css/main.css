@@ -4,6 +4,47 @@
   left: -999em;
   right: auto;
 }
+.single-article {
+  margin-top: 4em;
+}
+.article-main .article-timesince {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
+  color: #808080;
+  font-size: 0.9em;
+  margin-bottom: 0;
+  margin-left: 2px;
+}
+.article-main .article-title {
+  font-weight: bold;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
+  font-size: 3em;
+  color: #4d4d4d;
+  line-height: 1.4em;
+  margin-top: 6px;
+  margin-bottom: 18px;
+}
+@media screen and (max-width: 970px) {
+  .article-main .article-title {
+    font-size: 2em;
+  }
+}
+.article-main .article-header {
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  font-size: 2em;
+  font-style: italic;
+  color: #333333;
+  margin: 0;
+  margin-bottom: 18px;
+}
+@media screen and (max-width: 970px) {
+  .article-main .article-header {
+    font-size: 1.6em;
+  }
+}
+.article-main .article-divider {
+  width: 100%;
+  height: 36px;
+}
 .article-body p,
 .article-body li {
   font-size: 1.6em;
@@ -12,38 +53,14 @@
 @media screen and (min-width: 970px) {
   .article-body p,
   .article-body li {
-    font-size: 1.4em !important;
-    line-height: 1.6em !important;
+    font-size: 1.5em !important;
+    line-height: 1.7em !important;
   }
 }
 .article-body li > p {
   font-size: 1em !important;
   line-height: 1em !important;
   margin: 0 !important;
-}
-.article-body > p:first-of-type {
-  font-size: 1.6em;
-  line-height: 1.6em;
-  color: rgba(0, 0, 0, 0.8);
-  margin-bottom: 2em;
-}
-.article-body > p:first-of-type::after {
-  content: "\2026";
-  position: relative;
-  display: block;
-  text-align: center;
-  margin-top: 0.5em;
-  font-size: 2em;
-  width: 100%;
-}
-@media screen and (min-width: 970px) {
-  .article-body > p:first-of-type {
-    font-size: 1.4em;
-    margin-top: 1em;
-    font-weight: bold;
-    margin-bottom: 4em;
-    text-align: center;
-  }
 }
 .article-main {
   padding: 6%;
@@ -66,11 +83,11 @@
   color: #4d4d4d !important;
 }
 .article-body h1,
-.article-body h2 {
+.article-body h2,
+.article-body h3 {
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif !important;
   font-weight: bold;
   color: #4d4d4d !important;
-  margin-bottom: 0.6em;
 }
 .article-body a {
   color: #666666;
@@ -79,49 +96,33 @@
 .article-body a:hover {
   color: #666666 !important;
 }
-.article-main blockquote {
+.article-body h1 {
+  font-size: 32px;
+  margin: 24px 0;
+}
+.article-body h2 {
+  font-size: 26px;
+  margin: 24px 0;
+}
+.article-body h3 {
+  font-size: 20px;
+  margin: 24px 0;
+}
+.article-body blockquote {
   border: none;
-  position: relative;
-  width: 80%;
-  margin: 2em auto 2em auto;
-}
-.article-main blockquote:before {
-  content: open-quote;
-  font-size: 5em;
-  position: absolute;
-  left: -20px;
-  top: -20px;
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  display: block;
-}
-.article-main blockquote p {
-  font-weight: bold !important ;
-  text-align: justify;
-}
-.article-main .article-title {
+  margin: 12px 0 !important;
+  padding: none;
   font-weight: bold;
-  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
-  font-size: 3em;
-  text-align: center;
-  color: #4d4d4d;
-  line-height: 1.4em;
-  margin: 1em 0 2em 0;
+  font-size: 1em;
+  display: block;
+  position: relative;
 }
-.article-header .article-timesince {
-  border-bottom: 2px dotted #666666;
-  padding-bottom: 10px;
-  text-align: right;
-  margin-bottom: 1em;
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  color: #666666;
-}
-@media screen and (max-width: 970px) {
-  .article-header .article-timesince {
-    padding: 0 1em;
-    width: 80%;
-    display: block;
-    margin: 0 auto;
-  }
+.article-body blockquote:before {
+  content: open-quote;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 2em;
 }
 .image-desc {
   position: absolute;
@@ -1043,6 +1044,8 @@ a[disabled] {
   height: 4em;
   display: table;
   margin: 0 auto;
+  position: relative;
+  top: 25%;
 }
 .title-header h2 {
   margin-bottom: 0;
@@ -1055,8 +1058,7 @@ a[disabled] {
   font-size: 1.4em;
 }
 .content-header {
-  margin-top: 3em;
-  margin-bottom: 4em;
+  height: 300px;
   position: relative;
 }
 .content-header-btns {

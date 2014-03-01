@@ -1,44 +1,63 @@
 
 // Styles related to Single article view
 
+.single-article {
+	margin-top: 4em;
+}
+
+.article-main .article-timesince {
+	// font-family: @font-family-bs-sans-serif;
+	font-family: @sans-font;
+	color: @black-50;
+	font-size: 0.9em;
+	margin-bottom: 0;
+	margin-left: 2px;
+}
+
+.article-main .article-title {
+	font-weight: bold;
+	font-family: @sans-font;
+	font-size: 3em; 
+	color: @black-70;
+	line-height: 1.4em;
+	margin-top: 6px;
+	margin-bottom: 18px;
+	@media screen and (max-width: @md){
+		font-size: 2em;
+	}
+}
+.article-main .article-header {
+	font-family: @body-font;
+	font-size: 2em;
+	font-style: italic;
+	color: @black-80;
+	margin: 0;
+	margin-bottom: 18px;
+	@media screen and (max-width: @md){
+		font-size: 1.6em;
+
+	}
+	
+}
+
+.article-main .article-divider {
+	width: 100%;
+	height: 36px;
+}
 
 .article-body  p,
 .article-body li  {
 	font-size: 1.6em;
 	line-height: 1.6em;
 	@media screen and (min-width: @md){
-		font-size: 1.4em !important;
-		line-height: 1.6em !important;
+		font-size: 1.5em !important;
+		line-height: 1.7em !important;
 	}
 }
 .article-body li > p {
 	font-size: 1em !important;
 	line-height: 1em !important;
 	margin: 0 !important;
-}
-.article-body > p:first-of-type {
-	font-size: 1.6em;
-	line-height: 1.6em;
-	color: rgba(0,0,0,.8);
-	margin-bottom: 2em;
-	&::after {
-		content: "\2026";
-		position: relative;
-		display: block;
-		text-align: center;
-		margin-top: 0.5em;
-		font-size: 2em;
-		width: 100%;
-	}
-
-	@media screen and (min-width: @md){
-		font-size: 1.4em;
-		margin-top: 1em;
-		font-weight: bold;
-		margin-bottom: 4em;
-		text-align: center;
-
-	}
 }
 .article-main {
 	padding: 6%;
@@ -61,11 +80,11 @@
 	color: @black-70 !important;
 }
 .article-body h1,
-.article-body h2 {
+.article-body h2,
+.article-body h3 {
 	font-family: @sans-font !important;
 	font-weight: bold;
 	color: @black-70 !important;
-	margin-bottom: 0.6em;
 
 }
 .article-body a {
@@ -76,53 +95,37 @@
 	}
 	
 }
-.article-main blockquote {
+.article-body h1 {
+	font-size: 32px;
+	margin: 24px 0;
+}
+.article-body h2 {
+	font-size: 26px;
+	margin: 24px 0;
+}
+.article-body h3 {
+	font-size: 20px;
+	margin: 24px 0;
+}
+.article-body blockquote {
 	border: none;
+	margin: 12px 0 !important;
+	padding: none;
+	font-weight: bold;
+	font-size: 1em;
+	display: block;
 	position: relative;
-	width: 80%;
-	margin: 2em auto 2em auto;
 	&:before {
 		content: open-quote;
-		font-size: 5em;
 		position: absolute;
-		left: -20px;
-		top: -20px;
-		font-family: @body-font;
-		display: block;
-	}
-	p {
-		font-weight: bold !important ;
-		text-align: justify;
+		left: 0;
+		top: 0;
+		font-size: 2em;
 	}
 }
 
-.article-main .article-title {
-	font-weight: bold;
-	font-family: @sans-font;
-	font-size: 3em; 
-	text-align: center;
-	color: @black-70;
-	line-height: 1.4em;
-	// padding: 1.2em 0.8em 1.4em 0.8em; 
-	margin: 1em 0 2em 0;
-}
 
 
-
-.article-header .article-timesince {
-	border-bottom: 2px dotted @black-60;
-	padding-bottom: 10px;
-	text-align: right;
-	margin-bottom: 1em;
-	font-family: @body-font;
-	color: @black-60;
-	@media screen and (max-width: @md) {
-		padding: 0 1em;
-		width: 80%;
-		display: block;
-		margin: 0 auto;
-	}
-}
 
 
 
