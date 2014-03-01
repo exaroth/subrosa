@@ -57,12 +57,13 @@ def db_disconnect(response):
 def index(page):
     articles_per_page = settings.get("articles_per_page") 
     articles = Articles.get_index_articles(page, articles_per_page)
-    articles_written = bool(tuple(articles))
     # show_pagination = Articles.get_count() > articles_per_page
-    show_pagination = articles.wrapped_count() > articles_per_page
+    count = articles.wrapped_count()
+    show_pagination = count > articles_per_page
+    articles_written = count > 0
     if not articles_written and page != 1:
         abort(404)
-    pagination = Pagination(page, articles_per_page, Articles.get_count())
+    pagination = Pagination(page, articles_per_page, count)
     return render_template("index.html",\
                            pagination = pagination,\
                            articles = articles,\
@@ -117,8 +118,10 @@ def create_account():
                 error = "All fields are required"
                 return render_template("create_account.html", error = error)
             try:
-                Users.create_user(username = username, email = email,\
-                             password = password, real_name = real_name)
+                Users.create_user(username = username,\
+                                  email = email,\
+                                  password = password,\
+                                  real_name = real_name)
             except IOError, e:
                 error = "Could not write to database, check if\
                         you have proper access\n or double check configuration options"
@@ -147,7 +150,9 @@ def account(username):
     if not user:
         abort(404)
     articles = Articles.get_user_articles(user.username)
-    return render_template("dashboard.html",user = user, articles = articles)
+    return render_template("dashboard.html",\
+                           user = user,\
+                           articles = articles)
 
 
 @app.route("/create_article", methods = ["GET", "POST"])
@@ -201,7 +206,9 @@ def edit_article(id):
         body = request.form.get("body").strip()
         if not title or not body:
             error = "Article can\'t have empty title or body"
-            return render_template("edit_article.html", error = error, article = article)
+            return render_template("edit_article.html",\
+                                   error = error,\
+                                   article = article)
 
         article_check = Articles.check_exists(title, article.id)
 
@@ -217,7 +224,9 @@ def edit_article(id):
                 return redirect(url_for("account", username = session["user"]))
             except:
                 error = "Error writing to database"
-                return render_template("edit_article.html", error = error, article = article )
+                return render_template("edit_article.html",\
+                                       error = error,\
+                                       article = article)
     else:
         return render_template("edit_article.html", article = article)
 
@@ -271,9 +280,6 @@ def upload_image():
         description = request.form.get('description', None)
         if request.form.get("imgur-img"):
             user_id = settings.get("imgur_id", None)
-            if not user_id:
-                error = "User id is required to upload images to imgur"
-                return render_template("upload_image.html", error = error)
             image = request.files["image"]
             if not image:
                 error = "No image chosen"
@@ -304,6 +310,7 @@ def upload_image():
                                     is_vertical = is_vertical,\
                                     imgur_img = True,\
                                     owner = user)
+
                 return redirect(url_for("user_images", username = user.username))
             except:
                 error = "Error writing to database"
@@ -318,7 +325,6 @@ def upload_image():
             try:
                 UserImages.add_image(image_link = link,\
                                     description = description,\
-                                    # mess
                                     is_vertical = True,\
                                     imgur_img = False,\
                                     owner = user)
@@ -335,14 +341,20 @@ def upload_image():
 @dynamic_content
 def user_images(username, page):
     per_page = settings.get("images_per_page", 10)
-    images = UserImages.get_gallery_images(page = page, per_page = per_page, username = username)
+    images = UserImages.get_gallery_images(page = page,\
+                                           per_page = per_page,\
+                                           username = username)
     show_pagination = images.wrapped_count() > per_page
     images_uploaded = bool(tuple(images))
     if not tuple(images) and page != 1:
         abort(404)
     pagination = Pagination(page, per_page, images.wrapped_count() )
-    print pagination.has_next
-    return render_template("user_images.html", images_uploaded = images_uploaded, pagination = pagination, show_upload_btn = True, images = images, show_pagination = show_pagination)
+    return render_template("user_images.html",\
+                           images_uploaded = images_uploaded,\
+                           pagination = pagination,\
+                           show_upload_btn = True,\
+                           images = images,\
+                           show_pagination = show_pagination)
 
 @app.route("/delete_image/<int:id>")
 @login_required
@@ -384,14 +396,20 @@ def gallery(page):
     if not app.config.get("GALLERY", None):
         return redirect(url_for("index"))
     per_page = settings.get("images_per_page", 10)
-    images = UserImages.get_gallery_images(page = page, per_page = per_page, gallery = True)
+    images = UserImages.get_gallery_images(page = page,\
+                                           per_page = per_page,\
+                                           gallery = True)
     if not tuple(images) and page != 1:
         abort(404)
     count = images.wrapped_count()
     show_pagination = count > per_page
     images_uploaded = count > 0
     pagination = Pagination(page, per_page, count)
-    return render_template("gallery.html", images_uploaded = images_uploaded, pagination = pagination, images = images , show_pagination = show_pagination)
+    return render_template("gallery.html",\
+                           images_uploaded = images_uploaded,\
+                           pagination = pagination,\
+                           images = images,\
+                           show_pagination = show_pagination)
 
 
 @app.route("/recent.atom")
