@@ -10,7 +10,7 @@ class ImgurHandler(object):
 	"""
 	Basic class for handling imgur image upload
 	accepts header containing user_id variable
-	and dictionary containing connection data
+	and dictionary containing request configuration
 	"""
 
 	API_URL = "https://api.imgur.com/3/image"

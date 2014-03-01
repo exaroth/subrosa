@@ -30,7 +30,7 @@ class Subrosa(object):
     Initialization class for subrosa 
     """
 
-    OPTIONS = ("disqus", "facebook", "twitter", "github", "dynamic_site", "title",\
+    OPTIONS = ("disqus", "facebook", "twitter", "github", "gallery", "dynamic_site", "title",\
                        "articles_per_page", "images_per_page", "imgur_id", "thumbnail_size")
 
     IMAGES = ('bg', 'bg_small', 'logo', 'portrait')

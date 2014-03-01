@@ -39,8 +39,10 @@ class UserImages(BaseModel):
         return UserImages.select().count()
 
     @staticmethod
-    def get_gallery_images(username, page, per_page, gallery = False):
-        q = UserImages.select().join(Users).where(Users.username == username)
+    def get_gallery_images(page, per_page, username = None, gallery = False):
+        q = UserImages.select()
+        if username:
+            q = q.join(Users).where(Users.username == username)
         if gallery:
             return q.where(UserImages.gallery == True).paginate(page, per_page)
         return q.paginate(page, per_page)

@@ -56,7 +56,7 @@ IMGUR_ID = "2d8bf53ae7b7e27"
 
 # Set it to True if you want gallery link on your main page
 
-GALLERY = False
+GALLERY = True
 
 # Number of pages that shows up on index page
 

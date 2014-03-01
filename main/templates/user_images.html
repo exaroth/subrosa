@@ -17,9 +17,9 @@
 				<div class="img-overlay"></div>
 				<div class="img-desc">
 					{% if image.description %}
-					{{ image.description }}
+						{{ image.description }}
 					{% else %}
-					<i class="icon-search" style="font-size: 2em; opacity: 0.8"></i>
+						<i class="icon-search" style="font-size: 2em; opacity: 0.8"></i>
 					{% endif %}
 				</div>
 
@@ -27,31 +27,44 @@
 
 		</a>
 		<div class="image-toolbar">
-			<span class="img-icons"><a href="#" data-toggle="confirmation" data-href="{{ url_for('delete_image', id = image.id)}}"><i class="icon-cancel"></i></a></span>
+			<span class="img-icons">
+				<a href="{{ url_for('gallerify', id = image.id)}}"><i class="icon-plus"></i></a>
+				<a href="#" data-toggle="confirmation" data-href="{{ url_for('delete_image', id = image.id)}}"><i class="icon-cancel"></i></a>
+			</span>
 		</div>
 	</div>
 
 	{% endfor %}
-	{% if pagination.has_prev %}
-	<a href="{{ url_for('user_images', username = session.user, page = pagination.page - 1)}}" class="gallery-pagination-btn" id="prev"><i class="icon-angle-left"></i></a>
-	{% else %}
 
-	<a href="#" class="gallery-pagination-btn" id="prev" disabled><i class="icon-angle-left"></i></a>
+	{% if show_pagination %}
+
+		{% if pagination.has_prev %}
+
+			<a href="{{ url_for('user_images', username = session.user, page = pagination.page - 1)}}" class="gallery-pagination-btn" id="prev"><i class="icon-angle-left"></i></a>
+
+		{% else %}
+
+			<a href="#" class="gallery-pagination-btn" id="prev" disabled><i class="icon-angle-left"></i></a>
+
+		{% endif %}
+
+		{% if pagination.has_next %}
+
+			<a href="{{ url_for('user_images', username = session.user, page = pagination.page + 1)}}" id = "next" class="gallery-pagination-btn"><i class="icon-angle-right"></i></a>
+
+		{% else %}
+
+			<a href="#" class="gallery-pagination-btn" id = "next" disabled><i class="icon-angle-right"></i></a>
+
+		{% endif %}
 
 	{% endif %}
 
-	{% if pagination.has_next %}
-
-	<a href="{{ url_for('user_images', username = session.user, page = pagination.page + 1)}}" id = "next" class="gallery-pagination-btn"><i class="icon-angle-right"></i></a>
-	{% else %}
-
-	<a href="#" class="gallery-pagination-btn" id = "next" disabled><i class="icon-angle-right"></i></a>
-	{% endif %}
 </div>
 
 {% else %}
 
-<h4 class="text-center text-muted" style="margin: 4em 0">No images uploaded yet</h4>
+	<h4 class="text-center text-muted" style="margin: 4em 0">No images uploaded yet</h4>
 
 {% endif %}
 

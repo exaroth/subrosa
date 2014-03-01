@@ -17,7 +17,7 @@
     $createArticleButton = $(".create-button"),
     $miniIcons = $(".mini-icon"),
     $articleBody = $(".article-main").find(".article-body"),
-    $editingBkuttons = $(".editing-button"),
+    $editingButtons = $(".editing-button"),
     $gallery = $(".gallery-wrapper"),
     $lamp = $(".lamp-button"),
     $imageLinks = $(".show-img"),
@@ -43,7 +43,6 @@
 
         wWidth = $window.width();
         wHeight = $window.height();
-        console.log(wHeight);
 
         $updateArticleButton.click(function(e){
             e.preventDefault();
@@ -64,12 +63,9 @@
         });
 
 
-        // $(".cheatsheet-button").leanModal({
-        //     closeButton: ".modal_close"
-        // }); 
         $('#imgur-upload').change(function(){
             console.log("changed")
-           $('#subfile').val($(this).val());
+            $('#subfile').val($(this).val());
         });
 
         $('#upload-img').click(function(){
@@ -97,7 +93,11 @@
                 arrowMarkup: '<button type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
 
             }
-        })
+        });
+        // Prevent double clicks
+        $("a, button").one("click", function() {
+            $(this).click(function () { return false; });
+        });
 
     };
 
@@ -109,6 +109,7 @@
         processGalleryImages($gallery);
         $textarea.autogrow();
         $miniIcons.tooltip();
+        $editingButtons.tooltip();
         $gallery.nested({
             selector: '.gallery-image',
             minWidth: 200,

@@ -53,7 +53,7 @@
 
 			{% if settings.facebook %}
 			<li>
-				<a href="{{ g.faceboook }}" class="facebook-button icon-holder menu-icon">
+				<a href="{{ settings.faceboook }}" class="facebook-button icon-holder menu-icon">
 					<i class="icon-facebook"></i>
 				</a>
 			</li>
@@ -61,7 +61,7 @@
 
 			{% if settings.twitter %}
 			<li>
-				<a href="{{ g.twitter }}" class="twitter-button icon-holder menu-icon">
+				<a href="{{ settings.twitter }}" class="twitter-button icon-holder menu-icon">
 					<i class="icon-twitter"></i>
 				</a>
 			</li>
@@ -69,14 +69,14 @@
 			
 			{% if settings.github %}
 			<li>
-				<a href="{{ g.gitgub }}" class="github-button icon-holder menu-icon">
+				<a href="{{ settings.gitgub }}" class="github-button icon-holder menu-icon">
 					<i class="icon-github-1"></i>
 				</a>
 			</li>
 			{% endif %}
 			{% if settings.gallery %}
 			<li>
-				<a href="#" class="gallery-button icon-holder menu-icon">
+				<a href="{{ url_for('gallery') }}" class="gallery-button icon-holder menu-icon">
 					<i class="icon-picture-1"></i>
 				</a>
 			</li>

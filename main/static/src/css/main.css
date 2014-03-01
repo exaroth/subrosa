@@ -696,8 +696,8 @@ a[disabled] {
   font-size: 2em;
 }
 .gallery-image .image-toolbar span.img-icons a {
+  display: inline-block;
   color: rgba(255, 255, 255, 0.7);
-  display: block;
   margin-top: 10px;
 }
 .gallery-image .image-toolbar span.img-icons a:hover {

@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block titlebar %}
+{% with header_context="GALLERY" %}
+{% include 'header.html' %}
+{% endwith %}
+{% endblock %}
+
+{% block content %}
+
+{% if images_uploaded %}
+<div class="gallery-wrapper">
+	{% for image in images %}
+	<div class="gallery-image size22" data-vert="{{ image.is_vertical }}" >
+		<a href="#" class="show-img ajax-popup-link" data-mfp-src="{{ image.image_link }}" style="color: #fff">
+			<div class="img-holder" style="background-image: url({{ add_thumbnail_affix(image.image_link) if image.imgur_img else image.image_link }})">
+				<div class="img-overlay"></div>
+				<div class="img-desc">
+					{% if image.description %}
+					{{ image.description }}
+					{% else %}
+					<i class="icon-search" style="font-size: 2em; opacity: 0.8"></i>
+					{% endif %}
+				</div>
+
+			</div>
+
+		</a>
+	</div>
+
+	{% endfor %}
+
+	{% if show_pagination %}
+
+		{% if pagination.has_prev %}
+
+			<a href="{{ url_for('gallery', page = pagination.page - 1)}}" class="gallery-pagination-btn" id="prev"><i class="icon-angle-left"></i></a>
+
+		{% else %}
+
+			<a href="#" class="gallery-pagination-btn" id="prev" disabled><i class="icon-angle-left"></i></a>
+
+		{% endif %}
+
+		{% if pagination.has_next %}
+
+			<a href="{{ url_for('gallery', page = pagination.page + 1)}}" id = "next" class="gallery-pagination-btn"><i class="icon-angle-right"></i></a>
+
+		{% else %}
+
+			<a href="#" class="gallery-pagination-btn" id = "next" disabled><i class="icon-angle-right"></i></a>
+
+		{% endif %}
+
+	{% endif %}
+
+
+</div>
+
+{% else %}
+
+<h4 class="text-center text-muted" style="margin: 4em 0">No images uploaded yet</h4>
+
+{% endif %}
+
+
+
+{% endblock %}
+
+

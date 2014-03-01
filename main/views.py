@@ -58,7 +58,8 @@ def index(page):
     articles_per_page = settings.get("articles_per_page") 
     articles = Articles.get_index_articles(page, articles_per_page)
     articles_written = bool(tuple(articles))
-    show_pagination = articles.count() > articles_per_page
+    # show_pagination = Articles.get_count() > articles_per_page
+    show_pagination = articles.wrapped_count() > articles_per_page
     if not articles_written and page != 1:
         abort(404)
     pagination = Pagination(page, articles_per_page, Articles.get_count())
@@ -324,7 +325,6 @@ def upload_image():
                 return redirect(url_for("user_images", username = user.username))
             except Exception as e:
                 error = "Error writing to database"
-                print e
                 return render_template("upload_image.html", error = error)
     else:
         return render_template("upload_image.html")
@@ -335,13 +335,14 @@ def upload_image():
 @dynamic_content
 def user_images(username, page):
     per_page = settings.get("images_per_page", 10)
-    images = UserImages.get_gallery_images(username, page, per_page)
+    images = UserImages.get_gallery_images(page = page, per_page = per_page, username = username)
+    show_pagination = images.wrapped_count() > per_page
     images_uploaded = bool(tuple(images))
-    url_path = urljoin(request.url_root, "uploads/")
     if not tuple(images) and page != 1:
         abort(404)
-    pagination = Pagination(page, per_page, UserImages.get_count())
-    return render_template("user_images.html", images_uploaded = images_uploaded, pagination = pagination, show_upload_btn = True, images = images, url_path = url_path)
+    pagination = Pagination(page, per_page, images.wrapped_count() )
+    print pagination.has_next
+    return render_template("user_images.html", images_uploaded = images_uploaded, pagination = pagination, show_upload_btn = True, images = images, show_pagination = show_pagination)
 
 @app.route("/delete_image/<int:id>")
 @login_required
@@ -350,7 +351,6 @@ def delete_image(id):
     image = UserImages.get_image(id)
     if not image:
         abort(404)
-    # prevent from deleting images by people other by the owner
     if image.owner.username != session["user"]:
         flash("Don't try to delete other\'s dude\'s pictures...dude")
         return redirect(url_for("index"))
@@ -370,7 +370,28 @@ def delete_image(id):
 @app.route("/gallerify/<int:id>")
 @login_required
 def gallerify(id):
-    return "yes"
+    """ Ads and removes image from gallery """
+    image = UserImages.get_image(id)
+    if not image:
+        return redirect(url_for("user_images", username = session["user"]))
+    UserImages.gallerify(image)
+    return redirect(url_for("user_images", username = session["user"]))
+
+
+@app.route("/gallery", defaults = {"page": 1})
+@app.route("/gallery/<int:page>")
+def gallery(page):
+    if not app.config.get("GALLERY", None):
+        return redirect(url_for("index"))
+    per_page = settings.get("images_per_page", 10)
+    images = UserImages.get_gallery_images(page = page, per_page = per_page, gallery = True)
+    if not tuple(images) and page != 1:
+        abort(404)
+    count = images.wrapped_count()
+    show_pagination = count > per_page
+    images_uploaded = count > 0
+    pagination = Pagination(page, per_page, count)
+    return render_template("gallery.html", images_uploaded = images_uploaded, pagination = pagination, images = images , show_pagination = show_pagination)
 
 
 @app.route("/recent.atom")
