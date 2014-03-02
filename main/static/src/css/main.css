@@ -627,6 +627,7 @@ a[disabled] {
   .header-field .toolbar-buttons {
     width: 100%;
     background-color: white;
+    height: 48px;
     top: 94%;
     right: 0;
   }
@@ -881,7 +882,7 @@ a[disabled] {
 .menu-item {
   text-align: center;
   height: 40px;
-  background-color: #4d4d4d;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 @media screen and (max-width: 750px) {
   .admin-panel,
@@ -945,9 +946,9 @@ a[disabled] {
   z-index: 999;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
   z-index: 10;
-  -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 0 9px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 0 9px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 9px rgba(0, 0, 0, 0.25);
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -966,10 +967,7 @@ a[disabled] {
   float: left;
   position: relative;
   background-color: #499bea;
-  background-image: -webkit-radial-gradient(#70b0ed 0%, #2a78bd 100%);
-  background-image: -moz-radial-gradient(#70b0ed 0%, #2a78bd 100%);
-  background-image: -o-radial-gradient(#70b0ed 0%, #2a78bd 100%);
-  background-image: radial-gradient(#70b0ed 0%, #2a78bd 100%);
+  background-color: #149bff;
   z-index: 99999;
 }
 .admin-panel .admin-subrosa a:hover {
