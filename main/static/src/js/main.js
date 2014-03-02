@@ -128,6 +128,10 @@ $(document).ready(function(){
                 resizeAny: true
             }
         });
+        $('.cheatsheet-button').magnificPopup({
+            midClick: true,
+            type: 'inline'
+        });
         $('[data-toggle="confirmation"]').confirmation({
             popout: true,
             singleton: true,

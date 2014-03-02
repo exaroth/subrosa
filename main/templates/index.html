@@ -62,7 +62,7 @@
 	<article class="article-list-entry col-md-8 col-md-offset-2">
 		<div class="article-list-title col-xs-12">
 			<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
-			<a href="{{ url_for('article_view', id = article.id) }}" class="article-title text-center"><h3>{{ article.title }}</h3></a>
+			<a href="{{ url_for('article_view', id = article.id) }}" class="article-title-link text-center"><h3>{{ article.title }}</h3></a>
 
 		</div>
 		<div class="article-list-body col-xs-12">
