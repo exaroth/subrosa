@@ -96,6 +96,29 @@ class Articles(BaseModel):
             raise
 
     @staticmethod
+    def get_previous_article(id, draft = False):
+        try:
+            return Articles.select()\
+                   .where(Articles.draft == draft)\
+                   .where(Articles.id < id)\
+                   .order_by(Articles.date_created.asc())\
+                   .get()
+        except:
+            return 0
+
+    @staticmethod
+    def get_next_article(id, draft = False):
+        try:
+            return Articles.select()\
+                   .where(Articles.draft == draft)\
+                   .where(Articles.id > id)\
+                   .order_by(Articles.date_created.desc())\
+                   .get()
+        except:
+            return 0
+
+
+    @staticmethod
     @db.commit_on_success
     def update_article(article, title, body):
         try:

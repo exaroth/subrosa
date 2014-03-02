@@ -17,13 +17,22 @@
 	margin: 0 auto;
 	position: relative;
 	top: 25%;
+	@media screen and (max-width: 640px){
+		top: 50px;
+	}
 	h2 {
 		margin-bottom:0;
 		text-align: center;
 		font-weight: bold;
 		font-size: 2.6em;
 		color: @black-70;
+		@media screen and (max-width: 640px){
+			font-size: 2em;
+			top: 10px;
+
+		}
 	}
+
 	p {
 		font-size: 1.4em;
 	}
@@ -32,6 +41,23 @@
 .content-header {
 	height: 300px;
 	position: relative;
+    background-repeat: no-repeat;
+    margin-bottom: 48px;
+    -webkit-background-size: 100% auto;
+    -moz-background-size: 100% auto;
+    background-size: 100% auto;
+    background-attachment: fixed;
+    @media screen and (max-width: 640px){
+    	height: 200px;
+    }
+    @media screen and (max-width: @md){
+    	margin-bottom: 48px;
+    }
+    .header-category {
+    	@media screen and (max-width: 640px){
+    		display: none;
+    	}
+    }
 }
 .content-header-btns {
 	z-index: 9 

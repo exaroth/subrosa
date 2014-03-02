@@ -1,18 +1,5 @@
 {% extends "layout.html" %}
 
-{% block modals %}
-<style>
-.content-header {
-    background-image: url({{ url_for("send_image", filename=settings.bg) }});
-    background-repeat: no-repeat;
-    -webkit-background-size: 100% auto;
-    -moz-background-size: 100% auto;
-    background-size: 100% auto;
-    background-attachment: fixed;
-  };
-</style>
-{% endblock %}
-
 {% block titlebar %}
 {% include "header.html" %}
 {% endblock %}
@@ -38,6 +25,14 @@
       <div class="article-divider"></div>
       <div class="article-body">
        {{ article.body | markdown }}
+     </div>
+     <div class="article-footer">
+     {% if previous_article %}
+     <a href="{{ url_for('article_view', id = previous_article.id )}}">Previous Article</a>
+     {% endif %}
+     {% if next_article %}
+     <a href="{{ url_for('article_view', id = next_article.id )}}">Next Article</a>
+     {% endif %}
      </div>
 
    </div>

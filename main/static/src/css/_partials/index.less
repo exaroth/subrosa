@@ -32,7 +32,7 @@
 	padding: 0 2em;
 	text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6);
 	@media screen and (max-width: @sm){
-		font-size: 48px;
+		font-size: 24px;
 		text-shadow: none;
 
 	}
@@ -66,6 +66,9 @@
 	.background-size(100%, auto);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	@media screen and (max-width: 480){
+		height: 40px;
+	}
 }
 
 .article-list-pagination {
@@ -124,6 +127,9 @@
 	text-align: left;
 	margin: 5px 0 20px 0;
 	}
+	@media screen and (max-width: 640px){
+		font-size: 0.8em;
+	}
 	& > a {
 		color: @black-60;
 	}
@@ -139,6 +145,9 @@
 .article-list .article-list-body {
 	font-size: 1.3em;
 	color: @black-50 !important;
+	@media screen and (max-width: 640px){
+		font-size: 1em;
+	}
 	h1,h2,h3 {
 		font-family: @body-font;
 		font-size: 20px !important;

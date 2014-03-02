@@ -239,7 +239,12 @@ def article_view(id):
     article = Articles.get_article(id)
     if not article:
         abort(404)
-    return render_template("article_view.html", article = article)
+    next_article = Articles.get_next_article(article.id)
+    previous_article = Articles.get_previous_article(article.id)
+    return render_template("article_view.html",\
+                            article = article,\
+                            next_article = next_article,\
+                            previous_article = previous_article)
 
 @app.route("/delete_article/<int:id>")
 @login_required

@@ -76,6 +76,10 @@ IMAGES_PER_PAGE = 10
 
 SECRET_KEY = "Change it"
 
+# Default color for header text and icons
+
+HEADER_COLOR = "#4D4D4D"
+
 # =======================================================================
 # ======================== Advanced Settings ============================
 # =========== Change them only if you know what you're doing ============
