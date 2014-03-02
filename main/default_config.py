@@ -1,3 +1,9 @@
+"""
+
+This file contains default configuration for Subrosa,
+User configuration should be definedd in subrosa.cfg file
+
+"""
 import sys
 import os
 
@@ -6,10 +12,10 @@ ROOT_PATH = os.path.dirname(BASE_PATH + "..")
 
 # Set title of you site
 
-TITLE = "Blog pani Kasi"
+TITLE = "Your awesome blog"
 
-# Set it to False if you dont want to modify filesystem,
-# prevents writing images to disk, only remote links are allowed 
+# Set it to False if Subrosa will not modify local filesystem in any way,
+# including database
 
 DYNAMIC_SITE = True
 
@@ -40,23 +46,23 @@ DB_PASSWORD = None
 
 # Set this variable to your === disqus shortname === to have comments on your blog
 
-DISQUS = "kermitsblog"
+DISQUS = False
 
 # Set this variables to adress of your liking eg "http://www.facebook.com/johndoe"
 
-FACEBOOK = "http://www.mojfacebook.pl"
+FACEBOOK = False
 
-TWITTER = "http://www.twitter.com"
+TWITTER = False
 
 GITHUB = False
 
 # If you want gallery integrated with Imgur service put your Imgur user_id here
 
-IMGUR_ID = "2d8bf53ae7b7e27"
+IMGUR_ID = False
 
 # Set it to True if you want gallery link on your main page
 
-GALLERY = True
+GALLERY = False
 
 # Number of pages that shows up on index page
 
@@ -68,7 +74,7 @@ IMAGES_PER_PAGE = 10
 
 # Your secret key
 
-SECRET_KEY = "Super secret"
+SECRET_KEY = "Change it"
 
 # =======================================================================
 # ======================== Advanced Settings ============================

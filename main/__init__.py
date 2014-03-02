@@ -8,26 +8,27 @@ import logging
 from jinja2htmlcompress import HTMLCompress
 
 
-__version__ = "0.0.3.dev"
+__version__ = "0.0.2.dev"
 
 logger = logging.getLogger(__name__)
 
 
 
 app = Flask(__name__)
-app.config.from_object("main.config")
-# app.jinja_env.add_extension(HTMLCompress)
+app.config.from_object("main.default_config")
+app.config.from_pyfile("../subrosa.cfg")
 cache = Cache(app)
 Markdown(app,
          extensions = ["fenced_code", "codehilite" ])
 
+# app.jinja_env.add_extension(HTMLCompress)
 
 
 
 class Subrosa(object):
 
     """
-    Initialization class for subrosa 
+    Initialization class for Subrosa 
     """
 
     OPTIONS = ("disqus", "facebook", "twitter", "github", "gallery", "dynamic_site", "title",\
@@ -35,8 +36,9 @@ class Subrosa(object):
 
     IMAGES = ('bg', 'bg_small', 'logo', 'portrait')
 
-    def __init__(self):
+    def __init__(self, app = None):
 
+        self.app = app
         self.settings = dict()
 
         self.db_types = dict(
@@ -44,9 +46,7 @@ class Subrosa(object):
             postrges = PostgresqlDatabase,
             mysql = MySQLDatabase
         ) 
-
         # List of options that should be passed to views
-
 
         for option in self.OPTIONS:
             self.settings[option] = app.config.get(option.upper(), None)
@@ -58,7 +58,7 @@ class Subrosa(object):
     def get_user_images(self):
         for name in self.IMAGES:
             self.settings[name] = None
-            for ext in app.config["ALLOWED_FILENAMES"]:
+            for ext in self.app.config["ALLOWED_FILENAMES"]:
                 filename = name + "." + ext
                 path = os.path.join(app.config["UPLOAD_FOLDER"], filename )
                 if self.user_img_exists(path):
@@ -87,18 +87,18 @@ class Subrosa(object):
 
     def get_db(self, **kwargs):
 
-        if app.config.get("TESTING", False):
-            db = define_db_ckonnection("sqlite", ":memory:")
+        if self.app.config.get("TESTING", False):
+            db = define_db_connection("sqlite", ":memory:")
         else:
-            dtype = app.config.get("DATABASE", None)
-            dname = app.config.get("DATABASE_NAME", None)
+            dtype = self.app.config.get("DATABASE", None)
+            dname = self.app.config.get("DATABASE_NAME", None)
             if not dtype or not dname:
                 raise ValueError("Database type and name must be defined")
             if dtype in ("postgres", "mysql"):
-                username = app.config.get("DB_USERNAME")
-                password = app.config.get("DB_PASSWORD", None)
-                if not username or not password:
-                    raise ValueError("%s requires username and password to connect" % dtype)
+                username = self.app.config.get("DB_USERNAME")
+                password = self.app.config.get("DB_PASSWORD", None)
+                if not username:
+                    raise ValueError("%s requires username to connect" % dtype)
                 kwargs["user"] = username
                 kwargs["password"] = password
             try:
@@ -111,7 +111,7 @@ class Subrosa(object):
 
 
 
-subrosa = Subrosa()
+subrosa = Subrosa(app)
 
 settings = subrosa.get_settings()
 
