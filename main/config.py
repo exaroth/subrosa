@@ -6,7 +6,7 @@ ROOT_PATH = os.path.dirname(BASE_PATH + "..")
 
 # Set title of you site
 
-TITLE = "Kermit's Blog"
+TITLE = "Blog pani Kasi"
 
 # Set it to False if you dont want to modify filesystem,
 # prevents writing images to disk, only remote links are allowed 
@@ -68,7 +68,7 @@ IMAGES_PER_PAGE = 10
 
 # Your secret key
 
-SECRET_KEY = "\xdb\x81\xd4\xef\xeb\xf5z.\xd9\xf2\xd6R\xd7m1wv\xf34@\xb52\xe6\r\x0f\xc8r%\xdf\xb0\x06 \xc8\xd94O)\xd2\x1a\xca\x86\xc4\xf5\xce\x99\x88\xe1mn\xae&1hqO\x95~\xa7LW+\xd6Dl\xd2\x17\x93}\x0b\x0b\x06\xf6B\x88Oe@F\xef\x81\x8cqA\xd2=g\xd8\xaf\xf1p\x10$\t7\x8ch\x994m\xe5\xafY\x17)I\xc9NK{\xceb\x8c\xc8P\x885\xa5\x12^\x157&'\xdc\xc6%"
+SECRET_KEY = "Super secret"
 
 # =======================================================================
 # ======================== Advanced Settings ============================
