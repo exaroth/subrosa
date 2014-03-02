@@ -14,6 +14,7 @@
 """
 
 import os
+import re
 from datetime import datetime
 from urlparse import urljoin
 import urllib
@@ -26,6 +27,7 @@ from .decorators import dynamic_content, login_required
 from werkzeug import secure_filename
 from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
+from jinja2 import evalcontextfilter, Markup
 from imgur import ImgurHandler
 from models.ArticlesModel import Articles
 from models.UserImagesModel import UserImages
@@ -57,7 +59,6 @@ def db_disconnect(response):
 def index(page):
     articles_per_page = settings.get("articles_per_page") 
     articles = Articles.get_index_articles(page, articles_per_page)
-    # show_pagination = Articles.get_count() > articles_per_page
     count = articles.wrapped_count()
     show_pagination = count > articles_per_page
     articles_written = count > 0
@@ -450,29 +451,7 @@ def send_image(filename):
     """
     return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
 
-@app.template_filter()
-def timesince(dt, default="just now"):
-    """
-    Returns string representing "time since" e.g.
-    3 days ago, 5 hours ago etc.
-    """
 
-    now = datetime.utcnow()
-    diff = now - dt
-    
-    periods = (
-        (diff.days / 365, "year", "years"),
-        (diff.days / 30, "month", "months"),
-        (diff.days / 7, "week", "weeks"),
-        (diff.days, "day", "days"),
-        (diff.seconds / 3600, "hour", "hours"),
-        (diff.seconds / 60, "minute", "minutes"),
-        (diff.seconds, "second", "seconds"),
-    )
-    for period, singular, plural in periods:
-        if period:
-            return "%d %s ago" % (period, singular if period == 1 else plural)
-    return default
 
 @app.context_processor
 def utility_processor():
@@ -485,10 +464,8 @@ def utility_processor():
 def http_not_found(err):
     return render_template("error.html"), 404
 
-def generate_csrf_token():
-    if '_csrf_token' not in session:
-        session['_csrf_token'] = id_generator()
-        print session['_csrf_token']
-    return session['_csrf_token']
+@app.errorhandler(500)
+def server_error(err):
+    return render_template('error.html'), 500
 
-app.jinja_env.globals['csrf_token'] = generate_csrf_token  
+

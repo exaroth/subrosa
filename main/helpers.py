@@ -12,6 +12,13 @@ def make_external(id):
     Returns external url for article based on id
     """
     return urljoin(request.url_root + "article/", str(id))
+
+def generate_csrf_token():
+    """ Generates random string for login screen"""
+    if '_csrf_token' not in session:
+        session['_csrf_token'] = id_generator()
+        print session['_csrf_token']
+    return session['_csrf_token']
     
 def redirect_url():
     """

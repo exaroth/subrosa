@@ -24,14 +24,14 @@
       {% endif %}
       <div class="article-divider"></div>
       <div class="article-body">
-       {{ article.body | markdown }}
+       {{ article.body|markdown }}
      </div>
      <div class="article-footer">
      {% if previous_article %}
-     <a href="{{ url_for('article_view', id = previous_article.id )}}">Previous Article</a>
+     <a href="{{ url_for('article_view', id = previous_article.id )}}" class="articles-pagination-btn btn btn-default" style="padding-right: 20px"> <i class="icon-angle-left"></i>Previous Article</a>
      {% endif %}
      {% if next_article %}
-     <a href="{{ url_for('article_view', id = next_article.id )}}">Next Article</a>
+     <a href="{{ url_for('article_view', id = next_article.id )}}" class="articles-pagination-btn btn btn-default" style="float: right; padding-left: 20px;">Next Article <i class="icon-angle-right"></i></a>
      {% endif %}
      </div>
 

@@ -8,17 +8,22 @@
 	background-color: white;
 	.background-size(contain);
 	background-position: center center;
-	width: 90px;
-	height: 90px;
+	width: 100px;
+	height: 100px;
 	left: 0;
 	right: 0;
 	position: absolute;
 	margin: 0 auto;
 	bottom: 16%;
+	border: 3px solid rgba(255,255,255,.6);
 	display: none;
+	.box-shadow(1px, 1px, 1px, rgba(0,0,0,.4));
 	@media screen and (max-width: @md){
 		width: 80px;
 		height: 80px;
+	}
+	@media screen and (max-width: 640px){
+		top: 150px;
 	}
 }
 .header-field .site-title {

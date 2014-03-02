@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 app.config.from_object("main.default_config")
 app.config.from_pyfile("../subrosa.cfg")
+
 cache = Cache(app)
 Markdown(app,
          extensions = ["fenced_code", "codehilite" ])
@@ -117,5 +118,10 @@ settings = subrosa.get_settings()
 
 db = subrosa.get_db()
 
-
 from main import views, models
+from filters import parse_img_tags, timesince
+from helpers import generate_csrf_token
+
+app.jinja_env.globals['csrf_token'] = generate_csrf_token  
+app.jinja_env.filters['parse_img_tags'] = parse_img_tags
+app.jinja_env.filters['timesince'] = timesince

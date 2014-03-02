@@ -84,19 +84,19 @@
 
 
 		{% if pagination.has_prev %}
-		<a href="{{ url_for('index', page = pagination.page - 1)}}" class="btn btn-default articles-pagination-btn" id="prev">Previous</a>
+		<a href="{{ url_for('index', page = pagination.page - 1)}}" style="width: 100px;" class="btn btn-default articles-pagination-btn" id="prev">Previous</a>
 		{% else %}
 
-		<a href="#" class="btn btn-default articles-pagination-btn" id="prev" disabled>Previous</a>
+		<a href="#" class="btn btn-default articles-pagination-btn" id="prev" style="width: 100px;" disabled>Previous</a>
 
 		{% endif %}
 
 		{% if pagination.has_next %}
 
-		<a href="{{ url_for('index', page = pagination.page + 1)}}" id = "next" class=" articles-pagination-btn btn btn-default">Next</a>
+		<a href="{{ url_for('index', page = pagination.page + 1)}}" id = "next" style="width:100px" class=" articles-pagination-btn btn btn-default">Next</a>
 		{% else %}
 
-		<a href="#" class="btn btn-default articles-pagination-btn" id = "next" disabled>Next</a>
+		<a href="#" class="btn btn-default articles-pagination-btn" id = "next" style="width: 100px" disabled>Next</a>
 		{% endif %}
 
 	</div>

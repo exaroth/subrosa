@@ -78,7 +78,8 @@ SECRET_KEY = "Change it"
 
 # Default color for header text and icons
 
-HEADER_COLOR = "#4D4D4D"
+HEADER_FONT_COLOR = "#4D4D4D"
+HEADER_BG_COLOR = "#FFFFFF"
 
 # =======================================================================
 # ======================== Advanced Settings ============================
@@ -99,7 +100,7 @@ ALLOWED_FILENAMES = ["jpg", "jpeg", "gif", "png", "JPG", "JPEG", "GIF", "PNG"]
     # l -- 640x640
     # h -- 1024x1024
 
-THUMBNAIL_SIZE = "m"
+THUMBNAIL_SIZE = "l"
 
 
 # Set it to True only for development purposes, outputs errors straight to the browser
