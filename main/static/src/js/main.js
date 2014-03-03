@@ -35,7 +35,13 @@ $(document).ready(function(){
     wWidth               = null,
     wHeight              = null,
     // width of window where most responsive events are occuring
-    majorBreakpoint      = 970
+    majorBreakpoint      = 970,
+    tocTemplate = "\
+      <div class='toc'>\
+        <div class='toc-header'><h3>Table of Contents</h3></div>\
+        <ul class='toc-body list-unstyled'>\
+        </ul>\
+      </div>"
 
     // initialization function
     // =======================
@@ -55,6 +61,7 @@ $(document).ready(function(){
             e.preventDefault();
             $createForm.submit();
         });
+        $articleBody.createToC();
         $("img.lazy").unveil(200, function(){
             $(this).load(function(){
                 $(this).positionArticleImage();
@@ -251,6 +258,36 @@ $(document).ready(function(){
         .text(self.attr("alt"))
         .addClass("image-desc")
         .appendTo(imgWrapper);
+
+    };
+
+    // Create table of contents if h1
+    // tags are in article body
+
+    $.fn.createToC = function(){
+
+
+        var self = $(this);
+        var headers = self.find('h1');
+        if ( headers.length > 0){
+
+            var toc = $(tocTemplate)
+            .appendTo($articleBody)
+            .find('ul');
+
+            headers.each(function(index){
+                var $this = $(this)
+                var link = $this.attr('id'),
+                    name = $this.text();
+                    var item = $('<a href="' + '#' + link + '">' + name + '</a>')
+                    item
+                    .wrap('<li></li>')
+                    .parent()
+                    .appendTo(toc);
+            });
+
+        };
+
 
     };
 

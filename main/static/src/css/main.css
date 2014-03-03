@@ -51,8 +51,9 @@
 }
 .article-main .toc {
   position: absolute;
+  word-wrap: break-word;
   width: 200px;
-  margin-left: -200px;
+  margin-left: -220px;
   top: 0;
   left: 0;
   margin-top: 0;
@@ -76,6 +77,10 @@
 .article-main .toc li {
   margin-bottom: 0.5em;
   font-size: 1em !important;
+}
+.article-main .toc li a {
+  display: inline-block;
+  line-height: 160%;
 }
 .article-main .toc li a:hover {
   text-decoration: underline;

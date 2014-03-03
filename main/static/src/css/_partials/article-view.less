@@ -47,8 +47,10 @@
 
 .article-main .toc {
 	position: absolute;
+	word-wrap: break-word;
+	// white-space: pre-wrap;
 	width: 200px;
-	margin-left: -200px;
+	margin-left: -220px;
 	top: 0;
 	left: 0;
 	margin-top: 0;
@@ -69,9 +71,14 @@
 	li {
 		margin-bottom: 0.5em;
 		font-size: 1em !important;
-		a:hover {
-			text-decoration: underline;
-			color: @black-60 !important;
+		a {
+			display: inline-block;
+			line-height: 160%;
+			&:hover {
+				text-decoration: underline;
+				color: @black-60 !important;
+				
+			}
 		}
 	}
 }
