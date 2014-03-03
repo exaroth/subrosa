@@ -1,4 +1,4 @@
-﻿<div class="content-header col-xs-12">
+<div class="content-header col-xs-12">
 	{% if not hide_title %}
 	<div class="title-header">
 		{% if settings.logo and show_logo %}
@@ -12,3 +12,15 @@
 	</div>
 	{% endif %}
 </div>
+
+{% if show_icons and settings.gallery %}
+	<div class="header-toolbar">
+		<ul class="toolbar-links list-unstyled">
+			<li><a href="{{ url_for('gallery')}}" class="toolbar-link gallery-link">GALLERY</a></li>
+		</ul>
+	</div>
+
+{% endif %}
+
+
+<div class="divider"></div>

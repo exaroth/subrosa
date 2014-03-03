@@ -686,8 +686,6 @@ a[disabled] {
   }
 }
 .header-field {
-  margin-bottom: 2em;
-  padding-bottom: 3em;
   height: 300px;
   position: relative;
   -webkit-background-size: 100% auto;
@@ -713,34 +711,6 @@ a[disabled] {
 }
 .article-list-pagination #next {
   float: right;
-}
-.header-field .toolbar-buttons {
-  position: absolute;
-  right: 6%;
-  top: 30%;
-  width: 400px;
-}
-.header-field .toolbar-buttons ul > li {
-  margin-right: 20px;
-  display: inline-block;
-  float: right;
-}
-@media screen and (max-width: 970px) {
-  .header-field .toolbar-buttons {
-    width: 100%;
-    background-color: white;
-    height: 48px;
-    top: 94%;
-    right: 0;
-  }
-  .header-field .toolbar-buttons ul {
-    text-align: center;
-  }
-  .header-field .toolbar-buttons ul li {
-    float: none;
-    display: inline-block;
-    margin-right: 10px;
-  }
 }
 .article-list {
   font-family: 'Georgia', 'Times New Roman', Times, serif;
@@ -779,10 +749,8 @@ a[disabled] {
 .article-list .article-list-body h2,
 .article-list .article-list-body h3 {
   font-family: 'Georgia', 'Times New Roman', Times, serif;
-  font-size: 20px !important;
+  font-size: 18px !important;
   color: #4d4d4d;
-  font-height: 1em;
-  line-height: 1em;
   margin: 12px 0;
   color: #808080;
 }
@@ -1213,9 +1181,7 @@ a[disabled] {
 }
 .content-header {
   height: 300px;
-  position: relative;
   background-repeat: no-repeat;
-  margin-bottom: 48px;
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
   background-size: 100% auto;
@@ -1226,15 +1192,41 @@ a[disabled] {
     height: 200px;
   }
 }
-@media screen and (max-width: 970px) {
-  .content-header {
-    margin-bottom: 48px;
-  }
-}
 @media screen and (max-width: 640px) {
   .content-header .header-category {
     display: none;
   }
+}
+.header-toolbar ul {
+  text-align: center;
+  display: block;
+  clear: both;
+  height: 82px;
+  line-height: 82px;
+}
+.header-toolbar ul li {
+  display: inline-block;
+  margin-right: 1em;
+}
+.toolbar-link {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 2px solid transparent;
+}
+.toolbar-link:hover {
+  color: #f15831;
+  border-bottom: 2px solid #f5603b;
+}
+.divider {
+  width: 100%;
+  height: 48px;
+  position: relative;
+  clear: both;
 }
 .content-header-btns {
   z-index: 9;

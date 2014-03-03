@@ -269,7 +269,7 @@ $(document).ready(function(){
 
         var self = $(this);
         var headers = self.find('h1');
-        if ( headers.length > 0){
+        if ( headers.length > 1){
 
             var toc = $(tocTemplate)
             .appendTo($articleBody)

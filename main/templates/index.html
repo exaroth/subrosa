@@ -2,7 +2,7 @@
 
 {% block titlebar %} 
 
-<div class="row header-field">
+<div class="header-field">
 
 	{% if settings.logo %}
 	<div class="logo-holder">
@@ -15,42 +15,15 @@
 	{% endif %}
 	
 	<div class="title-img"></div>
-	<div class="toolbar-buttons">
-		<ul class="list-unstyled">
-
-			{% if settings.facebook %}
-			<li>
-				<a href="{{ settings.faceboook }}" class="facebook-button icon-holder menu-icon">
-					<i class="icon-facebook"></i>
-				</a>
-			</li>
-			{% endif %}
-
-			{% if settings.twitter %}
-			<li>
-				<a href="{{ settings.twitter }}" class="twitter-button icon-holder menu-icon">
-					<i class="icon-twitter"></i>
-				</a>
-			</li>
-			{% endif %}
-			
-			{% if settings.github %}
-			<li>
-				<a href="{{ settings.gitgub }}" class="github-button icon-holder menu-icon">
-					<i class="icon-github-1"></i>
-				</a>
-			</li>
-			{% endif %}
-			{% if settings.gallery %}
-			<li>
-				<a href="{{ url_for('gallery') }}" class="gallery-button icon-holder menu-icon">
-					<i class="icon-picture-1"></i>
-				</a>
-			</li>
-			{% endif %}
+</div>
+{% if settings.gallery %}
+	<div class="header-toolbar">
+		<ul class="toolbar-links list-unstyled">
+			<li><a href="{{ url_for('gallery')}}" class="toolbar-link gallery-link">GALLERY</a></li>
 		</ul>
 	</div>
-</div>
+
+{% endif %}
 {% endblock %}
 
 
