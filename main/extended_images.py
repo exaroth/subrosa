@@ -23,7 +23,7 @@ class ExtendedImagesExtension(markdown.Extension):
 	def __init__(self, config):
 		self.config = {
 			# set default path
-			'replacement': [ '#', 'Replacement for src tag' ]
+			'replacement': [ '', 'Replacement for src tag' ]
 		}
 
 		for k, v in config:
@@ -54,7 +54,6 @@ class ExtendedImagesTreeprocessor(Treeprocessor):
 	def run(self, text):
 
 		replacement = self.config['replacement']
-
 		for elem in text.getiterator():
 			if elem.tag == 'img':
 				# if 'title' in elem.attrib:
@@ -63,9 +62,12 @@ class ExtendedImagesTreeprocessor(Treeprocessor):
 				# 	alt = elem.get('alt')
 
 				base_src = elem.get('src')
-
-				elem.set('src', replacement)
+				if replacement:
+					elem.set('src', replacement)
+				else:
+					elem.set('src', '#')
 				elem.set('data-src', base_src)
+				elem.set('class', 'lazy')
 
 def makeExtension(config = None):
 	return ExtendedImagesExtension(config = config)

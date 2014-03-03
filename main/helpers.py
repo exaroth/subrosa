@@ -10,7 +10,7 @@ import re
 
 
 
-def slugify(value, separator):
+def slugify(value, separator="-"):
     """ Slugify a string, to make it URL friendly. """
     value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
     value = re.sub('[^\w\s-]', '', value.decode('ascii')).strip().lower()

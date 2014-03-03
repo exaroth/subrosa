@@ -20,7 +20,7 @@ app.config.from_pyfile("../subrosa.cfg")
 
 cache = Cache(app)
 Markdown(app,
-         extensions = [ "fenced_code", "codehilite", "main.extended_images" ],\
+         extensions = [ "fenced_code", "codehilite", "headerid", "main.extended_images" ],\
          )
 
 # app.jinja_env.add_extension(HTMLCompress)

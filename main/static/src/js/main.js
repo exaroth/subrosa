@@ -55,6 +55,12 @@ $(document).ready(function(){
             e.preventDefault();
             $createForm.submit();
         });
+        $("img.lazy").unveil(200, function(){
+            $(this).load(function(){
+                $(this).positionArticleImage();
+                this.style.opacity = 1;
+            });
+        });
 
         enableTab($articleInputBody);
 
@@ -72,6 +78,7 @@ $(document).ready(function(){
         });
 
         positionFooter();
+
 
         $imageLinks.magnificPopup({
             type: 'image',
@@ -114,7 +121,6 @@ $(document).ready(function(){
 
     function start(){
 
-        processArticleImages($articleBody);
         processGalleryImages($gallery);
         $textarea.autogrow();
         $miniIcons.tooltip();
@@ -229,36 +235,26 @@ $(document).ready(function(){
         return Math.random() * (max - min) + min;
     };
 
+    $.fn.positionArticleImage = function(){
 
-
-    function processArticleImages(articleBody){
-        // Find images in article body,
-        // and float it or center it depending
-        // on whether they are vertical or not
-
-        articleBody.find("img").each(function(e){
-            // If parent element is anchor move it otherwise move image
-            // Wrap image element or anchor with div and return it
-
-            var self       = $(this);
-            var elToMove   = self.parent().is("a") ? self.parent() : self;
-            var imgWrapper = elToMove
-            .wrap('<div class="image-wrapper"></div>')
-            .parent();
-            if (imgIsHorizontal(self)){
-                imgWrapper.addClass("centered-image-wrapper");
-            } else {
-                imgWrapper.addClass("floated-image-wrapper");
-            }
-            var imageDescription = $("<span></span>")
-            .text(self.attr("alt"))
-            .addClass("image-desc")
-            .appendTo(imgWrapper);
-
-
-        })
+        var self = $(this);
+        var elToMove   = self.parent().is("a") ? self.parent() : self;
+        var imgWrapper = elToMove
+        .wrap('<div class="image-wrapper"></div>')
+        .parent();
+        if (imgIsHorizontal(self)){
+            imgWrapper.addClass("centered-image-wrapper");
+        } else {
+            imgWrapper.addClass("floated-image-wrapper");
+        }
+        var imageDescription = $("<span></span>")
+        .text(self.attr("alt"))
+        .addClass("image-desc")
+        .appendTo(imgWrapper);
 
     };
+
+
 
     // Randomize Image width in gallery
 
