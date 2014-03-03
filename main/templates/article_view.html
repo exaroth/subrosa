@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 
 {% block titlebar %}
+
+{% with show_logo=True %}
 {% include "header.html" %}
+{% endwith %}
 {% endblock %}
 
 {% block content %}
@@ -24,6 +27,14 @@
       {% endif %}
       <div class="article-divider"></div>
       <div class="article-body">
+      <div class="toc">
+        <div class="toc-header"><h3>Table of Contents</h3></div>
+        <ul class="toc-body list-unstyled">
+          <li><a href="#">First element</a></li>
+          <li><a href="#">Second element</a></li>
+          <li><a href="#">Third element</a></li>
+        </ul>
+      </div>
        {{ article.body|markdown }}
      </div>
      <div class="article-footer">

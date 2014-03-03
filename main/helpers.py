@@ -5,7 +5,16 @@ from main import app, settings
 import os
 from urlparse import urljoin
 import string, random
+import unicodedata
+import re
 
+
+
+def slugify(value, separator):
+    """ Slugify a string, to make it URL friendly. """
+    value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
+    value = re.sub('[^\w\s-]', '', value.decode('ascii')).strip().lower()
+    return re.sub('[%s\s]+' % separator, separator, value)
 
 def make_external(id):
     """
@@ -70,7 +79,7 @@ def handle_errors(mess = "Unknown Error"):
         logger.debug("==============================")
         logger.debug("Error occured on line %i in file %s" % (func.co_firstlineno, func.co_filename))
         logger.debug("Message: %s" % mess)
-        logger.debug("Details:")
+        logger.debug("Exception Details:")
         logger.debug("--------")
         logger.debug("Type: %s" % exc_type)
         logger.debug("Value: %s" % exc_value)

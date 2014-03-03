@@ -1,10 +1,14 @@
 ﻿<div class="content-header col-xs-12">
-{% if not hide_title %}
+	{% if not hide_title %}
 	<div class="title-header">
-		<a href="{{ url_for('index') }}"><h2>{{ settings.title }}</h2></a>
+		{% if settings.logo and show_logo %}
+			<a href="{{ url_for('index') }}" class="header-logo"><img src="{{ url_for( 'send_image', filename=settings.logo ) }}" alt="{{ settings.title }}"></a>
+		{% else %}
+			<a href="{{ url_for('index') }}"><h2>{{ settings.title }}</h2></a>
 		{% if header_context %}
-		<p class="header-category text-muted">{{ header_context }}</p>
+			<p class="header-category text-muted">{{ header_context }}</p>
+		{% endif %}
 		{% endif %}
 	</div>
-{% endif %}
+	{% endif %}
 </div>
