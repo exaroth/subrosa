@@ -4,9 +4,8 @@ sys.path.append("..")
 
 from peewee import *
 from main import db
-from main.helpers import handle_errors
+from main.helpers import handle_errors, slugify
 from webhelpers.text import truncate
-from slugify import slugify
 import datetime
 
 from BaseModel import BaseModel
