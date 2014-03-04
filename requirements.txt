@@ -1,6 +1,5 @@
 Flask==0.10.1
 Flask-Cache==0.12
-Flask-Markdown==0.3
 Jinja2==2.7.1
 Mako==0.9.1
 Markdown==2.3.1

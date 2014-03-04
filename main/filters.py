@@ -7,6 +7,8 @@ def parse_img_tags(mkd_text):
     Replace every occurence of the <img src='...'> tag
     with <img data-src='...'> tag for lazy loading images
     in article view
+
+    ---- deprecated -------
     """
     return Markup(re.sub(r'<img .*src="',\
      r'<img src="/static/src/img/ajax-loader.gif" data-src="', mkd_text))

@@ -1,7 +1,6 @@
 from math import ceil
 from functools import wraps
 from flask import session, redirect, url_for, request
-from main import app, settings
 import os
 from urlparse import urljoin
 import string, random
@@ -46,7 +45,7 @@ def split_filename(filename, extension_only = False):
         return parts
     return ""
 
-def add_thumbnail_affix(url, affix = settings.get("thumbnail_size", "m")):
+def add_thumbnail_affix(url, affix):
     """ add thumbnail affix to gallery picture """
     url_parts = url.rpartition("/")
     parts = split_filename(url_parts[2])

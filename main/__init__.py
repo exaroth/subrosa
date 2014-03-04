@@ -1,11 +1,13 @@
 from flask import Flask
-from flask.ext.markdown import Markdown
+from main.markdown_ext import Markdown
 from flask.ext.cache import Cache
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
 import pathlib
 import os, sys
 import logging
 from jinja2htmlcompress import HTMLCompress
+from filters import parse_img_tags, timesince
+from helpers import generate_csrf_token
 
 
 __version__ = "0.0.2.dev"
@@ -13,17 +15,15 @@ __version__ = "0.0.2.dev"
 logger = logging.getLogger(__name__)
 
 
-
 app = Flask(__name__)
 app.config.from_object("main.default_config")
 app.config.from_pyfile("../subrosa.cfg")
 
 cache = Cache(app)
-Markdown(app,
+md = Markdown(app,
          extensions = [ "fenced_code", "codehilite", "headerid", "main.extended_images" ],\
          )
 
-# app.jinja_env.add_extension(HTMLCompress)
 
 
 
@@ -38,9 +38,8 @@ class Subrosa(object):
 
     IMAGES = ('bg', 'bg_small', 'logo', 'portrait')
 
-    def __init__(self, app = None):
+    def __init__(self, app, compress_html = False):
 
-        self.app = app
         self.settings = dict()
 
         self.db_types = dict(
@@ -53,35 +52,44 @@ class Subrosa(object):
         for option in self.OPTIONS:
             self.settings[option] = app.config.get(option.upper(), None)
 
-        self.get_user_images()
+        self._get_user_images()
+
+        if compress_html:
+            app.jinja_env.add_extension(HTMLCompress)
+
+        app.jinja_env.globals['csrf_token'] = generate_csrf_token  
+        app.jinja_env.filters['parse_img_tags'] = parse_img_tags
+        app.jinja_env.filters['timesince'] = timesince
+        app.jinja_env.filters['markdown'] = md._build_filter(auto_escape = True)
+        print app.jinja_env.filters
 
 
-
-    def get_user_images(self):
+    def _get_user_images(self):
         for name in self.IMAGES:
             self.settings[name] = None
-            for ext in self.app.config["ALLOWED_FILENAMES"]:
+            for ext in app.config["ALLOWED_FILENAMES"]:
                 filename = name + "." + ext
                 path = os.path.join(app.config["UPLOAD_FOLDER"], filename )
-                if self.user_img_exists(path):
+                if self._user_img_exists(path):
                     self.settings[name] = filename
 
-    def user_img_exists(self, file):
+    def _user_img_exists(self, file):
         p = pathlib.Path(file)
         if p.exists():
             return True
         return False
 
-    def select_db(self, db_type):
+    def _select_db(self, db_type):
         db = self.db_types.get(db_type, None)
 
         if not db:
             raise ValueError("Wrong database name selected")
         return db
 
-    def define_db_connection(self, db_type, db_name, **kwargs):
+    def _define_db_connection(self, db_type, db_name, **kwargs):
+
         try:
-            db_conn = self.select_db(db_type)
+            db_conn = self._select_db(db_type)
             db = db_conn(db_name, **kwargs)
             return db
         except:
@@ -89,22 +97,22 @@ class Subrosa(object):
 
     def get_db(self, **kwargs):
 
-        if self.app.config.get("TESTING", False):
-            db = define_db_connection("sqlite", ":memory:")
+        if app.config.get("TESTING", False):
+            db = self._define_db_connection("sqlite", ":memory:")
         else:
-            dtype = self.app.config.get("DATABASE", None)
-            dname = self.app.config.get("DATABASE_NAME", None)
+            dtype = app.config.get("DATABASE", None)
+            dname = app.config.get("DATABASE_NAME", None)
             if not dtype or not dname:
                 raise ValueError("Database type and name must be defined")
             if dtype in ("postgres", "mysql"):
-                username = self.app.config.get("DB_USERNAME")
-                password = self.app.config.get("DB_PASSWORD", None)
+                username = app.config.get("DB_USERNAME")
+                password = app.config.get("DB_PASSWORD", None)
                 if not username:
                     raise ValueError("%s requires username to connect" % dtype)
                 kwargs["user"] = username
                 kwargs["password"] = password
             try:
-                return  self.define_db_connection(dtype, dname, **kwargs)
+                return  self._define_db_connection(dtype, dname, **kwargs)
             except:
                 raise
     
@@ -119,10 +127,5 @@ settings = subrosa.get_settings()
 
 db = subrosa.get_db()
 
-from main import views, models
-from filters import parse_img_tags, timesince
-from helpers import generate_csrf_token
+from main import views
 
-app.jinja_env.globals['csrf_token'] = generate_csrf_token  
-app.jinja_env.filters['parse_img_tags'] = parse_img_tags
-app.jinja_env.filters['timesince'] = timesince

@@ -27,7 +27,7 @@
 	{% for image in images %}
 	<div class="gallery-image size22 {{ 'galleried' if image.gallery }} {{ 'imgur' if image.imgur_img }}" data-vert="{{ image.is_vertical }}" >
 		<a href="#" class="show-img ajax-popup-link" data-mfp-src="{{ image.image_link }}" style="color: #fff">
-			<div class="img-holder" style="background-image: url({{ add_thumbnail_affix(image.image_link) if image.imgur_img else image.image_link }})">
+			<div class="img-holder" style="background-image: url({{ add_thumbnail_affix(image.image_link, settings.thumbnail_size ) if image.imgur_img else image.image_link }})">
 				<div class="img-overlay"></div>
 				<div class="img-desc">
 					{% if image.description %}
