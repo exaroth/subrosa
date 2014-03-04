@@ -25,7 +25,6 @@ def generate_csrf_token():
     """ Generates random string for login screen"""
     if '_csrf_token' not in session:
         session['_csrf_token'] = id_generator()
-        print session['_csrf_token']
     return session['_csrf_token']
     
 def redirect_url():

@@ -28,7 +28,7 @@
 		{% for article in articles %}
 		<tr >
 		<td> {{ loop.index }} </td>
-		<td><a href="{{ url_for('article_view', id = article.id) }} ">{{ article.title | truncate(35) }} </a></td>
+		<td><a href="{{ url_for('article_view', slug = article.slug) }} ">{{ article.title | truncate(35) }} </a></td>
 		<td>{{ article.date_updated.strftime('%Y-%m-%d %H:%M') }} </td>
 		<td>{% if article.draft == False %}
 		<span class="text-success"><i class="icon-ok"></i>Published</span>

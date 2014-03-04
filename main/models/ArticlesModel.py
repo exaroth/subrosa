@@ -20,7 +20,7 @@ class Articles(BaseModel):
     """
 
     title = TextField(unique = True)
-    slug = TextField()
+    slug = TextField(unique = True)
     draft = BooleanField(default = True)
     date_created = DateTimeField(default = datetime.datetime.utcnow())
     date_updated = DateTimeField(default = datetime.datetime.utcnow())
@@ -47,13 +47,10 @@ class Articles(BaseModel):
         """ Returns paginated articles for the for index """
 
         try:
-            x =  Articles\
+            return Articles\
                     .select()\
                     .where(Articles.draft == False)\
                     .paginate(page, per_page)
-            for m in x:
-                print m.title
-            return x
         except:
             handle_errors("Error getting articles")
 
@@ -83,6 +80,16 @@ class Articles(BaseModel):
            return q.where(Articles.id != id).get()
         except:
             return False
+
+    @staticmethod
+    def get_article_by_slug(slug):
+        try:
+            return Articles\
+                   .select()\
+                   .where(Articles.slug == slug)\
+                   .get()
+        except:
+            return 0
 
     @staticmethod
     @db.commit_on_success

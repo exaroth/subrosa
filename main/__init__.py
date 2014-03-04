@@ -61,7 +61,6 @@ class Subrosa(object):
         app.jinja_env.filters['parse_img_tags'] = parse_img_tags
         app.jinja_env.filters['timesince'] = timesince
         app.jinja_env.filters['markdown'] = md._build_filter(auto_escape = True)
-        print app.jinja_env.filters
 
 
     def _get_user_images(self):
