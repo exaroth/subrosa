@@ -18,6 +18,8 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 app.config.from_object("main.default_config")
 app.config.from_pyfile("../subrosa.cfg")
+if os.environ.get("SUBROSA_CONFIG"):
+    app.config.from_envvar("SUBROSA_CONFIG", silent = False)
 
 cache = Cache(app)
 md = Markdown(app,
@@ -53,6 +55,7 @@ class Subrosa(object):
             self.settings[option] = app.config.get(option.upper(), None)
 
         self._get_user_images()
+        self._favicon_check()
 
         if compress_html:
             app.jinja_env.add_extension(HTMLCompress)
@@ -93,6 +96,11 @@ class Subrosa(object):
             return db
         except:
             raise
+
+    def _favicon_check(self):
+        favicon = pathlib.Path(os.path.join(app.config["UPLOAD_FOLDER"], "favicon.ico"))
+        self.settings["favicon"] = True if favicon.exists() else False
+
 
     def get_db(self, **kwargs):
 
