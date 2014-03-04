@@ -242,6 +242,13 @@
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+@media screen and (max-width: 640px) {
+  .floated-image-wrapper {
+    width: 100%;
+    float: none;
+    clear: both;
+  }
+}
 .centered-image-wrapper {
   position: relative;
   clear: both;
@@ -284,6 +291,9 @@
   padding: 1em;
   white-space: pre;
   overflow: auto;
+}
+.article-footer a {
+  margin-top: 2em;
 }
 @media screen and (max-width: 640px) {
   .article-footer a {

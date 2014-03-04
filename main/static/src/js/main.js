@@ -13,6 +13,7 @@ $(document).ready(function(){
     $articleInputTitle   = $(".article-input-title"),
     $editForm            = $(".edit-article-form"),
     $createForm          = $(".new-article-form"),
+    $editingTools        = $(".editing-tools"),
     $updateArticleButton = $(".update-button"),
     $createArticleButton = $(".create-button"),
     $miniIcons           = $(".mini-icon"),
@@ -34,6 +35,8 @@ $(document).ready(function(){
     adminPanelVisible    = true,
     wWidth               = null,
     wHeight              = null,
+    fadeoutIntVal        = null,
+    fadeout              = false,
     // width of window where most responsive events are occuring
     majorBreakpoint      = 970,
     tocTemplate = "\
@@ -56,6 +59,8 @@ $(document).ready(function(){
             e.preventDefault();
             $editForm.submit();
         });
+
+
 
         $createArticleButton.click(function(e){
             e.preventDefault();
@@ -132,6 +137,30 @@ $(document).ready(function(){
         $textarea.autogrow();
         $miniIcons.tooltip();
         $editingButtons.tooltip();
+        $articleInputBody.focusin(function(){;
+            fadeout = true;
+            checkFadeout()
+        }
+        ).focusout(function(){
+            $editingTools.stop().fadeTo(200, '1')
+            fadeout = false;
+            clearInterval(fadeoutIntVal)
+        });
+        $window.mousemove(function(){
+            if (fadeout){
+                $editingTools.stop().fadeTo(200, '1');
+            }
+        });
+
+        function checkFadeout(){
+             fadeoutIntVal = setInterval(function(){
+                if (fadeout){
+                    $editingTools.stop().delay(6000).fadeTo(500, '0.2')
+                };
+
+            }, 1000)
+
+        };
         $gallery.nested({
             selector : '.gallery-image',
             minWidth : 200,
