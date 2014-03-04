@@ -3,8 +3,9 @@ import os, sys
 
 sys.path.append("..")
 
-from main.models import Users, Articles, db
-from main import app
+from main.models.ArticlesModel import Articles
+from main.models.UsersModel import Users
+from main import app, db
 import time
 import datetime
 
@@ -14,7 +15,7 @@ class TestArticlesModel(unittest.TestCase):
 
     def setUp(self):
 
-        app.config["DEBUG"] = False
+        app.config["TESTING"] = True
         db.connect()
         Users.create_table()
         Articles.create_table()

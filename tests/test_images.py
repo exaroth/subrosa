@@ -4,8 +4,9 @@ import os, sys
 
 sys.path.append("..")
 
-from main.models import Users, UserImages, db
-from main import app
+from main.models.UserImagesModel import UserImages
+from main.models.UsersModel import Users
+from main import app, db
 
 class TestImagesMethods(unittest.TestCase):
 

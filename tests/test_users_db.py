@@ -3,7 +3,7 @@ import unittest
 
 sys.path.append("..")
 
-from main.models import Users, BaseModel
+from main.models.UsersModel import Users
 from main import app, db
 
 
