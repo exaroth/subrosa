@@ -3,6 +3,8 @@
 
 $(document).ready(function(){
 
+    var panelVisible;
+
     // Variables
 
     var
@@ -22,7 +24,8 @@ $(document).ready(function(){
     $gallery             = $(".gallery-wrapper"),
     $lamp                = $(".lamp-button"),
     $imageLinks          = $(".show-img"),
-    $adminToggle         = $(".admin-panel").find(".admin-subrosa a"),
+    $adminPanel          = $(".admin-panel"),
+    $adminToggle         = $adminPanel.find(".admin-subrosa a"),
     // base thumbnail size for gallery
     thumbSize            = 200,
     // variable referring to whether editing window is darkened
@@ -39,6 +42,7 @@ $(document).ready(function(){
     fadeout              = false,
     // width of window where most responsive events are occuring
     majorBreakpoint      = 970,
+    adminPanelWidthSmall = 240,
     tocTemplate = "\
       <div class='toc'>\
         <div class='toc-header'><h3>Table of Contents</h3></div>\
@@ -46,19 +50,37 @@ $(document).ready(function(){
         </ul>\
       </div>"
 
+
     // initialization function
     // =======================
 
 
     function init(){
 
+
         wWidth  = $window.width();
         wHeight = $window.height();
+
+        panelVisible = getToggleState();
+        if (panelVisible == null){
+            panelVisible = 1;
+        };
+
+        if (panelVisible == 0){
+
+            $adminPanel.find('.hideable')
+            .hide()
+            .end()
+            .css('width', '20px').show()
+        } else {
+            $adminPanel.show()
+        }
 
         $updateArticleButton.click(function(e){
             e.preventDefault();
             $editForm.submit();
         });
+
 
 
 
@@ -142,13 +164,13 @@ $(document).ready(function(){
             checkFadeout()
         }
         ).focusout(function(){
-            $editingTools.stop().fadeTo(200, '1')
+            $editingTools.stop().fadeTo(100, '1')
             fadeout = false;
             clearInterval(fadeoutIntVal)
         });
         $window.mousemove(function(){
             if (fadeout){
-                $editingTools.stop().fadeTo(200, '1');
+                $editingTools.stop().fadeTo(100, '1');
             }
         });
 
@@ -174,6 +196,10 @@ $(document).ready(function(){
             midClick: true,
             type: 'inline'
         });
+        $adminToggle.click(function(e){
+            e.preventDefault();
+            toggleAdminPanel();
+        });
         $('[data-toggle="confirmation"]').confirmation({
             popout: true,
             singleton: true,
@@ -183,6 +209,15 @@ $(document).ready(function(){
             btnOkLabel: '<i class="icon-ok"></i>Yes',
             btnCancelLabel: '<i class="icon-cancel"></i>No'
         });
+
+    };
+
+    function getToggleState(){
+        return localStorage.getItem('adminPanelVisible')
+    };
+
+    function setToggleState(state){
+        localStorage.setItem('adminPanelVisible', state)
 
     };
 
@@ -321,7 +356,37 @@ $(document).ready(function(){
     };
 
 
+    function toggleAdminPanel(){
 
+        if  (wWidth > majorBreakpoint){
+            panelVisible = getToggleState();
+
+            if (panelVisible === null){
+                panelVisible = 1
+            };
+
+            if (panelVisible == 1){
+                $adminPanel
+                .find('.hideable')
+                .stop()
+                .hide()
+                .end()
+                .delay(200)
+                .css('width', 20);
+                setToggleState(0);
+            } else {
+                $adminPanel
+                .removeClass('panel-hidden')
+                .stop()
+                .css('width', adminPanelWidthSmall)
+                .find('.hideable')
+                .delay(100)
+                .show()
+                setToggleState(1);
+            }
+
+        }
+    };
     // Randomize Image width in gallery
 
     function processGalleryImages(galleryBody){

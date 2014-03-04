@@ -55,7 +55,7 @@ def db_disconnect(response):
 @app.route("/index", defaults={"page": 1})
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
-# @cache.cached(timeout=50)
+@cache.cached(timeout=50)
 def index(page):
     articles_per_page = settings.get("articles_per_page") 
     articles = Articles.get_index_articles(page, articles_per_page)
@@ -235,6 +235,7 @@ def edit_article(id):
         return render_template("edit_article.html", article = article)
 
 @app.route("/articles/<string:slug>")
+@cache.cached(timeout=50)
 def article_view(slug):
     article = Articles.get_article_by_slug(slug)
     if not article:
@@ -246,18 +247,6 @@ def article_view(slug):
                             next_article = next_article,\
                             previous_article = previous_article)
 
-# @app.route("/article/<int:id>")
-# # @cache.cached(timeout=50)
-# def article_view(id):
-#     article = Articles.get_article(id)
-#     if not article:
-#         abort(404)
-#     next_article = Articles.get_next_article(article.id)
-#     previous_article = Articles.get_previous_article(article.id)
-#     return render_template("article_view.html",\
-#                             article = article,\
-#                             next_article = next_article,\
-#                             previous_article = previous_article)
 
 @app.route("/delete_article/<int:id>")
 @login_required

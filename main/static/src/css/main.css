@@ -1048,6 +1048,7 @@ a[disabled] {
 .admin-panel {
   width: 240px;
   position: absolute;
+  display: none;
   top: 40px;
   left: 60px;
   z-index: 999;
@@ -1056,10 +1057,6 @@ a[disabled] {
   -webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 0 9px rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 9px rgba(0, 0, 0, 0.25);
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
   -webkit-border-radius: 2px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 2px;
