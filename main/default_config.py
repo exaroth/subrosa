@@ -50,11 +50,15 @@ DISQUS = False
 
 # Set this variables to adress of your liking eg "http://www.facebook.com/johndoe"
 
+EMAIL = False
+
 FACEBOOK = False
 
 TWITTER = False
 
 GITHUB = False
+
+GOOGLE_PLUS = False
 
 # If you want gallery integrated with Imgur service put your Imgur user_id here
 

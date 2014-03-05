@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.config.from_object("main.default_config")
-app.config.from_pyfile("../subrosa.cfg")
+app.config.from_pyfile("../subrosa.conf")
 if os.environ.get("SUBROSA_CONFIG"):
     app.config.from_envvar("SUBROSA_CONFIG", silent = False)
 
@@ -35,7 +35,7 @@ class Subrosa(object):
     Initialization class for Subrosa 
     """
 
-    OPTIONS = ("disqus", "facebook", "twitter", "github", "gallery", "dynamic_site", "title",\
+    OPTIONS = ("disqus", "facebook", "twitter", "github", "google_plus", "email", "gallery", "dynamic_site", "title",\
                        "articles_per_page", "images_per_page", "imgur_id", "thumbnail_size")
 
     IMAGES = ('bg', 'bg_small', 'logo', 'portrait')

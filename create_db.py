@@ -9,9 +9,12 @@ db.connect()
 
 app.config["DEBUG"] = False
 
-Users.create_table()
-Articles.create_table()
-UserImages.create_table()
+try:
+    Users.create_table()
+    Articles.create_table()
+    UserImages.create_table()
+    print "database created"
+except:
+    pass
 
-print "database created"
 

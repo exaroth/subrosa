@@ -5,3 +5,4 @@ Pygments>=1.6
 pathlib>=0.97
 peewee>=2.2.1
 requests>=2.2.1
+gunicorn
