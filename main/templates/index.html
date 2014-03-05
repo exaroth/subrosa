@@ -2,28 +2,8 @@
 
 {% block titlebar %} 
 
-<div class="header-field">
+{% include "header.html" %}
 
-	{% if settings.logo %}
-	<div class="logo-holder">
-		<a href="#">
-			<img src="{{url_for('send_image', filename = settings.logo)}}" alt="">
-		</a>
-	</div>
-	{% else %}
-	<h1 class="text-center site-title">{{ settings.title }}</h1>
-	{% endif %}
-	
-	<div class="title-img"></div>
-</div>
-{% if settings.gallery %}
-	<div class="header-toolbar">
-		<ul class="toolbar-links list-unstyled">
-			<li><a href="{{ url_for('gallery')}}" class="toolbar-link gallery-link">GALLERY</a></li>
-		</ul>
-	</div>
-
-{% endif %}
 {% endblock %}
 
 
@@ -31,6 +11,10 @@
 
 {% if articles_written %}
 <div class="article-list">
+<div class="col-md-8 col-md-offset-2 articles-list-latest">
+	<h4>Latest Articles</h4>
+	<hr>
+</div>
 	{% for article in articles %}
 	<article class="article-list-entry col-md-8 col-md-offset-2">
 		<div class="article-list-title col-xs-12">

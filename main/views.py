@@ -55,7 +55,7 @@ def db_disconnect(response):
 @app.route("/index", defaults={"page": 1})
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
-@cache.cached(timeout=50)
+# @cache.cached(timeout=50)
 def index(page):
     articles_per_page = settings.get("articles_per_page") 
     articles = Articles.get_index_articles(page, articles_per_page)

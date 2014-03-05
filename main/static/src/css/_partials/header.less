@@ -1,3 +1,4 @@
+
 .logo-header {
 	position: relative;
 	width: 100%;
@@ -9,6 +10,9 @@
 		position: relative;
 		margin: 0 auto;
 	}
+}
+.header {
+	margin-bottom: 48px;
 }
 
 .title-header {
@@ -72,15 +76,37 @@
     }
 }
 .header-toolbar {
+	height: 60px;
+	@media screen and (max-width: @md){
+		padding: 0 10px 0 10px;
+	}
+	.toolbar-sitetitle h4 {
+		height: 60px;
+		line-height: 70px;
+		font-size: 12px;
+		margin: 0;
+		padding: 0;
+		float: left;
+		font-family: @sans-font;
+		color: @black-70;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
 	ul {
-		text-align: center;
 		display: block;
-		clear: both;
-		height: 82px;
-		line-height: 82px;
+		float: left;
+		height: 40px;
+		line-height: 70px;
+		@media screen and (max-width: @md){
+			float: right;
+		}
 		li {
 			display: inline-block;
 			margin-right: 1em;
+			a {
+			font-size: 12px;
+				
+			}
 		}
 	}
 }
@@ -99,12 +125,12 @@
 
 
 
-.divider {
-	width: 100%;
-	height: 48px;
-	position: relative;
-	clear: both;
-}
+// .divider {
+// 	width: 100%;
+// 	height: 12px;
+// 	position: relative;
+// 	clear: both;
+// }
 .content-header-btns {
 	z-index: 9 
 }

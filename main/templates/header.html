@@ -1,26 +1,17 @@
-<div class="content-header col-xs-12">
-	{% if not hide_title %}
-	<div class="title-header">
-		{% if settings.logo and show_logo %}
-			<a href="{{ url_for('index') }}" class="header-logo"><img src="{{ url_for( 'send_image', filename=settings.logo ) }}" alt="{{ settings.title }}"></a>
-		{% else %}
-			<a href="{{ url_for('index') }}"><h2>{{ settings.title }}</h2></a>
-		{% if header_context %}
-			<p class="header-category text-muted">{{ header_context }}</p>
-		{% endif %}
-		{% endif %}
-	</div>
-	{% endif %}
-</div>
-
-{% if show_icons and settings.gallery %}
-	<div class="header-toolbar">
-		<ul class="toolbar-links list-unstyled">
+<div class="header col-xs-12">
+	<div class="header-toolbar col-xs-12">
+	<div class="toolbar-sitetitle col-md-2"><a href="{{ url_for('index')}}"><h4>{{ settings.title }}</h4></a></div>
+		<ul class="toolbar-links list-unstyled col-md-8 col-md-offset-2">
 			<li><a href="{{ url_for('gallery')}}" class="toolbar-link gallery-link">GALLERY</a></li>
+			<li><a href="" class="toolbar-link ">ABOUT</a></li>
 		</ul>
 	</div>
 
-{% endif %}
-
-
-<div class="divider"></div>
+	<div class="content-header col-xs-12">
+		{% if not hide_title %}
+		<div class="title-header">
+		</div>
+		{% endif %}
+	</div>
+	
+</div>

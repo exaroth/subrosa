@@ -618,97 +618,6 @@ a[disabled] {
   color: #e6e6e6 !important;
   pointer-events: none;
 }
-.title-img {
-  -webkit-border-radius: 50%;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 50%;
-  -moz-background-clip: padding;
-  border-radius: 50%;
-  background-clip: padding-box;
-  background-color: white;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  background-size: contain;
-  background-position: center center;
-  width: 100px;
-  height: 100px;
-  left: 0;
-  right: 0;
-  position: absolute;
-  margin: 0 auto;
-  bottom: 16%;
-  border: 3px solid rgba(255, 255, 255, 0.6);
-  display: none;
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
-}
-@media screen and (max-width: 970px) {
-  .title-img {
-    width: 80px;
-    height: 80px;
-  }
-}
-@media screen and (max-width: 640px) {
-  .title-img {
-    top: 200px;
-  }
-}
-.header-field .site-title {
-  margin: 1em 0 0.5em 0;
-  font-size: 60px;
-  position: relative;
-  top: 13%;
-  font-weight: bold;
-  color: #4d4d4d;
-  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
-  padding: 0 2em;
-  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.6);
-}
-@media screen and (max-width: 750px) {
-  .header-field .site-title {
-    font-size: 24px;
-    text-shadow: none;
-  }
-}
-.logo-holder {
-  position: relative;
-  top: 13%;
-  margin: 0 auto;
-}
-.logo-holder img {
-  max-height: 150px;
-  max-width: 700px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-}
-@media screen and (max-width: 970px) {
-  .logo-holder img {
-    max-height: 100px;
-    max-width: 80%;
-  }
-}
-@media screen and (max-width: 970px) {
-  .logo-holder {
-    top: 20%;
-  }
-}
-.header-field {
-  height: 300px;
-  position: relative;
-  -webkit-background-size: 100% auto;
-  -moz-background-size: 100% auto;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-@media screen and (max-width: 480) {
-  .header-field {
-    height: 40px;
-  }
-}
 .article-list-pagination {
   position: relative;
   height: 80px;
@@ -722,10 +631,22 @@ a[disabled] {
 .article-list-pagination #next {
   float: right;
 }
+.articles-list-latest {
+  padding: 0 30px;
+}
+.articles-list-latest h4 {
+  padding: 0;
+  margin: 0;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
+  font-weight: bold;
+  color: #4d4d4d;
+}
+.articles-list-latest hr {
+  margin-top: 10px;
+}
 .article-list {
   font-family: 'Georgia', 'Times New Roman', Times, serif;
   position: relative;
-  margin-top: 40px;
 }
 .article-list .article-list-title h3 {
   font-size: 2em;
@@ -1049,7 +970,7 @@ a[disabled] {
   width: 240px;
   position: absolute;
   display: none;
-  top: 40px;
+  top: 80px;
   left: 60px;
   z-index: 999;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
@@ -1142,6 +1063,9 @@ a[disabled] {
   position: relative;
   margin: 0 auto;
 }
+.header {
+  margin-bottom: 48px;
+}
 .title-header {
   height: 4em;
   display: table;
@@ -1204,16 +1128,43 @@ a[disabled] {
     display: none;
   }
 }
+.header-toolbar {
+  height: 60px;
+}
+@media screen and (max-width: 970px) {
+  .header-toolbar {
+    padding: 0 10px 0 10px;
+  }
+}
+.header-toolbar .toolbar-sitetitle h4 {
+  height: 60px;
+  line-height: 70px;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  float: left;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
+  color: #4d4d4d;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 .header-toolbar ul {
-  text-align: center;
   display: block;
-  clear: both;
-  height: 82px;
-  line-height: 82px;
+  float: left;
+  height: 40px;
+  line-height: 70px;
+}
+@media screen and (max-width: 970px) {
+  .header-toolbar ul {
+    float: right;
+  }
 }
 .header-toolbar ul li {
   display: inline-block;
   margin-right: 1em;
+}
+.header-toolbar ul li a {
+  font-size: 12px;
 }
 .toolbar-link {
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
@@ -1228,12 +1179,6 @@ a[disabled] {
 .toolbar-link:hover {
   color: #f15831;
   border-bottom: 2px solid #f5603b;
-}
-.divider {
-  width: 100%;
-  height: 48px;
-  position: relative;
-  clear: both;
 }
 .content-header-btns {
   z-index: 9;
