@@ -1,0 +1,11 @@
+<div class="user-info xs-hidden sm-hidden">
+{% if settings.portrait %}
+<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = settings.portrait) }})"> </div>
+{% endif %}
+{% if author.real_name %}
+<span class="real-name">{{ author.real_name }}</span>
+{% endif %}
+<div class="user-desc">
+<p>{{ author.description }}</p>
+</div>
+</div>

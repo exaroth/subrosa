@@ -70,17 +70,6 @@ a {
 	margin: 0 auto -60px;
 }
 
-#lean_overlay {
-	position: fixed;
-	z-index:100;
-	top: 0px;
-	left: 0px;
-	height:100%;
-	width:100%;
-	background: #000;
-	display: none;
-}
-
 .text-warning{
 	color: @yellow !important;
 }
@@ -154,5 +143,54 @@ textarea {
 	border: none
 }
 
+.user-info {
+	position: absolute;
+	width: 200px;
+	right: -250px;
+	top: 0;
+	.portrait-holder {
+		width: 120px;
+		height: 120px;
+		padding: 10px;
+		.box-shadow(0, 2px, 2px, rgba(0,0,0,.3));
+		.background-size(100%, auto);
+		background-position: center center;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		.border-radius(50%);
+		margin-bottom: 20px;
+	}
+	.user-desc {
+		font-size: 12px;
+		font-style: italic;
+		line-height: 10px;
+		margin: 0;
+		text-align: center;
+		p {
+			font-size: 14px !important;
+			color: @black-50 !important;
+		}
+	}
+	.real-name {
+		display: block;
+		text-align: center;
+		font-family: @sans-font;
+		margin-bottom: 10px;
+		font-weight: bold;
+		font-size: 18px;
+		&:after {
+			content: "\2026";
+			display: block;
+			font-size: 14px;
+		}
+	}
 
-
+	.user-info-link{
+		display: block;
+		font-size: 14px;
+		color: @black-60;
+		margin-bottom: 4px;
+		text-align: center;
+	}
+}

@@ -27,6 +27,7 @@
       {% endif %}
       <div class="article-divider"></div>
       <div class="article-body">
+      {% include "user_info.html" %}
        {{ article.body|markdown }}
      </div>
      <div class="article-footer">

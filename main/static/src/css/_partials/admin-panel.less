@@ -45,11 +45,10 @@
     display: none;
     top: 80px;
     left: 60px;
-    z-index: 999;
+    z-index: 1000;
     font-family: @sans-font;
     z-index: 10;
     .box-shadow(0, 0, 9px, rgba(0,0,0,.25));
-    // .transition(all, 0.3s, ease-in-out);
     .border-radius(2px);
     a {
         color: @black-30;
@@ -58,9 +57,8 @@
         float: left;
         position: relative;
         background-color: rgba(73,155,234,1);
-        // .background-image(radial-gradient(rgba(112,176,237,1) 0%, rgba(42,120,189,1) 100%));
         background-color: darken(@cerulean, 10%);
-        z-index: 99999;
+        z-index: 1001;
         a {
             &:hover {
                 opacity: 0.9;

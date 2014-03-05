@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block titlebar %}
-{% with header_context="CREATE ACCOUNT" %}
+{% with header_context="CREATE ACCOUNT", hide_header=True %}
 {% include 'header.html' %}
 {% endwith %}
 {% endblock %}
@@ -14,13 +14,13 @@
 		<input type="text" name="username" class="form-control" id="username" value="" placeholder="Your username" />
 		</div>
 		<div class="form-group">
-			<input type="email" name="email" class="form-control" id="email" placeholder="Your email" value="" />
-		</div>
-		<div class="form-group">
 			<input type="password" name="password" class="form-control" id="password" value="" placeholder="Password" />
 		</div>
 		<div class="form-group">
 			<input type="text" name="real_name" class="form-control" id="real_name" placeholder="Name to be shown next to your posts (optional)" value="" />
+		</div>
+		<div class="form-group">
+			<textarea name="description" id="description" cols="30" rows="10" class="form-control" placeholder="Short description of yourself, if set will show up next to your posts (optional)"></textarea>
 		</div>
 		<div class="form-group">
 			<input type="submit" value="Submit" class="btn btn-default" />

@@ -1,18 +1,8 @@
-
-.logo-header {
-	position: relative;
-	width: 100%;
-	img {
-		max-width: 620px;
-		max-height: 120px;
-		left: 50%;
-		.translateX(-50%);
-		position: relative;
-		margin: 0 auto;
-	}
-}
 .header {
 	margin-bottom: 48px;
+	clear: both;
+	position: relative;
+	z-index: 9;
 	@media screen and (max-width: @md){
 		margin-bottom: 24px;
 	}
@@ -34,11 +24,13 @@
 }
 .header-toolbar {
 	height: 60px;
-	z-index: 999;
+	position: relative;
 	@media screen and (max-width: @md){
 		padding: 0 10px 0 10px;
 	}
-	.toolbar-sitetitle h4 {
+	.toolbar-sitetitle {
+		position: relative;
+	 h4 {
 		height: 60px;
 		line-height: 70px;
 		font-size: 12px;
@@ -49,6 +41,18 @@
 		color: @black-70;
 		text-transform: uppercase;
 		font-weight: bold;
+		.transition(all, 0.1s, ease-in-out);
+		&:hover {
+			color: @black-50;
+		}
+	}
+	img {
+		max-height: 40px;
+		max-width: 300px;
+		position: absolute;
+		margin-top: 10px;
+	}
+		
 	}
 	ul {
 		display: block;
@@ -81,7 +85,3 @@
 	}
 }
 
-
-.content-header-btns {
-	z-index: 9 
-}

@@ -17,19 +17,19 @@ class Users(BaseModel):
     """
 
     username = CharField( max_length = 40, unique = True, index = True )
-    email = CharField(max_length = 40, unique = True )
     hash = CharField()
     real_name = CharField(max_length = 40, null = True )
+    description = TextField(null = True)
 
 
     @staticmethod
     @db.commit_on_success
-    def create_user(username, email, password, real_name = None):
+    def create_user(username, password, description = None, real_name = None):
 
         """ Create new user """
 
         try:
-            return Users.create(username = username, email = email, hash = generate_password_hash(password), real_name = real_name).get_id()
+            return Users.create(username = username, hash = generate_password_hash(password), description = description, real_name = real_name).get_id()
 
         except:
             handle_errors("Error creating user")

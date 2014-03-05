@@ -115,16 +115,16 @@ def create_account():
     if not user_check:
         if request.method == "POST":
             username = request.form.get("username").strip()
-            email = request.form.get("email").strip()
             password = request.form.get("password").strip()
             real_name = request.form.get("real_name", None).strip()
-            if not username or not email or not password:
+            description = request.form.get("description", None).strip()
+            if not username or not password:
                 error = "All fields are required"
                 return render_template("create_account.html", error = error)
             try:
                 Users.create_user(username = username,\
-                                  email = email,\
                                   password = password,\
+                                  description = description,\
                                   real_name = real_name)
             except IOError, e:
                 error = "Could not write to database, check if\
@@ -235,15 +235,17 @@ def edit_article(id):
         return render_template("edit_article.html", article = article)
 
 @app.route("/articles/<string:slug>")
-@cache.cached(timeout=50)
+# @cache.cached(timeout=50)
 def article_view(slug):
     article = Articles.get_article_by_slug(slug)
     if not article:
         abort(404)
+    author = article.author
     next_article = Articles.get_next_article(article.id)
     previous_article = Articles.get_previous_article(article.id)
     return render_template("article_view.html",\
                             article = article,\
+                            author = author,\
                             next_article = next_article,\
                             previous_article = previous_article)
 
