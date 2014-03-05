@@ -23,7 +23,7 @@ class TestImagesMethods(unittest.TestCase):
     
     def test_adding_image(self):
 
-        Users.create_user(username = "konrad", email = "exaroth", password = "test")
+        Users.create_user(username = "konrad", password = "test")
         k = Users.select().get()
         UserImages.add_image(image_link = "test",
                             description = "test",

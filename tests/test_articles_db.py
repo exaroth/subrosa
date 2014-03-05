@@ -19,7 +19,7 @@ class TestArticlesModel(unittest.TestCase):
         db.connect()
         Users.create_table()
         Articles.create_table()
-        Users.create(username = "konrad", email = "exaroth@gmail.com", hash = "test")
+        Users.create(username = "konrad", hash = "test")
 
     def tearDown(self):
 
@@ -80,7 +80,7 @@ class TestArticlesMethods(unittest.TestCase):
         db.connect()
         Users.create_table()
         Articles.create_table()
-        Users.create(username = "konrad", email = "exaroth@gmail.com", hash = "test")
+        Users.create(username = "konrad", hash = "test")
 
     def tearDown(self):
 
@@ -133,7 +133,7 @@ class TestArticlesMethods(unittest.TestCase):
 
     def test_getting_user_articles(self):
         k = Users.select().get()
-        Users.create(username = "malgosia", email = "malgosia@gmail.com", hash = "test")
+        Users.create(username = "malgosia", hash = "test")
         m = Users.select().where(Users.username == "malgosia").get()
 
         Articles.create( title = "test article 1", slug = "test-article-1", body = "testing", author = k, draft = False )

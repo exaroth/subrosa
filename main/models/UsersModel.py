@@ -40,12 +40,12 @@ class Users(BaseModel):
         return len(list(Users.select())) > 0
 
     @staticmethod
-    def check_exists(username, email):
+    def check_exists(username):
 
         """ Check if user with given username or email already exists """
 
         return Users.select()\
-                .where((Users.username == username) | (Users.email == email))\
+                .where(Users.username == username)\
                 .exists()
 
     @staticmethod
