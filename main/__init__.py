@@ -63,7 +63,7 @@ class Subrosa(object):
         app.jinja_env.globals['csrf_token'] = generate_csrf_token  
         app.jinja_env.filters['parse_img_tags'] = parse_img_tags
         app.jinja_env.filters['timesince'] = timesince
-        app.jinja_env.filters['markdown'] = md._build_filter(auto_escape = True)
+        app.jinja_env.filters['markdown'] = md._build_filter(auto_escape = False)
 
 
     def _get_user_images(self):

@@ -1,8 +1,10 @@
 <div class="header col-xs-12">
 	<div class="header-toolbar col-xs-12">
-	<div class="toolbar-sitetitle col-md-2"><a href="{{ url_for('index')}}"><h4>{{ settings.title }}</h4></a></div>
+		<div class="toolbar-sitetitle col-md-2"><a href="{{ url_for('index')}}"><h4>{{ settings.title }}</h4></a></div>
 		<ul class="toolbar-links list-unstyled col-md-8 col-md-offset-2">
+			{% if settings.gallery %}
 			<li><a href="{{ url_for('gallery')}}" class="toolbar-link gallery-link">GALLERY</a></li>
+			{% endif %}
 			<li><a href="" class="toolbar-link ">ABOUT</a></li>
 		</ul>
 	</div>

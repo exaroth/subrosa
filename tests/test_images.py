@@ -25,17 +25,14 @@ class TestImagesMethods(unittest.TestCase):
 
         Users.create_user(username = "konrad", email = "exaroth", password = "test")
         k = Users.select().get()
-        UserImages.add_image(filename = "test",
-                            showcase = "test",
-                            external = False,
+        UserImages.add_image(image_link = "test",
                             description = "test",
                             is_vertical = False,
                             owner = k)
 
         sel = UserImages.select().get()
 
-        self.assertEquals(sel.filename, "test")
-        self.assertFalse(sel.external)
+        self.assertEquals(sel.image_link, "test")
         self.assertEquals(sel.owner.username, "konrad")
 
 
