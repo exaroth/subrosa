@@ -1,9 +1,22 @@
-﻿
+﻿# -*- coding: utf-8 -*-
+"""
+
+    main.subrosa
+    ============
+
+    Implements subrosa intiialization class
+
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+"""
 import pathlib
 from filters import parse_img_tags, timesince
 from helpers import generate_csrf_token
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
 from main.markdown_ext import Markdown
+from jinja2htmlcompress import HTMLCompress
 import logging
 import os, sys
 

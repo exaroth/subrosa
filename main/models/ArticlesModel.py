@@ -1,14 +1,25 @@
-﻿import os, sys
+﻿# -*- coding: utf-8 -*-
+"""
 
-sys.path.append("..")
+    main.models.ArticlesModel
+    ============
+    
+    Implements model and methods related to subrosa articles
 
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+
+"""
+
+import os, sys
 from peewee import *
-from main import db
-from main.helpers import handle_errors, slugify
 import datetime
 
-from BaseModel import BaseModel
-from UsersModel import Users
+from main import db
+from main.helpers import handle_errors, slugify
+from main.models.BaseModel import BaseModel
+from main.models.UsersModel import Users
 
 
 

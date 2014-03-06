@@ -1,14 +1,25 @@
-﻿import os, sys
+﻿# -*- coding: utf-8 -*-
+"""
 
-sys.path.append("..")
+    main.models.ArticlesModel
+    ============
+    
+    Implements model and methods related to subrosa images
 
-from BaseModel import BaseModel
-from UsersModel import Users
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
 
+
+"""
+
+import os, sys
+import datetime
 from peewee import *
+
+from main.models.BaseModel import BaseModel
+from main.models.UsersModel import Users
 from main.helpers import handle_errors
 from main import db
-import datetime
 
 
 class UserImages(BaseModel):

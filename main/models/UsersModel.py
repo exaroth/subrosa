@@ -1,13 +1,25 @@
-﻿import os, sys
+﻿# -*- coding: utf-8 -*-
+"""
 
-sys.path.append("..")
+    main.models.UsersModel
+    ============
+    
+    Implements model and methods related to user interaction
 
-from peewee import *
-from BaseModel import BaseModel
-from werkzeug.security import generate_password_hash, check_password_hash
-from main.helpers import handle_errors
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+
+"""
+
+import os, sys
 import datetime
+from peewee import *
+
 from main import db
+from main.models.BaseModel import BaseModel
+from main.helpers import handle_errors
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class Users(BaseModel):

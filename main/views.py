@@ -3,12 +3,12 @@
 """
 
     main.views
-    ~~~~~~~~~~
+    ==========
 
     This module implements all the basic views of Subrosa
 
     :copyright: (c) 2014 by Konrad Wasowicz
-    :license: BSD, see LICENSE for more details
+    :license: MIT, see LICENSE for more details
 
 
 """

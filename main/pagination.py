@@ -1,10 +1,23 @@
-﻿from math import ceil
+﻿# -*- coding: utf-8 -*-
+"""
+
+    main.pagination
+    ============
+ 
+    Adds pagination class
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+"""
+
+from math import ceil
 
 class Pagination(object):
 
     """
     Pagination class...for paginating.
-    courtesy of Armin Ronacher
+    Script created by Arin Ronacher
     """
 
     def __init__(self, page, per_page, total_count):

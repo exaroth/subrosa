@@ -1,4 +1,17 @@
 # -*- coding: utf-8 -*-
+"""
+
+    main.imgur
+    ============
+ 
+
+    Implements class that allows
+    integration with imgur API   
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+"""
 
 import json, base64
 import requests
@@ -8,7 +21,7 @@ import requests
 class ImgurHandler(object):
 
 	"""
-	Basic class for handling imgur image upload
+	Basic class for handling Imgur image upload
 	accepts header containing user_id variable
 	and dictionary containing request configuration
 	"""
@@ -28,6 +41,7 @@ class ImgurHandler(object):
 
 
 	def add_authorization_header(self, additional = dict()):
+
             """
             Builds authorization headers for anonymous users 
             """
@@ -40,6 +54,7 @@ class ImgurHandler(object):
 
 
 	def build_send_request(self, params = dict()):
+        
             """
             Build request for sending an image 
             """
@@ -65,12 +80,11 @@ class ImgurHandler(object):
             req = requests.post(self.get_api(),\
                                 data = self.build_send_request(params),\
                                 headers = self.add_authorization_header(additional))
-
             return req.json()
 
         def delete_image(self, delete_hash):
-            req = requests.delete(self.get_api()+ "/" + delete_hash,\
-                                  headers = self.add_authorization_header())
-            return req.json()
+                req = requests.delete(self.get_api()+ "/" + delete_hash,\
+                                      headers = self.add_authorization_header())
+                return req.json()
 
 

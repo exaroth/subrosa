@@ -1,7 +1,16 @@
+# -*- coding: utf-8 -*-
 """
 
-This file contains default configuration for Subrosa,
-User configuration should be definedd in subrosa.cfg file
+    main.default_config
+    ============
+    
+    This is the default config used by Subrosa,
+    it consists of all the options in Subrosa conf
+    aswell as some more advanced one
+    Typically this hsould not be changed by user.
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
 
 """
 import sys

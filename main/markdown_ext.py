@@ -1,12 +1,19 @@
+# -*- coding: utf-8 -*-
 """
 
-Small module integrating markdown into Subrosa
+    main.markdown_ext
+    ============
+ 	
+ 	Implements class integrating markdown
+ 	parser into Subrosa
 
-Inspired by Flask-Markdown plugin by Dan Colish
+ 	Inspired by Flask-Markdown extension
+ 	by Dan COlish
 
-===
-https://github.com/dcolish/flask-markdown
-===
+ 	https://github.com/dcolish/flask-markdown
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
 
 """
 
@@ -28,8 +35,6 @@ class Markdown(object):
 				  extensions = ['footnotes'],
 				  safe_mode = True,
 				  output_format = 'html4')
-
-
 	"""
 
 	def __init__(self, app, auto_escape = False, **markdown_options):

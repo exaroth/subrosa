@@ -1,12 +1,26 @@
+# -*- coding: utf-8 -*-
+"""
+
+	Subrosa - and elegant blogging platform
+	written in Python and Flask microframework
+
+	https://github.com/mitsuhiko/flask
+
+	:copyright: (c) 2014 by Konrad Wasowicz
+	:license: MIT, see LICENSE for details.
+
+"""
+
+__version__ = "0.2.dev"
+
+
+import os, sys
+import logging
 from flask import Flask
 from main.subrosa import Subrosa
 from flask.ext.cache import Cache
-import os, sys
-import logging
-from jinja2htmlcompress import HTMLCompress
 
 
-__version__ = "0.0.2.dev"
 
 logger = logging.getLogger(__name__)
 
@@ -19,8 +33,9 @@ app.config.from_pyfile("../subrosa.conf")
 if os.environ.get("SUBROSA_CONFIG"):
     app.config.from_envvar("SUBROSA_CONFIG", silent = False)
 
-cache = Cache(app)
 
+
+cache = Cache(app)
 
 subrosa = Subrosa(app)
 

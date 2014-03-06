@@ -1,3 +1,16 @@
+# -*- coding: utf-8 -*-
+"""
+
+    main.filters
+    ============
+        
+    Miscellaneous filters used in subrosa views
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+"""
+
 from jinja2 import Markup
 import re
 from datetime import datetime
