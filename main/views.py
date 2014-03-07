@@ -37,19 +37,6 @@ from models.UsersModel import Users
 
 
 
-@app.before_request
-def load_vars():
-    g.prev = redirect_url()
-
-@app.before_request
-def db_connect():
-    g.db = db
-    g.db.connect()
-
-@app.teardown_request
-def db_disconnect(response):
-    g.db.close()
-    return response
 
 
 @app.route("/index", defaults={"page": 1})
@@ -456,14 +443,4 @@ def send_image(filename):
 
 
 
-@app.context_processor
-def utility_processor():
-    return dict(settings = settings,\
-                current_path = request.url_root + request.path[1:],
-                add_thumbnail_affix = add_thumbnail_affix
-        )
-
-@app.errorhandler(404)
-def http_not_found(err):
-    return render_template("error.html"), 404
 

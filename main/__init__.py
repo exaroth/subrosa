@@ -16,8 +16,9 @@ __version__ = "0.2.dev"
 
 import os, sys
 import logging
-from flask import Flask
+from flask import Flask, request
 from main.subrosa import Subrosa
+from .helpers import add_thumbnail_affix
 from flask.ext.cache import Cache
 
 
@@ -51,4 +52,11 @@ settings = subrosa.get_settings()
 
 db = subrosa.get_db()
 
-from main import views
+@app.context_processor
+def utility_processor():
+    return dict(settings = settings,\
+                current_path = request.url_root + request.path[1:],
+                add_thumbnail_affix = add_thumbnail_affix
+        )
+
+from main import views, misc
