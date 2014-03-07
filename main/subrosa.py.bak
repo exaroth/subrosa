@@ -26,7 +26,7 @@ logger = logging.getLogger("subrosa")
 class Subrosa(object):
 
     """
-    Initialization class for Subrosa
+    Initialization class for Subrosa 
     """
 
     OPTIONS = ("disqus", "facebook", "twitter", "github", "google_plus", "email", "gallery", "dynamic_site", "title",\
@@ -43,7 +43,7 @@ class Subrosa(object):
             sqlite = SqliteDatabase,
             postrges = PostgresqlDatabase,
             mysql = MySQLDatabase
-        )
+        ) 
         # List of options that should be passed to views
 
         for option in self.OPTIONS:
@@ -61,7 +61,7 @@ class Subrosa(object):
         if compress_html:
             app.jinja_env.add_extension(HTMLCompress)
 
-        app.jinja_env.globals['csrf_token'] = generate_csrf_token
+        app.jinja_env.globals['csrf_token'] = generate_csrf_token  
         app.jinja_env.filters['parse_img_tags'] = parse_img_tags
         app.jinja_env.filters['timesince'] = timesince
         app.jinja_env.filters['markdown'] = md._build_filter(auto_escape = False)
@@ -123,6 +123,7 @@ class Subrosa(object):
                 return  self._define_db_connection(dtype, dname, **kwargs)
             except:
                 raise
-
+    
     def get_settings(self):
         return self.settings
+

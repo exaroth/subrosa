@@ -3,7 +3,7 @@
 
     main.filters
     ============
-
+        
     Miscellaneous filters used in subrosa views
 
     :copyright: (c) 2014 by Konrad Wasowicz
@@ -34,7 +34,7 @@ def timesince(dt, default="just now"):
 
     now = datetime.utcnow()
     diff = now - dt
-
+    
     periods = (
         (diff.days / 365, "year", "years"),
         (diff.days / 30, "month", "months"),

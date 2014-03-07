@@ -3,7 +3,7 @@
 
     main.helpers
     ============
-
+    
     Helper files used by other Subrosa components
 
     :copyright: (c) 2014 by Konrad Wasowicz
@@ -46,7 +46,7 @@ def generate_csrf_token():
     if '_csrf_token' not in session:
         session['_csrf_token'] = id_generator()
     return session['_csrf_token']
-
+    
 def redirect_url():
 
     """
@@ -90,7 +90,7 @@ def handle_errors(mess = "Unknown Error"):
     """
     Small function that logs exceptions
     """
-
+    
     import logging, inspect, datetime, sys
 
     # Get the function that called it
@@ -113,3 +113,4 @@ def handle_errors(mess = "Unknown Error"):
     logger.debug("Value: %s" % exc_value)
     logger.debug("Traceback: %s" % exc_traceback)
     return
+

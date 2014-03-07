@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 
-        Subrosa - and elegant blogging platform
-        written in Python and Flask microframework
+	Subrosa - and elegant blogging platform
+	written in Python and Flask microframework
 
-        https://github.com/mitsuhiko/flask
+	https://github.com/mitsuhiko/flask
 
-        :copyright: (c) 2014 by Konrad Wasowicz
-        :license: MIT, see LICENSE for details.
+	:copyright: (c) 2014 by Konrad Wasowicz
+	:license: MIT, see LICENSE for details.
 
 """
 

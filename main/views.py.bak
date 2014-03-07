@@ -57,7 +57,7 @@ def db_disconnect(response):
 @app.route("/<int:page>")
 # @cache.cached(timeout=50)
 def index(page):
-    articles_per_page = settings.get("articles_per_page")
+    articles_per_page = settings.get("articles_per_page") 
     articles = Articles.get_index_articles(page, articles_per_page)
     count = articles.wrapped_count()
     show_pagination = count > articles_per_page
@@ -202,8 +202,8 @@ def edit_article(id):
     error = None
 
     if article.author.username != session["user"]:
-        flash("You can\'t edit other people\'s articles")
-        return redirect(url_for("index"))
+       flash("You can\'t edit other people\'s articles")
+       return redirect(url_for("index"))
 
     if request.method == "POST":
         title = request.form.get("title").strip()
@@ -430,7 +430,7 @@ def recent_feeds():
     Generates Atom feeds
     Snippet created by Armin Ronacher
     """
-    feed = AtomFeed("Recent Posts",
+    feed = AtomFeed("Recent Posts", 
         feed_url = request.url, url = request.url_root)
 
     articles = Articles.select().limit(15)
@@ -466,4 +466,9 @@ def utility_processor():
 @app.errorhandler(404)
 def http_not_found(err):
     return render_template("error.html"), 404
+
+@app.errorhandler(500)
+def server_error(err):
+    return render_template('error.html'), 500
+
 

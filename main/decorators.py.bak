@@ -20,7 +20,7 @@ from functools import wraps
 def login_required(f):
 
     """
-    Simple authorization decorator
+    Simple authorization decorator 
     if "user" key is not in session
     automatically redirect to index
     """
