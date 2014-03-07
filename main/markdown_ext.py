@@ -8,7 +8,7 @@
  	parser into Subrosa
 
  	Inspired by Flask-Markdown extension
- 	by Dan COlish
+ 	by Dan Colish
 
  	https://github.com/dcolish/flask-markdown
 

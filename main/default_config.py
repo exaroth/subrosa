@@ -13,11 +13,6 @@
     :license: MIT, see LICENSE for details.
 
 """
-import sys
-import os
-
-BASE_PATH = os.path.dirname(os.path.realpath(__file__))
-ROOT_PATH = os.path.dirname(BASE_PATH + "..")
 
 # Set title of you site
 
@@ -39,11 +34,11 @@ DYNAMIC_SITE = True
 
 # Database type
 
-DATABASE = "sqlite"
+DATABASE = None
 
 # Database name
 
-DATABASE_NAME = "test.db"
+DATABASE_NAME = None
 
 #This options apply only if you are using postgresql or mysql
 
@@ -118,16 +113,12 @@ THUMBNAIL_SIZE = "l"
 
 # Set it to True only for development purposes, outputs errors straight to the browser
 
-DEBUG = True
+DEBUG = False
 
 
 # Set it to True if you want detailed error messages written to a file
 
-LOGGING = True
-
-# Path to upload folder
-
-UPLOAD_FOLDER = os.path.dirname(os.path.join(ROOT_PATH, "uploads/")) + "/"
+LOGGING = False
 
 # Cache options
 
