@@ -1,4 +1,5 @@
 from setuptools import setup
+import multiprocessing
 
 setup(
     name = "Subrosa",
@@ -9,6 +10,7 @@ setup(
     url = "subrosa.github.io",
     license = "MIT",
     long_description = __doc__,
+    test_suite = "nose.collector",
     packages=["main"],
     include_package_data = True,
     zip_safe = False,
@@ -17,6 +19,7 @@ setup(
                       "Markdown",
                       "Pygments",
                       "requests",
+                      "nose",
                       "peewee",
                       "pathlib"]
 

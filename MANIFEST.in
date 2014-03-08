@@ -1,7 +1,3 @@
 recursive-include main/templates *
 recursive-include main/static *
 recursive-include main/models *
-recursive-include subrosa.cfg
-recursive-include uploads
-recursive-include run.py
-recursive-include create_db.py
