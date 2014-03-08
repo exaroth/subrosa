@@ -52,6 +52,8 @@ class TestUsersMethods(unittest.TestCase):
             self.assertFalse(konrad.check_password("wrong_password"))
 
 
+if __name__ == "__main__":
+    unittest.main()
 
 
 

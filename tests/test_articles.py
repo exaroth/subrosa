@@ -33,6 +33,11 @@ class TestArticlesMethods(unittest.TestCase):
                                    draft = False, \
                                    author = user1)
 
+            self.assertRaises(IntegrityError,\
+                              lambda: Articles.create_article(title = "test",\
+                                                              body = "test",\
+                                                              author = user1))
+
             articles = Articles.get_user_articles("konrad")
 
             self.assertEquals(2,len(tuple(articles)))
@@ -120,6 +125,7 @@ class TestArticlesMethods(unittest.TestCase):
             self.assertEquals(0, Articles.get_count(True))
 
 
-
+if __name__ == "__main__":
+    unittest.main()
 
 
