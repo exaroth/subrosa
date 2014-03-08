@@ -105,7 +105,7 @@ class Subrosa(object):
 
     def get_db(self, **kwargs):
 
-        if self.app.config.get("TESTING", False):
+        if os.environ.get("CI"):
             db = self._define_db_connection("sqlite", ":memory:")
         else:
             dtype = self.app.config.get("DATABASE", None)
