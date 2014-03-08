@@ -2,7 +2,7 @@
 """
 
     main.pagination
-    ============
+    ===============
 
     Adds pagination class
 
@@ -17,7 +17,7 @@ class Pagination(object):
 
     """
     Pagination class...for paginating.
-    Script created by Arin Ronacher
+    Script created by Armin Ronacher
     """
 
     def __init__(self, page, per_page, total_count):

@@ -165,7 +165,6 @@ def article_view(slug):
                             next_article = next_article,\
                             previous_article = previous_article)
 
-
 @app.route("/delete_article/<int:id>")
 @login_required
 def delete_article(id):

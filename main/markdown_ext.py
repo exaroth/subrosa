@@ -30,10 +30,10 @@ class Markdown(object):
 
     Example usage:
     md = Markdown(app = app,
-                              auto_escape = False,
-                              extensions = ['footnotes'],
-                              safe_mode = True,
-                              output_format = 'html4')
+                        auto_escape = False,
+                        extensions = ['footnotes'],
+                        safe_mode = True,
+                        output_format = 'html4')
     """
 
     def __init__(self, app, auto_escape = False, **markdown_options):

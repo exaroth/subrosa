@@ -61,9 +61,9 @@ db = subrosa.get_db()
 @app.context_processor
 def utility_processor():
     return dict(settings = settings,\
-                current_path = request.url_root + request.path[1:],
-                add_thumbnail_affix = add_thumbnail_affix
-        )
+                current_path = request.url_root + request.path[1:],\
+                add_thumbnail_affix = add_thumbnail_affix)
+
 from main.create_views import CreateArticleView, CreateProjectView
 from main.edit_views import UpdateArticleView, UpdateProjectView
 

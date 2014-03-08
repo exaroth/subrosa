@@ -1,3 +1,17 @@
+# -*- coding: utf-8 -*-
+"""
+
+    main.edit_views
+    ===============
+    
+
+    Implements views related to updating stuff
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+"""
+
 from main.base_views import ScratchpadView
 from flask import render_template, request, session, url_for, redirect, flash, abort
 from main.models.UsersModel import Users

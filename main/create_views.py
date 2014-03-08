@@ -1,4 +1,18 @@
-﻿from flask import render_template, request, session, url_for, redirect, flash
+﻿#-*- coding: utf-8 -*-
+"""
+
+    main.create_views
+    ===============
+    
+    implements class-based views related to creating stuff
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+"""
+
+
+from flask import render_template, request, session, url_for, redirect, flash
 from main.models.UsersModel import Users
 from main.models.ArticlesModel import Articles
 from main.models.UserProjectsModel import UserProjects

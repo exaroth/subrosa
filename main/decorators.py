@@ -2,7 +2,7 @@
 """
 
     main.decorators
-    ============
+    ===============
 
     Decorators used in views
 

@@ -7,7 +7,7 @@
     This is the default config used by Subrosa,
     it consists of all the options in Subrosa conf
     aswell as some more advanced one
-    Typically this hsould not be changed by user.
+    Typically this should not be changed by user.
 
     :copyright: (c) 2014 by Konrad Wasowicz
     :license: MIT, see LICENSE for details.
