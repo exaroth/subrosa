@@ -65,4 +65,5 @@ def utility_processor():
                 add_thumbnail_affix = add_thumbnail_affix
         )
 
+
 from main import views, misc

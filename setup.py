@@ -20,7 +20,6 @@ setup(
                       "Pygments",
                       "requests",
                       "nose",
-                      "peewee",
-                      "pathlib"]
+                      "peewee"]
 
 )

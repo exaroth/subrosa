@@ -11,7 +11,6 @@
     :license: MIT, see LICENSE for details.
 
 """
-import pathlib
 from filters import parse_img_tags, timesince
 from helpers import generate_csrf_token
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
@@ -68,6 +67,7 @@ class Subrosa(object):
 
 
     def _get_user_images(self):
+
         for name in self.IMAGES:
             self.settings[name] = None
             for ext in self.app.config["ALLOWED_FILENAMES"]:
@@ -77,14 +77,18 @@ class Subrosa(object):
                     self.settings[name] = filename
 
     def _user_img_exists(self, file):
-        p = pathlib.Path(file)
-        if p.exists():
+
+        """
+        Check if given file exists
+        :file - full path to file
+        """
+        if os.path.exists(file):
             return True
         return False
 
     def _select_db(self, db_type):
-        db = self.db_types.get(db_type, None)
 
+        db = self.db_types.get(db_type, None)
         if not db:
             raise ValueError("Wrong database name selected")
         return db
@@ -99,8 +103,8 @@ class Subrosa(object):
             raise
 
     def _favicon_check(self):
-        favicon = pathlib.Path(os.path.join(self.app.config["UPLOAD_FOLDER"], "favicon.ico"))
-        self.settings["favicon"] = True if favicon.exists() else False
+        favicon_exists = os.path.exists(os.path.join(self.app.config["UPLOAD_FOLDER"], "favicon.ico"))
+        self.settings["favicon"] = True if favicon_exists else False
 
 
     def get_db(self, **kwargs):
@@ -118,7 +122,7 @@ class Subrosa(object):
             kwargs["password"] = password
         try:
             return  self._define_db_connection(dtype, dname, **kwargs)
-        except:
+        except Exception as e:
             raise
 
     def get_settings(self):
