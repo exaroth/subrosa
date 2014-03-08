@@ -126,4 +126,3 @@ CACHE_TYPE = "simple"
 
 CACHE_KEY_PREFIX = "subrosa_"
 
-TESTING = False

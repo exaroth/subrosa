@@ -55,7 +55,7 @@ class Articles(BaseModel):
     
     @staticmethod
     def get_index_articles(page, per_page):
-        """ Returns paginated articles for the for index """
+        """ Returns paginated articles for the index page"""
 
         try:
             return Articles\
@@ -67,7 +67,9 @@ class Articles(BaseModel):
 
     @staticmethod
     def get_user_articles(username):
+
         """ Get all articles belonging to user """
+
         try:
             return Articles.select()\
                     .join(Users)\
@@ -104,30 +106,32 @@ class Articles(BaseModel):
 
     @staticmethod
     @db.commit_on_success
-    def create_article(title, body, author, draft):
+    def create_article(title, body, author, draft = True):
         try:
-            Articles.create(title = title, slug = slugify(title), body = body, author = author, draft = draft)
+            Articles.create(title = title,\
+                            slug = slugify(title),\
+                            body = body,\
+                            author = author,\
+                            draft = draft)
         except Exception as e:
             handle_errors("Error creating article")
             raise
 
-    @staticmethod
-    def get_previous_article(id, draft = False):
+    def get_previous_article(self, draft = False):
         try:
             return Articles.select()\
                    .where(Articles.draft == draft)\
-                   .where(Articles.id < id)\
+                   .where(Articles.id < self.id)\
                    .order_by(Articles.date_created.desc())\
                    .get()
         except:
             return 0
 
-    @staticmethod
-    def get_next_article(id, draft = False):
+    def get_next_article(self, draft = False):
         try:
             return Articles.select()\
                    .where(Articles.draft == draft)\
-                   .where(Articles.id > id)\
+                   .where(Articles.id > self.id)\
                    .order_by(Articles.date_created.asc())\
                    .get()
         except:

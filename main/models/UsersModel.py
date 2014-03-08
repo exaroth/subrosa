@@ -2,7 +2,7 @@
 """
 
     main.models.UsersModel
-    ============
+    ======================
     
     Implements model and methods related to user interaction
 
@@ -41,7 +41,10 @@ class Users(BaseModel):
         """ Create new user """
 
         try:
-            return Users.create(username = username, hash = generate_password_hash(password), description = description, real_name = real_name).get_id()
+            return Users.create(username = username,\
+                                hash = generate_password_hash(password),\
+                                description = description,\
+                                real_name = real_name).get_id()
 
         except:
             handle_errors("Error creating user")
@@ -49,6 +52,7 @@ class Users(BaseModel):
 
     @staticmethod
     def check_any_exist():
+
         return len(list(Users.select())) > 0
 
     @staticmethod

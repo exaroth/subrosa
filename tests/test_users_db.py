@@ -1,149 +1,57 @@
-import os, sys
+
 import unittest
-
-sys.path.append("..")
-
 from main.models.UsersModel import Users
-from main import app, db
+from playhouse.test_utils import test_database
+from peewee import *
+
+db = SqliteDatabase(":memory:")
+
+db._flag = "db1"
 
 
-
-class TestUserModel(unittest.TestCase):
-
-    def setUp(self):
-        app.config["DEBUG"] = True
-        db.connect()
-        Users.create_table()
-
-    def tearDown(self):
-        Users.drop_table()
-
-    def test_user_insertions(self):
-
-        konrad = Users.create(username = "konrad", hash = "test", real_name = "John Doe" )
-
-        sel = Users.select().count()
-        self.assertEquals(1, sel)
-        sel = Users.select().get()
-        self.assertEquals("konrad", sel.username)
-
-        # test for not adding required fields
-
-    def test_required_fields(self):
-
-        self.assertRaises(lambda: Users.create( hash = "test", realname = "John Doe"))
-
-        self.assertRaises(lambda: Users.create(username = "konrad", real_name = "John Doe"))
-
-        # Test for nullable real name
-
-    def test_nullable_fields(self):
-
-        konrad = Users.create(username = "konrad", hash = "test")
-        sel = Users.select().get()
-
-        self.assertEquals(None, sel.real_name)
-
-
-    def test_uniqueness(self):
-
-        user1 = Users.create(username = "konrad", hash = "test")
-
-        self.assertRaises(lambda: Users.create(username = "konrad", hash = "test"))
-
-        self.assertRaises(lambda: Users.create(username = "other", hash = "test"))
-
-    def test_multiple_user_insertions(self):
-
-        user1 = Users.create(username = "konrad", hash = "test")
-        user2 = Users.create(username = "malgosia", hash = "test")
-
-        sel = Users.select()
-
-        self.assertEquals(sel.count(), 2)
-
-        self.assertEquals(sel.where(Users.username == "malgosia").get().username, "malgosia" )
-
-    def test_getting_nonexistent_person_returns_false(self):
-
-        user1 = Users.create(username = "konrad", hash = "test")
-
-        # if user doesnt exists raises an error
-        self.assertRaises(lambda: Users.select().where(Users.username == "malgosia").get())
-
-
-class TestUserMethods(unittest.TestCase):
-
-    def setUp(self):
-        app.config["DEBUG"] = True
-        db.connect()
-        Users.create_table()
-
-    def tearDown(self):
-        Users.drop_table()
+class TestUsersMethods(unittest.TestCase):
 
     
-    def test_inserting_users(self):
+    def test_sanity(self):
 
-        username = "konrad"
-        password = "test"
+        with test_database(db, (Users,)):
+            self.assertTrue(Users.table_exists())
+            self.assertFalse(Users.check_any_exist())
 
-        konrad = Users.create_user(username = username, password = password)
-        self.assertEquals(konrad, 1)
 
-        sel = Users.select().get()
-        self.assertEquals(sel.username, "konrad")
-        self.assertIn("pbkdf", sel.hash)
-        self.assertEquals(None, sel.real_name)
+    def test_creating_user(self):
 
-        # test for errors
+        with test_database(db, (Users,)):
+            Users.create_user(username = "konrad", password = "secret")
 
-        self.assertRaises(lambda: Users.create_user(username = username, password = "other"))
+            self.assertTrue(Users.get_user(1))
+            self.assertTrue(Users.check_exists("konrad"))
+            self.assertEquals(1, Users.select().count())
 
-    def test_getting_user_by_username(self):
 
-        Users.create(username = "konrad", hash = "test")
+            Users.create_user(username = "malgosia",\
+                              password = "secret",\
+                              real_name = "Malgosia Samosia", \
+                              description = "test")
 
-        k = Users.get_user_by_username("konrad")
+            self.assertEquals(2, Users.select().count())
 
-        self.assertEquals(k.username, "konrad")
+            self.assertRaises(IntegrityError, lambda: Users.create_user(username = "konrad", password = "test2"))
 
-        # test for nonexistent
+    def test_utility_methods(self):
 
-        n = Users.get_user_by_username("malgosia")
+        with test_database(db, (Users,)):
 
-        self.assertEquals(n, 0)
-        self.assertFalse(n)
+            Users.create_user(username = "konrad", password = "test", real_name = "real_name")
 
-    def test_existence_method(self):
-        Users.create(username = "konrad", hash = "test")
+            self.assertEquals("real_name", Users.get_user_by_username("konrad").real_name)
 
-        res = Users.check_exists("konrad")
-        self.assertTrue(res)
+            konrad = Users.get_user(1)
 
-        res = Users.check_exists("konrad")
-        self.assertTrue(res)
-        res = Users.check_exists("nonexistent")
-        self.assertFalse(res)
-
-        res = Users.check_exists("nonexistent")
-        self.assertFalse(res)
+            self.assertTrue(konrad.check_password("test"))
+            self.assertFalse(konrad.check_password("wrong_password"))
 
 
 
-    def test_checking_password_hash(self):
-
-        Users.create_user("konrad", "test")
-
-        sel = Users.select().get()
-
-        self.assertTrue(sel.check_password("test"))
-        self.assertFalse(sel.check_password("false"))
-
-
-
-
-if __name__ == "__main__":
-    unittest.main()
 
 

@@ -2,7 +2,7 @@
 """
 
     main.models.ArticlesModel
-    ============
+    =========================
     
     Implements model and methods related to subrosa images
 
@@ -42,8 +42,8 @@ class UserImages(BaseModel):
             return 0
 
     @staticmethod
-    def check_exists(filename):
-        return UserImages.select().where(UserImages.filename == filename).exists()
+    def check_exists(image_link):
+        return UserImages.select().where(UserImages.image_link == image_link).exists()
 
     @staticmethod
     def get_count():
@@ -73,7 +73,12 @@ class UserImages(BaseModel):
 
     @staticmethod
     @db.commit_on_success
-    def add_image(image_link, description, is_vertical, owner, imgur_img = False, delete_hash = None):
+    def add_image(image_link,\
+                  description,\
+                  owner,\
+                  is_vertical = True,\
+                  imgur_img = False,\
+                  delete_hash = None):
         try:
             UserImages.create(
                 image_link = image_link,
@@ -97,3 +102,6 @@ class UserImages(BaseModel):
         except Exception as e:
             handle_errors("Error deleting image")
             raise
+
+    def __repr__(self):
+        return "<Image: {0}>".format(self.image_link)

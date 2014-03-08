@@ -228,8 +228,8 @@ def article_view(slug):
     if not article:
         abort(404)
     author = article.author
-    next_article = Articles.get_next_article(article.id)
-    previous_article = Articles.get_previous_article(article.id)
+    next_article = article.get_next_article()
+    previous_article = article.get_previous_article()
     return render_template("article_view.html",\
                             article = article,\
                             author = author,\

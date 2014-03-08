@@ -19,7 +19,6 @@
 
 from flask import Markup
 from jinja2 import evalcontextfilter, escape
-
 import markdown
 
 
