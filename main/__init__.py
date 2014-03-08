@@ -64,6 +64,13 @@ def utility_processor():
                 current_path = request.url_root + request.path[1:],
                 add_thumbnail_affix = add_thumbnail_affix
         )
+from main.create_views import CreateArticleView, CreateProjectView
+from main.edit_views import UpdateArticleView, UpdateProjectView
+
+app.add_url_rule("/create-article/", view_func = CreateArticleView.as_view("create_article"))
+app.add_url_rule("/create-project/", view_func = CreateProjectView.as_view("create_project"))
+app.add_url_rule("/edit-article/<int:id>", view_func = UpdateArticleView.as_view("edit_article"))
+app.add_url_rule("/edit-project/<int:id>", view_func = UpdateProjectView.as_view("edit_project"))
 
 
 from main import views, misc

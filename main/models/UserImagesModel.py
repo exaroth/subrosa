@@ -12,7 +12,6 @@
 
 """
 
-import os, sys
 import datetime
 from peewee import *
 

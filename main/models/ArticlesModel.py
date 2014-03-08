@@ -47,7 +47,7 @@ class Articles(BaseModel):
 
     @staticmethod
     def get_count(drafts = False):
-        """ Return count of articles """
+        """ Return number of articles """
         q = Articles.select()
         if drafts:
             return q.count()

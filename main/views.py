@@ -32,6 +32,7 @@ from imgur import ImgurHandler
 from models.ArticlesModel import Articles
 from models.UserImagesModel import UserImages
 from models.UsersModel import Users
+from models.UserProjectsModel import UserProjects
 
 
 
@@ -42,7 +43,7 @@ from models.UsersModel import Users
 @app.route("/index", defaults={"page": 1})
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
-# @cache.cached(timeout=50)
+@cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
 def index(page):
     articles_per_page = settings.get("articles_per_page")
     articles = Articles.get_index_articles(page, articles_per_page)
@@ -88,6 +89,7 @@ def admin_login():
 
 @app.route("/create_account", methods = ["POST", "GET"])
 def create_account():
+
     """
     View for creating user account
     - Checks if no users have been created - if yes redirect
@@ -97,6 +99,7 @@ def create_account():
     - Logs user in
 
     """
+
     error = None
     user_check = Users.check_any_exist()
     if not user_check:
@@ -146,83 +149,9 @@ def account(username):
                            articles = articles)
 
 
-@app.route("/create_article", methods = ["GET", "POST"])
-@login_required
-def create_article():
-    error = None
-    if request.method == "POST":
-        title = request.form.get("title").strip()
-        body = request.form.get("body").strip()
-        user = Users.get_user_by_username(session["user"])
-        if not title or not body:
-            error = "Article can\'t have empty title or body"
-            return render_template("new_article.html", error = error, title=title, body=body)
-        article_check = Articles.check_exists(title)
-        if article_check:
-            error = "Entry with that title already exists, choose a new one.."
-            return render_template("new_article.html", error = error, title = title, body = body)
-        else:
-            try:
-                Articles.create_article(title = title,\
-                                        body = body,\
-                                        author = user,\
-                                        draft = True)
-                with app.app_context():
-                    cache.clear()
-                flash("Article created")
-                return redirect(url_for("account", username = session["user"]))
-            except:
-                error = "Error occured when writing to database"
-                return render_template("new_article.html",\
-                                       title = title,\
-                                       body = body,\
-                                       error = error)
-    else:
-        return render_template("new_article.html")
-
-@app.route("/edit/<int:id>", methods=["GET", "POST"])
-@login_required
-def edit_article(id):
-    article = Articles.get_article(id)
-    if not article:
-        abort(404)
-    error = None
-
-    if article.author.username != session["user"]:
-        flash("You can\'t edit other people\'s articles")
-        return redirect(url_for("index"))
-
-    if request.method == "POST":
-        title = request.form.get("title").strip()
-        body = request.form.get("body").strip()
-        if not title or not body:
-            error = "Article can\'t have empty title or body"
-            return render_template("edit_article.html",\
-                                   error = error,\
-                                   article = article)
-
-        article_check = Articles.check_exists(title, article.id)
-
-        if article_check:
-            error = "Article with this title already exists, please choose another"
-            return render_template("edit_article.html", error = error, article = article )
-        else:
-
-            try:
-                Articles.update_article(article, title, body)
-                with app.app_context():
-                    cache.clear()
-                return redirect(url_for("account", username = session["user"]))
-            except:
-                error = "Error writing to database"
-                return render_template("edit_article.html",\
-                                       error = error,\
-                                       article = article)
-    else:
-        return render_template("edit_article.html", article = article)
 
 @app.route("/articles/<string:slug>")
-# @cache.cached(timeout=50)
+@cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
 def article_view(slug):
     article = Articles.get_article_by_slug(slug)
     if not article:
@@ -440,7 +369,5 @@ def send_image(filename):
     Allows sending images from upload folder
     """
     return send_from_directory(app.config["UPLOAD_FOLDER"], filename)
-
-
 
 

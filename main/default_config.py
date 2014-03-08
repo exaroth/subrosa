@@ -72,6 +72,8 @@ IMGUR_ID = False
 
 GALLERY = False
 
+PROJECTS = False
+
 # Number of pages that shows up on index page
 
 ARTICLES_PER_PAGE = 5 
@@ -125,4 +127,6 @@ LOGGING = False
 CACHE_TYPE = "simple"
 
 CACHE_KEY_PREFIX = "subrosa_"
+
+CACHE_TIMEOUT = 50
 

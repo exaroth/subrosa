@@ -28,7 +28,7 @@ class Subrosa(object):
     Initialization class for Subrosa
     """
 
-    OPTIONS = ("disqus", "facebook", "twitter", "github", "google_plus", "email", "gallery", "dynamic_site", "title",\
+    OPTIONS = ("disqus", "facebook", "twitter", "github", "google_plus", "email", "gallery", "projects", "dynamic_site", "title",\
                        "articles_per_page", "images_per_page", "imgur_id", "thumbnail_size")
 
     IMAGES = ('bg', 'bg_small', 'logo', 'portrait')
