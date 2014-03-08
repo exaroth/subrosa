@@ -105,24 +105,21 @@ class Subrosa(object):
 
     def get_db(self, **kwargs):
 
-        if os.environ.get("CI"):
-            db = self._define_db_connection("sqlite", ":memory:")
-        else:
-            dtype = self.app.config.get("DATABASE", None)
-            dname = self.app.config.get("DATABASE_NAME", None)
-            if not dtype or not dname:
-                raise ValueError("Database type and name must be defined")
-            if dtype in ("postgres", "mysql"):
-                username = self.app.config.get("DB_USERNAME")
-                password = self.app.config.get("DB_PASSWORD", None)
-                if not username:
-                    raise ValueError("%s requires username to connect" % dtype)
-                kwargs["user"] = username
-                kwargs["password"] = password
-            try:
-                return  self._define_db_connection(dtype, dname, **kwargs)
-            except:
-                raise
+        dtype = self.app.config.get("DATABASE", None)
+        dname = self.app.config.get("DATABASE_NAME", None)
+        if not dtype or not dname:
+            raise ValueError("Database type and name must be defined")
+        if dtype in ("postgres", "mysql"):
+            username = self.app.config.get("DB_USERNAME")
+            password = self.app.config.get("DB_PASSWORD", None)
+            if not username:
+                raise ValueError("%s requires username to connect" % dtype)
+            kwargs["user"] = username
+            kwargs["password"] = password
+        try:
+            return  self._define_db_connection(dtype, dname, **kwargs)
+        except:
+            raise
 
     def get_settings(self):
         return self.settings

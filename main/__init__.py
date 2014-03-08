@@ -37,6 +37,12 @@ app.config.from_pyfile("../subrosa.conf")
 if os.environ.get("SUBROSA_CONFIG"):
     app.config.from_envvar("SUBROSA_CONFIG", silent = False)
 
+if os.environ.get("CI"):
+    app.config.update(dict(
+    DATABASE = "sqlite",
+    DATABASE_NAME = "test.db"
+    ))
+
 app.config.update(
     BASE_PATH = BASE_PATH,
     ROOT_PATH = ROOT_PATH,
