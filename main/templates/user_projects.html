@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block titlebar %}
+{% include 'header.html' %}
+{% endblock %}
+
+{% block content %}
+
+
+{% if projects.count() %}
+
+	<div class="user-projects col-md-8 col-md-offset-2">
+		{% for project in projects %}
+		<article class="project-wrapper row">
+			<div class="project-title">{{ project.title }}</div>
+			<div class="project-description">{{ project.body }}</div>
+			
+		</article>
+		{% endfor %}
+	</div>
+	{% else %}
+	<h4 class="text-center">No projects added yet</h4>
+		
+{% endif %}
+
+
+{% endblock %}

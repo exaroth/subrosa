@@ -12,11 +12,14 @@
 			{% if settings.gallery %}
 			<li><a href="{{ url_for('gallery')}}" class="toolbar-link gallery-link">GALLERY</a></li>
 			{% endif %}
+			{% if settings.projects %}
+			<li><a href="{{ url_for('projects')}}" class="toolbar-link gallery-link">PROJECTS</a></li>
+			{% endif %}
 			<li><a href="" class="toolbar-link ">ABOUT</a></li>
 		</ul>
 	</div>
 
-	{% if not hide_header %}
+	{% if show_header %}
 	<div class="content-header col-xs-12">
 	</div>
 	{% endif %}

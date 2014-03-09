@@ -39,11 +39,9 @@ class UserProjects(BaseModel):
             return 0
 
     @staticmethod
-    def get_users_project(username):
+    def get_all_projects():
         return UserProjects\
-                .select()\
-                .join(Users)\
-                .where(Users.username == username)
+                .select()
 
 
     @staticmethod

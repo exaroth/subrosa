@@ -1,6 +1,6 @@
 {
   "name": "Subrosa",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Blogging platform for elegant hackers",
   "main": "main.js",
   "scripts": {
@@ -9,9 +9,9 @@
   "author": "Konrad Wasowicz",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "grunt-cli": "~0.1.13",
+    "grunt-cli": "^0.1.13",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt": "~0.4.2",
+    "grunt": "^0.4.3",
     "grunt-contrib-less": "~0.9.0"
   }
 }

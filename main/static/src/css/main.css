@@ -1297,13 +1297,13 @@ textarea {
 .mfp-arrow:after {
   border: none;
 }
-.user-info {
+.main-matter .user-info {
   position: absolute;
   width: 200px;
   right: -250px;
   top: 0;
 }
-.user-info .portrait-holder {
+.main-matter .user-info .portrait-holder {
   width: 120px;
   height: 120px;
   padding: 10px;
@@ -1325,18 +1325,18 @@ textarea {
   background-clip: padding-box;
   margin-bottom: 20px;
 }
-.user-info .user-desc {
+.main-matter .user-info .user-desc {
   font-size: 12px;
   font-style: italic;
   line-height: 10px;
   margin: 0;
   text-align: center;
 }
-.user-info .user-desc p {
+.main-matter .user-info .user-desc p {
   font-size: 14px !important;
   color: #808080 !important;
 }
-.user-info .real-name {
+.main-matter .user-info .real-name {
   display: block;
   text-align: center;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
@@ -1344,12 +1344,12 @@ textarea {
   font-weight: bold;
   font-size: 18px;
 }
-.user-info .real-name:after {
+.main-matter .user-info .real-name:after {
   content: "\2026";
   display: block;
   font-size: 14px;
 }
-.user-info .user-info-link {
+.main-matter .user-info .user-info-link {
   display: block;
   font-size: 14px;
   color: #666666;

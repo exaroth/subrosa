@@ -84,7 +84,7 @@ class CreateProjectView(CreateView):
         return UserProjects
 
     def create_method(self):
-        return UserProjects.create_project
+        return "create_project"
 
 
 

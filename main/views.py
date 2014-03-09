@@ -144,9 +144,14 @@ def account(username):
     if not user:
         abort(404)
     articles = Articles.get_user_articles(user.username)
+    if settings.get("projects", False):
+        projects = UserProjects.get_all_projects()
+    else:
+        projects = None
     return render_template("dashboard.html",\
                            user = user,\
-                           articles = articles)
+                           articles = articles,\
+                           projects = projects)
 
 
 
@@ -261,6 +266,25 @@ def upload_image():
                 return render_template("upload_image.html", error = error)
     else:
         return render_template("upload_image.html")
+
+@app.route("/projects")
+def projects():
+    projects = UserProjects.get_all_projects()
+    return render_template("user_projects.html", projects = projects)
+
+@app.route("/delete_project/<int:id>")
+@login_required
+def delete_project(id):
+    project = UserProjects.get_project(id)
+    if not project:
+        abort(404)
+    try:
+        UserProjects.delete_project(project)
+    except:
+        flash("Error when deleting project")
+        return redirect(url_for("account", user = session["user"]))
+    return redirect(url_for("account", username = session["user"]))
+
 
 @app.route("/images/<username>", defaults={"page": 1})
 @app.route("/images/<username>/<int:page>")
