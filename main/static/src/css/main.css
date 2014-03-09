@@ -6,6 +6,7 @@
 }
 .single-article {
   position: relative;
+  margin-top: 2em;
 }
 .article-main .article-timesince {
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
@@ -623,6 +624,31 @@ a[disabled] {
   color: #e6e6e6 !important;
   pointer-events: none;
 }
+.index-wrapper {
+  overflow: auto;
+  height: 100vh;
+  position: relative;
+}
+.index-image {
+  height: 100%;
+  display: inline-block;
+}
+@media screen and (max-width: 970px) {
+  .index-image {
+    display: none;
+  }
+}
+.article-list {
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  position: relative;
+  display: inline-block;
+  margin-left: 6%;
+}
+@media screen and (max-width: 970px) {
+  .article-list {
+    margin: 0;
+  }
+}
 .article-list-pagination {
   position: relative;
   height: 80px;
@@ -649,16 +675,15 @@ a[disabled] {
 .articles-list-latest hr {
   margin-top: 10px;
 }
-.article-list {
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  position: relative;
+.article-list .article-list-title {
+  margin-bottom: 2em;
 }
 .article-list .article-list-title h3 {
   font-size: 2em;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
   font-weight: bold;
-  text-align: left;
-  margin: 5px 0 20px 0;
+  text-align: center;
+  margin: 5px 0 10px 0;
 }
 .article-list .article-list-title h3:hover {
   color: #666666;
@@ -670,7 +695,10 @@ a[disabled] {
 }
 .article-list .article-list-title .date-created {
   margin: 0;
-  color: #666666;
+  color: #999999;
+  text-align: center;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
+  font-weight: bold;
 }
 .article-list .article-list-body {
   font-size: 1.3em;
@@ -718,10 +746,10 @@ a[disabled] {
   left: 0;
   right: 0;
   margin: 0 auto;
+  top: 6em;
   position: relative;
   margin-bottom: 4em;
   clear: both;
-  margin-top: 50px;
 }
 @media screen and (max-width: 970px) {
   .gallery-wrapper {
@@ -976,7 +1004,7 @@ a[disabled] {
   width: 240px;
   position: absolute;
   display: none;
-  top: 80px;
+  top: 120px;
   left: 60px;
   z-index: 1000;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
@@ -1054,8 +1082,7 @@ a[disabled] {
   }
 }
 .header {
-  margin-bottom: 48px;
-  clear: both;
+  margin-bottom: 12px;
   position: relative;
   z-index: 9;
 }
@@ -1116,13 +1143,15 @@ a[disabled] {
 }
 .header-toolbar ul {
   display: block;
-  float: left;
+  float: right;
   height: 40px;
   line-height: 70px;
+  margin-right: 4em;
 }
 @media screen and (max-width: 970px) {
   .header-toolbar ul {
     float: right;
+    margin: 0;
   }
 }
 .header-toolbar ul li {
@@ -1198,6 +1227,16 @@ body {
 body {
   overflow-x: hidden;
   position: relative;
+}
+.content {
+  overflow: auto;
+  height: 100%;
+}
+.container-full {
+  height: 100%;
+}
+.main-matter {
+  height: 100%;
 }
 h1,
 h2,
@@ -1297,13 +1336,13 @@ textarea {
 .mfp-arrow:after {
   border: none;
 }
-.main-matter .user-info {
+.user-info {
   position: absolute;
   width: 200px;
   right: -250px;
   top: 0;
 }
-.main-matter .user-info .portrait-holder {
+.user-info .portrait-holder {
   width: 120px;
   height: 120px;
   padding: 10px;
@@ -1325,18 +1364,18 @@ textarea {
   background-clip: padding-box;
   margin-bottom: 20px;
 }
-.main-matter .user-info .user-desc {
+.user-info .user-desc {
   font-size: 12px;
   font-style: italic;
   line-height: 10px;
   margin: 0;
   text-align: center;
 }
-.main-matter .user-info .user-desc p {
+.user-info .user-desc p {
   font-size: 14px !important;
   color: #808080 !important;
 }
-.main-matter .user-info .real-name {
+.user-info .real-name {
   display: block;
   text-align: center;
   font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Verdana, sans-serif;
@@ -1344,12 +1383,12 @@ textarea {
   font-weight: bold;
   font-size: 18px;
 }
-.main-matter .user-info .real-name:after {
+.user-info .real-name:after {
   content: "\2026";
   display: block;
   font-size: 14px;
 }
-.main-matter .user-info .user-info-link {
+.user-info .user-info-link {
   display: block;
   font-size: 14px;
   color: #666666;

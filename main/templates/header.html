@@ -1,13 +1,14 @@
 <div class="header col-xs-12">
 	<div class="header-toolbar ">
-		<div class="toolbar-sitetitle col-md-3" >
+		<div class="toolbar-sitetitle col-md-5" >
 		<a href="{{ url_for('index')}}">
 		{% if settings.logo %}
 		<img src="{{ url_for('send_image', filename = settings.logo)}}" alt="{{ settings.title }}">
 		{% else %}
 		<h4>{{ settings.title }}</h4>
 		{% endif %}
-		</a></div>
+		</a>
+		</div>
 		<ul class="toolbar-links list-unstyled" style="margin-left: 5%" >
 			{% if settings.gallery %}
 			<li><a href="{{ url_for('gallery')}}" class="toolbar-link gallery-link">GALLERY</a></li>
@@ -19,9 +20,4 @@
 		</ul>
 	</div>
 
-	{% if show_header %}
-	<div class="content-header col-xs-12">
-	</div>
-	{% endif %}
-	
 </div>

@@ -1,6 +1,5 @@
 .header {
-	margin-bottom: 48px;
-	clear: both;
+	margin-bottom: 12px;
 	position: relative;
 	z-index: 9;
 	@media screen and (max-width: @md){
@@ -25,6 +24,7 @@
 .header-toolbar {
 	height: 60px;
 	position: relative;
+
 	@media screen and (max-width: @md){
 		padding: 0 10px 0 10px;
 	}
@@ -56,11 +56,13 @@
 	}
 	ul {
 		display: block;
-		float: left;
+		float: right;
 		height: 40px;
 		line-height: 70px;
+		margin-right: 4em;
 		@media screen and (max-width: @md){
 			float: right;
+			margin: 0;
 		}
 		li {
 			display: inline-block;

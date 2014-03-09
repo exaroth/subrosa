@@ -1,6 +1,29 @@
 
 
 // Styles related to index
+.index-wrapper {
+	overflow: auto;
+	height: 100vh;
+	position: relative;
+}
+
+.index-image{
+	height: 100%;
+	display: inline-block;
+	@media screen and (max-width: @md){
+	display: none;
+	}
+}
+
+.article-list {
+	font-family: @body-font;
+	position: relative;
+	display: inline-block;
+	margin-left: 6%;
+	@media screen and (max-width: @md){
+	    margin: 0;
+	}
+}
 
 .article-list-pagination {
 	position: relative;
@@ -17,6 +40,7 @@
 
 }
 
+
 .articles-list-latest {
 	padding: 0 30px;
 	h4 {
@@ -31,18 +55,14 @@
 	}
 }
 
-.article-list {
-	font-family: @body-font;
-	position: relative;
-}
-
 .article-list .article-list-title  {
+	margin-bottom: 2em;
 	h3 {
 	font-size: 2em;
 	font-family: @sans-font;
 	font-weight: bold;
-	text-align: left;
-	margin: 5px 0 20px 0;
+	text-align: center;
+	margin: 5px 0 10px 0;
 	}
 	h3:hover {
 		color: @black-60;
@@ -52,8 +72,10 @@
 	}
 	.date-created {
 		margin: 0;
-		color: @black-60;
-		// color: darken(@cerulean, 30%);
+		color: @black-40;
+		text-align: center;
+		font-family: @sans-font;
+		font-weight: bold;
 	}
 }
 .article-list .article-list-body {
@@ -82,3 +104,4 @@
 		display: none;
 	}
 }
+

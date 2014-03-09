@@ -20,6 +20,8 @@ $(document).ready(function(){
     $createArticleButton = $(".create-button"),
     $miniIcons           = $(".mini-icon"),
     $articleBody         = $(".article-main").find(".article-body"),
+    $articleList         = $(".article-list"),
+    $indexWrapper        = $(".index-wrapper"),
     $editingButtons      = $(".editing-button"),
     $gallery             = $(".gallery-wrapper"),
     $lamp                = $(".lamp-button"),
@@ -81,8 +83,7 @@ $(document).ready(function(){
             $editForm.submit();
         });
 
-
-
+        matchIndexContents();
 
         $createArticleButton.click(function(e){
             e.preventDefault();
@@ -218,6 +219,15 @@ $(document).ready(function(){
 
     function setToggleState(state){
         localStorage.setItem('adminPanelVisible', state)
+
+    };
+
+    function matchIndexContents(){
+        if(wWidth > majorBreakpoint){
+            if($articleList.height() > $indexWrapper.height()){
+                $indexWrapper.height($articleList.height());
+            };
+        }
 
     };
 
@@ -501,6 +511,7 @@ $window.bind('resize scroll', function(){
 $window.resize(function(){
     wHeight = $window.height();
     wWidth = $window.width();
+    matchIndexContents();
 });
 
 $window.scroll(positionFooter);
