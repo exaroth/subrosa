@@ -15,23 +15,18 @@
 {% endif %}
 
 <div class="article-list col-md-6 {{ 'col-md-offset-3' if not settings.bg }}">
-<div class="col-md-8 col-md-offset-2 articles-list-latest">
-	<h4>Latest Articles</h4>
-	<hr>
-</div>
 {% if articles_written %}
 	{% for article in articles %}
 	<article class="article-list-entry col-xs-12">
 		<div class="article-list-title col-xs-12">
 			<a href="{{ url_for('article_view', slug = article.slug ) }}" class="article-title-link"><h3 class="text-center">{{ article.title }}</h3></a>
 			<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
-
 		</div>
 		<div class="article-list-body col-xs-12">
 		{% if article.header %}
 			{{ article.header }}
 		{% else %}
-			{{ article.body |truncate(200)|markdown }}
+			{{ article.body |truncate(200 + range(40)| random )|markdown }}
 		{% endif %}
 		</div>
 

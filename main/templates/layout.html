@@ -18,20 +18,14 @@
 	<style type="text/css">
 
 	{% if settings.bg %}
-/*	.content-header {
-	    background-image: url({{ url_for('send_image', filename = settings.bg) }});
-		box-shadow: inset 0 -10px 10px -10px rgba(255,255,255,0.5);
-		-moz-box-shadow: inset 0 -10px 10px -10px rgba(255,255,255,0.5);
-		-webkit-box-shadow: inset 0 -20px 20px -20px rgba(255,255,255,1);
-		height: 300px;
-	  }
-
-*/
 	.index-image {
     background-image: url({{ url_for('send_image', filename = settings.bg) }});
 		box-shadow: inset 0 -10px 10px -10px rgba(255,255,255,0.5);
 		-moz-box-shadow: inset 0 -10px 10px -10px rgba(255,255,255,0.5);
 		-webkit-box-shadow: inset 0 -20px 20px -20px rgba(255,255,255,1);
+	}
+	.article-list {
+		margin-left: 6%;
 	}
 	{% endif %}
 

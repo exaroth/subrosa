@@ -98,9 +98,13 @@ def handle_errors(mess = "Unknown Error"):
     exc_type, exc_value, exc_traceback = sys.exc_info()
 
 
+
     logger = logging.getLogger("errors")
     logger.setLevel(logging.DEBUG)
-    handler = logging.FileHandler("errors.log")
+    if app.config.get("DEBUG", False):
+        handler = logging.FileHandler("errors.log")
+    else:
+        handler = logging.StreamHandler()
     formatter = logging.Formatter("%(asctime)s : %(levelname)s ::: %(message)s")
     handler.setFormatter(formatter)
     logger.addHandler(handler)

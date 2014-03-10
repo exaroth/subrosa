@@ -10,6 +10,9 @@
 .index-image{
 	height: 100%;
 	display: inline-block;
+	background-repeat: no-repeat;
+	.background-size(auto, 100%);
+	background-position: center center;
 	@media screen and (max-width: @md){
 	display: none;
 	}
@@ -19,7 +22,7 @@
 	font-family: @body-font;
 	position: relative;
 	display: inline-block;
-	margin-left: 6%;
+	margin-top: 18px;
 	@media screen and (max-width: @md){
 	    margin: 0;
 	}
@@ -30,7 +33,7 @@
 	height: 80px;
 	bottom: 0;
 	clear: both;
-	padding: 40px 10% 0 10%;
+	padding: 40px 2% 0 2%;
 	#prev {
 		float: left;
 	}
@@ -97,11 +100,30 @@
 		font-weight: normal;
 		color: @black-50;
 	}
+	blockquote {
+	    font-size: 1em;
+	    border: none;
+	    margin: 0;
+	    padding: 0;
+	}
 	.codehilite {
 		display: none;
 	}
 	img {
 		display: none;
+	}
+	ul li,
+	ol li {
+	    float: left;
+	    padding: 0;
+	    margin-right: 2em;
+	}
+	ul, ol {
+	    margin: 0;
+	    padding: 0;
+	    display: block;
+	    margin-left: 2em;
+	    clear: both;
 	}
 }
 

@@ -45,12 +45,14 @@ class UserProjects(BaseModel):
 
 
     @staticmethod
-    def check_exists(title):
+    def check_exists(title, id = False):
         try:
-            return UserProjects.select().where(UserProjects.title == title).get()
+           q =  UserProjects.select().where((UserProjects.title == title))
+           if not id:
+               return q.get()
+           return q.where(UserProjects.id != id).get()
         except:
             return False
-    
     @staticmethod
     @db.commit_on_success
     def create_project(title, body, author):

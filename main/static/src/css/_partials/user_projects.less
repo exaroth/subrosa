@@ -1,0 +1,55 @@
+#user-projects {
+	margin-top: 2em;
+	@media screen and (max-width: @md){
+	    margin: 0 24px;
+	}
+
+	hr {
+	    border-top: 1px solid @black-50;
+	    width: 80%;
+	    margin-bottom: 4em;
+	}
+
+
+}
+
+.project-wrapper {
+
+	.project-title {
+		clear: both;
+		float: none;
+		margin-bottom: 2em;
+	    h1 {
+	        font-family: @sans-font;
+	        font-weight: bold;
+	        text-align: center;
+	        color: @black-60;
+	        @media screen and (max-width: 640px){
+	            font-size: 22px;
+	        }
+	    }
+	}
+	.project-body {
+	    font-size: 14px;
+	    position: relative;
+		p, li {
+		    color: @black-60 !important;
+		}
+	    p {
+	        line-height: 2em !important;
+	    }
+	    .centered-image-wrapper {
+	        width: 140%;
+	        max-width: 140%;
+	        left: -20%;
+	        @media screen and (max-width: @md){
+	            width: 100%;
+	            max-width: 100%;
+	            left: 0;
+	        }
+
+	    }
+	}
+
+
+}
