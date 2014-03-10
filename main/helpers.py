@@ -101,10 +101,7 @@ def handle_errors(mess = "Unknown Error"):
 
     logger = logging.getLogger("errors")
     logger.setLevel(logging.DEBUG)
-    if app.config.get("DEBUG", False):
-        handler = logging.FileHandler("errors.log")
-    else:
-        handler = logging.StreamHandler()
+    handler = logging.StreamHandler()
     formatter = logging.Formatter("%(asctime)s : %(levelname)s ::: %(message)s")
     handler.setFormatter(formatter)
     logger.addHandler(handler)
