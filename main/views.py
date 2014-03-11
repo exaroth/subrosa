@@ -340,6 +340,43 @@ def gallerify(id):
     UserImages.gallerify(image)
     return redirect(url_for("user_images", username = session["user"]))
 
+@app.route("/configure", methods = ["GET", "POST"])
+@login_required
+def configure():
+    if request.method == "GET":
+        abort(404)
+
+    color = request.form.get('color', None)
+    hover_color = request.form.get('hover-color', None)
+    imgur_id = request.form.get('imgur-userid', None)
+    disqus_id = request.form.get('disqus-site', None)
+    user_info = request.form.get('user-info', None)
+
+    gallery = True if request.form.get('show-gallery') == 'on' else False
+    settings['gallery'] = gallery
+
+    projects = True if request.form.get('show-projects') == 'on' else False
+    settings['projects'] = projects
+
+    about = True if request.form.get('show-about') == 'on' else False
+    settings['about'] = about
+
+    show_info = True if request.form.get('show-user-info') == 'on' else False
+    settings['show-info'] = show_info
+
+    if color:
+        settings['color'] = color
+    if hover_color:
+        settings['hover_color'] = hover_color
+    if user_info:
+        settings['user_info'] = user_info 
+    if disqus_id:
+        settings['disqus_id'] = disqus_id 
+    if imgur_id:
+        settings['imgur_id'] = imgur_id 
+
+    return redirect(url_for('account', username = session['user']))
+
 
 @app.route("/gallery", defaults = {"page": 1})
 @app.route("/gallery/<int:page>")

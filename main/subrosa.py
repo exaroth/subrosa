@@ -111,6 +111,8 @@ class Subrosa(object):
 
         dtype = self.app.config.get("DATABASE", None)
         dname = self.app.config.get("DATABASE_NAME", None)
+        if self.app.config.get("TESTING", False):
+            return self._define_db_connection("sqlite", ":memory:")
         if not dtype or not dname:
             raise ValueError("Database type and name must be defined")
         if dtype in ("postgres", "mysql"):

@@ -40,7 +40,8 @@ if os.environ.get("SUBROSA_CONFIG"):
 if os.environ.get("CI"):
     app.config.update(dict(
     DATABASE = "sqlite",
-    DATABASE_NAME = "test.db"
+    DATABASE_NAME = "test.db",
+    TESTING = True
     ))
 
 app.config.update(
@@ -71,6 +72,5 @@ app.add_url_rule("/create-article/", view_func = CreateArticleView.as_view("crea
 app.add_url_rule("/create-project/", view_func = CreateProjectView.as_view("create_project"))
 app.add_url_rule("/edit-article/<int:id>", view_func = UpdateArticleView.as_view("edit_article"))
 app.add_url_rule("/edit-project/<int:id>", view_func = UpdateProjectView.as_view("edit_project"))
-print settings["projects"]
 
 from main import views, misc

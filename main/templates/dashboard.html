@@ -7,12 +7,45 @@
 {% endblock %}
 
 {% block content %}
-<div class="dashboard-header"></div>
+
+<div id="dashboard-panel" class="col-md-6 col-md-offset-3">
+<div id="dashboard-header"><h2>SETTINGS</h2></div>
+
+<form action="{{ url_for('configure')}}" method="POST">
+<div class="form-group">
+<input type="text" placeholder="Link color" class="form-control" name="color">
+</div>
+<div class="form-group">
+	
+</div>
+<div class="form-group">
+	<label for="show-gallery"> Show Gallery
+<input type="checkbox" name="show-gallery" id="" {{'checked' if settings.gallery }}>
+</label>
+</div>
+<div class="form-group">
+	<label for="show-projects">Show Projects
+<input type="checkbox" name="show-projects" id="" {{'checked' if settings.projects }}>
+	</label>
+</div>
+
+<div class="form-group">
+	<label for="articles-num">Number of articles on index page</label>
+	<input type="text" name="articles-num" id="">
+</div>
+<div class="form-group">
+	<label for="images-num">Number of images in gallery</label>
+	<input type="text" name="images-num" id="">
+</div>
+
+<input type="submit" value="Submit" class="btn btn-default">
+</form>
+
+</div>
 
 
 
 
-{% if articles.count() %}
 <div class="col-md-6 col-md-offset-3" id="articles-table">
 
 	<table class="table table-striped table-responsive">
@@ -27,7 +60,6 @@
 
 
 		</thead>
-
 		{% for article in articles %}
 		<tr >
 		<td> {{ loop.index }} </td>
@@ -51,9 +83,6 @@
 		{% endfor %}
 	</table>
 </div>
-{% else %}
-<h4 class="text-center text-muted" style="margin: 4em 0">No articles written yet</h4>
-{% endif %}
 
 {% if settings.projects %}
 	<div class="col-md-4 col-md-offset-4" id="projects-table">

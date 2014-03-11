@@ -19,7 +19,14 @@ from urlparse import urljoin
 import string, random
 import unicodedata
 import re
+import logging
 
+logger = logging.getLogger("subrosa")
+
+logger.setLevel(logging.DEBUG)
+handler = logging.StreamHandler()
+formatter = logging.Formatter("%(asctime)s : %(levelname)s ::: %(message)s")
+handler.setFormatter(formatter)
 
 
 def slugify(value, separator="-"):
@@ -90,20 +97,16 @@ def handle_errors(mess = "Unknown Error"):
     """
     Small function that logs exceptions
     """
+    if os.environ.get("CI"):
+        return
 
-    import logging, inspect, datetime, sys
+    import inspect, datetime, sys, traceback
 
     # Get the function that called it
     func = inspect.currentframe().f_back.f_code
     exc_type, exc_value, exc_traceback = sys.exc_info()
 
-
-
-    logger = logging.getLogger("errors")
-    logger.setLevel(logging.DEBUG)
-    handler = logging.StreamHandler()
-    formatter = logging.Formatter("%(asctime)s : %(levelname)s ::: %(message)s")
-    handler.setFormatter(formatter)
+    # logger = logging.getLogger(__name__)
     logger.addHandler(handler)
     logger.debug("==============================")
     logger.debug("Error occured on line %i in file %s" % (func.co_firstlineno, func.co_filename))
@@ -112,5 +115,5 @@ def handle_errors(mess = "Unknown Error"):
     logger.debug("--------")
     logger.debug("Type: %s" % exc_type)
     logger.debug("Value: %s" % exc_value)
-    logger.debug("Traceback: %s" % exc_traceback)
+    logger.debug("Traceback: %s" % repr(traceback.extract_tb(exc_traceback)))
     return

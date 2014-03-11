@@ -4,26 +4,31 @@
 .index-wrapper {
 	overflow: auto;
 	height: 100vh;
-	position: relative;
+	padding-left: 0;
+	@media screen and (max-width: @md){
+		padding: 1%;
+	}
 }
 
 .index-image{
 	height: 100%;
 	display: inline-block;
 	background-repeat: no-repeat;
+	position: fixed;
 	.background-size(auto, 100%);
+	border-right: 1px solid @black-40;
 	background-position: center center;
 	@media screen and (max-width: @md){
-	display: none;
+		display: none;
 	}
 }
 
 .article-list {
 	font-family: @body-font;
-	position: relative;
-	display: inline-block;
-	margin-top: 18px;
-	@media screen and (max-width: @md){
+	margin: 0 !important;
+	float: right;
+	margin-right: 6% !important;
+ 	@media screen and (max-width: @md){
 	    margin: 0;
 	}
 }
