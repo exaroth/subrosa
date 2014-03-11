@@ -1,0 +1,103 @@
+
+<div id="dashboard-panel" class="col-md-4 col-md-offset-4">
+	<legend>Settings</legend>
+
+	<form action="{{ url_for('configure')}}" method="POST">
+
+		<!-- Input fields -->
+
+		<div class="address-fields">
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" title="Email">Email</span>
+					<input type="text" name="email" id="email" placeholder="{{ settings.email.decode('utf-8') if settings.email else 'Not set'}}" class="form-control">
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" title="Github"><i class="icon-github-circled"></i></span>
+					<input type="text" name="github" id="github" placeholder="{{ settings.github.decode('utf-8') if settings.github else 'Your github account address (Not set)'}}" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" title="Facebook address"><i class="icon-facebook"></i></span>
+					<input type="text" name="facebook" id="facebook" placeholder="{{ settings.facebook.decode('utf-8') if settings.facebook else 'Not set'}}" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" title="Twitter address"><i class="icon-twitter"></i></span>
+					<input type="text" name="twitter" id="twitter" placeholder="{{ settings.twitter.decode('utf-8') if settings.twitter else 'Not set'}}" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" title="Google+ address"><i class="icon-gplus"></i></span>
+					<input type="text" name="gplus" id="gplus" placeholder="{{ settings.gplus.decode('utf-8') if settings.gplus else 'Your Google+ account (Not set)'}}" class="form-control">
+				</div>
+			</div>
+			<hr>
+			<div class="form-group">
+				<div class="input-group">
+					<span class="input-group-addon" title="Imgur user_id" style="width: 80px;"><img src="{{url_for('static', filename='src/img/imgur.png')}}" alt="imgur" style="height: 16px;"></span>
+					<input type="text" name="imgur" id="imgur" placeholder="{{ settings.imgur_id.decode('utf-8') if settings.imgur_id else 'Your Imgur client_id (Not set)'}}" class="form-control">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="input-group">
+				<span class="input-group-addon" title="Disqus site name" style="width: 60px"><img src="{{ url_for('static', filename = 'src/img/disqus.png')}}" alt="disqus" style="height: 10px;"></span>
+				<input type="text" name="disqus" id="disqus" placeholder="{{ settings.disqus.decode('utf-8') if settings.disqus else 'Your disqus site name (Not set)'}}" class="form-control">
+			</div>
+		</div>
+
+		<!-- Input fields -->
+
+		<!-- checkbox fields -->
+
+		<div style="margin-top: 24px;">
+			<div class="dashboard-checkbox-field">
+				<label for=""><small>Show Gallery</small></label>
+				<div class="onoffswitch">
+					<input type="checkbox" name="show-gallery" class="onoffswitch-checkbox" id="myonoffswitch1" {{ 'checked' if settings.gallery }}>
+					<label class="onoffswitch-label" for="myonoffswitch1">
+						<div class="onoffswitch-inner"></div>
+						<div class="onoffswitch-switch"></div>
+					</label>
+				</div>
+			</div>
+
+			<div class="dashboard-checkbox-field">
+				<label for=""><small>Show Projects</small></label>
+				<div class="onoffswitch">
+					<input type="checkbox" name="show-projects" class="onoffswitch-checkbox" id="myonoffswitch2" {{ 'checked' if settings.projects }}>
+					<label class="onoffswitch-label" for="myonoffswitch2">
+						<div class="onoffswitch-inner"></div>
+						<div class="onoffswitch-switch"></div>
+					</label>
+				</div>
+
+
+			</div>
+
+			<div class="dashboard-checkbox-field">
+				<label for=""><small>Show User Info</small></label>
+				<div class="onoffswitch">
+					<input type="checkbox" name="show-info" class="onoffswitch-checkbox" id="myonoffswitch3" {{ 'checked' if settings.info }}>
+					<label class="onoffswitch-label" for="myonoffswitch3">
+						<div class="onoffswitch-inner"></div>
+						<div class="onoffswitch-switch"></div>
+					</label>
+				</div>
+			</div>
+			
+		</div>
+
+		<div class="form-group" style="clear: both">
+		<input type="submit" value="Update" class="btn btn-default" style="margin-top: 24px">
+		</div>
+
+	</form>
+</div>

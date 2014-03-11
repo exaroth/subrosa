@@ -10,7 +10,6 @@ setup(
     url = "subrosa.github.io",
     license = "MIT",
     long_description = __doc__,
-    test_suite = "nose.collector",
     packages=["main"],
     include_package_data = True,
     zip_safe = False,
