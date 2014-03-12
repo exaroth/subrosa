@@ -48,10 +48,10 @@
 	</table>
 </div>
 
-{% if settings.projects %}
 	<div class="col-md-4 col-md-offset-4" id="projects-table">
-	<table class="table table-striped table-responsive">
 		<legend><small>Projects</small> <a href="{{ url_for('create_project' )}}"><i class="icon-feather"></i></a></legend>
+		{% if projects %}
+	<table class="table table-striped table-responsive">
 		<thead>
 			<th>#</th>
 			<th>Title</th>
@@ -68,9 +68,14 @@
 
 		{% endfor %}
 	</table>
+		{% else %}
+			
 
-	</div>
+		<h4 class="text-center text-muted">No projects created</h4>
+
+
 {% endif %}
+	</div>
 
 {% include 'settings_panel.html' %}
 

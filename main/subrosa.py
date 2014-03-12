@@ -29,7 +29,7 @@ class Subrosa(object):
     """
 
     OPTIONS = ("disqus", "facebook", "twitter", "github", "google_plus", "email", "gallery", "projects", "dynamic_site", "title",\
-                       "articles_per_page", "images_per_page", "imgur_id", "thumbnail_size")
+                       "articles_per_page", "images_per_page", "imgur_id", "thumbnail_size", "show_info")
 
     IMAGES = ('bg', 'bg_small', 'logo', 'portrait')
 

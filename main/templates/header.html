@@ -2,11 +2,7 @@
 	<div class="header-toolbar ">
 		<div class="toolbar-sitetitle col-md-5" >
 		<a href="{{ url_for('index')}}">
-		{% if settings.logo %}
-		<img src="{{ url_for('send_image', filename = settings.logo)}}" alt="{{ settings.title }}">
-		{% else %}
 		<h4>{{ settings.title }}</h4>
-		{% endif %}
 		</a>
 		</div>
 		<ul class="toolbar-links list-unstyled" style="margin-left: 5%" >
@@ -16,7 +12,6 @@
 			{% if settings.projects %}
 			<li><a href="{{ url_for('projects')}}" class="toolbar-link gallery-link">PROJECTS</a></li>
 			{% endif %}
-			<li><a href="" class="toolbar-link ">ABOUT</a></li>
 		</ul>
 	</div>
 

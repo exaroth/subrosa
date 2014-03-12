@@ -366,7 +366,7 @@ def configure():
     settings['projects'] = projects
 
     show_info = True if request.form.get('show-info') == 'on' else False
-    settings['info'] = show_info
+    settings['show_info'] = show_info
 
     return redirect(url_for('account', username = session['user']))
 
