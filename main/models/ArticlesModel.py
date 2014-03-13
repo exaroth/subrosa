@@ -30,8 +30,8 @@ class Articles(BaseModel):
     Models and methods related to articles
     """
 
-    title = TextField(unique = True)
-    slug = TextField(unique = True)
+    title = CharField(unique = True)
+    slug = CharField(unique = True)
     draft = BooleanField(default = True)
     date_created = DateTimeField(default = datetime.datetime.utcnow())
     date_updated = DateTimeField(default = datetime.datetime.utcnow())
@@ -107,6 +107,8 @@ class Articles(BaseModel):
     @staticmethod
     @db.commit_on_success
     def create_article(title, body, author, draft = True):
+        if len(title) > 255:
+            raise ValueError("Title must be at most 255 characters")
         try:
             Articles.create(title = title,\
                             slug = slugify(title),\
@@ -141,6 +143,8 @@ class Articles(BaseModel):
     @staticmethod
     @db.commit_on_success
     def update_article(article, title, body):
+        if len(title) > 255:
+            raise ValueError("Title must be at most 255 characters")
         try:
             article.title = title
             article.body = body

@@ -19,7 +19,7 @@ from jinja2htmlcompress import HTMLCompress
 import logging
 import os, sys
 
-logger = logging.getLogger("subrosa")
+logging.basicConfig()
 
 
 class Subrosa(object):
@@ -40,7 +40,7 @@ class Subrosa(object):
 
         self.db_types = dict(
             sqlite = SqliteDatabase,
-            postrges = PostgresqlDatabase,
+            postgres = PostgresqlDatabase,
             mysql = MySQLDatabase
         )
         # List of options that should be passed to views
@@ -90,7 +90,7 @@ class Subrosa(object):
 
         db = self.db_types.get(db_type, None)
         if not db:
-            raise ValueError("Wrong database name selected")
+            raise OSError("==========Wrong database name selected===========")
         return db
 
     def _define_db_connection(self, db_type, db_name, **kwargs):
@@ -107,7 +107,7 @@ class Subrosa(object):
         self.settings["favicon"] = True if favicon_exists else False
 
 
-    def get_db(self, **kwargs):
+    def get_db(self, kwargs = dict()):
 
         dtype = self.app.config.get("DATABASE", None)
         dname = self.app.config.get("DATABASE_NAME", None)
@@ -120,12 +120,25 @@ class Subrosa(object):
             password = self.app.config.get("DB_PASSWORD", None)
             if not username:
                 raise ValueError("%s requires username to connect" % dtype)
-            kwargs["user"] = username
-            kwargs["password"] = password
+            kwargs.update(dict(
+                user = username,
+            ))
+            if password:
+                if dtype == "postgres":
+                    kwargs.update(dict(
+                        password = password
+                    ))
+                elif dtype == "mysql":
+                    kwargs.update(dict(
+                        passwd = password
+                    ))
+
         try:
+
             return  self._define_db_connection(dtype, dname, **kwargs)
+
         except Exception as e:
-            raise
+            print e
 
     def get_settings(self):
         return self.settings

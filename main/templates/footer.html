@@ -1,8 +1,25 @@
 <div id="footer">
+<div id="footer-links">
+{% if settings.github %}
+<a href="{{ settings.github.decode('utf-8')}}" data-desc="github" class="footer-link" id="github"><i class="icon-github-circled"></i></a>
+{% endif %}
+{% if settings.facebook %}
+<a href="{{ settings.facebook.decode('utf-8') }}" data-desc="facebook" class="footer-link"><i class="icon-facebook"></i></a>
+{% endif %}
+{% if settings.twitter %}
+<a href="{{ settings.twitter.decode('utf-8') }}" data-desc="twitter" class="footer-link"><i class="icon-twitter"></i></a>
+{% endif %}
+{% if settings.gplus %}
+<a href="{{ settings.gplus.decode('utf-8') }}" id="gplus" data-desc="google+" class="footer-link"><i class="icon-gplus"></i></a>
+{% endif %}
+{% if settings.email %}
+<a href="{{ settings.email }}" data-desc="email" class="footer-link">email</a>
+{% endif %}
+</div>
 <div class="subscribe">
 <a href="{{ url_for('recent_feeds')}}" rel="alternate" title="Recent Feeds" type="application/atom+xml">
 <i class="icon-rss"></i>
 </a>
 </div>
-<p class="text-center"><small>Blog powered by <a href="https://github.com/exaroth/subrosa.git">Subrosa</a></small></p>
+<p class="text-center hidden-xs"><small>Blog powered by <a href="https://github.com/exaroth/subrosa.git">Subrosa</a></small></p>
 </div>

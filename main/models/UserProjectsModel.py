@@ -21,7 +21,7 @@ from main.helpers import handle_errors
 
 class UserProjects(BaseModel):
 
-    title = TextField(unique = True)
+    title = CharField(unique = True)
     body = TextField()
     date_created = DateTimeField(default = datetime.now())
     date_updated = DateTimeField(default = datetime.now())
@@ -40,8 +40,10 @@ class UserProjects(BaseModel):
 
     @staticmethod
     def get_all_projects():
-        return UserProjects\
-                .select()
+        q = UserProjects.select()
+        if q.count():
+            return q
+        return 0
 
 
     @staticmethod
@@ -56,6 +58,8 @@ class UserProjects(BaseModel):
     @staticmethod
     @db.commit_on_success
     def create_project(title, body, author):
+        if len(title) > 255:
+            raise ValueError("Title must be at most 255 characters long")
         try:
             UserProjects.create(title = title,\
                                body = body,\
@@ -79,6 +83,8 @@ class UserProjects(BaseModel):
     @staticmethod
     @db.commit_on_success
     def update_project(project, title, body):
+        if len(title) > 255:
+            raise ValueError("Title must be at most 255 characters long")
         try:
             project.title = title
             project.body = body

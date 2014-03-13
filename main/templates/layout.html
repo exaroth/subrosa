@@ -24,6 +24,13 @@
 	.article-list {
 		margin-left: 6%;
 	}
+	{% else %}
+	.article-list {
+		left:50%;
+		transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+		float: none;
+	}
 	{% endif %}
 
 	</style>

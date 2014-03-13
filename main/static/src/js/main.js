@@ -43,7 +43,7 @@ $(document).ready(function(){
     fadeoutIntVal        = null,
     fadeout              = false,
     // width of window where most responsive events are occuring
-    majorBreakpoint      = 970,
+    majorBreakpoint      = 740,
     adminPanelWidthSmall = 240,
     tocTemplate = "\
       <div class='toc'>\
@@ -58,7 +58,6 @@ $(document).ready(function(){
 
 
     function init(){
-
 
         wWidth  = $window.width();
         wHeight = $window.height();
@@ -386,7 +385,6 @@ $(document).ready(function(){
                 setToggleState(0);
             } else {
                 $adminPanel
-                .removeClass('panel-hidden')
                 .stop()
                 .css('width', adminPanelWidthSmall)
                 .find('.hideable')
@@ -511,7 +509,13 @@ $window.bind('resize scroll', function(){
 $window.resize(function(){
     wHeight = $window.height();
     wWidth = $window.width();
+    console.log(wWidth);
     matchIndexContents();
+    if(wWidth < majorBreakpoint){
+        $adminPanel.removeAttr('style').show().find('.hideable').show();
+        setToggleState(1);
+    }
+
 });
 
 $window.scroll(positionFooter);

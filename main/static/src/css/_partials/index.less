@@ -10,6 +10,39 @@
 	}
 }
 
+#index-user-info {
+	color: white ;
+	font-family: @body-font;
+	position: absolute;
+	bottom: 0;
+	margin-bottom: 4em;
+	margin-right: 4em;
+	font-size: 1.2em;
+	#index-portrait {
+	    width: 100px;
+	    height: 100px;
+	    .border-radius(50%);
+	    .background-size(100%, auto);
+	    background-position: center center;
+	    border: 2px solid #fff;
+	    left: 0;
+	    right: 0;
+	    margin: 0 auto;
+	}
+	h3 {
+	    color: white !important;
+	    font-family: @sans-font;
+	    font-weight: bold;
+	    margin-bottom: 1em;
+	    text-align: center;
+
+	}
+
+
+
+}
+
+
 
 #index-header {
 	position: relative;
@@ -40,6 +73,7 @@
 	.background-size(auto, 100%);
 	border-right: 1px solid @black-40;
 	background-position: center center;
+	padding: 0 0 2em 4em;
 	@media screen and (max-width: @md){
 		display: none;
 	}
@@ -53,6 +87,9 @@
 	position: relative;
  	@media screen and (max-width: @md){
 	    margin: 0;
+	    float: none;
+	    left: 50%;
+	    .translateX(-50%);
 	}
 }
 

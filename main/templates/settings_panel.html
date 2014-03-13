@@ -10,32 +10,47 @@
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Email">Email</span>
-					<input type="text" name="email" id="email" placeholder="{{ settings.email.decode('utf-8') if settings.email else 'Not set'}}" class="form-control">
+					<input type="text" name="email" id="email" placeholder="{{ settings.email.decode('utf-8') if settings.email else 'Email address (not set)'}}" class="form-control">
+					<div class="input-group-btn">
+						<a href="{{ url_for('reset_settings')}}?field=email" class="btn btn-default reset-btn" title="Reset">&times;</a>
+					</div>
 				</div>
 
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Github"><i class="icon-github-circled"></i></span>
-					<input type="text" name="github" id="github" placeholder="{{ settings.github.decode('utf-8') if settings.github else 'Your github account address (Not set)'}}" class="form-control">
+					<input type="text" name="github" id="github" placeholder="{{ settings.github.decode('utf-8') if settings.github else 'Github account address (not set)'}}" class="form-control">
+					<div class="input-group-btn">
+						<a href="{{ url_for('reset_settings')}}?field=github" class="btn btn-default reset-btn" title="Reset">&times;</a>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Facebook address"><i class="icon-facebook"></i></span>
-					<input type="text" name="facebook" id="facebook" placeholder="{{ settings.facebook.decode('utf-8') if settings.facebook else 'Not set'}}" class="form-control">
+					<input type="text" name="facebook" id="facebook" placeholder="{{ settings.facebook.decode('utf-8') if settings.facebook else 'Facebook address (not set)'}}" class="form-control">
+					<div class="input-group-btn">
+						<a href="{{ url_for('reset_settings')}}?field=facebook" class="btn btn-default reset-btn" title="Reset">&times;</a>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Twitter address"><i class="icon-twitter"></i></span>
-					<input type="text" name="twitter" id="twitter" placeholder="{{ settings.twitter.decode('utf-8') if settings.twitter else 'Not set'}}" class="form-control">
+					<input type="text" name="twitter" id="twitter" placeholder="{{ settings.twitter.decode('utf-8') if settings.twitter else 'Twitter address (not set)'}}" class="form-control">
+					<div class="input-group-btn">
+						<a href="{{ url_for('reset_settings')}}?field=twitter" class="btn btn-default reset-btn" title="Reset">&times;</a>
+					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Google+ address"><i class="icon-gplus"></i></span>
-					<input type="text" name="gplus" id="gplus" placeholder="{{ settings.gplus.decode('utf-8') if settings.gplus else 'Your Google+ account (Not set)'}}" class="form-control">
+					<input type="text" name="gplus" id="gplus" placeholder="{{ settings.gplus.decode('utf-8') if settings.gplus else 'Google+ account (not set)'}}" class="form-control">
+					<div class="input-group-btn">
+						<a href="{{ url_for('reset_settings')}}?field=gplus" class="btn btn-default reset-btn" title="Reset">&times;</a>
+					</div>
 				</div>
 			</div>
 			<hr>

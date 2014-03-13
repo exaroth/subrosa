@@ -7,6 +7,20 @@
     padding: 2em 4em;
 	border: 1px solid @black-10;
 	position: relative;
+	@media screen and (max-width: @md){
+		box-shadow: none;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		border: none;
+	}
+	.reset-btn {
+	    font-size: 18px;
+	    line-height: 18px;
+	    height: 34px;
+	    &:hover {
+	        color: @rose-red;
+	    }
+	}
 	#dashboard-header {
 	    margin: 0;
 	    display: table;

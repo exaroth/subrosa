@@ -152,6 +152,11 @@ textarea {
 	.translateY(-50%);
 	margin-top: -24px;
 }
+.hor-centered {
+    position: absolute;
+    left: 50%;
+    .translateX(-50%);
+}
 
 // Switch code
 .onoffswitch {
@@ -220,8 +225,9 @@ textarea {
 
 // ===========================================
 
-.form-control {
-    background-color: rgba(0,0,0,.02);
+.form-control,
+textarea.form-control {
+    background-color: rgba(0,0,0,.02) !important;
     .transition(all, 0.2s, ease-in);
     border: 1px solid rgba(0,0,0,0.1) !important;
     outline: 0 !important;
@@ -230,7 +236,7 @@ textarea {
     	outline: 0px !important;
 	    border-color: #cccccc;
 	    -webkit-box-shadow: none;
-	    background-color: rgba(0,0,0,.04);
+	    background-color: rgba(0,0,0,.04) !important;
     }
     &:active {
     	outline: 0 !important;

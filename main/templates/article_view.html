@@ -29,14 +29,16 @@
      </div>
      <div class="article-footer">
        {% if previous_article %}
-       <a href="{{ url_for('article_view', slug = previous_article.slug )}}" class="articles-pagination-btn btn btn-default" style="padding-right: 20px"> <i class="icon-angle-left"></i>Previous Article</a>
+         <a href="{{ url_for('article_view', slug = previous_article.slug )}}" class="articles-pagination-btn btn btn-default" style="padding-right: 20px"> <i class="icon-angle-left"></i>Previous Article</a>
        {% endif %}
        {% if next_article %}
-       <a href="{{ url_for('article_view', slug = next_article.slug )}}" class="articles-pagination-btn btn btn-default" style="float: right; padding-left: 20px;">Next Article <i class="icon-angle-right"></i></a>
+         <a href="{{ url_for('article_view', slug = next_article.slug )}}" class="articles-pagination-btn btn btn-default" style="float: right; padding-left: 20px;">Next Article <i class="icon-angle-right"></i></a>
        {% endif %}
      </div>
 
    </div>
+
+   
 
    {% if settings.disqus %}
 

@@ -36,10 +36,6 @@ from models.UserProjectsModel import UserProjects
 
 
 
-
-
-
-
 @app.route("/index", defaults={"page": 1})
 @app.route("/", defaults={"page": 1})
 @app.route("/<int:page>")
@@ -53,11 +49,16 @@ def index(page):
     if not articles_written and page != 1:
         abort(404)
     pagination = Pagination(page, articles_per_page, count)
+    user = Users.get_user(1)
+    if not user:
+        return redirect(url_for('create_account'))
     return render_template("index.html",\
                            pagination = pagination,\
                            articles = articles,\
                            articles_written = articles_written,\
-                           show_pagination = show_pagination)
+                           show_pagination = show_pagination,\
+                           user = user\
+                           )
 
 @app.route("/admin", methods = ["GET", "POST"] )
 def admin_login():
@@ -144,10 +145,7 @@ def account(username):
     if not user:
         abort(404)
     articles = Articles.get_user_articles(user.username)
-    if settings.get("projects", False):
-        projects = UserProjects.get_all_projects()
-    else:
-        projects = None
+    projects = UserProjects.get_all_projects()
     return render_template("dashboard.html",\
                            user = user,\
                            articles = articles,\
@@ -268,6 +266,7 @@ def upload_image():
         return render_template("upload_image.html")
 
 @app.route("/projects")
+@cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
 def projects():
     projects = UserProjects.get_all_projects()
     return render_template("user_projects.html", projects = projects)
@@ -370,9 +369,17 @@ def configure():
 
     return redirect(url_for('account', username = session['user']))
 
+@app.route("/reset-settings")
+@login_required
+def reset_settings():
+    field = request.query_string.rpartition("=")[2]
+    settings[field] = None
+    return redirect(url_for('account', username = session['user']))
+
 
 @app.route("/gallery", defaults = {"page": 1})
 @app.route("/gallery/<int:page>")
+@cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
 def gallery(page):
     if not app.config.get("GALLERY", None):
         return redirect(url_for("index"))

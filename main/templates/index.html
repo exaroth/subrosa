@@ -5,7 +5,22 @@
 <div class="index-wrapper col-xs-12">
 
 {% if settings.bg %}
-<div class="index-image col-md-4 hidden-xs hidden-sm"></div>
+<div class="index-image col-md-4 hidden-xs hidden-sm">
+{% if settings.show_info %}
+<div id="index-user-info">
+{% if settings.portrait %}
+
+	<div id="index-portrait" style="background-image: url({{ url_for('send_image', filename = settings.portrait)}})"> </div>
+
+{% endif %}
+	<h3>{{ user.real_name }}</h3>
+	<p>{{ user.description }}</p>
+	
+</div>
+
+
+{% endif %}
+</div>
 {% endif %}
 
 <div class="article-list col-md-6 ">
@@ -24,7 +39,7 @@
 			<a href="{{ url_for('article_view', slug = article.slug )}}" class="article-title-link"><h3 class="text-center">{{ article.title }}</h3></a>
 			<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
 			{% if settings.disqus %}
-			<a href="{{ url_for('article_view', slug = article.slug )}}#disqus_thread" class="article-comments-count" data-disqus-identifier="{{ article.slug }}"></a>
+			<a href="{{ url_for('article_view', slug = article.slug )}}#disqus_thread" class="article-comments-count" data-disqus-identifier="{{ article.slug }}">&nbsp;</a>
 			{% endif %}
 		</div>
 		<div class="article-list-body col-xs-12">
