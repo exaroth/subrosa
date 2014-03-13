@@ -682,7 +682,7 @@ textarea.article-input.article-input-body {
 .image-toolbar .icon-cancel:hover {
   color: #ff5c39;
 }
-.image-toolbar .icon-at:hover {
+.image-toolbar .icon-code:hover {
   color: #fcc41e;
 }
 .articles-pagination-btn,
@@ -735,9 +735,12 @@ a[disabled] {
   bottom: 0;
   margin-bottom: 4em;
   margin-right: 4em;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-style: italic;
 }
 #index-user-info #index-portrait {
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.4);
   width: 100px;
   height: 100px;
   -webkit-border-radius: 50%;
@@ -761,6 +764,7 @@ a[disabled] {
   font-weight: bold;
   margin-bottom: 1em;
   text-align: center;
+  font-style: normal;
 }
 #index-header {
   position: relative;
@@ -953,9 +957,12 @@ a[disabled] {
   }
 }
 #dashboard-panel .reset-btn {
-  font-size: 18px;
-  line-height: 18px;
+  font-size: 22px;
+  line-height: 22px;
   height: 34px;
+  color: #b3b3b3;
+  background-color: transparent !important;
+  border: none;
 }
 #dashboard-panel .reset-btn:hover {
   color: #ff5c39;

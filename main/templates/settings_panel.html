@@ -9,7 +9,7 @@
 		<div class="address-fields">
 			<div class="form-group">
 				<div class="input-group">
-					<span class="input-group-addon" title="Email">Email</span>
+					<span class="input-group-addon" title="Email"><i class="icon-paper-plane"></i></span>
 					<input type="text" name="email" id="email" placeholder="{{ settings.email.decode('utf-8') if settings.email else 'Email address (not set)'}}" class="form-control">
 					<div class="input-group-btn">
 						<a href="{{ url_for('reset_settings')}}?field=email" class="btn btn-default reset-btn" title="Reset">&times;</a>
@@ -19,7 +19,7 @@
 			</div>
 			<div class="form-group">
 				<div class="input-group">
-					<span class="input-group-addon" title="Github"><i class="icon-github-circled"></i></span>
+					<span class="input-group-addon" title="Github"><i class="icon-github"></i></span>
 					<input type="text" name="github" id="github" placeholder="{{ settings.github.decode('utf-8') if settings.github else 'Github account address (not set)'}}" class="form-control">
 					<div class="input-group-btn">
 						<a href="{{ url_for('reset_settings')}}?field=github" class="btn btn-default reset-btn" title="Reset">&times;</a>
