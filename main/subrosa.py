@@ -115,6 +115,18 @@ class Subrosa(object):
             return self._define_db_connection("sqlite", ":memory:")
         if not dtype or not dname:
             raise ValueError("Database type and name must be defined")
+        # Heroku config
+        if "DATABASE_URL" in os.environ:
+            urlparse.uses_netloc.append("postgres")
+            url = urlparse.urlparse(os.environ.get("DATABASE_URL"))
+            DATABASE = {
+                "database" : url.path[1:],
+                "user" : url.username,
+                "password": url.password,
+                "host": url.hostname,
+                "port": url.port
+            }
+            return PostgresqlDatabase(**DATABASE)
         if dtype in ("postgres", "mysql"):
             username = self.app.config.get("DB_USERNAME")
             password = self.app.config.get("DB_PASSWORD", None)

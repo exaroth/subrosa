@@ -1888,3 +1888,21 @@ textarea.form-control:active {
   outline: 0 !important;
   -webkit-appearance: none;
 }
+#login-panel img,
+#create-account-panel img {
+  width: 300px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: 0 0 2em 0;
+  position: relative;
+}
+@media screen and (max-width: 970px) {
+  #login-panel,
+  #create-account-panel {
+    width: 100%;
+  }
+}

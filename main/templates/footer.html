@@ -1,7 +1,7 @@
 <div id="footer">
 <div id="footer-links">
 {% if settings.github %}
-<a href="{{ settings.github.decode('utf-8')}}" data-desc="github" class="footer-link" id="github"><i class="icon-github-circled"></i></a>
+<a href="{{ settings.github.decode('utf-8')}}" data-desc="github" class="footer-link" id="github"><i class="icon-github"></i></a>
 {% endif %}
 {% if settings.facebook %}
 <a href="{{ settings.facebook.decode('utf-8') }}" data-desc="facebook" class="footer-link"><i class="icon-facebook"></i></a>
@@ -13,7 +13,7 @@
 <a href="{{ settings.gplus.decode('utf-8') }}" id="gplus" data-desc="google+" class="footer-link"><i class="icon-gplus"></i></a>
 {% endif %}
 {% if settings.email %}
-<a href="{{ settings.email }}" data-desc="email" class="footer-link">email</a>
+<a href="{{ settings.email }}" data-desc="email" class="footer-link"><i class="icon-paper-plane"></i></a>
 {% endif %}
 </div>
 <div class="subscribe">

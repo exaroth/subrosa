@@ -244,3 +244,18 @@ textarea.form-control {
     }
 }
 
+#login-panel img,
+#create-account-panel img {
+    width: 300px;
+    left: 50%;
+    .translateX(-50%);
+    margin: 0 0 2em 0;
+    position: relative;
+}
+
+#login-panel,
+#create-account-panel {
+    @media screen and (max-width: @md){
+        width: 100%;
+    }
+}
