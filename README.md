@@ -14,8 +14,7 @@ Subrosa is simple and elegant blogging platform written in Python, meant to be e
 * Semirandomized gallery
 * Comments via disqus
 * Simple projects page
-* Responsive design
-
+* Responsive layout
 
 ## Installation
 
@@ -125,7 +124,7 @@ heroku run python check_db.py
 ##### [Peewee ORM](https://github.com/coleifer/peewee)
 ###### [Flask-Cache](https://github.com/thadeusb/flask-cache)
 ###### [requests](http://docs.python-requests.org/en/latest/)
-###### [maginific-popup](http://dimsemenov.com/plugins/magnific-popup/)
+###### [magnific-popup](http://dimsemenov.com/plugins/magnific-popup/)
 ###### [jquery-nested](http://suprb.com/apps/nested/)
 ###### [jquery-lazyload](http://www.appelsiini.net/projects/lazyload)
 
