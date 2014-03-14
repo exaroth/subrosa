@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 					separator: ";",
 				},
 				src: [
-				"bower_components/jquery/jquery.min.js",
+				"bower_components/jquery/dist/jquery.min.js",
 				"bower_components/jquery-color/jquery.color.js",
 				"bower_components/bootstrap/js/alert.js",
 				"bower_components/bootstrap/js/tooltip.js",
