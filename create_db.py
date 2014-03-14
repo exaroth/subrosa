@@ -12,12 +12,15 @@ db.connect()
 app.config["DEBUG"] = False
 
 try:
-    Users.create_table()
-    Articles.create_table()
-    UserImages.create_table()
-    UserProjects.create_table()
-    print "Database created"
+    for field in (Users, Articles, UserImages, UserProjects):
+        if not field.table_exists():
+            field.create_table()
+        else:
+            print "Table already exists"
+
+    print "Tables created"      
+
 except:
-    pass
+    raise Exception("Error occured when creating tables, check your database configuration")
 
 

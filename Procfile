@@ -1,3 +1,3 @@
 web: gunicorn main:app
 
-init: python create_db
+init: python create_db.py

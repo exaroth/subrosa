@@ -31,13 +31,13 @@ Additionally if you want to have favicon on your page, drop file named favicon.i
 
 Note: None of these images are mandatory.
 
-### Comments
+### Disqus comments
 
-Once you deployed your site into the server, visit [disqus.com](disqus.com) and create account (if you don't have one yet), next visit [http://disqus.com/admin/create/](http://disqus.com/admin/create/) and create new site, lastly enter disqus_site_shortname in your Subrosa admin panel to enable the comments.
+Once you deployed your site into the server, visit [disqus.com](disqus.com) and create account (if you don't have one yet), next go to [http://disqus.com/admin/create/](http://disqus.com/admin/create/) and create new site, lastly enter disqus_site_shortname in your Subrosa admin panel to enable the comments.
 
-### Imgur Integration
+### Imgur integration
 
-Subrosa also implements simple way to integrate your gallery with Imgur. THe advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation. To enable it create Imgur account, and visit[https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create and app. Lastly input Client_id provided to get imgur integration on your site.
+Subrosa also implements simple way to integrate your gallery with Imgur. The advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation, there are limits to how many pictures can be uploaded and downloaded per day though. To enable it create Imgur account, and visit [https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create new app. Lastly input Client_id provided to get direct imgur uploads on your site.
 
 ### Basic configuration
 
@@ -46,14 +46,14 @@ The configuration file is named subrosa.conf and you can find it inside main fol
 * SITE_TITLE -- Self explanatory
 * SECRET_KEY -- This can be anything you like as long as you change it, its used for encrypting passwords and other security related stuff.
 * DATABASE -- select database type you want to use with Subrosa, available types are sqlite, postgresql and mysql.
-* DATABASE_NAME -- name of the database to be used, note you have to create it yourself.
+* DATABASE_NAME -- name of the database to be used.NOTE: you have to create it yourself.
 * USERNAME/PASSWORD -- Credentials used when connecting to database, used only with mysql and postgresql.
 
 NOTE: Database configuration is automatically  generated when using Subrosa with Heroku.
 
 NOTE: If you want more configuration options you can find detailed config file inside main folder(default_config.py).
 
-### Deployment
+## Deployment
 
 
 At this moment the best solution for deployment is to use Heroku cloud, with this setting Subrosa doesn't require any database configuration, and hey, it's free.
@@ -107,5 +107,12 @@ git push heroku master
 ```
 
 At this point you should have fully working blog set up on Heroku, once you log in for the first time an account creation screen should pop up. To enter admin panel simply go to www.your_address.com/admin. 
+
+To make sure everything went ok type:
+```shell
+heroku run python check_db.py
+```
+If no errors were raised all tables have been created succesfully.
+
 
 
