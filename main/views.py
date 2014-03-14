@@ -331,6 +331,7 @@ def delete_image(id):
 
 @app.route("/gallerify/<int:id>")
 @login_required
+@dynamic_content
 def gallerify(id):
     """ Ads and removes image from gallery """
     image = UserImages.get_image(id)
@@ -341,6 +342,7 @@ def gallerify(id):
 
 @app.route("/configure", methods = ["GET", "POST"])
 @login_required
+@dynamic_content
 def configure():
     if request.method == "GET":
         abort(404)
@@ -381,7 +383,7 @@ def reset_settings():
 @app.route("/gallery/<int:page>")
 @cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
 def gallery(page):
-    if not app.config.get("GALLERY", None):
+    if not settings.get("gallery", None):
         return redirect(url_for("index"))
     per_page = settings.get("images_per_page", 10)
     images = UserImages.get_gallery_images(page = page,\

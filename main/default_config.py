@@ -20,6 +20,7 @@ TITLE = "Your awesome blog"
 
 # Set it to False if Subrosa will not modify local filesystem in any way,
 # including database
+# Not yet impemented
 
 DYNAMIC_SITE = True
 

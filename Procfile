@@ -1,3 +1,3 @@
-web: gunicorn -c gunicorn.conf main:app
+web: gunicorn main:app
 
 init: python create_db
