@@ -1890,7 +1890,7 @@ textarea.form-control:active {
 }
 #login-panel img,
 #create-account-panel img {
-  width: 300px;
+  width: 150px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
