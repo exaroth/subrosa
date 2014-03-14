@@ -1,6 +1,5 @@
-# Subrosa
 ![](sr.jpg)
-
+# Subrosa
 [![Build Status](https://travis-ci.org/exaroth/subrosa.png?branch=master)](https://travis-ci.org/exaroth/subrosa)
 
 
