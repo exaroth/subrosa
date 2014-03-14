@@ -31,6 +31,14 @@ Additionally if you want to have favicon on your page, drop file named favicon.i
 
 Note: None of these images are mandatory.
 
+### Comments
+
+Once you deployed your site into the server, visit [disqus.com](disqus.com) and create account (if you don't have one yet), next visit [http://disqus.com/admin/create/](http://disqus.com/admin/create/) and create new site, lastly enter disqus_site_shortname in your Subrosa admin panel to enable the comments.
+
+### Imgur Integration
+
+Subrosa also implements simple way to integrate your gallery with Imgur. THe advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation. To enable it create Imgur account, and visit[https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create and app. Lastly input Client_id provided to get imgur integration on your site.
+
 ### Basic configuration
 
 The configuration file is named subrosa.conf and you can find it inside main folder of the repository, The only things to configure are:
@@ -82,10 +90,12 @@ Which should return something like:
 
 
 ```shell
-HEROKU_POSTGRESQL_LAVENDER_URL <== Database name
+HEROKU_POSTGRESQL_WHITE_URL <== Database name
 Plan:        Dev
 Status:      available
 ```
+Finally:
+
 ```shell
 heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
 ```
@@ -95,5 +105,7 @@ heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
 ```shell
 git push heroku master
 ```
+
+At this point you should have fully working blog set up on Heroku, once you log in for the first time an account creation screen should pop up. To enter admin panel simply go to www.your_address.com/admin. 
 
 
