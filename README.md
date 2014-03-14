@@ -54,15 +54,15 @@ At this moment the best solution for deployment is to use Heroku cloud, with thi
 
 Instructions below assume you have Heroku toolbelt installed on your system (if not create account on Heroku, visit [https://toolbelt.heroku.com/](https://toolbelt.heroku.com/) and install it).
 
-1. Clone the repository
+* Clone the repository
 ```
 git clone https://github.com/exaroth/subrosa.git && cd subrosa
 ```
-2. Create heroku app
+* Create heroku app
 ```
 heroku create --stack cedar <name_of_your_app>
 ```
-3. Add postgresql database and promote it.
+* Add postgresql database and promote it.
 
 
 ```
@@ -85,6 +85,15 @@ Which should return something like:
 HEROKU_POSTGRESQL_LAVENDER_URL <== Database name
 Plan:        Dev
 Status:      available
+```
+```shell
+heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
+```
+* Push the contents of the repo to heroku
+
+
+```shell
+git push heroku master
 ```
 
 
