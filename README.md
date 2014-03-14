@@ -37,7 +37,7 @@ Once you deployed your site into the server, visit [disqus.com](disqus.com) and 
 
 ### Imgur integration
 
-Subrosa also implements simple way to integrate your gallery with Imgur. The advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation, there are limits to how many pictures can be uploaded and downloaded per day though. To enable it create Imgur account, and visit [https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create new app. Lastly input Client_id provided to get direct imgur uploads on your site.
+Subrosa also implements simple way to integrate your gallery with Imgur. The advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation, there are limits to how many pictures can be uploaded and downloaded per day though. To enable it create Imgur account, and visit [https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create new app. Lastly input client_id provided in your dashboard to get direct imgur uploads on your site.
 
 ### Basic configuration
 
@@ -112,7 +112,19 @@ To make sure everything went ok type:
 ```shell
 heroku run python check_db.py
 ```
-If no errors were raised all tables have been created succesfully.
+
+
+
+### System-wide installation
+
+--- Not yet tested ---
+
+## Software used
+
+##### [Flask microframework](http://flask.pocoo.org/)
+##### [Peewee ORM](https://github.com/coleifer/peewee)
+##### [Flask-Cache](https://github.com/thadeusb/flask-cache)
+##### [requests](http://docs.python-requests.org/en/latest/)
 
 
 
