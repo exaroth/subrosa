@@ -50,6 +50,41 @@ NOTE: If you want more configuration options you can find detailed config file i
 
 At this moment the best solution for deployment is to use Heroku cloud, with this setting Subrosa doesn't require any database configuration, and hey, it's free.
 
-Assuming you already have heroku toolbelt installed on you system (if not create account on Heroku, visit [https://toolbelt.heroku.com/](https://toolbelt.heroku.com/) and install it),  clone the repository,
+#### Heroku Installation
+
+Instructions below assume you have Heroku toolbelt installed on your system (if not create account on Heroku, visit [https://toolbelt.heroku.com/](https://toolbelt.heroku.com/) and install it).
+
+1. Clone the repository
+```
+git clone https://github.com/exaroth/subrosa.git && cd subrosa
+```
+2. Create heroku app
+```
+heroku create --stack cedar <name_of_your_app>
+```
+3. Add postgresql database and promote it.
+
+
+```
+heroku addons:add heroku-postgresql
+```
+
+
+get info about installed db
+
+
+```shell
+heroku pg:info
+```
+
+
+Which should return something like:
+
+
+```shell
+HEROKU_POSTGRESQL_LAVENDER_URL <== Database name
+Plan:        Dev
+Status:      available
+```
 
 

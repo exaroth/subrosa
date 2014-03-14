@@ -18,6 +18,7 @@ from main.markdown_ext import Markdown
 from jinja2htmlcompress import HTMLCompress
 import logging
 import os, sys
+import urlparse
 
 logging.basicConfig()
 
