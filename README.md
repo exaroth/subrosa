@@ -1,6 +1,14 @@
 ![](sr.jpg)
 # Subrosa
+
+
+
+v.0.1
+
+
 [![Build Status](https://travis-ci.org/exaroth/subrosa.png?branch=master)](https://travis-ci.org/exaroth/subrosa)
+
+**Note this is development version if Subrosa, if you would like to install it on your system please download release version at [https://github.com/exaroth/subrosa-release.git](https://github.com/exaroth/subrosa-release.git)**
 
 
 

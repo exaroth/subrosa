@@ -110,13 +110,6 @@ class Subrosa(object):
 
     def get_db(self, kwargs = dict()):
 
-        dtype = self.app.config.get("DATABASE", None)
-        dname = self.app.config.get("DATABASE_NAME", None)
-        if self.app.config.get("TESTING", False):
-            return self._define_db_connection("sqlite", ":memory:")
-        if not dtype or not dname:
-            raise ValueError("Database type and name must be defined")
-        # Heroku config
         if "DATABASE_URL" in os.environ:
             urlparse.uses_netloc.append("postgres")
             url = urlparse.urlparse(os.environ.get("DATABASE_URL"))
@@ -128,6 +121,13 @@ class Subrosa(object):
                 "port": url.port
             }
             return PostgresqlDatabase(**DATABASE)
+        dtype = self.app.config.get("DATABASE", None)
+        dname = self.app.config.get("DATABASE_NAME", None)
+        if self.app.config.get("TESTING", False):
+            return self._define_db_connection("sqlite", ":memory:")
+        if not dtype or not dname:
+            raise ValueError("Database type and name must be defined")
+        # Heroku config
         if dtype in ("postgres", "mysql"):
             username = self.app.config.get("DB_USERNAME")
             password = self.app.config.get("DB_PASSWORD", None)
