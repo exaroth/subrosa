@@ -13,12 +13,11 @@ module.exports = function(grunt) {
 					separator: ";",
 				},
 				src: [
-				"bower_components/jquery/dist/jquery.min.js",
 				"bower_components/jquery-color/jquery.color.js",
 				"bower_components/bootstrap/js/alert.js",
 				"bower_components/bootstrap/js/tooltip.js",
-				"bower_components/bootstrap/popover.js",
-				"bower_components/magnific-popup/dist/jquery.magnific-popup.min.js",
+				"bower_components/bootstrap/js/popover.js",
+				"bower_components/magnific-popup/dist/jquery.magnific-popup.js",
 				"bower_components/nested/jquery.nested.js",
 				"src/js/bootstrap3-confirmation.js",
 				"src/js/jquery.unveil.js",
@@ -31,7 +30,7 @@ module.exports = function(grunt) {
 				"src/css/bootstrap.css",
 				"src/css/pygments.css",
 				"src/css/fontello.css",
-				"bower_components/magnific_popup/dist/magnific-popup.css",
+				"bower_components/magnific-popup/dist/magnific-popup.css",
 				"src/css/main.css"
 				],
 				dest: "src/css/styles.css"

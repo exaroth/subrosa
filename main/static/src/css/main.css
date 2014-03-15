@@ -1746,11 +1746,11 @@ textarea {
   font-size: 48px;
 }
 .mfp-arrow-right:before {
-  content: '\e817';
+  content: '\e815';
   right: 0;
 }
 .mfp-arrow-left:before {
-  content: '\e816';
+  content: '\e814';
 }
 .mfp-arrow-left:after,
 .mfp-arrow-right:after {
