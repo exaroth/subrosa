@@ -30,11 +30,11 @@ Subrosa is simple and elegant blogging platform written in Python, meant to be e
 
 ### Including Images
 
-If you want additional graphics on your index page simply drop them into /uploads folder, this can be in any common format you like: jpg, png and gif. The files are:
+If you want additional graphics on your blog simply drop them into /uploads folder, this can be in any common format you like: jpg, png and gif. The files should be named:
 
-* bg -- used as a background image, it will automatically resize to match the container.
+* bg -- It will be used as a background image, and automatically resize to match the container.
 * logo -- If instead of plain title you want to have customized logo.
-* portrait -- Your portrait, this image will show up next to your posts as well as on index page.
+* portrait -- Your portrait, this image will show up next to your posts as well as on index page, looks best if it's in square format.
 
 Additionally if you want to have favicon on your page, drop file named favicon.ico into /uploads.
 
@@ -73,7 +73,7 @@ Instructions below assume you have Heroku toolbelt installed on your system (if 
 
 * Clone the repository
 ```
-git clone https://github.com/exaroth/subrosa.git && cd subrosa
+git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
 ```
 * Create heroku app
 ```
@@ -129,11 +129,47 @@ To make sure everything went ok type:
 heroku run python check_db.py
 ```
 
-
-
 ### System-wide installation
 
---- Not yet tested ---
+* Download release version of Subrosa:
+
+```shell
+git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
+```
+
+* Install all the requirements:
+
+```shell
+sudo pip install -r requirements.txt
+```
+
+NOTE: Peewee (Datbase ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. By default both those libraries will be installed on your system, to change that delete psycopg2 or MySQL-python entries from requirements.txt. 
+
+* Configure Subrosa:
+
+See Configuration above for details
+
+* Create tables
+
+Execute:
+
+```shell
+python create_db.py
+```
+
+from within Subrosa directory
+
+* Run the server
+
+Subrosa uses gunicorn WSGI server, to run it simply execute:
+```shell
+./run.sh
+```
+from within Subrosa directory
+
+Basic Gunicorn configuration options are stored in gunicorn.conf.
+
+NOTE: Recommended  and most commonly used HTTP Proxy for Gunicorn is Nginx server, to learn about deployment and configuration see [http://docs.gunicorn.org/en/latest/deploy.html](http://docs.gunicorn.org/en/latest/deploy.html)
 
 ## Software used
 
