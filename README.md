@@ -71,15 +71,15 @@ At this moment the best solution for deployment is to use Heroku cloud, with thi
 
 Instructions below assume you have Heroku toolbelt installed on your system (if not create account on Heroku, visit [https://toolbelt.heroku.com/](https://toolbelt.heroku.com/) and install it).
 
-* Clone the repository
+* **Clone the repository:**
 ```
 git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
 ```
-* Create heroku app
+* **Create heroku app:**
 ```
 heroku create --stack cedar <name_of_your_app>
 ```
-* Add postgresql database and promote it.
+* **Add postgresql database and promote it:**
 
 
 ```
@@ -108,14 +108,15 @@ Finally:
 ```shell
 heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
 ```
-* Push the contents of the repo to heroku
+
+* **Push the contents of the repo to heroku:**
 
 
 ```shell
 git push heroku master
 ```
 
-* Create tables:
+* **Create tables:**
 
 
 ```shell
@@ -131,25 +132,25 @@ heroku run python check_db.py
 
 ### System-wide installation
 
-* Download release version of Subrosa:
+* **Download release version of Subrosa:**
 
 ```shell
 git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
 ```
 
-* Install all the requirements:
+* **Install all the requirements:**
 
 ```shell
 sudo pip install -r requirements.txt
 ```
 
-NOTE: Peewee (Datbase ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. By default both those libraries will be installed on your system, to change that delete psycopg2 or MySQL-python entries from requirements.txt. 
+NOTE: Peewee (Database ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. To accomodate that, both those will be installed on your system, to change that delete psycopg2 or MySQL-python entries from requirements.txt. 
 
-* Configure Subrosa:
+* **Configure Subrosa:**
 
 See Configuration above for details
 
-* Create tables
+* **Create tables:**
 
 Execute:
 
@@ -159,7 +160,7 @@ python create_db.py
 
 from within Subrosa directory
 
-* Run the server
+* **Run the server:**
 
 Subrosa uses gunicorn WSGI server, to run it simply execute:
 ```shell
