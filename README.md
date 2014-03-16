@@ -12,7 +12,7 @@ v.0.1
 
 
 
-Subrosa is simple and elegant blogging platform written in Python, meant to be easy to use and deploy. Features:
+Subrosa is simple and elegant blogging platform written in Python 2.7, meant to be easy to use and deploy. Features:
 
 * Builtin markdown editor
 * Imgur integration for uploading images
@@ -23,7 +23,7 @@ Subrosa is simple and elegant blogging platform written in Python, meant to be e
 * Simple projects page
 * Responsive layout
 * RSS Channel
-* Builtin Caching (no Memcached required)
+* Builtin caching (no Memcached required)
 * IE9+ compatible
 
 ## Installation
@@ -144,15 +144,16 @@ git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
 sudo pip install -r requirements.txt
 ```
 
-NOTE: Peewee (Database ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. To accomodate that, both those will be installed on your system, to change that delete psycopg2 or MySQL-python entries from requirements.txt. 
+NOTE: Peewee (Database ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. To accomodate that, both of those will be installed on your system (if not already present), to change that delete psycopg2 or MySQL-python entries from requirements.txt. 
 
 * **Configure Subrosa:**
 
 See Configuration above for details
 
-* **Create tables:**
+* **Create database and tables:**
 
-Execute:
+First create database, it's name should be the same as the one specified in subrosa.conf file,
+then simply execute:
 
 ```shell
 python create_db.py
