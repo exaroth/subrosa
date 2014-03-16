@@ -8,7 +8,7 @@ setup(
     author_email = "exaroth@gmail.com",
     description = "Simple and beatiful blogging system",
     url = "subrosa.github.io",
-    license = "MIT",
+    license = "GPL v3",
     long_description = __doc__,
     packages=["main"],
     include_package_data = True,
