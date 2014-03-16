@@ -57,6 +57,7 @@
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Imgur user_id" style="width: 80px;"><img src="{{url_for('static', filename='src/img/imgur.png')}}" alt="imgur" style="height: 16px;"></span>
+					<span class="input-group-addon" title="Imgur user_id" style="width: 80px;"><img src="{{url_for('static', filename='build/img/imgur.png')}}" alt="imgur" style="height: 16px;"></span>
 					<input type="text" name="imgur" id="imgur" placeholder="{{ settings.imgur_id.decode('utf-8') if settings.imgur_id else 'Imgur client_id'}}" class="form-control">
 				</div>
 			</div>
@@ -64,6 +65,7 @@
 		<div class="form-group">
 			<div class="input-group">
 				<span class="input-group-addon" title="Disqus site name" style="width: 60px"><img src="{{ url_for('static', filename = 'src/img/disqus.png')}}" alt="disqus" style="height: 10px;"></span>
+				<!-- <span class="input-group-addon" title="Disqus site name" style="width: 60px"><img src="{{ url_for('static', filename = 'build/img/disqus.png')}}" alt="disqus" style="height: 10px;"></span> -->
 				<input type="text" name="disqus" id="disqus" placeholder="{{ settings.disqus.decode('utf-8') if settings.disqus else 'Disqus site shortname'}}" class="form-control">
 			</div>
 		</div>
