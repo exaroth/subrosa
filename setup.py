@@ -3,7 +3,7 @@ import multiprocessing
 
 setup(
     name = "Subrosa",
-    version = "0.3",
+    version = "0.1",
     author = "Konrad Wasowicz",
     author_email = "exaroth@gmail.com",
     description = "Simple and beatiful blogging system",
