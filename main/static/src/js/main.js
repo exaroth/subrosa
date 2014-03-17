@@ -59,6 +59,8 @@ $(document).ready(function(){
 
     function init(){
 
+        $articleBody.createToC();
+        
         wWidth  = $window.width();
         wHeight = $window.height();
 
@@ -88,7 +90,6 @@ $(document).ready(function(){
             e.preventDefault();
             $createForm.submit();
         });
-        $articleBody.createToC();
         $("img.lazy").unveil(200, function(){
             $(this).load(function(){
                 $(this).positionArticleImage();
