@@ -1,9 +1,8 @@
-Flask>=0.10.1
-Flask-Cache
+git+git://github.com/thadeusb/flask-cache.git
+git+git://github.com/mitsuhiko/flask.git
+git+git://github.com/coleifer/peewee.git
+git+git://github.com/benoitc/gunicorn.git
+git+git://github.com/kennethreitz/requests.git
 Markdown>=2.3.1
 Pygments>=1.6
-peewee>=2.2.1
-requests>=2.2.1
-psycopg2>=2.5.0
-MySQL-python>=1.2.5
-gunicorn
+six>=1.6.1

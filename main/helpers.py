@@ -15,7 +15,7 @@ from math import ceil
 from functools import wraps
 from flask import session, redirect, url_for, request
 import os
-from urlparse import urljoin
+from six.moves.urllib import parse
 import string, random
 import unicodedata
 import re

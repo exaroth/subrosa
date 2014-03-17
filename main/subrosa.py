@@ -11,14 +11,18 @@
     :license: MIT, see LICENSE for details.
 
 """
-from filters import parse_img_tags, timesince
-from helpers import generate_csrf_token
+
+from __future__ import absolute_import
+
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
+from main.filters import parse_img_tags, timesince
+from main.helpers import generate_csrf_token
 from main.markdown_ext import Markdown
-from jinja2htmlcompress import HTMLCompress
+from main.helpers import logger
 import logging
 import os, sys
-import urlparse
+# import urlparse
+from six.moves.urllib import parse
 
 logging.basicConfig()
 
@@ -150,7 +154,8 @@ class Subrosa(object):
             return  self._define_db_connection(dtype, dname, **kwargs)
 
         except Exception as e:
-            print e
+            logger.debug(e)
+
 
     def get_settings(self):
         return self.settings

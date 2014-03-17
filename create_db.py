@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+from __future__ import print_function
+
 from main import db, app
 from main.models.ArticlesModel import Articles
 from main.models.UserImagesModel import UserImages
@@ -16,9 +19,9 @@ try:
         if not field.table_exists():
             field.create_table()
         else:
-            print "Table already exists"
+            print("Table already exists")
 
-    print "Tables created"      
+    print ("Tables created")
 
 except:
     raise Exception("Error occured when creating tables, check your database configuration")
