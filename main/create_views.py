@@ -11,13 +11,16 @@
 
 """
 
+from __future__ import print_function
+
 
 from flask import render_template, request, session, url_for, redirect, flash
+from main import app, cache
 from main.models.UsersModel import Users
 from main.models.ArticlesModel import Articles
 from main.models.UserProjectsModel import UserProjects
-from main import app, cache
 from main.base_views import ScratchpadView
+from main.helpers import logger
 
 
 
@@ -61,7 +64,7 @@ class CreateView(ScratchpadView):
                 flash("Created")
                 return redirect(url_for("account", username = session["user"]))
             except Exception as e:
-                print e
+                logger.debug(e)
                 error = "Processing error see error.log for details"
                 context.update(dict(error = error))
                 return self.render_template(context)

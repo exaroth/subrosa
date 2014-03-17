@@ -14,10 +14,11 @@
 
 from main.base_views import ScratchpadView
 from flask import render_template, request, session, url_for, redirect, flash, abort
+from main import app, cache
 from main.models.UsersModel import Users
 from main.models.ArticlesModel import Articles
 from main.models.UserProjectsModel import UserProjects
-from main import app, cache
+from main.helpers import logger
 
 
 class UpdateView(ScratchpadView):
@@ -63,7 +64,7 @@ class UpdateView(ScratchpadView):
                     cache.clear()
                 return redirect(url_for("account", username = session["user"]))
             except Exception as e:
-                print e
+                logger.debug(e)
                 error = "Error processing request, see error.log for details"
                 context.update(dict(error = error))
                 return self.render_template(context)

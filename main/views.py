@@ -13,26 +13,28 @@
 
 """
 
+from __future__ import absolute_import
+
+
 import os
 import re
 from datetime import datetime
-from urlparse import urljoin
+from six.moves.urllib.parse import urljoin
 import urllib
-import StringIO
-from main import app, db, cache, settings
 from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
-from .helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix, id_generator
-from .pagination import Pagination
-from .decorators import dynamic_content, login_required
 from werkzeug import secure_filename
 from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
 from jinja2 import evalcontextfilter, Markup
-from imgur import ImgurHandler
-from models.ArticlesModel import Articles
-from models.UserImagesModel import UserImages
-from models.UsersModel import Users
-from models.UserProjectsModel import UserProjects
+from main import app, db, cache, settings
+from main.imgur import ImgurHandler
+from main.pagination import Pagination
+from main.decorators import dynamic_content, login_required
+from main.helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix, id_generator
+from main.models.ArticlesModel import Articles
+from main.models.UserImagesModel import UserImages
+from main.models.UsersModel import Users
+from main.models.UserProjectsModel import UserProjects
 
 
 
@@ -117,7 +119,7 @@ def create_account():
                                   password = password,\
                                   description = description,\
                                   real_name = real_name)
-            except IOError, e:
+            except IOError as e:
                 error = "Could not write to database, check if\
                         you have proper access\n or double check configuration options"
                 return render_template("create_account.html", error = error)
