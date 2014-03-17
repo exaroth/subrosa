@@ -87,9 +87,7 @@ class Subrosa(object):
         Check if given file exists
         :file - full path to file
         """
-        if os.path.exists(file):
-            return True
-        return False
+        return os.path.exists(file)
 
     def _select_db(self, db_type):
 

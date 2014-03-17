@@ -124,7 +124,7 @@ class Articles(BaseModel):
             return Articles.select()\
                    .where(Articles.draft == draft)\
                    .where(Articles.id < self.id)\
-                   .order_by(Articles.date_created.desc())\
+                   .order_by(Articles.id.desc())\
                    .get()
         except:
             return 0
@@ -134,7 +134,7 @@ class Articles(BaseModel):
             return Articles.select()\
                    .where(Articles.draft == draft)\
                    .where(Articles.id > self.id)\
-                   .order_by(Articles.date_created.asc())\
+                   .order_by(Articles.id.asc())\
                    .get()
         except:
             return 0
@@ -181,4 +181,4 @@ class Articles(BaseModel):
         return "<Article: %s>" % self.title
 
     class Meta:
-        order_by = ("-date_created",)
+        order_by = ("-id",)

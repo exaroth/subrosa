@@ -37,6 +37,7 @@ test.db
 include
 lib
 local
+__pycache__
 man
 share
 Scripts

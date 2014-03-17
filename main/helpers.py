@@ -11,10 +11,11 @@
 
 """
 
+import os
+import six
 from math import ceil
 from functools import wraps
 from flask import session, redirect, url_for, request
-import os
 from six.moves.urllib import parse
 import string, random
 import unicodedata
@@ -33,7 +34,7 @@ def slugify(value, separator="-"):
 
     """ Slugify a string, to make it URL friendly. """
 
-    if isinstance(value, unicode):
+    if isinstance(value, six.text_type):
         value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
         value = re.sub('[^\w\s-]', '', value.decode('ascii')).strip().lower()
     return re.sub('[%s\s]+' % separator, separator, value)
