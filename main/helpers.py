@@ -68,7 +68,9 @@ def redirect_url():
 
 def split_filename(filename, extension_only = False):
 
-    """ split filename into <filename> <extension> parts """
+    """
+    split filename into <filename> <extension> parts
+    """
 
     if "." in filename:
         parts = os.path.splitext(filename)
