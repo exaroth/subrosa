@@ -36,7 +36,7 @@ class Markdown(object):
                         output_format = 'html4')
     """
 
-    def __init__(self, app, auto_escape = False, **markdown_options):
+    def __init__(self, app = None, auto_escape = False, **markdown_options):
 
         self._instance = markdown.Markdown(**markdown_options)
 

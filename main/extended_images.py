@@ -19,9 +19,8 @@
 import markdown
 from markdown.inlinepatterns import IMAGE_LINK_RE, IMAGE_REFERENCE_RE
 from markdown.treeprocessors import Treeprocessor
-import logging
+from main.helpers import logger
 
-logger = logging.getLogger("MARKDOWN")
 
 class ExtendedImagesExtension(markdown.Extension):
 

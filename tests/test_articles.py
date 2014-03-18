@@ -1,3 +1,8 @@
+from __future__ import absolute_import
+
+import sys
+
+sys.path.append("..")
 
 import unittest
 from main.models.UsersModel import Users
@@ -59,6 +64,7 @@ class TestArticlesMethods(unittest.TestCase):
         with test_database(db, (Users, Articles)):
             Users.create_user(username = "konrad", password = "test")
             user1 = Users.select().get()
+
             Articles.create_article(title = "test article 1", \
                                     body = "test",
                                     author = user1)
@@ -89,7 +95,7 @@ class TestArticlesMethods(unittest.TestCase):
 
             self.assertEquals(9, Articles.get_count(True))
 
-            paginated = Articles.get_index_articles(1, 3)
+            paginated = Articles.get_index_articles(3, 3)
 
             self.assertEquals(7, paginated.wrapped_count())
 
@@ -97,10 +103,10 @@ class TestArticlesMethods(unittest.TestCase):
             self.assertNotIn("test article 1", str(tuple(paginated)))
             self.assertNotIn("test article 9", str(tuple(paginated)))
 
-            paginated = Articles.get_index_articles(3, 3)
+            paginated = Articles.get_index_articles(1, 3)
 
-            self.assertEquals(1, len(tuple(paginated)))
             self.assertIn("test article 9", str(tuple(paginated)))
+            self.assertIn("test article 7", str(tuple(paginated)))
 
     def test_misc_article_methods(self):
 

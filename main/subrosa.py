@@ -21,7 +21,6 @@ from main.markdown_ext import Markdown
 from main.helpers import logger
 import logging
 import os, sys
-# import urlparse
 from six.moves.urllib import parse
 
 logging.basicConfig()
