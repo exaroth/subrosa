@@ -13,7 +13,8 @@ v.0.1
 
 
 
-Subrosa is simple and elegant blogging platform written in Python 2.7, meant to be easy to use and deploy. Features:
+Subrosa is simple and elegant blogging platform written in Python, meant to be easy to use and deploy. Features:
+
 
 * Builtin markdown editor
 * Imgur integration for uploading images
@@ -26,6 +27,7 @@ Subrosa is simple and elegant blogging platform written in Python 2.7, meant to 
 * RSS Channel
 * Builtin caching (no Memcached required)
 * IE9+ compatible
+* Supported Python versions: 2.6, 2.7, 3.3, 3.4
 
 ## Installation
 
