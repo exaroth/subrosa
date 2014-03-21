@@ -37,7 +37,7 @@ class Subrosa(object):
 
     IMAGES = ('bg', 'bg_small', 'logo', 'portrait')
 
-    def __init__(self, app, compress_html = False):
+    def __init__(self, app):
 
         self.app = app
         self.settings = dict()
@@ -61,8 +61,6 @@ class Subrosa(object):
                                "headerid",\
                                "main.extended_images" ])
 
-        if compress_html:
-            app.jinja_env.add_extension(HTMLCompress)
 
         app.jinja_env.globals['csrf_token'] = generate_csrf_token
         app.jinja_env.filters['parse_img_tags'] = parse_img_tags
