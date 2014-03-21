@@ -14,7 +14,6 @@
 
 from __future__ import absolute_import
 
-import os, sys
 from peewee import *
 import datetime
 
@@ -96,6 +95,23 @@ class Articles(BaseModel):
         except:
             return False
 
+    def get_similar_articles(self, common_tags = 1, limit = 3):
+        """
+        Get 3 similar articles based on tag used,
+        minimum 1 common tag is required
+        """
+        art = (ArticleTags.select(ArticleTags.tag)\
+               .join(Articles)\
+               .where(ArticleTags.article == self))
+
+        return Articles.select(Articles, ArticleTags)\
+               .join(ArticleTags)\
+               .where((ArticleTags.article != self) & ArticleTags.tag << art)\
+               .group_by(Articles)\
+               .having(fn.Count(ArticleTags.id ) >= common_tags)\
+               .order_by(fn.Count(Articles.id).desc())\
+               .limit(limit)
+        
     @staticmethod
     def get_article_by_slug(slug):
         try:
@@ -141,7 +157,6 @@ class Articles(BaseModel):
         except:
             return 0
 
-
     @staticmethod
     @db.commit_on_success
     def update_article(article, title, body):
@@ -184,3 +199,21 @@ class Articles(BaseModel):
 
     class Meta:
         order_by = ("-id",)
+
+
+
+class Tags(BaseModel):
+
+    name = CharField(unique = True)
+
+    def __repr__(self):
+        return "<Tag: {0}>".format(self.name)
+
+
+class ArticleTags(BaseModel):
+
+    article = ForeignKeyField(Articles, related_name = "articles")
+    tag = ForeignKeyField(Tags, related_name = "tags")
+
+    def __repr__(self):
+        return "<Article - {0} : Tag - {1}>".format(self.article, self.tag)

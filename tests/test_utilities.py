@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
@@ -31,22 +33,13 @@ class TestBasicHelpers(unittest.TestCase):
 
         # text for more than one space
 
-        text = slugify("lorem     ipsum")
+        text = slugify(u"lorem     ipsum")
         self.assertEqual("lorem-ipsum", text)
 
         # test for tabs
 
         text = slugify("lorem\tipsum")
         self.assertEqual("lorem-ipsum", text)
-
-
-
-
-
-
-
-        
-
 
 
 

@@ -6,7 +6,7 @@ sys.path.append("..")
 
 import unittest
 from main.models.UsersModel import Users
-from main.models.ArticlesModel import Articles
+from main.models.ArticlesModel import Articles, Tags, ArticleTags
 from playhouse.test_utils import test_database
 from peewee import *
 
@@ -129,6 +129,98 @@ class TestArticlesMethods(unittest.TestCase):
 
             Articles.delete_article(article)
             self.assertEquals(0, Articles.get_count(True))
+
+    def test_getting_similar_articles(self):
+
+        with test_database(db, (Users, Articles, Tags, ArticleTags)):
+            Users.create_user(username = "konrad", password = "test")
+            user1 = Users.select().get()
+
+            Articles.create_article(title = "test article1", body = "test", draft = True, author = user1)
+            Articles.create_article(title = "test article2", body = "test", draft = True, author = user1)
+            Articles.create_article(title = "test article3", body = "test", draft = True, author = user1)
+            Articles.create_article(title = "test article4", body = "test", draft = True, author = user1)
+            Articles.create_article(title = "test article5", body = "test", draft = True, author = user1)
+            Articles.create_article(title = "test article6", body = "test", draft = True, author = user1)
+            Articles.create_article(title = "test article7", body = "test", draft = True, author = user1)
+            article1 = Articles.get_article(1)
+            article2 = Articles.get_article(2)
+            article3 = Articles.get_article(3)
+            article4 = Articles.get_article(4)
+            article5 = Articles.get_article(5)
+            article6 = Articles.get_article(6)
+            article7 = Articles.get_article(7)
+
+            Tags.create(name = "test1")
+            Tags.create(name = "test2")
+            Tags.create(name = "test3")
+            Tags.create(name = "test4")
+            tag1 = Tags.select().where(Tags.id == 1).get()
+            tag2 = Tags.select().where(Tags.id == 2).get()
+            tag3 = Tags.select().where(Tags.id == 3).get()
+            tag4 = Tags.select().where(Tags.id == 4).get()
+
+            ArticleTags.create(article = article1, tag = tag1)
+            ArticleTags.create(article = article1, tag = tag2)
+            ArticleTags.create(article = article1, tag = tag3)
+
+            ArticleTags.create(article = article2, tag = tag1)
+            ArticleTags.create(article = article2, tag = tag2)
+            ArticleTags.create(article = article2, tag = tag3)
+
+            ArticleTags.create(article = article3, tag = tag1)
+            ArticleTags.create(article = article3, tag = tag2)
+            ArticleTags.create(article = article3, tag = tag3)
+
+
+            ArticleTags.create(article = article4, tag = tag1)
+            ArticleTags.create(article = article4, tag = tag2)
+
+            ArticleTags.create(article = article5, tag = tag1)
+            ArticleTags.create(article = article5, tag = tag2)
+            ArticleTags.create(article = article5, tag = tag3)
+
+            ArticleTags.create(article = article6, tag = tag2)
+
+            ArticleTags.create(article = article7, tag = tag4)
+
+
+            art = Articles.select().where(Articles.id == 1).get()
+
+            sel = art.get_similar_articles()
+
+            self.assertIn("test article2", str(tuple(sel)))
+            self.assertIn("test article3", str(tuple(sel)))
+            self.assertIn("test article5", str(tuple(sel)))
+            self.assertNotIn("test article1", str(tuple(sel)))
+            self.assertNotIn("test article4", str(tuple(sel)))
+
+
+            sel = art.get_similar_articles(limit = 4)
+
+
+            self.assertIn("test article2", str(tuple(sel)))
+            self.assertIn("test article3", str(tuple(sel)))
+            self.assertIn("test article5", str(tuple(sel)))
+            self.assertIn("test article4", str(tuple(sel)))
+            self.assertNotIn("test article6", str(tuple(sel)))
+            self.assertNotIn("test article1", str(tuple(sel)))
+
+
+            sel = art.get_similar_articles(common_tags = 3, limit = 5)
+
+            self.assertIn("test article2", str(tuple(sel)))
+            self.assertIn("test article3", str(tuple(sel)))
+            self.assertIn("test article5", str(tuple(sel)))
+            self.assertNotIn("test article1", str(tuple(sel)))
+            self.assertNotIn("test article4", str(tuple(sel)))
+
+
+            art = Articles.select().where(Articles.id == 7).get()
+
+            sel = art.get_similar_articles()
+
+            self.assertEquals(sel.wrapped_count(False), 0)
 
 
 if __name__ == "__main__":
