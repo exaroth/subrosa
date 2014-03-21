@@ -12,6 +12,8 @@
 
 """
 
+from __future__ import absolute_import
+
 import os, sys
 from peewee import *
 import datetime
