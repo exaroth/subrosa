@@ -20,7 +20,7 @@
       <h2 class="article-header"> {{ article.header }}</h2>
       {% endif %}
       <h5 class="article-timesince">
-         {% if article.author.real_name %} by <span style="color: #47b1ff">{{ article.author.real_name }}</span> <span style="margin: 0 4px;">|</span>{%- endif -%} {{ article.date_created.strftime("%B %d %Y") }}
+         {% if article.author.real_name %} by <span style="color: #47b1ff">{{ article.author.real_name }}</span> <span style="margin: 0 4px;">|</span>{%- endif -%} {{ article.date_created.strftime("%B %d, %Y") }}
       </h5>
       <div class="article-divider"></div>
       <div class="article-body">
