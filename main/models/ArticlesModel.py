@@ -95,20 +95,20 @@ class Articles(BaseModel):
         except:
             return False
 
-    def get_similar_articles(self, common_tags = 1, limit = 3):
+    def get_similar_articles(self, common_categories = 1, limit = 3):
         """
         Get 3 similar articles based on tag used,
         minimum 1 common tag is required
         """
-        art = (ArticleTags.select(ArticleTags.tag)\
+        art = (ArticleCategories.select(ArticleCategories.category)\
                .join(Articles)\
-               .where(ArticleTags.article == self))
+               .where(ArticleCategories.article == self))
 
-        return Articles.select(Articles, ArticleTags)\
-               .join(ArticleTags)\
-               .where((ArticleTags.article != self) & ArticleTags.tag << art)\
+        return Articles.select(Articles, ArticleCategories)\
+               .join(ArticleCategories)\
+               .where((ArticleCategories.article != self) & ArticleCategories.category << art)\
                .group_by(Articles)\
-               .having(fn.Count(ArticleTags.id ) >= common_tags)\
+               .having(fn.Count(ArticleCategories.id ) >= common_categories)\
                .order_by(fn.Count(Articles.id).desc())\
                .limit(limit)
         
@@ -202,7 +202,7 @@ class Articles(BaseModel):
 
 
 
-class Tags(BaseModel):
+class Categories(BaseModel):
 
     name = CharField(unique = True)
 
@@ -210,10 +210,10 @@ class Tags(BaseModel):
         return "<Tag: {0}>".format(self.name)
 
 
-class ArticleTags(BaseModel):
+class ArticleCategories(BaseModel):
 
     article = ForeignKeyField(Articles, related_name = "articles")
-    tag = ForeignKeyField(Tags, related_name = "tags")
+    category = ForeignKeyField(Categories, related_name = "tags")
 
     def __repr__(self):
         return "<Article - {0} : Tag - {1}>".format(self.article, self.tag)

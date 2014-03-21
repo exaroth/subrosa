@@ -21,9 +21,14 @@ class ConfigModel(BaseModel):
     show_projects  = BooleanField(default = False)
     show_user_info = BooleanField(default = False)
 
-    @staticmethod
-    def save_settings(twitter, facebook, github, gplus, email, imgur, disqus,\
-                      show_gallery, show_projects, show_user_info):
+    def save_settings(self, **kwargs):
+        
+        to_save = dict()
+        for key, value in kwargs:
+            if key in self._meta.get_field_names():
+                to_save[key] = value
+
+        
 
 
 

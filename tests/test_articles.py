@@ -6,7 +6,7 @@ sys.path.append("..")
 
 import unittest
 from main.models.UsersModel import Users
-from main.models.ArticlesModel import Articles, Tags, ArticleTags
+from main.models.ArticlesModel import Articles, Categories, ArticleCategories
 from playhouse.test_utils import test_database
 from peewee import *
 
@@ -132,7 +132,7 @@ class TestArticlesMethods(unittest.TestCase):
 
     def test_getting_similar_articles(self):
 
-        with test_database(db, (Users, Articles, Tags, ArticleTags)):
+        with test_database(db, (Users, Articles, Categories, ArticleCategories)):
             Users.create_user(username = "konrad", password = "test")
             user1 = Users.select().get()
 
@@ -151,38 +151,38 @@ class TestArticlesMethods(unittest.TestCase):
             article6 = Articles.get_article(6)
             article7 = Articles.get_article(7)
 
-            Tags.create(name = "test1")
-            Tags.create(name = "test2")
-            Tags.create(name = "test3")
-            Tags.create(name = "test4")
-            tag1 = Tags.select().where(Tags.id == 1).get()
-            tag2 = Tags.select().where(Tags.id == 2).get()
-            tag3 = Tags.select().where(Tags.id == 3).get()
-            tag4 = Tags.select().where(Tags.id == 4).get()
+            Categories.create(name = "test1")
+            Categories.create(name = "test2")
+            Categories.create(name = "test3")
+            Categories.create(name = "test4")
+            category1 = Categories.select().where(Categories.id == 1).get()
+            category2 = Categories.select().where(Categories.id == 2).get()
+            category3 = Categories.select().where(Categories.id == 3).get()
+            category4 = Categories.select().where(Categories.id == 4).get()
 
-            ArticleTags.create(article = article1, tag = tag1)
-            ArticleTags.create(article = article1, tag = tag2)
-            ArticleTags.create(article = article1, tag = tag3)
+            ArticleCategories.create(article = article1, category = category1)
+            ArticleCategories.create(article = article1, category = category2)
+            ArticleCategories.create(article = article1, category = category3)
 
-            ArticleTags.create(article = article2, tag = tag1)
-            ArticleTags.create(article = article2, tag = tag2)
-            ArticleTags.create(article = article2, tag = tag3)
+            ArticleCategories.create(article = article2, category = category1)
+            ArticleCategories.create(article = article2, category = category2)
+            ArticleCategories.create(article = article2, category = category3)
 
-            ArticleTags.create(article = article3, tag = tag1)
-            ArticleTags.create(article = article3, tag = tag2)
-            ArticleTags.create(article = article3, tag = tag3)
+            ArticleCategories.create(article = article3, category = category1)
+            ArticleCategories.create(article = article3, category = category2)
+            ArticleCategories.create(article = article3, category = category3)
 
 
-            ArticleTags.create(article = article4, tag = tag1)
-            ArticleTags.create(article = article4, tag = tag2)
+            ArticleCategories.create(article = article4, category = category1)
+            ArticleCategories.create(article = article4, category = category2)
 
-            ArticleTags.create(article = article5, tag = tag1)
-            ArticleTags.create(article = article5, tag = tag2)
-            ArticleTags.create(article = article5, tag = tag3)
+            ArticleCategories.create(article = article5, category = category1)
+            ArticleCategories.create(article = article5, category = category2)
+            ArticleCategories.create(article = article5, category = category3)
 
-            ArticleTags.create(article = article6, tag = tag2)
+            ArticleCategories.create(article = article6, category = category2)
 
-            ArticleTags.create(article = article7, tag = tag4)
+            ArticleCategories.create(article = article7, category = category4)
 
 
             art = Articles.select().where(Articles.id == 1).get()
@@ -207,7 +207,7 @@ class TestArticlesMethods(unittest.TestCase):
             self.assertNotIn("test article1", str(tuple(sel)))
 
 
-            sel = art.get_similar_articles(common_tags = 3, limit = 5)
+            sel = art.get_similar_articles(common_categories = 3, limit = 5)
 
             self.assertIn("test article2", str(tuple(sel)))
             self.assertIn("test article3", str(tuple(sel)))
