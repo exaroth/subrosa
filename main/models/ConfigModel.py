@@ -15,7 +15,7 @@ class ConfigModel(BaseModel):
     github         = TextField(null       = True, default = None)
     gplus          = TextField(null       = True, default = None)
     email          = TextField(null       = True, default = None)
-    imgur          = TextField(null       = True, default = None)
+    imgur_id       = TextField(null       = True, default = None)
     disqus         = TextField(null       = True, default = None)
     show_gallery   = BooleanField(default = False)
     show_projects  = BooleanField(default = False)
@@ -24,15 +24,17 @@ class ConfigModel(BaseModel):
     def save_settings(self, **kwargs):
         
         to_save = dict()
-        for key, value in kwargs:
-            if key in self._meta.get_field_names():
+        print kwargs
+        for key, value in kwargs.items():
+            if key in self._meta.get_field_names() and value is not None:
                 to_save[key] = value
+        try:
+            for k, v in to_save.items():
+                setattr(self, k, v)
+                self.save()
+                return 1
 
-        
-
-
-
-
-
+        except Exception as e:
+            print e
 
 
