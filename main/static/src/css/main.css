@@ -966,16 +966,15 @@ a[disabled] {
     border: none;
   }
 }
-#dashboard-panel .reset-btn {
-  font-size: 22px;
-  line-height: 22px;
-  height: 34px;
-  color: #b3b3b3;
-  background-color: transparent !important;
-  border: none;
+#dashboard-panel .settings-panel-buttons {
+  clear: both;
+  position: relative;
+  margin-top: 100px;
 }
-#dashboard-panel .reset-btn:hover {
-  color: #ff5c39;
+#dashboard-panel .settings-panel-buttons .btn {
+  bottom: 0 !important;
+  margin: 0 !important;
+  margin-right: 10px !important;
 }
 #dashboard-panel #dashboard-header {
   margin: 0;
