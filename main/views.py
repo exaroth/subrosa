@@ -349,12 +349,10 @@ def gallerify(id):
     UserImages.gallerify(image)
     return redirect(url_for("user_images", username = session["user"]))
 
-@app.route("/configure", methods = ["GET", "POST"])
+@app.route("/configure", methods = [ "POST"])
 @login_required
 @dynamic_content
 def configure():
-    if request.method == "GET":
-        abort(404)
 
     imgur_id = request.form.get('imgur', None).encode('utf-8')
     print imgur_id
@@ -390,6 +388,26 @@ def configure():
     except:
         handle_errors("Error when saving configuration")
         return redirect(url_for("account", username = session["user"]))
+
+@app.route("/set_info", methods = ["POST"])
+@login_required
+def set_info():
+    user = Users.get_user_by_username(session['user'])
+    real_name = request.form.get("real-name", None)
+    description = request.form.get("description", None)
+
+    user.real_name = real_name
+    user.description = description
+
+    try:
+        user.save()
+    except Exception as e:
+        handle_errors("Error updating user info")    
+        abort(500)
+    finally:
+        with app.app_context():
+            cache.clear()
+        return redirect(url_for('account', username = session['user']))
 
 
 @app.route("/reset-settings")

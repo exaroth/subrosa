@@ -82,6 +82,24 @@
 
 	{% include 'settings_panel.html' %}
 
+	<div id="user-info-panel" class="modal-window dismissable mfp-hide">
+		<legend>User Info</legend>
+		<form action="{{ url_for('set_info') }}" method="POST" role="form">
+		<div class="form-group">
+			<label for="real-name">Real Name</label>
+			<input type="text" class="form-control" placeholder="Not set" name="real-name" value="{{ user.real_name }}">
+			
+		</div>
+		<div class="form-group">
+		<label for="description">User description</label>
+		<textarea name="description" class="form-control" rows="16" placeholder="Not set">{{ user.description }}</textarea>
+		</div>
+		<div class="form-group">
+			<input type="submit" value="Submit" class="btn btn-default">
+		</div>
+		</form>
+	</div>
+
 	{% endblock %}
 	{% block footer %}
 	{% include 'footer.html' %}

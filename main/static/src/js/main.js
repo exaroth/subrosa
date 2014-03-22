@@ -10,7 +10,7 @@ $(document).ready(function(){
     var
     $body                = $('body'),
     $window              = $(window),
-    $textarea            = $("textarea"),
+    $scratcharea            = $("textarea.scratch"),
     $articleInputBody    = $(".article-input-body"),
     $articleInputTitle   = $(".article-input-title"),
     $editForm            = $(".edit-article-form"),
@@ -157,7 +157,7 @@ $(document).ready(function(){
     function start(){
 
         processGalleryImages($gallery);
-        $textarea.autogrow();
+        $scratcharea.autogrow();
         $miniIcons.tooltip();
         $editingButtons.tooltip();
         $articleInputBody.focusin(function(){;
@@ -193,7 +193,7 @@ $(document).ready(function(){
                 resizeAny: true
             }
         });
-        $('.cheatsheet-button').magnificPopup({
+        $('.cheatsheet-button, #change-user-info').magnificPopup({
             midClick: true,
             type: 'inline'
         });
