@@ -31,7 +31,6 @@ class ConfigModel(BaseModel):
             if key in self._meta.get_field_names() and value is not None:
                 to_save[key] = value
         try:
-            print to_save
             for k, v in to_save.items():
                 setattr(self, k, v)
             self.save()

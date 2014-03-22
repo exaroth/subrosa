@@ -26,7 +26,7 @@ from werkzeug import secure_filename
 from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
 from jinja2 import evalcontextfilter, Markup
-from main import app, db, cache, settings
+from main import app, db, cache, get_config, settings
 from main.imgur import ImgurHandler
 from main.pagination import Pagination
 from main.decorators import dynamic_content, login_required
@@ -214,11 +214,11 @@ def upload_image():
     if request.method == "POST":
         description = request.form.get('description', None)
         if request.form.get("imgur-img"):
-            user_id = settings.get("imgur_id", None)
             image = request.files["image"]
             if not image:
                 error = "No image chosen"
                 return render_template("upload_image.html", error = error)
+            user_id = get_config().imgur_id
             extension = split_filename(image.filename, True)
             if extension not in app.config["ALLOWED_FILENAMES"]:
                 error = "Allowed extensions are %r" % (", ".join(app.config["ALLOWED_FILENAMES"]))
@@ -303,11 +303,13 @@ def user_images(username, page):
     images_uploaded = bool(tuple(images))
     if not tuple(images) and page != 1:
         abort(404)
+    thumbnail_size = settings.get("thumbnail_size", "l")    
     pagination = Pagination(page, per_page, images.wrapped_count() )
     return render_template("user_images.html",\
                            images_uploaded = images_uploaded,\
                            pagination = pagination,\
                            show_upload_btn = True,\
+                           thumbnail_size = thumbnail_size,\
                            images = images,\
                            show_pagination = show_pagination)
 
@@ -329,7 +331,7 @@ def delete_image(id):
             flash(error)
             return redirect(url_for("index"))
         if image.imgur_img:
-            resp = ImgurHandler(settings["imgur_id"]).delete_image(image.delete_hash)
+            resp = ImgurHandler(get_config().imgur_id).delete_image(image.delete_hash)
             if not resp["success"]:
                 handle_errors(resp)
         return redirect(url_for("user_images", username = session["user"]))
@@ -353,7 +355,9 @@ def configure():
         abort(404)
 
     imgur_id = request.form.get('imgur', None).encode('utf-8')
+    print imgur_id
     disqus = request.form.get('disqus', None).encode('utf-8')
+    print disqus
 
     github = request.form.get('github', None).strip().encode('utf-8')
     facebook = request.form.get('facebook', None).strip().encode('utf-8')
@@ -398,7 +402,7 @@ def reset_settings():
 @app.route("/gallery/<int:page>")
 @cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
 def gallery(page):
-    if not settings.get("gallery", None):
+    if not get_config().gallery:
         return redirect(url_for("index"))
     per_page = settings.get("images_per_page", 10)
     images = UserImages.get_gallery_images(page = page,\
@@ -408,11 +412,13 @@ def gallery(page):
         abort(404)
     count = images.wrapped_count()
     show_pagination = count > per_page
+    thumbnail_size = settings.get("thumbnail_size", "l")    
     images_uploaded = count > 0
     pagination = Pagination(page, per_page, count)
     return render_template("gallery.html",\
                            images_uploaded = images_uploaded,\
                            pagination = pagination,\
+                           thumbnail_size = thumbnail_size,\
                            images = images,\
                            show_pagination = show_pagination)
 
