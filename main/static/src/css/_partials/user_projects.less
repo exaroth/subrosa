@@ -1,5 +1,6 @@
 #user-projects {
 	margin-top: 2em;
+	margin-bottom: 48px;
 	@media screen and (max-width: @md){
 	    margin: 0 24px;
 	}
@@ -46,13 +47,16 @@
 	        line-height: 2em !important;
 	    }
 	    .centered-image-wrapper {
-	        width: 140%;
-	        max-width: 140%;
-	        left: -20%;
+	        width: 100vw;
+	        max-width: 100vw;
+	        left: 50%;
+	        .translateX(-50%);
+	        margin: 4em 0;
 	        @media screen and (max-width: @md){
 	            width: 100%;
 	            max-width: 100%;
 	            left: 0;
+	            .translateX(0);
 	        }
 
 	    }
