@@ -10,7 +10,10 @@
 }
 .social-container {
   height: 40px;
-  margin: 30px 0;
+  margin: 10px 0 30px 0;
+}
+.social-container > div {
+  float: left;
 }
 .article-main .article-timesince {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;

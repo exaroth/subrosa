@@ -73,7 +73,7 @@ def get_config():
             cache.set("configuration", config)
             return config
         except:
-            logger.info("No config database found in db, creating new one")
+            logger.info("No configuration table found in db, creating new one")
             try:
                 ConfigModel.create_config(**settings)
                 config = ConfigModel.select().get()
