@@ -31,11 +31,14 @@ class Articles(BaseModel):
     Models and methods related to articles
     """
 
-    title = CharField(unique = True)
-    slug = CharField(unique = True)
+    title = TextField(unique = True)
+    slug = TextField(unique = True)
     draft = BooleanField(default = True)
+    series = TextField(null = True, default = None)
     date_created = DateTimeField(default = datetime.datetime.utcnow())
     date_updated = DateTimeField(default = datetime.datetime.utcnow())
+    article_image = TextField(null = True, default = None)
+    article_image_thumbnail = TextField(null = True, default = None)
     body = TextField()
     author = ForeignKeyField(Users, related_name = "articles")
 
