@@ -210,14 +210,21 @@ $(document).ready(function(){
             btnOkLabel: '<i class="icon-ok"></i>Yes',
             btnCancelLabel: '<i class="icon-cancel"></i>No'
         });
+        $("#link-fields").change(toggleSelectables);
 
     };
 
     function getToggleState(){
+
+        // Get menu state from local storage
+
         return localStorage.getItem('adminPanelVisible')
     };
 
     function setToggleState(state){
+
+        // Set menu state to local storage
+
         localStorage.setItem('adminPanelVisible', state)
 
     };
@@ -229,6 +236,15 @@ $(document).ready(function(){
             };
         }
 
+    };
+
+    function toggleSelectables(){
+
+        // Toggle link fields in dashboard menu
+
+        $("div[id^='selectable'")
+        .hide()
+        .filter("[id=selectable-" + this.value + "]").show();
     };
 
     // ========================================

@@ -7,7 +7,20 @@
 		<!-- Input fields -->
 
 		<div class="address-fields">
-			<div class="form-group">
+
+			<select name="link-fields" id="link-fields" class="form-control">
+				<option value="0">Select field to be changed...</option>
+				<option value="1">Email<i class="icon-paper-plane"></i></option>
+				<option value="2">Github<i class="icon-paper-plane"></i></option>
+				<option value="3">Twitter<i class="icon-paper-plane"></i></option>
+				<option value="4">Facebook<i class="icon-paper-plane"></i></option>
+				<option value="5">Google+<i class="icon-paper-plane"></i></option>
+			</select>
+
+
+
+
+ 			<div class="form-group" id="selectable-1">
 				<div class="input-group">
 					<span class="input-group-addon" title="Email"><i class="icon-paper-plane"></i></span>
 					<input type="text" name="email" id="email" placeholder="{{ settings.email.decode('utf-8') if settings.email else 'Email address (not set)'}}" class="form-control">
@@ -17,7 +30,7 @@
 				</div>
 
 			</div>
-			<div class="form-group">
+			<div class="form-group" id="selectable-2">
 				<div class="input-group">
 					<span class="input-group-addon" title="Github"><i class="icon-github"></i></span>
 					<input type="text" name="github" id="github" placeholder="Github account address (not set)" class="form-control" value="{{ settings.github.decode('utf-8') }}">
@@ -26,7 +39,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" id="selectable-3">
 				<div class="input-group">
 					<span class="input-group-addon" title="Facebook address"><i class="icon-facebook"></i></span>
 					<input type="text" name="facebook" id="facebook" placeholder="{{ settings.facebook.decode('utf-8') if settings.facebook else 'Facebook address (not set)'}}" class="form-control">
@@ -35,7 +48,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+			<div class="form-group" id="selectable-4">
 				<div class="input-group">
 					<span class="input-group-addon" title="Twitter address"><i class="icon-twitter"></i></span>
 					<input type="text" name="twitter" id="twitter" placeholder="{{ settings.twitter.decode('utf-8') if settings.twitter else 'Twitter address (not set)'}}" class="form-control">
@@ -44,7 +57,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group">
+ 			<div class="form-group" id="selectable-5">
 				<div class="input-group">
 					<span class="input-group-addon" title="Google+ address"><i class="icon-gplus"></i></span>
 					<input type="text" name="gplus" id="gplus" placeholder="{{ settings.gplus.decode('utf-8') if settings.gplus else 'Google+ account (not set)'}}" class="form-control">
@@ -53,7 +66,7 @@
 					</div>
 				</div>
 			</div>
-			<hr>
+		<hr>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Imgur user_id" style="width: 80px;"><img src="{{url_for('static', filename='src/img/imgur.png')}}" alt="imgur" style="height: 16px;"></span>
