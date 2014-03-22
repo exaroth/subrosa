@@ -98,6 +98,46 @@ class Articles(BaseModel):
         except:
             return False
 
+    def get_article_categories(self):
+        """
+        Get article categories
+        """
+
+        
+        return Categories.select()\
+                .join(ArticleCategories)\
+                .where(ArticleCategories.article == self)\
+                .group_by(Categories)
+
+    
+    def save_article_categories(self, category_names):
+        """
+        Create Categories and ArticleCategories table if 
+        category doesnt exist or article doesnt have the category yet
+        """
+
+        
+        # This is lame implementation, im too stupid for this crap
+        try:
+            own_categories = self.get_article_categories().iterator()
+
+
+            for name in category_names:
+                if not Categories.select().where(Categories.name == name).exists():
+                    cat = Categories.create(name = name)
+                    ArticleCategories.create(article = self, category = cat)
+
+                elif name not in [field.name for field in own_categories]:
+                    cat = Categories.select().where(Categories.name == name).get()
+                    ArticleCategories.create(article = self, category = cat)
+        except Exception as e:
+            handle_errors("error saving article categories")
+            raise e
+
+
+
+
+
     def get_similar_articles(self, common_categories = 1, limit = 3):
         """
         Get 3 similar articles based on tag used,
@@ -210,7 +250,7 @@ class Categories(BaseModel):
     name = CharField(unique = True)
 
     def __repr__(self):
-        return "<Tag: {0}>".format(self.name)
+        return "<Category: {0}>".format(self.name)
 
 
 class ArticleCategories(BaseModel):
@@ -219,4 +259,4 @@ class ArticleCategories(BaseModel):
     category = ForeignKeyField(Categories, related_name = "tags")
 
     def __repr__(self):
-        return "<Article - {0} : Tag - {1}>".format(self.article, self.tag)
+        return "<Article - {0} : Category - {1}>".format(self.article, self.tag)

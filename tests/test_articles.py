@@ -222,6 +222,25 @@ class TestArticlesMethods(unittest.TestCase):
 
             self.assertEquals(sel.wrapped_count(False), 0)
 
+            # Test getting article categories while we're at it
+
+            q = article1.get_article_categories()
+            
+            self.assertIn("test1",str(tuple(q)) )
+            self.assertIn("test2",str(tuple(q)))
+            self.assertNotIn("test4", str(tuple(q)))
+            q = article4.get_article_categories()
+            self.assertIn("test1",str(tuple(q)) )
+            self.assertNotIn("test3", str(tuple(q)))
+
+            q = article7.get_article_categories()
+            self.assertIn("test4",str(tuple(q)) )
+            self.assertNotIn("test3", str(tuple(q)))
+
+            query = article1.save_article_categories(["test4", "fundis", "clamo"])
+
+
+
 
 if __name__ == "__main__":
     unittest.main()
