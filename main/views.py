@@ -35,6 +35,7 @@ from main.models.ArticlesModel import Articles
 from main.models.UserImagesModel import UserImages
 from main.models.UsersModel import Users
 from main.models.UserProjectsModel import UserProjects
+from main.models.ConfigModel import ConfigModel
 
 
 
@@ -355,23 +356,33 @@ def configure():
     github = request.form.get('github', None).strip().encode('utf-8')
     facebook = request.form.get('facebook', None).strip().encode('utf-8')
     twitter = request.form.get('twitter', None).strip().encode('utf-8')
-    gplus = request.form.get('gplus', None).strip().encode('utf-8')
+    google_plus = request.form.get('gplus', None).strip().encode('utf-8')
     email = request.form.get('email', None).strip().encode('utf-8')
 
-    for key, val in locals().items():
-        if val is not None and len(str(val)) > 0:
-            settings[key] = val
+
 
     gallery = True if request.form.get('show-gallery') == 'on' else False
-    settings['gallery'] = gallery
 
     projects = True if request.form.get('show-projects') == 'on' else False
-    settings['projects'] = projects
 
     show_info = True if request.form.get('show-info') == 'on' else False
-    settings['show_info'] = show_info
 
-    return redirect(url_for('account', username = session['user']))
+    to_update = dict()
+    
+    for key, val in locals().items():
+        if key in ConfigModel._meta.get_field_names():
+            to_update[key] = val
+
+    try:
+        config = ConfigModel.select().get()
+        config.save_settings(**to_update)
+        with app.app_context():
+            cache.clear()
+        return redirect(url_for('account', username = session['user']))
+    except:
+        handle_errors("Error when saving configuration")
+        return redirect(url_for("account", username = session["user"]))
+
 
 @app.route("/reset-settings")
 @login_required

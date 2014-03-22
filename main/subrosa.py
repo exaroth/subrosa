@@ -32,8 +32,10 @@ class Subrosa(object):
     Initialization class for Subrosa
     """
 
-    OPTIONS = ("disqus", "facebook", "twitter", "github", "google_plus", "email", "gallery", "projects", "dynamic_site", "title",\
-                       "articles_per_page", "images_per_page", "imgur_id", "thumbnail_size", "show_info")
+    OPTIONS = ("disqus", "facebook", "twitter", "github",\
+               "google_plus", "email", "gallery", "projects",\
+               "dynamic_site", "title", "articles_per_page",\
+               "images_per_page", "imgur_id", "thumbnail_size", "show_info")
 
     IMAGES = ('bg', 'bg_small', 'logo', 'portrait')
 
@@ -60,7 +62,6 @@ class Subrosa(object):
                                "codehilite",\
                                "headerid",\
                                "main.extended_images" ])
-
 
         app.jinja_env.globals['csrf_token'] = generate_csrf_token
         app.jinja_env.filters['parse_img_tags'] = parse_img_tags
@@ -109,7 +110,7 @@ class Subrosa(object):
 
     def get_db(self, kwargs = dict()):
 
-        if "DATABASE_URL" in os.environ:
+        if "DATABASE_URL" in os.environ:  # config for heroku
             urlparse.uses_netloc.append("postgres")
             url = urlparse.urlparse(os.environ.get("DATABASE_URL"))
             DATABASE = {

@@ -20,7 +20,7 @@
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Github"><i class="icon-github"></i></span>
-					<input type="text" name="github" id="github" placeholder="{{ settings.github.decode('utf-8') if settings.github else 'Github account address (not set)'}}" class="form-control">
+					<input type="text" name="github" id="github" placeholder="Github account address (not set)" class="form-control" value="{{ settings.github.decode('utf-8') }}">
 					<div class="input-group-btn">
 						<a href="{{ url_for('reset_settings')}}?field=github" class="btn btn-default reset-btn" title="Reset">&times;</a>
 					</div>

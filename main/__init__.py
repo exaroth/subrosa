@@ -14,7 +14,7 @@
 from __future__ import absolute_import
 
 
-__version__ = "0.2.dev"
+__version__ = "0.1.dev"
 
 
 
@@ -22,7 +22,7 @@ import os, sys
 import logging
 from flask import Flask, request
 from main.subrosa import Subrosa
-from .helpers import add_thumbnail_affix
+from main.helpers import add_thumbnail_affix
 from flask.ext.cache import Cache
 
 
@@ -63,9 +63,30 @@ settings = subrosa.get_settings()
 
 db = subrosa.get_db()
 
+from main.models.ConfigModel import ConfigModel
+
+def get_config():
+    c = cache.get("configuration")
+    if not c:
+        try:
+            config = ConfigModel.select().get()
+            cache.set("configuration", config)
+            return config
+        except:
+            logger.info("No config database found in db, creating new one")
+            try:
+                ConfigModel.create_config(**settings)
+                config = ConfigModel.select().get()
+                cache.set("configuration", config)
+                return config
+            except:
+                raise Exception("Error when creating config file... aborting")
+    return c
+
+
 @app.context_processor
 def utility_processor():
-    return dict(settings = settings,\
+    return dict(settings = get_config(),\
                 current_path = request.url_root + request.path[1:],\
                 add_thumbnail_affix = add_thumbnail_affix)
 
