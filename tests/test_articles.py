@@ -21,15 +21,12 @@ class TestArticlesMethods(unittest.TestCase):
     def test_creating_article(self):
 
         with test_database(db, (Users, Articles)):
-            Users.create_user(username = "konrad", password = "test")
-            user1 = Users.get_user(1)
-
-            Articles.create_article(title = "test",\
+            user1 = Users.create_user(username = "konrad", password = "test")
+            article = Articles.create_article(title = "test",\
                                     body = "test",\
                                     draft = True,\
                                     author = user1)
 
-            article = Articles.get_article(1)
             self.assertEquals("test", article.title)
             self.assertEquals("konrad",article.author.username)
 
@@ -47,9 +44,7 @@ class TestArticlesMethods(unittest.TestCase):
 
             self.assertEquals(2,len(tuple(articles)))
 
-            Users.create_user(username = "malgosia", password = "test")
-            user2 = Users.get_user(2)
-
+            user2 = Users.create_user(username = "malgosia", password = "test")
             Articles.create_article(title = "test3", \
                                    body = "test",\
                                    author = user2)
@@ -62,24 +57,20 @@ class TestArticlesMethods(unittest.TestCase):
     def test_getting_article_info(self):
 
         with test_database(db, (Users, Articles)):
-            Users.create_user(username = "konrad", password = "test")
-            user1 = Users.select().get()
-
-            Articles.create_article(title = "test article 1", \
+            user1 = Users.create_user(username = "konrad", password = "test")
+            article = Articles.create_article(title = "test article 1", \
                                     body = "test",
                                     author = user1)
 
-            article = Articles.get_article(1)
             self.assertEquals("test-article-1", article.slug)
             self.assertEquals(article, Articles.get_article_by_slug("test-article-1"))
-            Articles.create_article(title = "test article 2", body = "test", author = user1)
-            article2 = Articles.get_article(2)
+            article2 = Articles.create_article(title = "test article 2", body = "test", author = user1)
             self.assertEquals(article2, article.get_next_article(True))
             self.assertEquals(0,article.get_previous_article())
             self.assertEquals(article, article2.get_previous_article(True))
             self.assertEquals(0, article2.get_next_article())
 
-            Articles.create_article(title = "test article 3",\
+            article3 = Articles.create_article(title = "test article 3",\
                                     body = "test",\
                                     draft = False,\
                                     author = user1)
@@ -111,20 +102,14 @@ class TestArticlesMethods(unittest.TestCase):
     def test_misc_article_methods(self):
 
         with test_database(db, (Users, Articles)):
-            Users.create_user(username = "konrad", password = "test")
-            user1 = Users.select().get()
-
-            Articles.create_article(title = "test article", body = "test", draft = True, author = user1)
-            article = Articles.get_article(1)
+            user1 = Users.create_user(username = "konrad", password = "test")
+            article = Articles.create_article(title = "test article", body = "test", draft = True, author = user1)
 
             Articles.update_article(article, title = "changed", body = "changed")
-            article = Articles.get_article(1)
-
             self.assertEquals("changed", article.title)
             self.assertEquals("changed", article.body)
 
             Articles.publish_article(article)
-            article = Articles.get_article(1)
             self.assertFalse(article.draft)
 
             Articles.delete_article(article)
@@ -136,29 +121,18 @@ class TestArticlesMethods(unittest.TestCase):
             Users.create_user(username = "konrad", password = "test")
             user1 = Users.select().get()
 
-            Articles.create_article(title = "test article1", body = "test", draft = True, author = user1)
-            Articles.create_article(title = "test article2", body = "test", draft = True, author = user1)
-            Articles.create_article(title = "test article3", body = "test", draft = True, author = user1)
-            Articles.create_article(title = "test article4", body = "test", draft = True, author = user1)
-            Articles.create_article(title = "test article5", body = "test", draft = True, author = user1)
-            Articles.create_article(title = "test article6", body = "test", draft = True, author = user1)
-            Articles.create_article(title = "test article7", body = "test", draft = True, author = user1)
-            article1 = Articles.get_article(1)
-            article2 = Articles.get_article(2)
-            article3 = Articles.get_article(3)
-            article4 = Articles.get_article(4)
-            article5 = Articles.get_article(5)
-            article6 = Articles.get_article(6)
-            article7 = Articles.get_article(7)
+            article1 = Articles.create_article(title = "test article1", body = "test", draft = True, author = user1)
+            article2 = Articles.create_article(title = "test article2", body = "test", draft = True, author = user1)
+            article3 = Articles.create_article(title = "test article3", body = "test", draft = True, author = user1)
+            article4 = Articles.create_article(title = "test article4", body = "test", draft = True, author = user1)
+            article5 = Articles.create_article(title = "test article5", body = "test", draft = True, author = user1)
+            article6 = Articles.create_article(title = "test article6", body = "test", draft = True, author = user1)
+            article7 = Articles.create_article(title = "test article7", body = "test", draft = True, author = user1)
 
-            Categories.create(name = "test1")
-            Categories.create(name = "test2")
-            Categories.create(name = "test3")
-            Categories.create(name = "test4")
-            category1 = Categories.select().where(Categories.id == 1).get()
-            category2 = Categories.select().where(Categories.id == 2).get()
-            category3 = Categories.select().where(Categories.id == 3).get()
-            category4 = Categories.select().where(Categories.id == 4).get()
+            category1 = Categories.create(name = "test1")
+            category2 = Categories.create(name = "test2")
+            category3 = Categories.create(name = "test3")
+            category4 = Categories.create(name = "test4")
 
             ArticleCategories.create(article = article1, category = category1)
             ArticleCategories.create(article = article1, category = category2)
@@ -185,9 +159,7 @@ class TestArticlesMethods(unittest.TestCase):
             ArticleCategories.create(article = article7, category = category4)
 
 
-            art = Articles.select().where(Articles.id == 1).get()
-
-            sel = art.get_similar_articles()
+            sel = article1.get_similar_articles()
 
             self.assertIn("test article2", str(tuple(sel)))
             self.assertIn("test article3", str(tuple(sel)))
@@ -196,7 +168,7 @@ class TestArticlesMethods(unittest.TestCase):
             self.assertNotIn("test article4", str(tuple(sel)))
 
 
-            sel = art.get_similar_articles(limit = 4)
+            sel = article1.get_similar_articles(limit = 4)
 
 
             self.assertIn("test article2", str(tuple(sel)))
@@ -207,7 +179,7 @@ class TestArticlesMethods(unittest.TestCase):
             self.assertNotIn("test article1", str(tuple(sel)))
 
 
-            sel = art.get_similar_articles(common_categories = 3, limit = 5)
+            sel = article1.get_similar_articles(common_categories = 3, limit = 5)
 
             self.assertIn("test article2", str(tuple(sel)))
             self.assertIn("test article3", str(tuple(sel)))
@@ -216,9 +188,8 @@ class TestArticlesMethods(unittest.TestCase):
             self.assertNotIn("test article4", str(tuple(sel)))
 
 
-            art = Articles.select().where(Articles.id == 7).get()
 
-            sel = art.get_similar_articles()
+            sel = article7.get_similar_articles()
 
             self.assertEquals(sel.wrapped_count(False), 0)
 
@@ -239,8 +210,56 @@ class TestArticlesMethods(unittest.TestCase):
 
             query = article1.save_article_categories(["test4", "fundis", "clamo"])
 
+        
+    def test_saving_and_deleting_categories(self):
+
+        with test_database(db, (Users, Articles, Categories, ArticleCategories)):
+            Users.create_user(username = "konrad", password = "test")
+            user1 = Users.select().get()
+
+            art = Articles.create_article(title = "test article1", body = "test", draft = True, author = user1)
+            art2 = Articles.create_article(title = "test article2", body = "test", draft = True, author = user1)
 
 
+            art.save_article_categories(["cat1", "cat2", "cat3"])
+
+            self.assertIn("cat1", str(tuple(art.get_article_categories())))
+            self.assertIn("cat2", str(tuple(art.get_article_categories())))
+            self.assertIn("cat3", str(tuple(art.get_article_categories())))
+
+            art.save_article_categories(["cat1", "cat2", "cat3"])
+
+            cat = Categories.select().count()
+
+            self.assertEquals(3, cat)
+
+            cat4 = Categories.create(name = "cat4")
+            cat5 = Categories.create(name = "cat5")
+            cat6 = Categories.create(name = "cat6")
+
+            art.save_article_categories(["cat4"])
+            self.assertIn("cat4", str(tuple(art.get_article_categories())))
+            self.assertEquals(4, art.get_article_categories().count())
+
+            art2.save_article_categories(("cat1", "cat4", "cat7"))
+
+            cats = Categories.select().group_by(Categories.name)
+
+            self.assertIn("cat7", str(tuple(cats)))
+            self.assertEquals(7, cats.count())
+
+            art.delete_instance(recursive = True)
+
+            self.assertEquals(7, cats.count())
+
+
+            self.assertEquals(ArticleCategories.select().group_by(ArticleCategories.id).count(), 3)
+            cat4.delete_instance(recursive = True)
+
+            self.assertEquals(ArticleCategories.select().group_by(ArticleCategories.id).count(), 2)
+
+
+            
 
 if __name__ == "__main__":
     unittest.main()

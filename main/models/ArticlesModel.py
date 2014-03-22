@@ -121,7 +121,6 @@ class Articles(BaseModel):
         try:
             own_categories = self.get_article_categories().iterator()
 
-
             for name in category_names:
                 if not Categories.select().where(Categories.name == name).exists():
                     cat = Categories.create(name = name)
@@ -133,8 +132,6 @@ class Articles(BaseModel):
         except Exception as e:
             handle_errors("error saving article categories")
             raise e
-
-
 
 
 
@@ -171,7 +168,7 @@ class Articles(BaseModel):
         if len(title) > 255:
             raise ValueError("Title must be at most 255 characters")
         try:
-            Articles.create(title = title,\
+            return Articles.create(title = title,\
                             slug = slugify(title),\
                             body = body,\
                             author = author,\
@@ -210,6 +207,7 @@ class Articles(BaseModel):
             article.body = body
             article.date_updated = datetime.datetime.utcnow()
             article.save()
+            return article
         except Exception as e:
             handle_errors("Error updating article")
             raise
@@ -255,8 +253,8 @@ class Categories(BaseModel):
 
 class ArticleCategories(BaseModel):
 
-    article = ForeignKeyField(Articles, related_name = "articles")
-    category = ForeignKeyField(Categories, related_name = "tags")
+    article = ForeignKeyField(Articles, on_delete="CASCADE", on_update="CASCADE", related_name = "articles")
+    category = ForeignKeyField(Categories, on_delete="CASCADE", on_update="CASCADE", related_name = "tags")
 
     def __repr__(self):
-        return "<Article - {0} : Category - {1}>".format(self.article, self.tag)
+        return "<Article - {0} : Category - {1}>".format(self.article, self.category)
