@@ -1452,6 +1452,26 @@ table tr:last-child td:last-child {
 .project-wrapper .project-body p {
   line-height: 2em !important;
 }
+.project-wrapper .project-body .floated-image-wrapper {
+  float: none !important;
+  clear: both;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  margin: 40px 0;
+}
+.project-wrapper .project-body .floated-image-wrapper img {
+  width: 500px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 970px) {
+  .project-wrapper .project-body .floated-image-wrapper img {
+    width: 100%;
+  }
+}
 .project-wrapper .project-body .centered-image-wrapper {
   width: 100vw;
   max-width: 100vw;

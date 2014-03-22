@@ -46,6 +46,21 @@
 	    p {
 	        line-height: 2em !important;
 	    }
+	    .floated-image-wrapper {
+	    	float: none !important;
+	    	clear: both;
+	    	left: 50%;
+	    	.translateX(-50%);
+	    	margin: 40px 0;
+	    	img {
+	    	    width: 500px; 
+	    	    margin: 0 auto;
+	    	    @media screen and (max-width: @md){
+	    	        width: 100%;
+	    	    }
+	    	}
+
+	    }
 	    .centered-image-wrapper {
 	        width: 100vw;
 	        max-width: 100vw;
