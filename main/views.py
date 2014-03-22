@@ -53,11 +53,16 @@ def index(page):
         abort(404)
     pagination = Pagination(page, articles_per_page, count)
     user = Users.get_user(1)
+    images = dict()
+    images['logo'] = settings['logo']
+    images['portrait'] = settings['portrait']
+    images['bg'] = settings['bg']
     if not user:
         return redirect(url_for('create_account'))
     return render_template("index.html",\
                            pagination = pagination,\
                            articles = articles,\
+                           images = images,\
                            articles_written = articles_written,\
                            show_pagination = show_pagination,\
                            user = user\
@@ -355,9 +360,7 @@ def gallerify(id):
 def configure():
 
     imgur_id = request.form.get('imgur', None).encode('utf-8')
-    print imgur_id
     disqus = request.form.get('disqus', None).encode('utf-8')
-    print disqus
 
     github = request.form.get('github', None).strip().encode('utf-8')
     facebook = request.form.get('facebook', None).strip().encode('utf-8')

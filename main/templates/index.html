@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 
+{% block titlebar %}
+{% include "header.html" %}
+{% endblock %}
 
 {% block content %} 
 <div class="index-wrapper col-xs-12">
@@ -8,9 +11,9 @@
 <div class="index-image col-md-4 hidden-xs hidden-sm">
 {% if settings.show_info %}
 <div id="index-user-info">
-{% if settings.portrait %}
+{% if images.portrait %}
 
-	<div id="index-portrait" style="background-image: url({{ url_for('send_image', filename = settings.portrait)}})"> </div>
+	<div id="index-portrait" style="background-image: url({{ url_for('send_image', filename = images.portrait)}})"> </div>
 
 {% endif %}
 	<h3>{{ user.real_name }}</h3>
@@ -26,8 +29,8 @@
 <div class="article-list col-md-6 ">
 
 <div id="index-header">
-	{% if settings.logo %}
-		<img id="site-logo" src="{{ url_for('send_image', filename = settings.logo)}}"></img>
+	{% if images.logo %}
+		<img id="site-logo" src="{{ url_for('send_image', filename = images.logo)}}"></img>
 	{% else %}
 		<h1 class="text-center" id="site-title">{{ settings.title }}</h1>
 	{% endif %}
