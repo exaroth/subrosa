@@ -167,9 +167,11 @@ def article_view(slug):
     author = article.author
     next_article = article.get_next_article()
     previous_article = article.get_previous_article()
+    user_picture = settings.get("portrait", False)
     return render_template("article_view.html",\
                             article = article,\
                             author = author,\
+                            user_picture = user_picture,\
                             next_article = next_article,\
                             previous_article = previous_article)
 

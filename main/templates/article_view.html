@@ -24,7 +24,9 @@
      </h5>
      <div class="article-divider"></div>
      <div class="article-body">
-      {% include "user_info.html" %}
+      {% with user_portrait = user_picture %}
+        {% include "user_info.html" %}
+      {% endwith %}
       {{ article.body|markdown }}
     </div>
     <div class="article-footer">
