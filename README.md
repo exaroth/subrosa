@@ -180,11 +180,12 @@ NOTE: Recommended  and most commonly used HTTP Proxy for Gunicorn is Nginx serve
 
 ##### [Flask microframework](http://flask.pocoo.org/)
 ##### [Peewee ORM](https://github.com/coleifer/peewee)
-###### [Flask-Cache](https://github.com/thadeusb/flask-cache)
-###### [requests](http://docs.python-requests.org/en/latest/)
-###### [magnific-popup](http://dimsemenov.com/plugins/magnific-popup/)
-###### [jquery-nested](http://suprb.com/apps/nested/)
-###### [jquery-lazyload](http://www.appelsiini.net/projects/lazyload)
+##### [Flask-Cache](https://github.com/thadeusb/flask-cache)
+##### [Python-Markdown](https://github.com/waylan/Python-Markdown)
+##### [requests](http://docs.python-requests.org/en/latest/)
+##### [magnific-popup](http://dimsemenov.com/plugins/magnific-popup/)
+##### [jquery-nested](http://suprb.com/apps/nested/)
+##### [jquery-lazyload](http://www.appelsiini.net/projects/lazyload)
 
 
 
