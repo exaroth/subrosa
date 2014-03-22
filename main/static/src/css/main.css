@@ -1518,7 +1518,8 @@ table tr:last-child td:last-child {
 .header-toolbar {
   height: 60px;
   position: relative;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
 }
 @media screen and (max-width: 970px) {
   .header-toolbar {
@@ -1583,19 +1584,22 @@ table tr:last-child td:last-child {
   transition: all 0.3s ease-in-out;
   border-bottom: 2px solid transparent;
 }
+.toolbar-link.active {
+  color: #f15831;
+}
 .toolbar-link:hover {
   color: #f15831;
   border-bottom: 2px solid #f5603b;
 }
 #push,
 #footer {
-  height: 60px;
+  height: 100px;
   clear: both;
 }
 #footer-links {
   position: absolute;
   z-index: 999;
-  font-size: 1em;
+  font-size: 1.2em;
   height: 40px;
   line-height: 30px;
   top: 50%;
@@ -1604,6 +1608,7 @@ table tr:last-child td:last-child {
   -o-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  width: 100%;
 }
 @media screen and (max-width: 640px) {
   #footer-links {
@@ -1620,55 +1625,27 @@ table tr:last-child td:last-child {
   -moz-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
-  float: left;
   height: 30px;
+  display: inline-block;
   width: 30px;
-  border: 1px solid white;
   text-align: center;
   position: relative;
-  margin-right: 20px;
-  background-color: #cccccc;
-  color: white ;
-  -webkit-border-radius: 50%;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 50%;
-  -moz-background-clip: padding;
-  border-radius: 50%;
-  background-clip: padding-box;
-  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.1);
+  margin-right: 30px;
+  color: #999999;
 }
 @media screen and (max-width: 640px) {
   #footer-links .footer-link {
     width: 20px;
     height: 20px;
     line-height: 20px;
-    font-size: 0.8em;
+    font-size: 2em;
   }
 }
 #footer-links .footer-link:hover {
-  background-color: #999999;
-}
-#footer-links .footer-link:after {
-  content: attr(data-desc);
-  color: #cccccc;
-  position: absolute;
-  top: -40px;
-  left: 0;
-  display: none;
-  opacity: 0;
-}
-#footer-links .footer-link:hover:after {
-  display: block;
-  opacity: 1;
-}
-@media screen and (max-width: 640px) {
-  #footer-links .footer-link:hover:after {
-    display: none;
-  }
+  color: #666666;
 }
 #footer {
-  background-color: #fafafa;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
   width: 100%;
   clear: both;
@@ -1691,13 +1668,17 @@ table tr:last-child td:last-child {
 }
 #footer .subscribe {
   position: absolute;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  padding: 6px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-  top: -10px;
+  top: -15px;
   -webkit-border-radius: 50%;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 50%;

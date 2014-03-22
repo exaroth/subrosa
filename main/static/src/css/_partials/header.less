@@ -24,8 +24,8 @@
 .header-toolbar {
 	height: 60px;
 	position: relative;
-	border-bottom: 1px solid @black-10;
-
+	border-bottom: 1px solid rgba(0,0,0,.05);
+	margin-bottom: 40px;
 	@media screen and (max-width: @md){
 		padding: 0 10px 0 10px;
 	}
@@ -82,6 +82,10 @@
 	font-weight: bold;
 	.transition(all, 0.3s, ease-in-out);
 	border-bottom: 2px solid transparent;
+	&.active {
+		color: #f15831;
+	    
+	}
 	&:hover {
 		color: #f15831;
 		border-bottom: 2px solid #f5603b;

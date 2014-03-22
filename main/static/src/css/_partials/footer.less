@@ -1,58 +1,39 @@
 #push,
 #footer {
-	height: 60px;
+	height: 100px;
 	clear:both; 
 
 }
 #footer-links {
 	position: absolute;
 	z-index: 999;
-	font-size: 1em;
+	font-size: 1.2em;
 	height: 40px;
 	line-height: 30px;
 	top: 50%;
 	.translateY(-50%);
+	width: 100%;
 	@media screen and (max-width: 640px){
 		left: 50%;
 		.translateX(-50%);
 	}
 	.footer-link {
 		.transition(all, 0.3s, ease-in);
-		float: left;
 		height: 30px;
+		display: inline-block;
 		width: 30px;
-		border: 1px solid white;
 		text-align: center;
 		position: relative;
-		margin-right: 20px;
-		background-color: @black-20;
-		color: white ;
-		.border-radius(50%);
-		.delicate-shadow();
+		margin-right: 30px;
+		color: @black-40;
 		@media screen and (max-width: 640px){
 		    width: 20px;
 		    height: 20px;
 		    line-height: 20px;
-		    font-size: 0.8em;
+		    font-size: 2em;
 		}
 		&:hover {
-		    background-color: @black-40;
-		}
-		&:after {
-		    content: attr(data-desc);
-		    color: @black-20;
-		    position: absolute;
-		    top: -40px;
-		    left: 0;
-		    display: none;
-		    opacity: 0;
-		}
-		&:hover:after {
-		    display: block;
-		    opacity: 1;
-		    @media screen and (max-width: 640px){
-		        display: none;
-		    }
+			color: @black-60;
 		}
 	}
 }
@@ -60,8 +41,7 @@
 
 
 #footer {
-	background-color: #fafafa;
-	border-top: 1px solid darken(#f7f7f7, 5%);
+	border-top: 1px solid rgba(0,0,0,.06);
 	position: relative;
 	width: 100%;
 	clear: both;
@@ -82,9 +62,13 @@
 	}
 	.subscribe {
 		position: absolute;
+		background-color: #fff;
+		border: 1px solid @black-10;
+		.gradient-light-linear();
+		padding: 6px;
 		left:50%;
 		.translateX(-50%);
-		top: -10px;
+		top: -15px;
 		.border-radius(50%);
 	}
 }

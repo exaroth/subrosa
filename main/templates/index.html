@@ -95,9 +95,9 @@
 {% endif %}
 	
 </div>
-{% endblock %}
 
-{% block footer %}
+
+
 {% if settings.disqus %}
 
 <script type="text/javascript">
@@ -116,3 +116,6 @@ s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
 {% endblock %}
 
 
+	{% block footer %}
+	{% include 'footer.html' %}
+	{% endblock %}

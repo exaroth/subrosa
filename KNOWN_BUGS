@@ -6,3 +6,4 @@ List of known bugs in SUbrosa
 - Link selection in admin dashboard not working with Firefox
 - Vertical images are not correctly positioned in projects page (firefox only)
 - Body doesn't properly hide overflow-x in Chrome.
+- Modal windows not properly positioned in Firefox

@@ -1,7 +1,10 @@
 {% extends "layout.html" %}
 
 {% block titlebar %}
+
+{% with header_context="PROJECTS" %}
 {% include 'header.html' %}
+{% endwith %}
 {% endblock %}
 
 {% block content %}
