@@ -8,6 +8,8 @@
 
 {% block content %} 
 <div class="col-md-4 col-md-offset-4 vert-centered" id="create-account-panel">
+<!-- <img src="{{ url_for('static', filename = 'build/img/subrosa.jpg')}}" alt="subrosa"> -->
+<img src="{{ url_for('static', filename = 'src/img/subrosa.jpg')}}" alt="subrosa">
 	<form role="form" action="" method="POST" accept-charset="utf-8">
 		<input name=_csrf_token type=hidden value="{{ csrf_token() }}">    
 		<div class="form-group">
