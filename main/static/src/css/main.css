@@ -1428,6 +1428,12 @@ table tr:last-child td:last-child {
     font-size: 22px;
   }
 }
+.project-wrapper .project-timesince h5 {
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
+  font-weight: bold;
+  color: #47b1ff;
+  margin-bottom: 36px;
+}
 .project-wrapper .project-body {
   font-size: 14px;
   position: relative;
