@@ -711,6 +711,27 @@ a[disabled] {
   color: #e6e6e6 !important;
   pointer-events: none;
 }
+.btn {
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.1), inset 0px 2px 0px rgba(255, 255, 255, 0.4), 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+.btn-default {
+  background-color: #EBEBEB;
+  color: #666666;
+}
+.btn-default:hover {
+  opacity: 0.6;
+}
+.btn-default.btn-xs {
+  box-shadow: none;
+  background-color: white;
+}
+.btn-default.articles-pagination-btn {
+  background-color: white;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+}
+.btn-primary {
+  background-color: #ffb126;
+}
 .index-wrapper {
   overflow: auto;
   height: 100vh;
@@ -1671,6 +1692,7 @@ table tr:last-child td:last-child {
   background-color: #fff;
   border: 1px solid #e6e6e6;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  background-image: -webkit-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
   padding: 6px;
   left: 50%;
   -webkit-transform: translateX(-50%);
