@@ -137,6 +137,8 @@ def create_account():
 def logout():
     if "user" in session:
         session.pop("user", None)
+    with app.app_context():
+        cache.clear()
     return redirect(url_for("index"))
 
 @app.route("/account/<username>", methods = ["GET","POST"])
