@@ -176,6 +176,25 @@ Basic Gunicorn configuration options are stored in gunicorn.conf.
 
 NOTE: Recommended  and most commonly used HTTP Proxy for Gunicorn is Nginx server, to learn about deployment and configuration see [http://docs.gunicorn.org/en/latest/deploy.html](http://docs.gunicorn.org/en/latest/deploy.html)
 
+### Building own version
+
+Before you start make sure you have virtualenv installed on your system, aswell as npm, bower, grunt and grunt-cli for handling static files
+
+* First `git clone https://github.com/exaroth/subrosa.git`
+
+* Enter static folder
+
+* bower install && npm install
+
+To compile less files use grunt, it comes with 3 prebuilt tasks
+
+* `grunt` -- Automatically compiles less files on change and refreshes the browser
+
+* `grunt bootstrap_compile` -- Builds bootstrap custom version based on modules specified in `main/static/src/css/bootstrap_custom.less` file
+
+* `grunt build` -- Builds the project: compiles, concatenates, minifies css and js files and copies them into `build` folder NOTE: You have to change paths to all static files in templates yourself
+
+
 ## Software used
 
 ##### [Flask microframework](http://flask.pocoo.org/)
