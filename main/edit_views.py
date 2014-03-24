@@ -78,6 +78,9 @@ class UpdateArticleView(UpdateView):
     def get_object(self, id):
         return Articles.get_article(id)
 
+    def get_context(self):
+        return dict(additional_controls = True)
+
     def create_method(self):
         return "update_article"
 

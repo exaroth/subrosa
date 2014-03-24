@@ -17,7 +17,7 @@ $(document).ready(function(){
     $createForm          = $(".new-article-form"),
     $editingTools        = $(".editing-tools"),
     $updateArticleButton = $(".update-button"),
-    $createArticleButton = $(".create-button"),
+    $submitButton        = $("#form-submit"),
     $miniIcons           = $(".mini-icon"),
     $articleBody         = $(".article-main").find(".article-body"),
     $articleList         = $(".article-list"),
@@ -86,10 +86,10 @@ $(document).ready(function(){
 
         matchIndexContents();
 
-        // $createArticleButton.click(function(e){
-        //     e.preventDefault();
-        //     $createForm.submit();
-        // });
+        $submitButton.click(function(e){
+            e.preventDefault();
+            $createForm.submit();
+        });
         $("img.lazy").unveil(200, function(){
             $(this).load(function(){
                 $(this).positionArticleImage();

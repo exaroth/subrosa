@@ -79,7 +79,7 @@ class CreateArticleView(CreateView):
         return "create_article"
 
     def get_context(self):
-        return dict(draft = True)
+        return dict(draft = True, additional_controls = True)
 
 class CreateProjectView(CreateView):
     

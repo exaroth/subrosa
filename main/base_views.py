@@ -22,7 +22,11 @@ class BaseView(MethodView):
     def get_template_name(self):
         raise NotImplementedError()
 
+    def get_context(self):
+        return dict()
+
     def render_template(self, context = dict()):
+        context.update(self.get_context())
         return render_template(self.get_template_name(), **context)
 
     def get(self):
@@ -39,5 +43,3 @@ class ScratchpadView(BaseView):
     def get_template_name(self):
         return "scratchpad.html"
 
-    def get_context(self):
-        return dict()

@@ -1,29 +1,31 @@
 {% extends 'layout.html' %}
 
 {% block content %} 
+
 <div class="warning-holder">
 	
-{% if error %}
-<div class="alert alert-dismissable alert-danger col-xs-4 col-xs-offset-4" style="margin-top: 48px">
-    <button class="close" data-dismiss="alert">x</button>
-    <strong>Error: </strong><p>{{ error }}</p>
-</div>
-{% endif %}
+    {% if error %}
+    <div class="alert alert-dismissable alert-danger col-xs-4 col-xs-offset-4" style="margin-top: 48px">
+        <button class="close" data-dismiss="alert">x</button>
+        <strong>Error: </strong><p>{{ error }}</p>
+    </div>
+    {% endif %}
 
 </div>
 <div class="article-entry col-md-8 col-md-offset-2">
-<form action="" method="POST" role="form" class="new-article-form" accept-charset="utf-8">
-    <div class="form-group">
+    <form action="" method="POST" role="form" class="new-article-form" accept-charset="utf-8">
+        <div class="form-group">
 
-    <textarea name="title" id="article-input-title" class="article-input-title article-input scratch" placeholder="Title of your Article here...">{{ title }}</textarea>
-    </div>
-    <div class="form-group">
-	<textarea id="article-input-body" class="article-input-body article-input scratch" name="body"  rows="16" placeholder=" And content here...">{{ body }}</textarea>
-    </div>
-    <!-- <input type="submit" value="" style="display: none"  /> -->
+            <textarea name="title" id="article-input-title" class="article-input-title article-input scratch" placeholder="Title of your Article here...">{{ title }}</textarea>
+        </div>
+        <div class="form-group">
+         <textarea id="article-input-body" class="article-input-body article-input scratch" name="body"  rows="16" placeholder=" And content here...">{{ body }}</textarea>
+     </div>
 
-<div class="modal-window dismissable mfp-hide" id="article-additional">
-<legend>Additional information</legend>
+     {% if additional_controls %}
+
+     <div class="modal-window dismissable mfp-hide" id="article-additional">
+        <legend>Additional information</legend>
         <div class="form-group">
             <label for="categories">Article categories <br><small class="text-muted"><em>*Use space after each category name</em></small></label>
             <input type="text" name="categories" class="form-control" id="categories" placeholder="No categories selected">
@@ -41,26 +43,27 @@
         </div>
         <div class="form-group" id="article-image-thumbnail">
             <label for="article-image-small">Image thumbnail (optional)<br><small class="text-muted"><em>
-            Small version of the image, to be used as thumbnail, if not set large version will be used.
+                Small version of the image, to be used as thumbnail, if not set large version will be used.
             </em></small></label>
             <input type="text" name="article-image-small" id="article-image-small" class="form-control" placeholder="eg. http://www.kittens.com/kitten-small.jpg" disabled>
         </div>
         <div class="form-group">
-            <input type="submit" value="Submit" class="btn btn-default">
+        <a href="#" class="btn btn-default form-submit">Submit</a>
         </div>
-</div>
+    </div>
+    {% endif %}
 
-
+    <input type="submit" value="" style="display: none"  />
 </form>
 </div>
 {% endblock %}
 
 {% block sidebar %}
 <div class="editing-tools">
-<a href="#article-additional" class="modal-toggle create-button icon-holder editing-button" data-toggle="tooltip" data-placement="left" title="Create Article"><i class="icon-ok"></i></a>
-<a href="{{ g.prev }}" class="cancel-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Cancel"><i class="icon-cancel"></i></a>
-<a href="" class="lamp-button editing-button icon-holder" data-toggle="tooltip" data-placement="left" title="Dim light"><i class="icon-lamp"></i></a>
-<a href="#cheatsheet" class="modal-toggle cheatsheet-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Markdown Cheatsheet"><i class="icon-italic"></i></a>
+    <a href="#article-additional" class="{{ 'modal-toggle' if additional_controls else 'form-submit'}} create-button icon-holder editing-button" data-toggle="tooltip" data-placement="left" title="Create Article"><i class="icon-ok"></i></a>
+    <a href="{{ g.prev }}" class="cancel-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Cancel"><i class="icon-cancel"></i></a>
+    <a href="" class="lamp-button editing-button icon-holder" data-toggle="tooltip" data-placement="left" title="Dim light"><i class="icon-lamp"></i></a>
+    <a href="#cheatsheet" class="modal-toggle cheatsheet-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Markdown Cheatsheet"><i class="icon-italic"></i></a>
 </div>
 {% endblock %}
 
