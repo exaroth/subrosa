@@ -32,7 +32,7 @@
         <legend>Additional information</legend>
         <div class="form-group">
             <label for="categories">Article categories <br><small class="text-muted"><em>*Use space after each category name</em></small></label>
-            <input type="text" name="categories" class="form-control" id="categories" placeholder="No categories selected" value="{% if categories %} {% for category in categories %} {{ category }} {% endfor %} {% endif %}">
+            <input type="text" name="categories" class="form-control" id="categories" placeholder="No categories selected" value="{% if categories %}{% for category in categories %}{{category + ' ' }}{% endfor %} {% endif %}">
         </div>
 
         <div class="form-group">

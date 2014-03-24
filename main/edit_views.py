@@ -12,7 +12,7 @@
 
 """
 
-from main.base_views import ScratchpadView
+from main.base_views import ScratchpadView, ArticleView
 from flask import render_template, request, session, url_for, redirect, flash, abort
 from main import app, cache
 from main.models.UsersModel import Users
@@ -34,17 +34,26 @@ class UpdateView(ScratchpadView):
     
 
     def get(self, id):
-        object = self.get_object(id)
-        if not object or object.author.username != session["user"]:
+        obj = self.get_object(id)
+        if not obj or obj.author.username != session["user"]:
             abort(404)
 
-        context = dict(title = object.title, body = object.body)
+        context = dict(title = obj.title, body = obj.body)
+
+
+        if self.ARTICLE:
+            context.update(dict(series = obj.series,\
+                                categories = [cat.name for cat in obj.get_article_categories().iterator()],\
+                                article_image = obj.article_image,\
+                                article_thumbnail = obj.article_thumbnail))
+
         return self.render_template(context)
 
     def post(self, id):
         title = request.form.get("title").strip()
         body = request.form.get("body").strip()
         context = dict(title = title, body = body)
+        context.update(self.process_additional_fields())
         if not title or not body:
             error = "Entry can\'t have empty title or body"
             context.update(dict(error = error))
@@ -70,7 +79,7 @@ class UpdateView(ScratchpadView):
                 return self.render_template(context)
 
 
-class UpdateArticleView(UpdateView):
+class UpdateArticleView(ArticleView, UpdateView):
 
     def get_model(self):
         return Articles

@@ -19,7 +19,7 @@ from main import app, cache
 from main.models.UsersModel import Users
 from main.models.ArticlesModel import Articles, Categories
 from main.models.UserProjectsModel import UserProjects
-from main.base_views import ScratchpadView
+from main.base_views import ScratchpadView, ArticleView
 from main.helpers import logger
 
 
@@ -42,7 +42,8 @@ class CreateView(ScratchpadView):
         body = request.form.get("body").strip()
         user = Users.get_user_by_username(session["user"])
         context = dict(title = title, body = body, author = user)
-        context.update(self.process_additional_fields())
+        additional = self.get_context()
+        context.update(additional)
         if not title or not body:
             error = "Entry can\'t have empty title or body"
             context.update(dict(error = error))
@@ -55,8 +56,8 @@ class CreateView(ScratchpadView):
             return self.render_template(context)
 
         else:
-            additional = self.get_context()
-            context.update(additional)
+            context.update(self.process_additional_fields())
+            print(self.process_additional_fields())
             try:
                 func = getattr(model, self.create_method())
                 func(**context)
@@ -71,7 +72,7 @@ class CreateView(ScratchpadView):
                 return self.render_template(context)
 
 
-class CreateArticleView(CreateView):
+class CreateArticleView(ArticleView, CreateView):
 
     def get_model(self):
         return Articles
@@ -79,25 +80,10 @@ class CreateArticleView(CreateView):
     def create_method(self):
         return "create_article"
 
-    def process_additional_fields(self):
-        categories = request.form.get("categories-hidden")
-        if categories:
-            categories = (categories.strip().split(" "))
-
-        series = request.form.get("series-hidden") 
-        article_image = request.form.get("article-image-hidden")
-        article_thumbnail = request.form.get("article-image-small-hidden")
-
-        for field in (series, article_image, article_thumbnail):
-            if field:
-                field = field.strip()
-        return dict(categories = categories, series = series,\
-                    article_image = article_image, article_thumbnail = article_thumbnail)
-
 
     def get_context(self):
-        cats = Categories.select()
-        return dict(draft = True, additional_controls = True, cats = cats)
+        existing_categories = Categories.select()
+        return dict(draft = True, additional_controls = True, existing_categories = existing_categories)
 
 class CreateProjectView(CreateView):
     

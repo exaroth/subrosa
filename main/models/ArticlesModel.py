@@ -213,14 +213,21 @@ class Articles(BaseModel):
 
     @staticmethod
     @db.commit_on_success
-    def update_article(article, title, body):
-        if len(title) > 255:
-            raise ValueError("Title must be at most 255 characters")
+    def update_article(article, title, body, **kwargs):
         try:
+            series = kwargs.get("series", None)        
+            article_image = kwargs.get("article_image")
+            article_thumbnail = kwargs.get("article_thumbnail")
+
             article.title = title
             article.body = body
             article.date_updated = datetime.datetime.utcnow()
+            article.series = series
+            article.article_image = article_image
+            article.article_thumbnail = article_thumbnail
             article.save()
+            article_categories = kwargs.get("categories", None)
+            article.save_article_categories
             return article
         except Exception as e:
             handle_errors("Error updating article")
