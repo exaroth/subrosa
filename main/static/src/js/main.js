@@ -17,7 +17,7 @@ $(document).ready(function(){
     $createForm          = $(".new-article-form"),
     $editingTools        = $(".editing-tools"),
     $updateArticleButton = $(".update-button"),
-    $submitButton        = $("#form-submit"),
+    $submitButton        = $(".form-submit"),
     $miniIcons           = $(".mini-icon"),
     $articleBody         = $(".article-main").find(".article-body"),
     $articleList         = $(".article-list"),

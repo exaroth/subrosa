@@ -16,6 +16,7 @@
 from flask.views import MethodView
 from flask import render_template
 from main.decorators import login_required
+from main import cache, app
 
 class BaseView(MethodView):
 
@@ -26,6 +27,8 @@ class BaseView(MethodView):
         return dict()
 
     def render_template(self, context = dict()):
+        with app.app_context():
+            cache.clear()
         context.update(self.get_context())
         return render_template(self.get_template_name(), **context)
 
