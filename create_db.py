@@ -3,7 +3,7 @@
 from __future__ import print_function
 
 from main import db, app
-from main.models.ArticlesModel import Articles
+from main.models.ArticlesModel import Articles, Categories, ArticleCategories
 from main.models.UserImagesModel import UserImages
 from main.models.UsersModel import Users
 from main.models.UserProjectsModel import UserProjects
@@ -16,7 +16,7 @@ db.connect()
 app.config["DEBUG"] = False
 
 try:
-    for field in (Users, Articles, UserImages, UserProjects, ConfigModel):
+    for field in (Users, Articles, UserImages, UserProjects, ConfigModel, Categories, ArticleCategories):
         if not field.table_exists():
             field.create_table()
         else:

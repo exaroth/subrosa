@@ -37,9 +37,6 @@ class CreateView(ScratchpadView):
     def get(self):
         return self.render_template()
 
-    def process_additional_fields(self):
-        return dict()
-
     def post(self):
         title = request.form.get("title").strip()
         body = request.form.get("body").strip()

@@ -88,7 +88,6 @@ $(document).ready(function(){
 
         $submitButton.click(function(e){
             e.preventDefault();
-            console.log($createForm);
             $("#categories-hidden").val($("#categories").val());
             $("#series-hidden").val($("#series").val());
             $("#article-image-hidden").val($("#article-image").val());
@@ -531,7 +530,6 @@ $window.bind('resize scroll', function(){
 $window.resize(function(){
     wHeight = $window.height();
     wWidth = $window.width();
-    console.log(wWidth);
     matchIndexContents();
     if(wWidth < majorBreakpoint){
         $adminPanel.removeAttr('style').show().find('.hideable').show();

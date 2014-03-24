@@ -46,3 +46,5 @@ class ScratchpadView(BaseView):
     def get_template_name(self):
         return "scratchpad.html"
 
+    def process_additional_fields(self):
+        return dict()

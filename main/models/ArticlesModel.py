@@ -38,7 +38,7 @@ class Articles(BaseModel):
     date_created = DateTimeField(default = datetime.datetime.utcnow())
     date_updated = DateTimeField(default = datetime.datetime.utcnow())
     article_image = TextField(null = True, default = None)
-    article_image_thumbnail = TextField(null = True, default = None)
+    article_thumbnail = TextField(null = True, default = None)
     body = TextField()
     author = ForeignKeyField(Users, related_name = "articles")
 
@@ -110,7 +110,7 @@ class Articles(BaseModel):
                 .group_by(Categories)
 
     
-    def save_article_categories(self, category_names):
+    def save_article_categories(self, category_names, update = False):
         """
         Create Categories and ArticleCategories table if 
         category doesnt exist or article doesnt have the category yet
@@ -168,11 +168,25 @@ class Articles(BaseModel):
         if len(title) > 255:
             raise ValueError("Title must be at most 255 characters")
         try:
-            return Articles.create(title = title,\
+            series = kwargs.get("series", None)        
+            article_image = kwargs.get("article_image")
+            article_thumbnail = kwargs.get("article_thumbnail")
+            article =  Articles.create(title = title,\
                             slug = slugify(title),\
                             body = body,\
                             author = author,\
-                            draft = draft)
+                            draft = draft,\
+                            series = series,\
+                            article_image = article_image,\
+                            article_thumbnail = article_thumbnail
+                            )
+            article_categories = kwargs.get("categories", None)
+            if article_categories:
+                try:
+                    article.save_article_categories(article_categories)
+                except:
+                    raise
+            return article        
         except Exception as e:
             handle_errors("Error creating article")
             raise
