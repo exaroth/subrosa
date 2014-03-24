@@ -20,18 +20,47 @@
     <div class="form-group">
 	<textarea id="article-input-body" class="article-input-body article-input scratch" name="body"  rows="16" placeholder=" And content here...">{{ body }}</textarea>
     </div>
-    <input type="submit" value="" style="display: none"  />
-</form>
+    <!-- <input type="submit" value="" style="display: none"  /> -->
+
+<div class="modal-window dismissable mfp-hide" id="article-additional">
+<legend>Additional information</legend>
+        <div class="form-group">
+            <label for="categories">Article categories <br><small class="text-muted"><em>*Use space after each category name</em></small></label>
+            <input type="text" name="categories" class="form-control" id="categories" placeholder="No categories selected">
+        </div>
+
+        <div class="form-group">
+            <label for="series">Article series <br><small class="text-muted"><em>*If this article is a part of the series</em></small></label>
+            <input type="text" name="series" id="series" class="form-control" placeholder="No series selected">
+        </div>
+        <div class="form-group">
+            <label for="article-image">Choose image (optional): <br><small class="text-muted"><em>
+                If you want to add image to be show at the top of the Article
+            </em></small></label>
+            <input type="text" name="article-image" id="article-image" class="form-control" placeholder="eg. http://www.kittens.com/kitten">
+        </div>
+        <div class="form-group" id="article-image-thumbnail">
+            <label for="article-image-small">Image thumbnail (optional)<br><small class="text-muted"><em>
+            Small version of the image, to be used as thumbnail, if not set large version will be used.
+            </em></small></label>
+            <input type="text" name="article-image-small" id="article-image-small" class="form-control" placeholder="eg. http://www.kittens.com/kitten-small.jpg" disabled>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit" class="btn btn-default">
+        </div>
 </div>
 
+
+</form>
+</div>
 {% endblock %}
 
 {% block sidebar %}
 <div class="editing-tools">
-<a href="" class="create-button icon-holder editing-button" data-toggle="tooltip" data-placement="left" title="Create Article"><i class="icon-ok"></i></a>
+<a href="#article-additional" class="modal-toggle create-button icon-holder editing-button" data-toggle="tooltip" data-placement="left" title="Create Article"><i class="icon-ok"></i></a>
 <a href="{{ g.prev }}" class="cancel-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Cancel"><i class="icon-cancel"></i></a>
 <a href="" class="lamp-button editing-button icon-holder" data-toggle="tooltip" data-placement="left" title="Dim light"><i class="icon-lamp"></i></a>
-<a href="#cheatsheet" class="cheatsheet-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Markdown Cheatsheet"><i class="icon-italic"></i></a>
+<a href="#cheatsheet" class="modal-toggle cheatsheet-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Markdown Cheatsheet"><i class="icon-italic"></i></a>
 </div>
 {% endblock %}
 

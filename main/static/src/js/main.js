@@ -86,10 +86,10 @@ $(document).ready(function(){
 
         matchIndexContents();
 
-        $createArticleButton.click(function(e){
-            e.preventDefault();
-            $createForm.submit();
-        });
+        // $createArticleButton.click(function(e){
+        //     e.preventDefault();
+        //     $createForm.submit();
+        // });
         $("img.lazy").unveil(200, function(){
             $(this).load(function(){
                 $(this).positionArticleImage();
@@ -193,7 +193,7 @@ $(document).ready(function(){
                 resizeAny: true
             }
         });
-        $('.cheatsheet-button, #change-user-info').magnificPopup({
+        $('.modal-toggle').magnificPopup({
             midClick: true,
             type: 'inline'
         });
