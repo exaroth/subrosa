@@ -17,7 +17,7 @@ from __future__ import print_function
 from flask import render_template, request, session, url_for, redirect, flash
 from main import app, cache
 from main.models.UsersModel import Users
-from main.models.ArticlesModel import Articles
+from main.models.ArticlesModel import Articles, Categories
 from main.models.UserProjectsModel import UserProjects
 from main.base_views import ScratchpadView
 from main.helpers import logger
@@ -37,11 +37,15 @@ class CreateView(ScratchpadView):
     def get(self):
         return self.render_template()
 
+    def process_additional_fields(self):
+        return dict()
+
     def post(self):
         title = request.form.get("title").strip()
         body = request.form.get("body").strip()
         user = Users.get_user_by_username(session["user"])
         context = dict(title = title, body = body, author = user)
+        context.update(self.process_additional_fields())
         if not title or not body:
             error = "Entry can\'t have empty title or body"
             context.update(dict(error = error))
@@ -78,8 +82,25 @@ class CreateArticleView(CreateView):
     def create_method(self):
         return "create_article"
 
+    def process_additional_fields(self):
+        categories = request.form.get("categories-hidden")
+        if categories:
+            categories = (categories.strip().split(" "))
+
+        series = request.form.get("series-hidden") 
+        article_image = request.form.get("article-image-hidden")
+        article_thumbnail = request.form.get("article-image-small-hidden")
+
+        for field in (series, article_image, article_thumbnail):
+            if field:
+                field = field.strip()
+        return dict(categories = categories, series = series,\
+                    article_image = article_image, article_thumbnail = article_thumbnail)
+
+
     def get_context(self):
-        return dict(draft = True, additional_controls = True)
+        cats = Categories.select()
+        return dict(draft = True, additional_controls = True, cats = cats)
 
 class CreateProjectView(CreateView):
     

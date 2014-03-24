@@ -164,7 +164,7 @@ class Articles(BaseModel):
 
     @staticmethod
     @db.commit_on_success
-    def create_article(title, body, author, draft = True):
+    def create_article(title, body, author, draft = True, **kwargs):
         if len(title) > 255:
             raise ValueError("Title must be at most 255 characters")
         try:

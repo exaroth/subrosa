@@ -88,6 +88,11 @@ $(document).ready(function(){
 
         $submitButton.click(function(e){
             e.preventDefault();
+            console.log($createForm);
+            $("#categories-hidden").val($("#categories").val());
+            $("#series-hidden").val($("#series").val());
+            $("#article-image-hidden").val($("#article-image").val());
+            $("#article-image-small-hidden").val($("#article-image-small").val());
             $createForm.submit();
         });
         $("img.lazy").unveil(200, function(){
@@ -147,7 +152,7 @@ $(document).ready(function(){
 
         // Prevent double clicks
         $("a, button").one("click", function() {
-            $(this).click(function () { return false; });
+            $(this).click(function () { $(this).disabled = true; return false; });
         });
 
     };

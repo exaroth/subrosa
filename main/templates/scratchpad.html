@@ -13,7 +13,7 @@
 
 </div>
 <div class="article-entry col-md-8 col-md-offset-2">
-    <form action="" method="POST" role="form" class="new-article-form" accept-charset="utf-8">
+    <form action="" method="POST" role="form" enctype="multipart/form-data" class="new-article-form" accept-charset="utf-8">
         <div class="form-group">
 
             <textarea name="title" id="article-input-title" class="article-input-title article-input scratch" placeholder="Title of your Article here...">{{ title }}</textarea>
@@ -23,6 +23,10 @@
      </div>
 
      {% if additional_controls %}
+     <input type="hidden" name="categories-hidden" id="categories-hidden" value="">
+     <input type="hidden" name="series-hidden" id="series-hidden" value="">
+     <input type="hidden" name="article-image-hidden" id="article-image-hidden" value="">
+     <input type="hidden" name="article-image-small-hidden" id="article-image-small-hidden" value="">
 
      <div class="modal-window dismissable mfp-hide" id="article-additional">
         <legend>Additional information</legend>
@@ -48,7 +52,7 @@
             <input type="text" name="article-image-small" id="article-image-small" class="form-control" placeholder="eg. http://www.kittens.com/kitten-small.jpg" disabled>
         </div>
         <div class="form-group">
-        <a href="#" class="btn btn-default form-submit">Submit</a>
+        <a href="#" class="btn btn-default form-submit" id="article-submit-button">Submit</a>
         </div>
     </div>
     {% endif %}
