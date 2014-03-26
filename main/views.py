@@ -173,10 +173,17 @@ def article_view(slug):
     next_article = article.get_next_article()
     previous_article = article.get_previous_article()
     user_picture = settings.get("portrait", False)
+    related_articles = article.get_similar_articles()
+    show_related_articles = related_articles.wrapped_count(False) > 0
+    print show_related_articles
+    print article.get_article_categories()
+
     return render_template("article_view.html",\
                             article = article,\
                             author = author,\
                             user_picture = user_picture,\
+                            show_related_article = show_related_articles,\
+                            related_articles = related_articles,\
                             next_article = next_article,\
                             previous_article = previous_article)
 

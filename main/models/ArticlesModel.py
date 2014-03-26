@@ -118,6 +118,8 @@ class Articles(BaseModel):
 
         
         # This is lame implementation, im too stupid for this crap
+        if not category-names:
+            return
         try:
             own_categories = self.get_article_categories().iterator()
 
@@ -227,7 +229,7 @@ class Articles(BaseModel):
             article.article_thumbnail = article_thumbnail
             article.save()
             article_categories = kwargs.get("categories", None)
-            article.save_article_categories
+            article.save_article_categories(article_categories)
             return article
         except Exception as e:
             handle_errors("Error updating article")

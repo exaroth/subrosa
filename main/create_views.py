@@ -57,7 +57,6 @@ class CreateView(ScratchpadView):
 
         else:
             context.update(self.process_additional_fields())
-            print(self.process_additional_fields())
             try:
                 func = getattr(model, self.create_method())
                 func(**context)
