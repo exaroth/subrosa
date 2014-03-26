@@ -16,10 +16,8 @@
 <a href="mailto:{{ settings.email }}" data-desc="email" class="footer-link"><i class="icon-paper-plane"></i></a>
 {% endif %}
 </div>
-<div class="subscribe">
-<a href="{{ url_for('recent_feeds')}}" rel="alternate" title="Recent Feeds" type="application/atom+xml">
+
+<a href="{{ url_for('recent_feeds')}}" id="subscribe-link" rel="alternate" title="Recent Feeds" type="application/atom+xml">
 <i class="icon-rss"></i>
 </a>
 </div>
-<!-- <p class="text-center hidden-xs"><small>Blog powered by <a href="https://github.com/exaroth/subrosa.git">Subrosa</a></small></p>
- --></div>

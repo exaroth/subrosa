@@ -1651,9 +1651,10 @@ table tr:last-child td:last-child {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
   opacity: 0.7;
 }
-#footer .subscribe {
+#footer #subscribe-link {
   position: absolute;
   background-color: #fff;
+  curdor: pointer;
   border: 1px solid #e6e6e6;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
   background-image: -webkit-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
@@ -1671,6 +1672,9 @@ table tr:last-child td:last-child {
   -moz-background-clip: padding;
   border-radius: 50%;
   background-clip: padding-box;
+}
+#footer #subscribe-link i {
+  display: block;
 }
 * {
   box-sizing: border-box;
