@@ -332,11 +332,55 @@
 	}
 }
 
-.user-info {
+.article-sidebar {
 	position: absolute;
 	width: 200px;
 	right: -250px;
 	top: 0;
+	font-family: @sans-font;
+
+}
+
+.sidebar-block {
+	margin-bottom: 2em;
+	p {
+		margin: 0 !important;
+	}
+	& > div {
+		margin-bottom: 1em !important;
+	}
+	a {
+		text-decoration: none;
+	}
+	.sidebar-title {
+		color: @black-90 !important;
+		text-transform: uppercase;
+		font-family: @sans-font;
+		font-size: 14px !important;
+		margin-bottom: 1em !important;
+	}
+	.sidebar-item {
+		font-family: @sans-font !important;
+		text-transform: uppercase;
+		color: @black-50 !important;
+		font-size: 12px !important;
+		margin: 0 !important;
+	}
+	.sidebar-item.active {
+		color: @black-30 !important;
+	}
+	.sidebar-date {
+		font-size: 10px !important;
+		font-family: @sans-font;
+		color: @black-30 !important;
+
+	}
+
+}
+.user-info {
+	position: relative;
+	width: 100%;
+	margin-bottom: 4em;
 	.portrait-holder {
 		width: 90px;
 		height: 90px;

@@ -98,6 +98,15 @@ class Articles(BaseModel):
         except:
             return False
 
+    def get_article_series(self):
+        if not self.series.strip():
+            return 0
+
+        q = Articles.select().where(Articles.series == self.series)     
+        if not q.count():
+            return 0
+        return q     
+
     def get_article_categories(self):
         """
         Get article categories
@@ -118,7 +127,7 @@ class Articles(BaseModel):
 
         
         # This is lame implementation, im too stupid for this crap
-        if not category-names:
+        if not category_names:
             return
         try:
             own_categories = self.get_article_categories().iterator()

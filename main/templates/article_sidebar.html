@@ -1,0 +1,50 @@
+<div class="article-sidebar">
+
+
+
+
+		{% if settings.show_info %}
+		<div class="user-info xs-hidden sm-hidden">
+			{% if user_portrait %}
+			<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = user_portrait) }})"> </div>
+			{% endif %}
+			{% if author.real_name %}
+			<span class="real-name">{{ author.real_name }}</span>
+			{% endif %}
+			<div class="user-desc">
+				<p>{{ author.description }}</p>
+			</div>
+		</div>
+
+		{% endif %}
+
+	{% if article_series %}
+	<div class="sidebar-block">
+		<p class="text-muted sidebar-title">{{ article.series }} Series</h4>
+
+			{% for art in article_series %}
+			<div>
+			<a href="{{ url_for('article_view', slug = art.slug )}}">
+				<p class="{{ 'active' if art.id == article.id }} sidebar-item">{{ art.title }}</p>
+			</a>
+			</div>
+			{% endfor %}
+
+		</div>
+
+
+		{% endif %}
+
+			<div class="sidebar-block">
+				<p class="sidebar-title">related</p>
+				{% for related in related_articles %}
+					<div>
+						<a href="{{ url_for('article_view', slug = related.slug ) }}">
+							<p class="sidebar-item">{{ related.title }}</p>
+						</a>
+						<p class="sidebar-date">{{ related.date_created.strftime("%d %B %Y")}}</p>
+					</div>
+				{% endfor %}
+			</div>
+
+	</div>

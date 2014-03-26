@@ -7,7 +7,6 @@
 {% block content %}
 
 <div class="single-article col-md-8 col-md-offset-2">
-{% for related_article in related_articles %} {{ related_article.title }} {% endfor %}
   <article class="col-md-8 col-md-offset-2 ">
 
     <div class="article-main">
@@ -26,7 +25,7 @@
      <div class="article-divider"></div>
      <div class="article-body">
       {% with user_portrait = user_picture %}
-        {% include "user_info.html" %}
+        {% include "article_sidebar.html" %}
       {% endwith %}
       {{ article.body|markdown }}
     </div>

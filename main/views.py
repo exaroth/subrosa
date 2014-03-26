@@ -175,9 +175,7 @@ def article_view(slug):
     user_picture = settings.get("portrait", False)
     related_articles = article.get_similar_articles()
     show_related_articles = related_articles.wrapped_count(False) > 0
-    print show_related_articles
-    print article.get_article_categories()
-
+    article_series = article.get_article_series()
     return render_template("article_view.html",\
                             article = article,\
                             author = author,\
@@ -185,6 +183,7 @@ def article_view(slug):
                             show_related_article = show_related_articles,\
                             related_articles = related_articles,\
                             next_article = next_article,\
+                            article_series = article_series,\
                             previous_article = previous_article)
 
 @app.route("/delete_article/<int:id>")

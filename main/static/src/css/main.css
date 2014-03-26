@@ -353,11 +353,51 @@
     padding-right: 10px;
   }
 }
-.user-info {
+.article-sidebar {
   position: absolute;
   width: 200px;
   right: -250px;
   top: 0;
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
+}
+.sidebar-block {
+  margin-bottom: 2em;
+}
+.sidebar-block p {
+  margin: 0 !important;
+}
+.sidebar-block > div {
+  margin-bottom: 1em !important;
+}
+.sidebar-block a {
+  text-decoration: none;
+}
+.sidebar-block .sidebar-title {
+  color: #191919 !important;
+  text-transform: uppercase;
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
+  font-size: 14px !important;
+  margin-bottom: 1em !important;
+}
+.sidebar-block .sidebar-item {
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif !important;
+  text-transform: uppercase;
+  color: #808080 !important;
+  font-size: 12px !important;
+  margin: 0 !important;
+}
+.sidebar-block .sidebar-item.active {
+  color: #b3b3b3 !important;
+}
+.sidebar-block .sidebar-date {
+  font-size: 10px !important;
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
+  color: #b3b3b3 !important;
+}
+.user-info {
+  position: relative;
+  width: 100%;
+  margin-bottom: 4em;
 }
 .user-info .portrait-holder {
   width: 90px;
