@@ -93,6 +93,9 @@ class CreateProjectView(CreateView):
     def create_method(self):
         return "create_project"
 
+    def get_context(self):
+        return dict()
+
 
 
         
