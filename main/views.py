@@ -180,7 +180,7 @@ def article_view(slug):
                             article = article,\
                             author = author,\
                             user_picture = user_picture,\
-                            show_related_article = show_related_articles,\
+                            show_related_articles = show_related_articles,\
                             related_articles = related_articles,\
                             next_article = next_article,\
                             article_series = article_series,\
