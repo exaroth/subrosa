@@ -1,28 +1,26 @@
 .header {
-	margin-bottom: 12px;
+	background-color: #fefefe;
+	height: 60px;
 	position: relative;
 	z-index: 9;
-	@media screen and (max-width: @md){
-		margin-bottom: 24px;
-	}
 }
 
 
-.content-header {
-	height: 0;
-    background-repeat: no-repeat;
-    -webkit-background-size: 100% auto;
-    -moz-background-size: 100% auto;
-    background-size: 100% auto;
-    background-attachment: fixed;
-    .header-category {
-    	@media screen and (max-width: 640px){
-    		display: none;
-    	}
-    }
-}
+// .content-header {
+// 	height: 0;
+//     background-repeat: no-repeat;
+//     -webkit-background-size: 100% auto;
+//     -moz-background-size: 100% auto;
+//     background-size: 100% auto;
+//     background-attachment: fixed;
+//     .header-category {
+//     	@media screen and (max-width: 640px){
+//     		display: none;
+//     	}
+//     }
+// }
 .header-toolbar {
-	height: 60px;
+	height: 100%;
 	position: relative;
 	border-bottom: 1px solid rgba(0,0,0,.05);
 	margin-bottom: 40px;
@@ -31,35 +29,36 @@
 	}
 	.toolbar-sitetitle {
 		position: relative;
-	 h4 {
-		height: 60px;
-		line-height: 70px;
-		font-size: 12px;
-		margin: 0;
-		padding: 0;
-		float: left;
-		font-family: @sans-font;
-		color: @black-70;
-		text-transform: uppercase;
-		font-weight: bold;
-		.transition(all, 0.1s, ease-in-out);
-		&:hover {
-			color: @black-50;
+		h4 {
+			height: 60px;
+			line-height: 70px;
+			font-size: 12px;
+			margin: 0;
+			padding: 0;
+			float: left;
+			line-height: 60px;
+			font-family: @sans-font;
+			color: @black-70;
+			text-transform: uppercase;
+			font-weight: bold;
+			.transition(all, 0.1s, ease-in-out);
+			&:hover {
+				color: @black-50;
+			}
 		}
-	}
-	img {
-		max-height: 40px;
-		max-width: 300px;
-		position: absolute;
-		margin-top: 10px;
-	}
-		
+		img {
+			max-height: 40px;
+			max-width: 300px;
+			position: absolute;
+			margin-top: 10px;
+		}
+
 	}
 	ul {
 		display: block;
 		float: right;
 		height: 40px;
-		line-height: 70px;
+		line-height: 60px;
 		margin-right: 4em;
 		@media screen and (max-width: @md){
 			float: right;
@@ -69,7 +68,7 @@
 			display: inline-block;
 			margin-right: 1em;
 			a {
-			font-size: 12px;
+				font-size: 12px;
 				
 			}
 		}
@@ -84,7 +83,7 @@
 	border-bottom: 2px solid transparent;
 	&.active {
 		color: #f15831;
-	    
+
 	}
 	&:hover {
 		color: #f15831;
