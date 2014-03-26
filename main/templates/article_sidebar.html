@@ -35,7 +35,7 @@
 		{% if show_related_articles %}
 
 		<div class="sidebar-block">
-			<p class="sidebar-title">related</p>
+			<p class="sidebar-title">related articles</p>
 			{% for related in related_articles %}
 			<div>
 				<a href="{{ url_for('article_view', slug = related.slug ) }}">
