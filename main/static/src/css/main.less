@@ -93,6 +93,56 @@ textarea {
 	background-color: transparent !important;
 	resize: none;
 }
+
+.form-control,
+textarea.form-control {
+    background-color: rgba(0,0,0,.02) !important;
+    .transition(all, 0.2s, ease-in);
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    outline: 0 !important;
+    &:focus {
+    	box-shadow: none;
+    	outline: 0px !important;
+	    border-color: #cccccc;
+	    -webkit-box-shadow: none;
+	    background-color: rgba(0,0,0,.04) !important;
+    }
+    &:active {
+    	outline: 0 !important;
+	    -webkit-appearance: none;
+    }
+}
+
+#login-panel img,
+#create-account-panel img {
+    width: 150px;
+    left: 50%;
+    .translateX(-50%);
+    margin: 0 0 2em 0;
+    position: relative;
+}
+
+#login-panel,
+#create-account-panel {
+    @media screen and (max-width: @md){
+        width: 100%;
+    }
+}
+
+.modal-window {
+	position: fixed;
+	background-color: white;
+	padding: 2em 1em 0 1em;
+	z-index: 999;
+	.border-radius(4px);
+	.bs-shadow();
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	margin: auto;
+}
+
 /* overlay at start */
 .mfp-fade.mfp-bg {
 	opacity: 0;
@@ -232,52 +282,3 @@ textarea {
 }
 
 // ===========================================
-
-.form-control,
-textarea.form-control {
-    background-color: rgba(0,0,0,.02) !important;
-    .transition(all, 0.2s, ease-in);
-    border: 1px solid rgba(0,0,0,0.1) !important;
-    outline: 0 !important;
-    &:focus {
-    	box-shadow: none;
-    	outline: 0px !important;
-	    border-color: #cccccc;
-	    -webkit-box-shadow: none;
-	    background-color: rgba(0,0,0,.04) !important;
-    }
-    &:active {
-    	outline: 0 !important;
-	    -webkit-appearance: none;
-    }
-}
-
-#login-panel img,
-#create-account-panel img {
-    width: 150px;
-    left: 50%;
-    .translateX(-50%);
-    margin: 0 0 2em 0;
-    position: relative;
-}
-
-#login-panel,
-#create-account-panel {
-    @media screen and (max-width: @md){
-        width: 100%;
-    }
-}
-
-.modal-window {
-	position: fixed;
-	background-color: white;
-	padding: 2em 1em 0 1em;
-	z-index: 999;
-	.border-radius(4px);
-	.bs-shadow();
-	left: 0;
-	right: 0;
-	bottom: 0;
-	top: 0;
-	margin: auto;
-}

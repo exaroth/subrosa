@@ -130,16 +130,27 @@ class Articles(BaseModel):
         if not category_names:
             return
         try:
+            new_categories = set(category_names)
             own_categories = self.get_article_categories().iterator()
 
-            for name in category_names:
+            for name in new_categories:
                 if not Categories.select().where(Categories.name == name).exists():
                     cat = Categories.create(name = name)
                     ArticleCategories.create(article = self, category = cat)
 
-                elif name not in [field.name for field in own_categories]:
-                    cat = Categories.select().where(Categories.name == name).get()
-                    ArticleCategories.create(article = self, category = cat)
+            existing_categories = set([field.name for field in own_categories])
+            to_add = list(new_categories.difference(existing_categories))
+            for name in to_add:
+                cat = Categories.select().where(Categories.name == name).get()
+                ArticleCategories.create(article = self, category = cat)
+            if update:
+                q = list(existing_categories.difference(new_categories))
+                to_remove = Categories.select().where(Categories.name << q)
+                delete_query = ArticleCategories.delete()\
+                               .where((ArticleCategories.article == self)\
+                               & (ArticleCategories.category << to_remove)) 
+                delete_query.execute()
+
         except Exception as e:
             handle_errors("error saving article categories")
             raise e
@@ -238,7 +249,7 @@ class Articles(BaseModel):
             article.article_thumbnail = article_thumbnail
             article.save()
             article_categories = kwargs.get("categories", None)
-            article.save_article_categories(article_categories)
+            article.save_article_categories(article_categories, True)
             return article
         except Exception as e:
             handle_errors("Error updating article")
