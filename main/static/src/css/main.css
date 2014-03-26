@@ -1584,8 +1584,7 @@ table tr:last-child td:last-child {
   position: absolute;
   z-index: 999;
   font-size: 1.2em;
-  height: 40px;
-  line-height: 30px;
+  line-height: 60px;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
