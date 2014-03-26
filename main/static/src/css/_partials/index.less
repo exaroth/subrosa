@@ -52,10 +52,19 @@
 	margin-top: 4em;
 	width: 100%;
     #site-title {
-        font-family: @sans-font;
+        font-family: @sans-font !important;
         font-weight: bold;
         color: @black-70;
         font-size: 3em;
+        display: table;
+        position: relative;
+        left: 50%;
+        .translateX(-50%);
+        padding-bottom: 2px;
+        border-bottom: 6px solid @black-70;
+        @media screen and (max-width: @md){
+        	font-size: 2em;
+        }
     }
 
     #site-logo {
@@ -91,6 +100,7 @@
 	    margin: 0;
 	    float: none;
 	    left: 50%;
+	    overflow-x: hidden;
 	    .translateX(-50%);
 	}
 }

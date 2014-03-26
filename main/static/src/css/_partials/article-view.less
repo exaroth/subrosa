@@ -343,6 +343,9 @@
 
 .sidebar-block {
 	margin-bottom: 2em;
+	@media screen and (max-width: @md){
+		display: none;
+	}
 	p {
 		margin: 0 !important;
 	}
@@ -353,10 +356,11 @@
 		text-decoration: none;
 	}
 	.sidebar-title {
-		color: black !important;
+		color: @black-70 !important;
 		text-transform: uppercase;
 		font-family: @sans-font;
 		font-size: 14px !important;
+		font-weight: bold;
 		margin-bottom: 1em !important;
 	}
 	.sidebar-item {

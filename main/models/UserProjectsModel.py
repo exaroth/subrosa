@@ -99,4 +99,4 @@ class UserProjects(BaseModel):
         return "<Project: {0}>".format(self.title)
 
     class Meta:
-        order_by = ("-date_created",)
+        order_by = ("-id",)
