@@ -7,26 +7,26 @@
 {% block content %} 
 <div class="index-wrapper col-xs-12">
 
-{% if settings.bg %}
-<div class="index-image col-md-4 hidden-xs hidden-sm">
-{% if settings.show_info %}
-<div id="index-user-info">
-{% if images.portrait %}
-
-	<div id="index-portrait" style="background-image: url({{ url_for('send_image', filename = images.portrait)}})"> </div>
-
-{% endif %}
-	<h3>{{ user.real_name }}</h3>
-	<p>{{ user.description }}</p>
-	
-</div>
-
-
-{% endif %}
-</div>
-{% endif %}
 
 <div class="article-list col-md-6 ">
+
+{% if settings.show_info %}
+
+<div class="article-sidebar">
+	
+	<div class="user-info xs-hidden sm-hidden">
+		{% if images.portrait %}
+		<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = images.portrait ) }})"> </div>
+		{% endif %}
+		{% if images.portrait %}
+		<span class="real-name">{{ user.real_name }}</span>
+		{% endif %}
+		<div class="user-desc">
+			<p>{{ user.description }}</p>
+		</div>
+	</div>
+</div>
+{% endif %}
 
 <div id="index-header">
 	{% if images.logo %}

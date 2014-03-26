@@ -422,9 +422,10 @@
   margin-bottom: 20px;
 }
 .user-info .user-desc {
-  font-size: 12px;
+  font-size: 12px !important;
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
   font-style: italic;
-  line-height: 10px;
+  line-height: 22px !important;
   margin: 0;
   text-align: center;
 }
