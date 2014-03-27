@@ -5,6 +5,10 @@
 {% endblock %}
 
 {% block content %} 
+
+{% if images.bg %}
+<div class="top-image" style="background-image: url({{ url_for('send_image', filename = images.bg)}})"></div>
+{% endif %}
 <div class="index-wrapper col-xs-12">
 
 

@@ -459,6 +459,15 @@
   margin-bottom: 4px;
   text-align: center;
 }
+.top-image {
+  height: 400px;
+  width: 100vw;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 textarea.article-input {
   outline: none;
   border: none !important;
@@ -826,8 +835,17 @@ a[disabled] {
   -o-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-  padding-bottom: 2px;
-  border-bottom: 6px solid #4d4d4d;
+}
+#index-header #site-title:after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: red;
+  border-bottom: 3px solid #4d4d4d;
 }
 @media screen and (max-width: 970px) {
   #index-header #site-title {

@@ -6,6 +6,10 @@
 
 {% block content %}
 
+{% if article.article_image %}
+<div class="top-image" style="background-image: url({{ article.article_image}})"></div>
+{% endif %}
+
 <div class="single-article col-md-8 col-md-offset-2">
   <article class="col-md-8 col-md-offset-2 ">
 
