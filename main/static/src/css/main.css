@@ -384,6 +384,8 @@
   font-size: 14px !important;
   font-weight: bold;
   margin-bottom: 1em !important;
+  display: table;
+  border-bottom: 1px solid #666666;
 }
 .sidebar-block .sidebar-item {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif !important;
