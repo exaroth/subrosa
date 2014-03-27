@@ -200,7 +200,7 @@ $(document).ready(function(){
         });
 
         if ($smallImgInput.length){
-            if ($smallImgInput.val().length > 0){
+            if ($("#article-image").val().length > 0){
                     console.log("yes");
                     $("#article-image-small-container").fadeTo(100, 1)
                     $("#article-image-small").attr("disabled", false);

@@ -12,92 +12,95 @@
 <div class="index-wrapper col-xs-12">
 
 
-<div class="article-list col-md-6 ">
+	<div class="article-list col-md-6 ">
 
-{% if settings.show_info %}
+		{% if settings.show_info %}
 
-<div class="article-sidebar">
-	
-	<div class="user-info xs-hidden sm-hidden">
-		{% if images.portrait %}
-		<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = images.portrait ) }})"> </div>
-		{% endif %}
-		{% if images.portrait %}
-		<span class="real-name">{{ user.real_name }}</span>
-		{% endif %}
-		<div class="user-desc">
-			<p>{{ user.description }}</p>
+		<div class="article-sidebar">
+			
+			<div class="user-info xs-hidden sm-hidden">
+				{% if images.portrait %}
+				<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = images.portrait ) }})"> </div>
+				{% endif %}
+				{% if images.portrait %}
+				<span class="real-name">{{ user.real_name }}</span>
+				{% endif %}
+				<div class="user-desc">
+					<p>{{ user.description }}</p>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-{% endif %}
+		{% endif %}
 
-<div id="index-header">
-	{% if images.logo %}
-		<img id="site-logo" src="{{ url_for('send_image', filename = images.logo)}}"></img>
-	{% else %}
-		<h1 class="text-center" id="site-title">{{ settings.title }}</h1>
-	{% endif %}
-</div>
-{% if articles_written %}
-	{% for article in articles %}
-	<article class="article-list-entry col-xs-12">
-		<div class="article-list-title col-xs-12">
-			<a href="{{ url_for('article_view', slug = article.slug )}}" class="article-title-link"><h3 class="text-center">{{ article.title }}</h3></a>
-			<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
-			{% if settings.disqus %}
-			<a href="{{ url_for('article_view', slug = article.slug )}}#disqus_thread" class="article-comments-count" data-disqus-identifier="{{ article.slug }}">&nbsp;</a>
+		<div id="index-header">
+			{% if images.logo %}
+			<img id="site-logo" src="{{ url_for('send_image', filename = images.logo)}}"></img>
+			{% else %}
+			<h1 class="text-center" id="site-title">{{ settings.title }}</h1>
 			{% endif %}
 		</div>
-		<div class="article-list-body col-xs-12">
-		{% if article.header %}
-			{{ article.header }}
-		{% else %}
-			{{ article.body |truncate(200 + range(40)| random )|markdown }}
-		{% endif %}
+		{% if articles_written %}
+		{% for article in articles %}
+		<article class="article-list-entry col-xs-12">
+			<div class="article-list-title ">
+				<a href="{{ url_for('article_view', slug = article.slug )}}" class="article-title-link"><h3 class="text-center">{{ article.title }}</h3></a>
+				<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
+				{% if settings.disqus %}
+				<a href="{{ url_for('article_view', slug = article.slug )}}#disqus_thread" class="article-comments-count" data-disqus-identifier="{{ article.slug }}">&nbsp;</a>
+				{% endif %}
+			</div>
+			<div class="article-list-body col-xs-12">
+				{% if article.article_thumbnail %}
+				<div class="article-list-thumbnail" style="background-image: url({{ article.article_thumbnail }})"></div>
+				{% endif %}
+				{% if article.header %}
+				{{ article.header }}
+				{% else %}
+				{{ article.body |truncate(200 + range(40)| random )|markdown }}
+				{% endif %}
+			</div>
+
+			{% if not loop.last %}
+			<h1 style="text-align: center">&hellip;</h1>
+			{% endif %}
+		</article>
+		{% endfor %}
+
+		{% if show_pagination %}
+		<div class="article-list-pagination col-md-6 col-md-offset-3">
+
+
+			{% if pagination.has_prev %}
+			<a href="{{ url_for('index', page = pagination.page - 1)}}" style="width: 100px;" class="btn btn-default articles-pagination-btn" id="prev">Previous</a>
+			{% else %}
+
+			<a href="#" class="btn btn-default articles-pagination-btn" id="prev" style="width: 100px;" disabled>Previous</a>
+
+			{% endif %}
+
+			{% if pagination.has_next %}
+
+			<a href="{{ url_for('index', page = pagination.page + 1)}}" id = "next" style="width:100px" class=" articles-pagination-btn btn btn-default">Next</a>
+			{% else %}
+
+			<a href="#" class="btn btn-default articles-pagination-btn" id = "next" style="width: 100px" disabled>Next</a>
+			{% endif %}
+
 		</div>
 
-		{% if not loop.last %}
-		<h1 style="text-align: center">&hellip;</h1>
-		{% endif %}
-	</article>
-	{% endfor %}
-
-	{% if show_pagination %}
-	<div class="article-list-pagination col-md-6 col-md-offset-3">
-
-
-		{% if pagination.has_prev %}
-		<a href="{{ url_for('index', page = pagination.page - 1)}}" style="width: 100px;" class="btn btn-default articles-pagination-btn" id="prev">Previous</a>
-		{% else %}
-
-		<a href="#" class="btn btn-default articles-pagination-btn" id="prev" style="width: 100px;" disabled>Previous</a>
-
 		{% endif %}
 
-		{% if pagination.has_next %}
 
-		<a href="{{ url_for('index', page = pagination.page + 1)}}" id = "next" style="width:100px" class=" articles-pagination-btn btn btn-default">Next</a>
-		{% else %}
 
-		<a href="#" class="btn btn-default articles-pagination-btn" id = "next" style="width: 100px" disabled>Next</a>
-		{% endif %}
 
 	</div>
 
-	{% endif %}
 
-
-
-
-</div>
-
-
-{% else %}
-<h4 class="text-center text-muted" style="margin: 4em 0">No articles here yet, maybe write some cowboy...</h4>
+	{% else %}
+	<h4 class="text-center text-muted" style="margin: 4em 0">No articles here yet, maybe write some cowboy...</h4>
 </div>
 {% endif %}
-	
+
 </div>
 
 
@@ -105,21 +108,21 @@
 {% if settings.disqus %}
 
 <script type="text/javascript">
-/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = '{{ settings.disqus }}'; // required: replace example with your forum shortname
 
 /* * * DON'T EDIT BELOW THIS LINE * * */
 (function () {
-var s = document.createElement('script'); s.async = true;
-s.type = 'text/javascript';
-s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	var s = document.createElement('script'); s.async = true;
+	s.type = 'text/javascript';
+	s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+	(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
 </script>
 {% endif %}
 {% endblock %}
 
 
-	{% block footer %}
-	{% include 'footer.html' %}
-	{% endblock %}
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock %}

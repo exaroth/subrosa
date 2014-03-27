@@ -45,7 +45,7 @@ def make_external(id):
     Returns external url for article based on id
     """
 
-    return parse.urljoin(request.url_root + "article/", str(id))
+    return parse.urljoin(request.url_root + "articles/", str(id))
 
 def generate_csrf_token():
 

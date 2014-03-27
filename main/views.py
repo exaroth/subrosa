@@ -468,7 +468,7 @@ def recent_feeds():
             content_type = "html",
             author = article.author,
             updated = article.date_updated,
-            url = make_external(article.id),
+            url = make_external(article.slug),
             published = article.date_created
             )
 
