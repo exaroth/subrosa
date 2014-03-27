@@ -27,6 +27,7 @@ $(document).ready(function(){
     $lamp                = $(".lamp-button"),
     $imageLinks          = $(".show-img"),
     $adminPanel          = $(".admin-panel"),
+    $smallImgInput       = $("#article-image-small"),
     $adminToggle         = $adminPanel.find(".admin-subrosa a"),
     // base thumbnail size for gallery
     thumbSize            = 200,
@@ -197,6 +198,17 @@ $(document).ready(function(){
                 resizeAny: true
             }
         });
+
+        if ($smallImgInput.length){
+            if ($smallImgInput.val().length > 0){
+                    console.log("yes");
+                    $("#article-image-small-container").fadeTo(100, 1)
+                    $("#article-image-small").attr("disabled", false);
+            };
+        }
+
+
+
         $("#article-image").on("change keyup", function(e){
             console.log(e)
 
@@ -207,10 +219,12 @@ $(document).ready(function(){
                 $("#article-image-small").attr("disabled", true);
                 $("#article-image-small").val("")
                 $("#article-image-small-container").fadeTo(100, 0.4);
-
-            }
-
+            };
         });
+
+
+
+
         $('.modal-toggle').magnificPopup({
             midClick: true,
             type: 'inline'
