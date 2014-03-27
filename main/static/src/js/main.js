@@ -197,6 +197,20 @@ $(document).ready(function(){
                 resizeAny: true
             }
         });
+        $("#article-image").on("change keyup", function(e){
+            console.log(e)
+
+            if ($(this).val().length > 0){
+                $("#article-image-small").attr("disabled", false);
+                $("#article-image-small-container").fadeTo(100, 1)
+            } else {
+                $("#article-image-small").attr("disabled", true);
+                $("#article-image-small").val("")
+                $("#article-image-small-container").fadeTo(100, 0.4);
+
+            }
+
+        });
         $('.modal-toggle').magnificPopup({
             midClick: true,
             type: 'inline'

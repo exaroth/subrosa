@@ -546,7 +546,7 @@ textarea.article-input.article-input-body {
   width: 400px;
   height: 540px;
 }
-#article-additional #article-image-thumbnail {
+#article-additional #article-image-small-container {
   opacity: 0.4;
 }
 #article-additional input[type='submit'] {
