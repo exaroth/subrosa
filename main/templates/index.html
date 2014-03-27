@@ -14,6 +14,16 @@
 
 	<div class="article-list col-md-6 ">
 
+
+		<div id="index-header">
+			{% if images.logo %}
+			<img id="site-logo" src="{{ url_for('send_image', filename = images.logo)}}"></img>
+			{% else %}
+			<h1 class="text-center" id="site-title">{{ settings.title }}</h1>
+			{% endif %}
+		</div>
+
+		<div style="position: relative">
 		{% if settings.show_info %}
 
 		<div class="article-sidebar">
@@ -31,14 +41,6 @@
 			</div>
 		</div>
 		{% endif %}
-
-		<div id="index-header">
-			{% if images.logo %}
-			<img id="site-logo" src="{{ url_for('send_image', filename = images.logo)}}"></img>
-			{% else %}
-			<h1 class="text-center" id="site-title">{{ settings.title }}</h1>
-			{% endif %}
-		</div>
 		{% if articles_written %}
 		{% for article in articles %}
 		<article class="article-list-entry col-xs-12">
@@ -90,7 +92,7 @@
 
 		{% endif %}
 
-
+</div>
 
 
 	</div>
