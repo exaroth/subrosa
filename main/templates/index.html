@@ -17,7 +17,7 @@
 		{% if settings.show_info %}
 
 		<div class="article-sidebar">
-			
+
 			<div class="user-info xs-hidden sm-hidden">
 				{% if images.portrait %}
 				<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = images.portrait ) }})"> </div>
@@ -51,7 +51,7 @@
 			</div>
 			<div class="article-list-body col-xs-12">
 				{% if article.article_thumbnail %}
-				<div class="article-list-thumbnail" style="background-image: url({{ article.article_thumbnail }})"></div>
+				<div class="article-list-thumbnail" style="background-image: url({{ article.article_thumbnail }}); float: left"></div>
 				{% endif %}
 				{% if article.header %}
 				{{ article.header }}

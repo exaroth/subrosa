@@ -954,6 +954,9 @@ a[disabled] {
   font-size: 0.9em;
   font-weight: bold;
 }
+.article-list-entry {
+  margin-top: 2em;
+}
 .article-list-thumbnail {
   width: 100px;
   height: 100px;
@@ -969,12 +972,11 @@ a[disabled] {
   -moz-background-clip: padding;
   border-radius: 50%;
   background-clip: padding-box;
-  margin-right: 36px;
+  margin: 0 36px;
 }
 .article-list .article-list-body {
   font-size: 1.3em;
   color: #808080 !important;
-  float: left;
 }
 @media screen and (max-width: 640px) {
   .article-list .article-list-body {
