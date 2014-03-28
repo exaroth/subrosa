@@ -208,7 +208,7 @@ class TestArticlesMethods(unittest.TestCase):
             self.assertIn("test4",str(tuple(q)) )
             self.assertNotIn("test3", str(tuple(q)))
 
-            query = article1.save_article_categories(["test4", "fundis", "clamo"])
+            # query = article1.save_article_categories(["test4", "nonexistent", "nonexistent2"])
 
         
     def test_saving_and_deleting_categories(self):
@@ -221,7 +221,8 @@ class TestArticlesMethods(unittest.TestCase):
             art2 = Articles.create_article(title = "test article2", body = "test", draft = True, author = user1)
 
 
-            art.save_article_categories(["cat1", "cat2", "cat3"])
+            art.save_article_categories([u"cat1", u"cat2", u"cat3"])
+
 
             self.assertIn("cat1", str(tuple(art.get_article_categories())))
             self.assertIn("cat2", str(tuple(art.get_article_categories())))
@@ -253,10 +254,10 @@ class TestArticlesMethods(unittest.TestCase):
             self.assertEquals(7, cats.count())
 
 
-            self.assertEquals(ArticleCategories.select().group_by(ArticleCategories.id).count(), 3)
+            self.assertEquals(ArticleCategories.select().group_by(ArticleCategories.id).count(), 4)
             cat4.delete_instance(recursive = True)
 
-            self.assertEquals(ArticleCategories.select().group_by(ArticleCategories.id).count(), 2)
+            self.assertEquals(ArticleCategories.select().group_by(ArticleCategories.id).count(), 3)
 
 
             

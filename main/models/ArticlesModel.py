@@ -40,7 +40,7 @@ class Articles(BaseModel):
     article_image = TextField(null = True, default = None)
     article_thumbnail = TextField(null = True, default = None)
     body = TextField()
-    author = ForeignKeyField(Users, related_name = "articles")
+    author = ForeignKeyField(Users, related_name = "article")
 
     @staticmethod
     def get_article(id):
@@ -108,10 +108,10 @@ class Articles(BaseModel):
         return q     
 
     def get_article_categories(self):
+
         """
         Get article categories
         """
-
         
         return Categories.select()\
                 .join(ArticleCategories)\
@@ -120,15 +120,18 @@ class Articles(BaseModel):
 
     
     def save_article_categories(self, category_names, update = False):
+
         """
+
         Create Categories and ArticleCategories table if 
-        category doesnt exist or article doesnt have the category yet
+        category doesn\'t exist or article doesn\'t have the category yet
+
         """
 
         
-        # This is lame implementation, im too stupid for this crap
         if not category_names:
             return
+
         try:
             new_categories = set(category_names)
             own_categories = self.get_article_categories().iterator()
