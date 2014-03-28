@@ -21,7 +21,7 @@ import re
 from datetime import datetime
 from six.moves.urllib.parse import urljoin
 import urllib
-from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory
+from flask import render_template, redirect, flash, request, g, abort, session, url_for, send_from_directory, Response
 from werkzeug import secure_filename
 from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
@@ -217,6 +217,20 @@ def publish_article(id):
             cache.clear()
         flash("Article has been published")
         return redirect(url_for("account", username = session["user"]))
+
+@app.route("/download_article/<int:id>")
+@login_required
+def download_article(id):
+
+    article = Articles.get_article(id)
+    if not article:
+        abort(404)
+    
+    body = article.body
+    return Response(body,
+                   mimetype = "text/plain",
+                    headers = {"Content-Disposition":\
+                               "attachment; filename={0}.txt".format(article.slug)})
 
 
 @app.route("/upload_image", methods = ["GET", "POST"])
