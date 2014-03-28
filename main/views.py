@@ -385,6 +385,7 @@ def configure():
     github = request.form.get('github', None).strip().encode('utf-8')
     facebook = request.form.get('facebook', None).strip().encode('utf-8')
     twitter = request.form.get('twitter', None).strip().encode('utf-8')
+    twitter_username = request.form.get('twitter-user', None).strip().encode('utf-8')
     google_plus = request.form.get('gplus', None).strip().encode('utf-8')
     email = request.form.get('email', None).strip().encode('utf-8')
 

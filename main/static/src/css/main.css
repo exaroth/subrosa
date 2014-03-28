@@ -8,6 +8,13 @@
   position: relative;
   margin-top: 2em;
 }
+.top-image ~ .single-article {
+  background-color: white;
+  top: -120px;
+}
+.top-image ~ .single-article .article-main {
+  top: 80px;
+}
 .social-container {
   height: 40px;
   margin: 10px 0 30px 0;
@@ -463,7 +470,8 @@
 }
 .top-image {
   height: 300px;
-  width: 100vw;
+  width: 96vw;
+  margin: 0 auto;
   -webkit-background-size: 100% auto;
   -moz-background-size: 100% auto;
   background-size: 100% auto;
@@ -807,6 +815,16 @@ a[disabled] {
 }
 .btn-primary {
   background-color: #ffb126;
+}
+#twitter-widget-1 {
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
 }
 .index-wrapper {
   overflow: auto;

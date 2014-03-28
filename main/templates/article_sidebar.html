@@ -11,7 +11,12 @@
 		<div class="user-desc">
 			<p>{{ author.description }}</p>
 		</div>
+	</div style="position: relative">
+	{% if settings.twitter_username %}
+	<div>
+		<a href="https://twitter.com/{{ settings.twitter_username }}" data-show-screen-name="true" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="large">{{ settings.twitter_username }}</a>
 	</div>
+	{% endif %}
 
 	{% endif %}
 
