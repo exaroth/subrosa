@@ -23,6 +23,13 @@
     }
 }
 
+.article-main {
+	position: relative;
+	@media screen and (min-width: @md){
+		padding: 0;
+	}
+}
+
 .article-main .article-timesince {
 	font-family: @sans-font;
 	color: @black-30;
@@ -100,10 +107,10 @@
 	}
 	
 }
-.article-body {
-	position: relative;
-}
 
+.article-main pre {
+	background-color: inherit;
+}
 
 .article-main .article-divider {
 	width: 100%;
@@ -111,6 +118,10 @@
 	@media screen and (max-width: 640px){
 		height: 12px;
 	}
+}
+
+.article-body {
+	position: relative;
 }
 
 .article-body  p,
@@ -145,12 +156,6 @@
 	font-size: 1em !important;
 	line-height: 1em !important;
 	margin: 0 !important;
-}
-.article-main {
-	position: relative;
-	@media screen and (min-width: @md){
-		padding: 0;
-	}
 }
 
 
@@ -311,9 +316,8 @@
 
 
 
-.article-main pre {
-	background-color: inherit;
-}
+
+
 .article-main .codehilite {
 	width: 90%;
 	margin: 2em auto 2em auto;
@@ -333,6 +337,7 @@
 	margin-bottom: 100px;
 	clear: both;
 }
+
 .article-footer a {
 	margin-top: 2em;
 	@media screen and (max-width: 640px){
