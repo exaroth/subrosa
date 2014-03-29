@@ -18,7 +18,7 @@ $(document).ready(function(){
     $editingTools        = $(".editing-tools"),
     $updateArticleButton = $(".update-button"),
     $submitButton        = $(".form-submit"),
-    $miniIcons           = $(".mini-icon"),
+    $hintIcons           = $(".hint-icon"),
     $articleBody         = $(".article-main").find(".article-body"),
     $articleList         = $(".article-list"),
     $indexWrapper        = $(".index-wrapper"),
@@ -163,7 +163,9 @@ $(document).ready(function(){
 
         processGalleryImages($gallery);
         $scratcharea.autogrow();
-        $miniIcons.tooltip();
+        $hintIcons.tooltip({
+            container: 'body'
+        });
         $editingButtons.tooltip();
         $articleInputBody.focusin(function(){;
             fadeout = true;
