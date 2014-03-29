@@ -750,11 +750,12 @@ textarea.article-input.article-input-body {
   -o-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
 }
-.image-toolbar .icon-plus:hover,
-.image-toolbar .icon-plus:active {
+.image-toolbar .icon-circle-empty:hover,
+.image-toolbar .icon-circle-empty:active {
   color: #47b1ff;
 }
-.image-toolbar .icon-minus:hover {
+.image-toolbar .icon-circle:hover,
+.image-toolbar .icon-circle:active {
   color: #ffb126;
 }
 .image-toolbar .icon-cancel:hover {

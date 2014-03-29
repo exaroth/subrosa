@@ -41,7 +41,7 @@
 
 		<div class="image-toolbar">
 			<span class="img-icons">
-				<a href="{{ url_for('gallerify', id = image.id)}}"><i class="{{ 'icon-minus' if image.gallery else 'icon-plus'}}"></i></a>
+				<a href="{{ url_for('gallerify', id = image.id)}}"><i class="{{ 'icon-circle' if image.gallery else 'icon-circle-empty'}}"></i></a>
 				<a href="#source-window" class="show-src" data-fullsrc="{{ image.image_link}}" data-thumb="{{ add_thumbnail_affix(image.image_link, thumbnail_size ) if image.imgur_img }}"><i class="icon-code"></i></a>
 				<a href="#" data-toggle="confirmation" data-href="{{ url_for('delete_image', id = image.id)}}"><i class="icon-cancel"></i></a>
 			</span>
