@@ -274,7 +274,7 @@ $(document).ready(function(){
 
         // Toggle link fields in dashboard menu
 
-        $("div[id^='selectable'")
+        $("div[id^='selectable']")
         .hide()
         .filter("[id=selectable-" + this.value + "]").show();
     };
