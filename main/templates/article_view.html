@@ -29,7 +29,7 @@
      <div class="article-divider"></div>
      <div class="article-body">
       {% with user_portrait = user_picture %}
-        {% include "article_sidebar.html" %}
+      {% include "article_sidebar.html" %}
       {% endwith %}
       {{ article.body|markdown }}
     </div>
@@ -42,17 +42,22 @@
      {% endif %}
    </div>
 
- </div>
  <div class="social-container">
- <div>
-  <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ current_path }}" data-text="{{ article.title }}" {{ 'data-via=' + settings.twitter_username if settings.twitter_username }} data-lang="en">Tweet</a>
-   
+   <div>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ current_path }}" data-text="{{ article.title }}" {{ 'data-via=' + settings.twitter_username if settings.twitter_username }} data-lang="en">Tweet</a>
+
+  </div>
+
+  <div class="g-plusone" data-size="medium"></div>
  </div>
 
-<div class="g-plusone" data-size="medium"></div>
+
 
 </div>
 
+</article>
+
+</div>
 
 
 
@@ -90,9 +95,6 @@
 {% endif %}
 
 
-</article>
-
-</div>
 
 
 {% endblock %}

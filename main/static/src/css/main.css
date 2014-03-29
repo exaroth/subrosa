@@ -346,6 +346,7 @@
 }
 .article-footer {
   position: relative;
+  width: 100%;
   height: 40px;
   margin-bottom: 100px;
   clear: both;
@@ -906,6 +907,7 @@ a[disabled] {
   float: left;
   margin-right: 6% !important;
   position: relative;
+  min-height: 60vh;
 }
 @media screen and (max-width: 970px) {
   .article-list {
