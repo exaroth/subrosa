@@ -61,7 +61,7 @@ class Subrosa(object):
                  extensions = [ "fenced_code",\
                                "codehilite",\
                                "headerid",\
-                               "main.extended_images" ])
+                               "main.md_extensions.extended_images" ])
 
         app.jinja_env.globals['csrf_token'] = generate_csrf_token
         app.jinja_env.filters['parse_img_tags'] = parse_img_tags

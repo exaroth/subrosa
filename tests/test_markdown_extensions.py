@@ -43,7 +43,7 @@ class TestMarkdownWrapper(unittest.TestCase):
         self.assertIn("<li>Third</li>", test)
 
     def testImageExtension(self):
-        md = Markdown(extensions = ["main.extended_images"])
+        md = Markdown(extensions = ["main.md_extensions.extended_images"])
 
         test = md("![testing images](http://kittens.com)")
 
