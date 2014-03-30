@@ -26,8 +26,8 @@
 
 			{% for art in article_series %}
 			<div>
-				<a href="{{ url_for('article_view', slug = art.slug )}}">
-					<p class="{{ 'active' if art.id == article.id }} sidebar-item">{{ art.title }}</p>
+				<a href="{{ url_for('article_view', slug = art.slug )}}" class="{{ 'active' if art.id == article.id }} sidebar-item">
+					{{ art.title }}
 				</a>
 			</div>
 			{% endfor %}
@@ -43,8 +43,8 @@
 			<p class="sidebar-title">related articles</p>
 			{% for related in related_articles %}
 			<div>
-				<a href="{{ url_for('article_view', slug = related.slug ) }}">
-					<p class="sidebar-item">{{ related.title }}</p>
+				<a href="{{ url_for('article_view', slug = related.slug ) }}" class="sidebar-item">
+					{{ related.title }}
 				</a>
 				<p class="sidebar-date">{{ related.date_created.strftime("%d %B %Y")}}</p>
 			</div>
