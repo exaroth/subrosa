@@ -61,6 +61,7 @@ The configuration file is named subrosa.conf and you can find it inside main fol
 * DATABASE_NAME -- name of the database to be used.NOTE: you have to create it yourself.
 * USERNAME/PASSWORD -- Credentials used when connecting to database, used only with mysql and postgresql.
 
+
 NOTE: Database configuration is automatically  generated when using Subrosa with Heroku.
 
 NOTE: If you want more configuration options you can find detailed config file inside main folder(default_config.py).
