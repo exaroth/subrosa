@@ -1582,14 +1582,15 @@ table tr:last-child td:last-child {
 }
 .project-wrapper .project-body .floated-image-wrapper {
   float: none !important;
-  clear: both;
   left: 50%;
+  display: table;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   margin: 40px 0;
+  position: relative;
 }
 .project-wrapper .project-body .floated-image-wrapper img {
   width: 500px;
