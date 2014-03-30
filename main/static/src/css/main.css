@@ -1886,6 +1886,26 @@ textarea.form-control:active {
     width: 100%;
   }
 }
+#not-found {
+  height: 300px;
+  width: 300px;
+  background-image: url('../img/rose.jpg');
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  background-size: 100% auto;
+  background-position: center center;
+  top: 30%;
+}
+#not-found a {
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 120px;
+  opacity: 0.8;
+}
 .modal-window {
   position: fixed;
   background-color: white;

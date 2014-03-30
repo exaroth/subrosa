@@ -1,5 +1,10 @@
 {% extends "layout.html" %}
 
+{% include 'header.html' %}
+
 {% block content %}
-<h2>404 Not Found</h2>
+<div class="hor-centered vert-centered" id="not-found">
+<a href="{{ url_for('index')}}" class="btn btn-default">Go back</a>
+	
+</div>
 {% endblock %}
