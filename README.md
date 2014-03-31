@@ -124,14 +124,14 @@ git push heroku master
 
 
 ```shell
-heroku run python create_db.py
+heroku run create_db
 ```
 
 At this point you should have fully working blog set up on Heroku, once you log in for the first time an account creation screen should pop up. To enter admin panel simply go to www.your_address.com/admin. 
 
 To make sure everything went ok type:
 ```shell
-heroku run python check_db.py
+heroku run check_db
 ```
 
 ### System-wide installation
@@ -148,6 +148,8 @@ git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
 ./install 
 ```
 NOTE: Peewee (Database ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. To accomodate that, add `--postgres` or `--mysql` when executing `./install`
+
+IMPORTANT: As of writing this python 3 doesn't have suitable MySQL python connectors except for the official ones provided by Oracle themselves at [http://dev.mysql.com/doc/connector-python/en/connector-python-versions.html](http://dev.mysql.com/doc/connector-python/en/connector-python-versions.html).
 
 * **Configure Subrosa:**
 
@@ -170,7 +172,7 @@ Subrosa uses gunicorn WSGI server, to start it run :
 ```
 from root Subrosa directory.
 
-Basic Gunicorn configuration options are stored in gunicorn.conf.
+Basic Gunicorn configuration options are stored in `gunicorn.conf`.
 
 NOTE: Recommended  and most commonly used HTTP Proxy for Gunicorn is Nginx server, to learn about deployment and configuration see [http://docs.gunicorn.org/en/latest/deploy.html](http://docs.gunicorn.org/en/latest/deploy.html)
 
