@@ -51,23 +51,25 @@ DB_PASSWORD = None
 
 # Set this variable to your === disqus shortname === to have comments on your blog
 
-DISQUS = False
+DISQUS = ""
 
 # Set this variables to adress of your liking eg "http://www.facebook.com/johndoe"
 
-EMAIL = False
+EMAIL = ""
 
-FACEBOOK = False
+FACEBOOK = ""
 
-TWITTER = False
+TWITTER = ""
 
-GITHUB = False
+GITHUB = ""
 
-GOOGLE_PLUS = False
+GOOGLE_PLUS = ""
+
+TWITTER_USERNAME = ""
 
 # If you want gallery integrated with Imgur service put your Imgur user_id here
 
-IMGUR_ID = False
+IMGUR_ID = ""
 
 # Set it to True if you want gallery link on your main page
 
