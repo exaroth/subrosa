@@ -111,8 +111,8 @@ class Subrosa(object):
     def get_db(self, kwargs = dict()):
 
         if "DATABASE_URL" in os.environ:  # config for heroku
-            urlparse.uses_netloc.append("postgres")
-            url = urlparse.urlparse(os.environ.get("DATABASE_URL"))
+            # urlparse.uses_netloc.append("postgres")
+            url = parse.urlparse(os.environ.get("DATABASE_URL"))
             DATABASE = {
                 "database" : url.path[1:],
                 "user" : url.username,
