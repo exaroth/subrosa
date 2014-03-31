@@ -1,0 +1,42 @@
+#!/bin/bash
+
+while true
+do
+	case $1 in
+		--mysql) ## install mysql
+            pip install MySQL-python
+            shift; shift
+            ;;
+            -m)
+            pip install MySQL-python
+            shift
+            ;;
+        --postgres) ## install postgresql
+            pip install psycopg2
+            shift; shift
+            ;;
+        -p)
+            pip install psycopg2
+            shift
+            ;;
+        --dev)
+            pip install -r requirements/dev.txt
+            shift; shift
+            ;;
+        --help) ## list help options
+             echo "Usage: ./install [--mysql --postgres --dev]"
+             exit 1
+             ;;
+        -*)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+pip install -r requirements/common.txt
+           
+
