@@ -148,11 +148,12 @@ class Articles(BaseModel):
                 ArticleCategories.create(article = self, category = cat)
             if update:
                 q = list(existing_categories.difference(new_categories))
-                to_remove = Categories.select().where(Categories.name << q)
-                delete_query = ArticleCategories.delete()\
-                               .where((ArticleCategories.article == self)\
-                               & (ArticleCategories.category << to_remove)) 
-                delete_query.execute()
+                if q:
+                    to_remove = Categories.select().where(Categories.name << q)
+                    delete_query = ArticleCategories.delete()\
+                                   .where((ArticleCategories.article == self)\
+                                   & (ArticleCategories.category << to_remove)) 
+                    delete_query.execute()
 
         except Exception as e:
             handle_errors("error saving article categories")
