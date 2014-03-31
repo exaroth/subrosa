@@ -3,7 +3,7 @@
 
 
 
-v.0.1
+v.0.2
 
 
 [![Build Status](https://travis-ci.org/exaroth/subrosa.png?branch=master)](https://travis-ci.org/exaroth/subrosa)
