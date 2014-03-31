@@ -33,23 +33,23 @@ Subrosa is simple and elegant blogging platform written in Python, meant to be e
 
 ### Including Images
 
-If you want additional graphics on your blog simply drop them into /uploads folder, this can be in any common format you like: jpg, png and gif. The files should be named:
+If you want additional graphics on your blog simply drop them into `uploads` folder, these can be in any common format you like: jpg, png and gif. The files should be named:
 
-* bg -- It will be used as a background image, and automatically resize to match the container.
-* logo -- If instead of plain title you want to have customized logo.
+* bg -- Image that will be shown on top of index page.
+* logo -- Image to be shown instead of plain site title specified in `subrosa.conf`
 * portrait -- Your portrait, this image will show up next to your posts as well as on index page, looks best if it's in square format.
 
-Additionally if you want to have favicon on your page, drop file named favicon.ico into /uploads.
+Additionally if you want to have favicon on your page, drop file named `favicon.ico` into `uploads`.
 
 Note: None of these images are mandatory.
 
 ### Disqus comments
 
-Once you deployed your site into the server, visit [disqus.com](disqus.com) and create account (if you don't have one yet), next go to [http://disqus.com/admin/create/](http://disqus.com/admin/create/) and create new site, lastly enter disqus_site_shortname in your Subrosa admin panel to enable the comments.
+Once you deployed your site into the server, visit [disqus.com](disqus.com) and create account (if you don't have one yet), next go to [http://disqus.com/admin/create/](http://disqus.com/admin/create/) and create new site, lastly enter `disqus_site_shortname` in your Subrosa admin panel to enable the comments.
 
 ### Imgur integration
 
-Subrosa also implements simple way to integrate your gallery with Imgur. The advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation, there are limits to how many pictures can be uploaded and downloaded per day though. To enable it create Imgur account, and visit [https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create new app. Lastly input client_id provided in your dashboard to get direct imgur uploads on your site.
+Subrosa also implements simple way to integrate your gallery with Imgur. The advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation, there are limits to how many pictures can be uploaded and downloaded per day though. To enable it create Imgur account, and visit [https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create new app. Lastly input `client_id` provided in your dashboard to get direct imgur uploads on your site.
 
 ### Basic configuration
 
@@ -62,9 +62,13 @@ The configuration file is named subrosa.conf and you can find it inside main fol
 * USERNAME/PASSWORD -- Credentials used when connecting to database, used only with mysql and postgresql.
 
 
-NOTE: Database configuration is automatically  generated when using Subrosa with Heroku.
+NOTE: Database configuration is automatically generated when using Subrosa with Heroku.
 
-NOTE: If you want more configuration options you can find detailed config file inside main folder(default_config.py).
+NOTE: If you want more configuration options you can find detailed config file inside `main` folder(`default_config.py`).
+
+### Fonts
+
+By default Subrosa uses only fonts available on the system, because of that font rendering on different systems might look a bit different. If you would like to use custom fonts see *Building own version* below.
 
 ## Deployment
 
@@ -134,7 +138,7 @@ git push heroku master
 heroku run python create_db
 ```
 
-At this point you should have fully working blog set up on Heroku, once you log in for the first time an account creation screen should pop up. To enter admin panel simply go to www.your_address.com/admin. 
+At this point you should have fully working blog set up on Heroku, once you log in for the first time an account creation screen should pop up. To enter admin panel simply go to `www.your_address.com/admin`. 
 
 To make sure everything went ok type:
 ```shell
