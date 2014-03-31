@@ -147,9 +147,7 @@ git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
 ```shell
 ./install 
 ```
-If you want to install PostgreSQL or MySQL libraries add `--postgres` or `--mysql`
-
-NOTE: Peewee (Database ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. To accomodate that, both of those will be installed on your system (if not already present), to change that delete psycopg2 or MySQL-python entries from requirements.txt. 
+NOTE: Peewee (Database ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. To accomodate that, add `--postgres` or `--mysql` when executing `./install`
 
 * **Configure Subrosa:**
 
