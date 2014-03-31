@@ -17,6 +17,7 @@ from flask.views import MethodView
 from flask import render_template, request
 from main.decorators import login_required
 from main import cache, app
+import re
 
 class BaseView(MethodView):
 
@@ -61,7 +62,9 @@ class ArticleView(BaseView):
     def process_additional_fields(self):
         categories = request.form.get("categories-hidden")
         if categories:
-            categories = (categories.strip().split(" "))
+            categories = categories.strip()
+
+        cats = re.split(r"\s+", categories)
 
         series = request.form.get("series-hidden") 
         article_image = request.form.get("article-image-hidden")
@@ -71,5 +74,5 @@ class ArticleView(BaseView):
             if field:
                 field = field.strip()
                 
-        return dict(categories = categories, series = series,\
+        return dict(categories = cats, series = series,\
                     article_image = article_image, article_thumbnail = article_thumbnail)
