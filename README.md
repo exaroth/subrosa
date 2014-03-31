@@ -113,6 +113,13 @@ Finally:
 heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
 ```
 
+* **Make changes to `subrosa.conf` and commit the changes:**
+
+```shell
+git add .
+git commit -a -m "Configuration added"
+```
+
 * **Push the contents of the repo to heroku:**
 
 
