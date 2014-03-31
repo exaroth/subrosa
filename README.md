@@ -77,7 +77,7 @@ Instructions below assume you have Heroku toolbelt installed on your system (if 
 
 * **Clone the repository:**
 ```
-git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
+git clone https://github.com/exaroth/subrosa-release.git && cd subrosa-release
 ```
 * **Create heroku app:**
 ```
@@ -131,14 +131,14 @@ git push heroku master
 
 
 ```shell
-heroku run create_db
+heroku run python create_db
 ```
 
 At this point you should have fully working blog set up on Heroku, once you log in for the first time an account creation screen should pop up. To enter admin panel simply go to www.your_address.com/admin. 
 
 To make sure everything went ok type:
 ```shell
-heroku run check_db
+heroku run python check_db
 ```
 
 ### System-wide installation
@@ -146,7 +146,7 @@ heroku run check_db
 * **Download release version of Subrosa:**
 
 ```shell
-git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
+git clone https://github.com/exaroth/subrosa-release.git && cd subrosa-release
 ```
 
 * **Install all the requirements:**
