@@ -10,18 +10,18 @@ from main.helpers import handle_errors
 class ConfigModel(BaseModel):
 
 
-    twitter     = TextField(null       = True, default = None)
-    facebook    = TextField(null       = True, default = None)
-    github      = TextField(null       = True, default = None)
-    google_plus = TextField(null       = True, default = None)
-    email       = TextField(null       = True, default = None)
-    imgur_id    = TextField(null       = True, default = None)
-    disqus      = TextField(null       = True, default = None)
-    title       = TextField(null       = True, default = None)
+    twitter          = TextField(null = True, default = "")
+    facebook         = TextField(null = True, default = "")
+    github           = TextField(null = True, default = "")
+    google_plus      = TextField(null = True, default = "")
+    email            = TextField(null = True, default = "")
+    imgur_id         = TextField(null = True, default = "")
+    disqus           = TextField(null = True, default = "")
+    title            = TextField(null = True, default = "")
+    twitter_username = TextField(null = True, default = "")
     gallery     = BooleanField(default = False)
     projects    = BooleanField(default = False)
     show_info   = BooleanField(default = False)
-    twitter_username     = TextField(null       = True, default = None)
 
     def save_settings(self, **kwargs):
         """

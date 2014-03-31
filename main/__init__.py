@@ -79,8 +79,8 @@ def get_config():
                 config = ConfigModel.select().get()
                 cache.set("configuration", config)
                 return config
-            except:
-                raise Exception("Error when creating config file... aborting")
+            except Exception as exc:
+                raise Exception("Error when creating config file... aborting\n Error: {0}".format(exc))
     return c
 
 
