@@ -113,7 +113,7 @@ Finally:
 heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
 ```
 
-* **Make changes to `subrosa.conf` add images to 'uploads' folder and commit the changes:**
+* **Make changes to `subrosa.conf`, add images to 'uploads' folder and commit the changes:**
 
 ```shell
 git add .
@@ -156,7 +156,11 @@ git clone https://github.com/exaroth/subrosa-release.git && cd subrosa-release
 ```
 NOTE: Peewee (Database ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. To accomodate that, add `--postgres` or `--mysql` when executing `./install`
 
+NOTE: If you receive error when installing psycopg2 or MySQL-python make sure you have `libpg-dev` (for postgres) and `libmysqlclient-dev` (for mysql) installed on your system.
+
 IMPORTANT: As of writing this python 3 doesn't have suitable MySQL python connectors except for the official ones provided by Oracle themselves at [http://dev.mysql.com/doc/connector-python/en/connector-python-versions.html](http://dev.mysql.com/doc/connector-python/en/connector-python-versions.html) - install those instead of default ones if you want to use MySQL database.
+
+
 
 * **Configure Subrosa:**
 
