@@ -1,16 +1,16 @@
 <div id="footer">
 <div id="footer-links">
 {% if settings.github %}
-<a href="{{ settings.github.decode('utf-8')}}" data-desc="github" class="footer-link hint-icon" title="Github account" data-toggle="tooltip" id="github"><i class="icon-github"></i></a>
+<a href="{{ settings.github }}" data-desc="github" class="footer-link hint-icon" title="Github account" data-toggle="tooltip" id="github"><i class="icon-github"></i></a>
 {% endif %}
 {% if settings.facebook %}
-<a href="{{ settings.facebook.decode('utf-8') }}" data-desc="facebook" class="footer-link hint-icon" title="Facebook" data-toggle="tooltip"><i class="icon-facebook"></i></a>
+<a href="{{ settings.facebook }}" data-desc="facebook" class="footer-link hint-icon" title="Facebook" data-toggle="tooltip"><i class="icon-facebook"></i></a>
 {% endif %}
 {% if settings.twitter %}
-<a href="{{ settings.twitter.decode('utf-8') }}" data-desc="twitter" class="footer-link hint-icon" title="Twitter" data-toggle="tooltip"><i class="icon-twitter"></i></a>
+<a href="{{ settings.twitter }}" data-desc="twitter" class="footer-link hint-icon" title="Twitter" data-toggle="tooltip"><i class="icon-twitter"></i></a>
 {% endif %}
 {% if settings.google_plus %}
-<a href="{{ settings.google_plus.decode('utf-8') }}" id="gplus" data-desc="google+" class="footer-link hint-icon" title="Google+" data-toggle="tooltip"><i class="icon-gplus"></i></a>
+<a href="{{ settings.google_plus }}" id="gplus" data-desc="google+" class="footer-link hint-icon" title="Google+" data-toggle="tooltip"><i class="icon-gplus"></i></a>
 {% endif %}
 {% if settings.email %}
 <a href="mailto:{{ settings.email }}" data-desc="email" class="footer-link hint-icon" title="Email Address" data-toggle="tooltip"><i class="icon-paper-plane"></i></a>
