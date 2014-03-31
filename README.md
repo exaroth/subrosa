@@ -159,18 +159,16 @@ First create database, it's name should be the same as the one specified in subr
 then simply execute:
 
 ```shell
-python create_db.py
+./create_db
 ```
-
-from within Subrosa directory
 
 * **Run the server:**
 
-Subrosa uses gunicorn WSGI server, to run it simply execute:
+Subrosa uses gunicorn WSGI server, to start it run :
 ```shell
 ./run.sh
 ```
-from within Subrosa directory
+from root Subrosa directory.
 
 Basic Gunicorn configuration options are stored in gunicorn.conf.
 
