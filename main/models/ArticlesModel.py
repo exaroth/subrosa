@@ -169,8 +169,8 @@ class Articles(BaseModel):
                .join(Articles)\
                .where(ArticleCategories.article == self))
 
-        return Articles.select(Articles, ArticleCategories)\
-               .join(ArticleCategories)\
+        return Articles.select()\
+               .join(ArticleCategories, JOIN_LEFT_OUTER)\
                .where((ArticleCategories.article != self) & ArticleCategories.category << art)\
                .group_by(Articles)\
                .having(fn.Count(ArticleCategories.id ) >= common_categories)\
