@@ -32,7 +32,7 @@
 					{% if images.portrait %}
 					<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = images.portrait ) }})"> </div>
 					{% endif %}
-					{% if images.portrait %}
+					{% if user.real_name %}
 					<span class="real-name">{{ user.real_name }}</span>
 					{% endif %}
 					<div class="user-desc">
