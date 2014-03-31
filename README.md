@@ -49,7 +49,7 @@ Once you deployed your site into the server, visit [disqus.com](disqus.com) and 
 
 ### Imgur integration
 
-Subrosa also implements simple way to integrate your gallery with Imgur. The advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation, there are limits to how many pictures can be uploaded and downloaded per day though. To enable it create Imgur account, and visit [https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create new app. Lastly input `client_id` provided in your dashboard to get direct imgur uploads on your site.
+Subrosa also implements simple way to integrate your gallery with Imgur. The advantages of using it are very fast file transfer thanks to their CDN and automatic thumbnail creation, there are limits to how many pictures can be uploaded and downloaded per day though. To enable it create Imgur account, visit [https://imgur.com/account/settings/apps](https://imgur.com/account/settings/apps) and create new app. Lastly input `client_id` provided in your dashboard to get direct imgur uploads on your site.
 
 ### Basic configuration
 
@@ -68,7 +68,7 @@ NOTE: If you want more configuration options you can find detailed config file i
 
 ### Fonts
 
-By default Subrosa uses only fonts available on the system, because of that font rendering on different systems might look a bit different. If you would like to use custom fonts see *Building own version* below.
+By default Subrosa uses only fonts available on the system, because of that fonts might render differently depending on the system. If you would like to use custom fonts see *Building own version* below.
 
 ## Deployment
 
@@ -208,6 +208,14 @@ To compile less files use grunt, it comes with 3 prebuilt tasks
 * `grunt bootstrap_compile` -- Builds bootstrap custom version based on modules specified in `main/static/src/css/bootstrap_custom.less` file
 
 * `grunt build` -- Builds the project: compiles, concatenates, minifies css and js files and copies them into `build` folder NOTE: You have to change paths to all static files in templates yourself
+
+
+#### Changing the fonts
+
+By default Subrosa uses only fonts commonly available on different operating systems, if you want to go for something slightly more fancy add link to your font in header section of `main/templates/layout.html` then change value representing the font in `main/static/src/css/main.less`, the variables are :
+* @body-font -- a serif font used as articles body
+* @sans font -- sans serif font used mainly for titles
+
 
 
 ## Software used
