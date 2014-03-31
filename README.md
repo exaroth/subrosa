@@ -149,7 +149,7 @@ git clone https://github.com/exaroth/subrosa-release.git && cd subrosa
 ```
 NOTE: Peewee (Database ORM that Subrosa comes with) is not bundled with PostgreSQL and MySQL libraries. To accomodate that, add `--postgres` or `--mysql` when executing `./install`
 
-IMPORTANT: As of writing this python 3 doesn't have suitable MySQL python connectors except for the official ones provided by Oracle themselves at [http://dev.mysql.com/doc/connector-python/en/connector-python-versions.html](http://dev.mysql.com/doc/connector-python/en/connector-python-versions.html).
+IMPORTANT: As of writing this python 3 doesn't have suitable MySQL python connectors except for the official ones provided by Oracle themselves at [http://dev.mysql.com/doc/connector-python/en/connector-python-versions.html](http://dev.mysql.com/doc/connector-python/en/connector-python-versions.html) - install those instead of default ones if you want to use MySQL database.
 
 * **Configure Subrosa:**
 
