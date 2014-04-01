@@ -187,6 +187,8 @@ Subrosa uses gunicorn WSGI server, to start it run :
 ```
 from root Subrosa directory.
 
+**Important** If you're using Python3, there's a known bug preventing gunicorn from loading config file, please consider runnning gunicorn through command line instead ( see [http://gunicorn-docs.readthedocs.org/en/latest/settings.html](http://gunicorn-docs.readthedocs.org/en/latest/settings.html) for details about available options )
+
 Basic Gunicorn configuration options are stored in `gunicorn.conf`.
 
 NOTE: Recommended  and most commonly used HTTP Proxy for Gunicorn is Nginx server, to learn about deployment and configuration see [http://docs.gunicorn.org/en/latest/deploy.html](http://docs.gunicorn.org/en/latest/deploy.html)
