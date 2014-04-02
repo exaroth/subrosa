@@ -11,7 +11,6 @@
 	.article-main {
 		top: 80px;
 	}
-
 }
 
 .social-container{
@@ -25,6 +24,7 @@
 
 .article-main {
 	position: relative;
+	font-size: 14px;
 	@media screen and (min-width: @md){
 		padding: 0;
 	}
@@ -128,12 +128,15 @@
 .article-body li,
 .project-body p,
 .project-body li{
-	font-size: 1.2em;
 	line-height: 1.8em;
 	@media screen and (min-width: @md){
 		font-size: 1.5em !important;
 		line-height: 1.7em !important;
 	}
+}
+.article-body li ul li,
+.article-body li ol li {
+	font-size: 1em !important;
 }
 .article-body p,
 .project-body p {
@@ -149,13 +152,6 @@
 .project-body ol,
 .project-body ul {
 	margin-bottom: 2em !important;
-}
-
-.article-body li > p,
-.project-body li > p {
-	font-size: 1em !important;
-	line-height: 1em !important;
-	margin: 0 !important;
 }
 
 
