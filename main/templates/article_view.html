@@ -27,7 +27,7 @@
        {% if article.author.real_name %} by <span style="color: #4d4d4d">{{ article.author.real_name }}</span> <span style="margin: 0 4px;">|</span>{%- endif -%} {{ article.date_created.strftime("%B %d, %Y") }}
      </h5>
      <div class="article-divider"></div>
-     <div class="article-body">
+     <div class="article-body basic-typography">
       {% with user_portrait = user_picture %}
       {% include "article_sidebar.html" %}
       {% endwith %}

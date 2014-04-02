@@ -16,7 +16,7 @@
 		<article class="project-wrapper row">
 			<div class="project-title"><h1 class="text-center">{{ project.title }}</h1></div>
 			<div class="project-timesince"><h5 class="text-center">{{ project.date_created.strftime("%d %B %Y")}}</h5></div>
-			<div class="project-body">{{ project.body | markdown }}</div>
+			<div class="project-body basic-typography">{{ project.body | markdown }}</div>
 			
 		</article>
 <!-- 		{% if not loop.last %}

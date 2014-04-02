@@ -4,6 +4,123 @@
   left: -999em;
   right: auto;
 }
+.basic-typography p,
+.basic-typography li {
+  line-height: 1.8em;
+}
+@media screen and (min-width: 970px) {
+  .basic-typography p,
+  .basic-typography li {
+    font-size: 1.5em !important;
+    line-height: 1.7em !important;
+  }
+}
+.basic-typography li ul li,
+.basic-typography li ol li {
+  font-size: 1em !important;
+}
+.basic-typography p {
+  margin-bottom: 2em;
+}
+@media screen and (min-width: 970px) {
+  .basic-typography p {
+    margin-bottom: 1.8em;
+  }
+}
+.basic-typography ol,
+.basic-typography ul {
+  margin-bottom: 2em !important;
+}
+.basic-typography p,
+.basic-typography h3,
+.basic-typography h4,
+.basic-typography h5,
+.basic-typography h6,
+.basic-typography li,
+.basic-typography a {
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  color: #4d4d4d !important;
+}
+.basic-typography h1,
+.basic-typography h2,
+.basic-typography h3 {
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif !important;
+  font-weight: bold;
+  color: #4d4d4d !important;
+}
+.basic-typography a {
+  color: #666666;
+  text-decoration: underline;
+}
+.basic-typography a:hover {
+  color: #666666 !important;
+}
+.basic-typography h1 {
+  font-size: 2.2em;
+  margin: 24px 0;
+}
+@media screen and (max-width: 640px) {
+  .basic-typography h1 {
+    font-size: 1.6em;
+    margin: 18px 0;
+  }
+}
+.basic-typography h2 {
+  font-size: 1.8em;
+  margin: 24px 0;
+}
+@media screen and (max-width: 640px) {
+  .basic-typography h2 {
+    font-size: 1.2em;
+    margin: 18px 0;
+  }
+}
+.basic-typography h3 {
+  font-size: 1.6em;
+  margin: 24px 0;
+}
+@media screen and (max-width: 640px) {
+  .basic-typography h3 {
+    font-size: 1em;
+    margin: 18px 0;
+  }
+}
+.basic-typography blockquote {
+  border: none;
+  margin: 12px 0 !important;
+  padding: none;
+  font-weight: bold;
+  font-size: 1em;
+  display: block;
+  position: relative;
+}
+.basic-typography blockquote:before {
+  content: open-quote;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 2em;
+}
+.basic-typography pre {
+  background-color: inherit;
+}
+.basic-typography .codehilite {
+  width: 90%;
+  margin: 2em auto 2em auto;
+  border: none;
+  overflow: auto;
+}
+.basic-typography .codehilite pre {
+  -webkit-border-radius: 5px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 5px;
+  -moz-background-clip: padding;
+  border-radius: 5px;
+  background-clip: padding-box;
+  padding: 1em;
+  white-space: pre;
+  overflow: auto;
+}
 .single-article {
   position: relative;
   margin-top: 2em;
@@ -110,9 +227,6 @@
     font-size: 1.6em;
   }
 }
-.article-main pre {
-  background-color: inherit;
-}
 .article-main .article-divider {
   width: 100%;
   height: 36px;
@@ -124,131 +238,6 @@
 }
 .article-body {
   position: relative;
-}
-.article-body p,
-.article-body li,
-.project-body p,
-.project-body li {
-  line-height: 1.8em;
-}
-@media screen and (min-width: 970px) {
-  .article-body p,
-  .article-body li,
-  .project-body p,
-  .project-body li {
-    font-size: 1.5em !important;
-    line-height: 1.7em !important;
-  }
-}
-.article-body li ul li,
-.article-body li ol li {
-  font-size: 1em !important;
-}
-.article-body p,
-.project-body p {
-  margin-bottom: 2em;
-}
-@media screen and (min-width: 970px) {
-  .article-body p,
-  .project-body p {
-    margin-bottom: 1.8em;
-  }
-}
-.article-body ol,
-.article-body ul,
-.project-body ol,
-.project-body ul {
-  margin-bottom: 2em !important;
-}
-.article-body p,
-.article-body h3,
-.article-body h4,
-.article-body h5,
-.article-body h6,
-.article-body li,
-.article-body a,
-.project-body p,
-.project-body h3,
-.project-body h4,
-.project-body h5,
-.project-body h6,
-.project-body li,
-.project-body a {
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  color: #4d4d4d !important;
-}
-.article-body h1,
-.article-body h2,
-.article-body h3,
-.project-body h1,
-.project-body h2,
-.project-body h3 {
-  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif !important;
-  font-weight: bold;
-  color: #4d4d4d !important;
-}
-.article-body a,
-.project-body a {
-  color: #666666;
-  text-decoration: underline;
-}
-.article-body a:hover,
-.project-body a:hover {
-  color: #666666 !important;
-}
-.article-body h1,
-.project-body h1 {
-  font-size: 2.2em;
-  margin: 24px 0;
-}
-@media screen and (max-width: 640px) {
-  .article-body h1,
-  .project-body h1 {
-    font-size: 1.6em;
-    margin: 18px 0;
-  }
-}
-.article-body h2,
-.project-body h2 {
-  font-size: 1.8em;
-  margin: 24px 0;
-}
-@media screen and (max-width: 640px) {
-  .article-body h2,
-  .project-body h2 {
-    font-size: 1.2em;
-    margin: 18px 0;
-  }
-}
-.article-body h3,
-.project-body h3 {
-  font-size: 1.6em;
-  margin: 24px 0;
-}
-@media screen and (max-width: 640px) {
-  .article-body h3,
-  .project-body h3 {
-    font-size: 1em;
-    margin: 18px 0;
-  }
-}
-.article-body blockquote,
-.project-body blockquote {
-  border: none;
-  margin: 12px 0 !important;
-  padding: none;
-  font-weight: bold;
-  font-size: 1em;
-  display: block;
-  position: relative;
-}
-.article-body blockquote:before,
-.project-body blockquote:before {
-  content: open-quote;
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 2em;
 }
 .lazy {
   width: 100%;
@@ -324,23 +313,6 @@
   position: relative;
   display: inline-block;
   vertical-align: center;
-}
-.article-main .codehilite {
-  width: 90%;
-  margin: 2em auto 2em auto;
-  border: none;
-  overflow: auto;
-}
-.article-main .codehilite pre {
-  -webkit-border-radius: 5px;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 5px;
-  -moz-background-clip: padding;
-  border-radius: 5px;
-  background-clip: padding-box;
-  padding: 1em;
-  white-space: pre;
-  overflow: auto;
 }
 .article-footer {
   position: relative;
@@ -1024,6 +996,13 @@ a[disabled] {
   font-size: 18px;
   font-weight: normal;
   color: #808080;
+}
+.article-list .article-list-body a {
+  color: #666666;
+  text-decoration: underline;
+}
+.article-list .article-list-body a:hover {
+  color: #666666 !important;
 }
 .article-list .article-list-body blockquote {
   font-size: 1em;
