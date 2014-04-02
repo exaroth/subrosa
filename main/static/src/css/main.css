@@ -880,9 +880,6 @@ a[disabled] {
 }
 .article-list {
   font-family: 'Georgia', 'Times New Roman', Times, serif;
-  margin: 0 !important;
-  float: left;
-  margin-right: 6% !important;
   position: relative;
   min-height: 70vh;
 }
@@ -890,13 +887,7 @@ a[disabled] {
   .article-list {
     margin: 0;
     float: none;
-    left: 50%;
     overflow-x: hidden;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
   }
 }
 .article-list-pagination {

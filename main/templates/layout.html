@@ -19,26 +19,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bower_components/magnific-popup/dist/magnific-popup.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/main.css') }}" media="all" />
 
-	<style type="text/css">
-
-	{% if settings.bg %}
-	.index-image {
-	    background-image: url({{ url_for('send_image', filename = settings.bg) }});
-	}
-	.article-list {
-		margin-left: 6%;
-	}
-	{% else %}
-	.article-list {
-		left:50%;
-		transform: translateX(-50%);
-		-webkit-transform: translateX(-50%);
-		float: none;
-	}
-	{% endif %}
-
-	</style>
-
 </head>
 <body>
 	{%- block modals -%}
