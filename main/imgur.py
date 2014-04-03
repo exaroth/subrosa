@@ -14,15 +14,17 @@
 """
 
 import json, base64
+import urllib2
 import requests
+import json
 
 
 
 class ImgurHandler(object):
 
     """
-    Basic class for handling Imgur image upload
-    accepts header containing user_id variable
+    Basic class for handling Imgur image upload,
+    Accepts header containing user_id variable
     and dictionary containing request configuration
     """
 
@@ -77,12 +79,26 @@ class ImgurHandler(object):
 
 
     def send_image(self, params = dict(), additional = dict()):
-        req = requests.post(self.get_api(),\
-                            data = self.build_send_request(params),\
-                            headers = self.add_authorization_header(additional))
-        return req.json()
+        req = urllib2.Request(url = self.get_api(),\
+                              data = self.build_send_request(params),\
+                              headers = self.add_authorization_header()
+                             )
+        data = urllib2.urlopen(req)
+        return json.loads(data)
+
+        # req = requests.post(self.get_api(),\
+        #                     data = self.build_send_request(params),\
+        #                     headers = self.add_authorization_header(additional))
+        # return req.json()
 
     def delete_image(self, delete_hash):
-        req = requests.delete(self.get_api()+ "/" + delete_hash,\
+        opener = urllib2.build_opener(urllib2.HTTPHandler)
+        req = urllib2.Request(url = self.get_api() + "/" + delete_hash,\
                               headers = self.add_authorization_header())
-        return req.json()
+        req.get_method = lambda: "DELETE"
+        data = urllib2.urlopen(req)
+        return json.loads(data)
+
+        # req = requests.delete(self.get_api()+ "/" + delete_hash,\
+        #                       headers = self.add_authorization_header())
+        # return req.json()
