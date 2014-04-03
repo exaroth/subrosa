@@ -1,5 +1,4 @@
 git+git://github.com/thadeusb/flask-cache.git
-git+git://github.com/mitsuhiko/flask.git
 git+git://github.com/coleifer/peewee.git
 git+git://github.com/benoitc/gunicorn.git
 git+git://github.com/kennethreitz/requests.git
