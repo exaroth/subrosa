@@ -13,7 +13,7 @@
 
 """
 
-import json, base64
+import base64
 import json
 from six.moves import urllib
 

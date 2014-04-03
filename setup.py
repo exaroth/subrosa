@@ -17,8 +17,6 @@ setup(
                       "Flask-Cache",
                       "Markdown",
                       "Pygments",
-                      "requests",
-                      "nose",
                       "peewee"]
 
 )
