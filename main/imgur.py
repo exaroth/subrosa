@@ -15,6 +15,7 @@
 
 import json, base64
 import urllib2
+import urllib
 import requests
 import json
 
@@ -75,7 +76,7 @@ class ImgurHandler(object):
                 )
 
         data.update(params)
-        return data
+        return urllib.urlencode(data)
 
 
     def send_image(self, params = dict(), additional = dict()):
@@ -84,12 +85,7 @@ class ImgurHandler(object):
                               headers = self.add_authorization_header()
                              )
         data = urllib2.urlopen(req)
-        return json.loads(data)
-
-        # req = requests.post(self.get_api(),\
-        #                     data = self.build_send_request(params),\
-        #                     headers = self.add_authorization_header(additional))
-        # return req.json()
+        return json.loads(data.read())
 
     def delete_image(self, delete_hash):
         opener = urllib2.build_opener(urllib2.HTTPHandler)
@@ -97,8 +93,5 @@ class ImgurHandler(object):
                               headers = self.add_authorization_header())
         req.get_method = lambda: "DELETE"
         data = urllib2.urlopen(req)
-        return json.loads(data)
+        return json.loads(data.read())
 
-        # req = requests.delete(self.get_api()+ "/" + delete_hash,\
-        #                       headers = self.add_authorization_header())
-        # return req.json()

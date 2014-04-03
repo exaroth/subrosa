@@ -260,6 +260,7 @@ def upload_image():
                 description = description
             )
             response = ImgurHandler(user_id, config).send_image()
+            print response
             if not response["success"]:
                 error = "Error uploading to imgur"
                 return render_template("upload_image.html", error = error)
