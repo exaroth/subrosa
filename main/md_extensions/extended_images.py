@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    main.extended_images
+    main.md_extensions.extended_images
     ============
 
 

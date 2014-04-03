@@ -4,7 +4,7 @@
     main.create_views
     ===============
     
-    implements class-based views related to creating stuff
+    Implements class-based views related to creating stuff
 
     :copyright: (c) 2014 by Konrad Wasowicz
     :license: MIT, see LICENSE for details.
@@ -27,6 +27,12 @@ from main.helpers import logger
 
 
 class CreateView(ScratchpadView):
+
+    
+    """
+    Base view needed for creating
+    articles and projects
+    """
 
     def get_get_model(self):
         raise NotImplementedError()
@@ -54,7 +60,6 @@ class CreateView(ScratchpadView):
             error = "Entry with that title already exists, choose a new one.."
             context.update(dict(error = error))
             return self.render_template(context)
-
         else:
             context.update(self.process_additional_fields())
             try:
@@ -95,6 +100,3 @@ class CreateProjectView(CreateView):
     def get_context(self):
         return dict()
 
-
-
-        

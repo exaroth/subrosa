@@ -21,6 +21,12 @@ import re
 
 class BaseView(MethodView):
 
+    
+    """
+    Base view to be implemented by every 
+    other class based view
+    """
+
     ARTICLE = False
 
     def get_template_name(self):
@@ -47,6 +53,12 @@ class BaseView(MethodView):
 
 class ScratchpadView(BaseView):
 
+    
+    """
+    View to be implemented
+    by scratchpad views
+    """
+
     decorators = [login_required,]
 
     def get_template_name(self):
@@ -55,11 +67,25 @@ class ScratchpadView(BaseView):
 
 
 class ArticleView(BaseView):
+    
+    """
+    Additional view implemented
+    by update/create article views
+    """
 
     ARTICLE = True
 
 
     def process_additional_fields(self):
+
+        
+        """
+        Adds additional information needed for articles
+            : categories
+            : series
+            : article-image
+            : article-thumbnail
+        """
         categories = request.form.get("categories-hidden")
         categories = categories.strip()
 

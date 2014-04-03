@@ -44,14 +44,32 @@ class Articles(BaseModel):
 
     @staticmethod
     def get_article(id):
+
+        """ Get article by id"""
+
         try:
             return Articles.select().where(Articles.id == id).get()
         except:
             return 0
 
     @staticmethod
+    def get_article_by_slug(slug):
+        """ Get article by it\'s slug """
+        try:
+            return Articles\
+                   .select()\
+                   .where(Articles.slug == slug)\
+                   .get()
+        except:
+            return 0
+
+    @staticmethod
     def get_count(drafts = False):
-        """ Return number of articles """
+        """
+        Return number of articles 
+        Arguments:
+            :drafts (bool) - if True includes drafts in result
+        """
         q = Articles.select()
         if drafts:
             return q.count()
@@ -59,7 +77,12 @@ class Articles(BaseModel):
     
     @staticmethod
     def get_index_articles(page, per_page):
-        """ Returns paginated articles for the index page"""
+        """
+        Returns paginated articles for the index page
+        Arguments:
+            :page - current page
+            :per_page - number of articles to be displayed per page
+        """
 
         try:
             return Articles\
@@ -72,7 +95,11 @@ class Articles(BaseModel):
     @staticmethod
     def get_user_articles(username):
 
-        """ Get all articles belonging to user """
+        """
+        Get all articles belonging to user
+        Arguments:
+            :username - username of articles' author
+        """
 
         try:
             return Articles.select()\
@@ -88,6 +115,9 @@ class Articles(BaseModel):
         """
         Check if article exists, if id is given checks if title 
         of article has different id (for updating articles)
+        Arguments:
+            :title - title of the article
+            :id - (bool)
         """
 
         try:
@@ -99,6 +129,7 @@ class Articles(BaseModel):
             return False
 
     def get_article_series(self):
+        """ Return all articles belonging to series"""
         if not self.series.strip():
             return 0
 
@@ -110,7 +141,7 @@ class Articles(BaseModel):
     def get_article_categories(self):
 
         """
-        Get article categories
+        Returns all articles' categories
         """
         
         return Categories.select()\
@@ -125,7 +156,10 @@ class Articles(BaseModel):
 
         Create Categories and ArticleCategories table if 
         category doesn\'t exist or article doesn\'t have the category yet
-
+        Arguments:
+            : category_names (list/tuple) - iterable containing categories' names
+            : update (bool) - if True performs a check whether user has deleted any categories
+                             
         """
 
         
@@ -165,6 +199,9 @@ class Articles(BaseModel):
         """
         Get 3 similar articles based on tag used,
         minimum 1 common tag is required
+        Arguments:
+            :common_categories (int) - minimum number of common categories
+            :limit (int) - number of articles to be returned
         """
         art = (ArticleCategories.select(ArticleCategories.category)\
                .join(Articles)\
@@ -178,25 +215,35 @@ class Articles(BaseModel):
                .order_by(fn.Count(Articles.id).desc())\
                .limit(limit)
         
-    @staticmethod
-    def get_article_by_slug(slug):
-        try:
-            return Articles\
-                   .select()\
-                   .where(Articles.slug == slug)\
-                   .get()
-        except:
-            return 0
 
     @staticmethod
     @db.commit_on_success
     def create_article(title, body, author, draft = True, **kwargs):
+        
+        """
+        Creates new article
+        Returns instance of the created article
+
+        Arguments:
+            :title  (string/unicode)(required) - title of the article
+            :body   (string/unicode)(required) - body of the article
+            :author (object) - Users object containing author\'s info
+            :draft  (bool) (optional)- whether article is published
+            :categories (list/tuple) (optional) - list containing
+            names of article categories
+            :series (string/unicode) (optional) - article series
+            :article_image (string) - url to be used as title
+            image for article
+            :article_thumbnail (string) - url for articles thumbnail
+        """
+
+
         if len(title) > 255:
             raise ValueError("Title must be at most 255 characters")
         try:
             series = kwargs.get("series", None)        
-            article_image = kwargs.get("article_image")
-            article_thumbnail = kwargs.get("article_thumbnail")
+            article_image = kwargs.get("article_image", None)
+            article_thumbnail = kwargs.get("article_thumbnail", None)
             article =  Articles.create(title = title,\
                             slug = slugify(title),\
                             body = body,\
@@ -217,29 +264,23 @@ class Articles(BaseModel):
             handle_errors("Error creating article")
             raise
 
-    def get_previous_article(self, draft = False):
-        try:
-            return Articles.select()\
-                   .where(Articles.draft == draft)\
-                   .where(Articles.id < self.id)\
-                   .order_by(Articles.id.desc())\
-                   .get()
-        except:
-            return 0
-
-    def get_next_article(self, draft = False):
-        try:
-            return Articles.select()\
-                   .where(Articles.draft == draft)\
-                   .where(Articles.id > self.id)\
-                   .order_by(Articles.id.asc())\
-                   .get()
-        except:
-            return 0
-
     @staticmethod
     @db.commit_on_success
     def update_article(article, title, body, **kwargs):
+        """
+        Updates an article
+        Arguments:
+            :article (object) - instance of the article to be updated
+            :title  (string/unicode)(required) - title of the article
+            :body   (string/unicode)(required) - body of the article
+            :categories (list/tuple) (optional) - list containing
+            names of article categories
+            :series (string/unicode) (optional) - article series
+            :article_image (string) - url to be used as title
+            image for article
+            :article_thumbnail (string) - url for articles thumbnail
+        """
+
         try:
             series = kwargs.get("series", None)        
             article_image = kwargs.get("article_image")
@@ -259,11 +300,47 @@ class Articles(BaseModel):
             handle_errors("Error updating article")
             raise
 
+    def get_previous_article(self, draft = False):
+
+        """
+        Return previous article or 0 if doesn't exist
+        Arguments:
+            :draft (bool)(default: False) - whether to include drafts 
+        """
+
+        try:
+            return Articles.select()\
+                   .where(Articles.draft == draft)\
+                   .where(Articles.id < self.id)\
+                   .order_by(Articles.id.desc())\
+                   .get()
+        except:
+            return 0
+
+    def get_next_article(self, draft = False):
+
+        """
+        Return next article or 0 if doesn't exist
+        Arguments:
+            :draft (bool)(default: False) - whether to include drafts 
+        """
+
+        try:
+            return Articles.select()\
+                   .where(Articles.draft == draft)\
+                   .where(Articles.id > self.id)\
+                   .order_by(Articles.id.asc())\
+                   .get()
+        except:
+            return 0
+
+
     @staticmethod
     @db.commit_on_success
     def publish_article(article):
+        """Reverses 'draft' status of the article"""
         try:
-            article.draft = False
+            article.draft = not article.draft
             article.save()
 
         except Exception as e:
@@ -273,17 +350,18 @@ class Articles(BaseModel):
     @staticmethod
     @db.commit_on_success
     def delete_article(article):
+        """ Deletes an article"""
         try:
             article.delete_instance()
             return 1
         except Exception as e:
-            handle_errors("Error delting article")
+            handle_errors("Error deleting article")
             raise
             
 
     def __repr__(self):
 
-        return "<Article: %s>" % self.title
+        return "<Article: {0}>".format(self.title)
 
     class Meta:
         order_by = ("-id",)
