@@ -14,10 +14,8 @@
 """
 
 import json, base64
-import urllib2
-import urllib
-import requests
 import json
+from six.moves import urllib
 
 
 
@@ -76,22 +74,22 @@ class ImgurHandler(object):
                 )
 
         data.update(params)
-        return urllib.urlencode(data)
+        return urllib.parse.urlencode(data)
 
 
     def send_image(self, params = dict(), additional = dict()):
-        req = urllib2.Request(url = self.get_api(),\
+        req = urllib.request.Request(url = self.get_api(),\
                               data = self.build_send_request(params),\
                               headers = self.add_authorization_header()
                              )
-        data = urllib2.urlopen(req)
+        data = urllib.request.urlopen(req)
         return json.loads(data.read())
 
     def delete_image(self, delete_hash):
-        opener = urllib2.build_opener(urllib2.HTTPHandler)
-        req = urllib2.Request(url = self.get_api() + "/" + delete_hash,\
+        opener = urllib.request.build_opener(urllib.request.HTTPHandler)
+        req = urllib.request.Request(url = self.get_api() + "/" + delete_hash,\
                               headers = self.add_authorization_header())
         req.get_method = lambda: "DELETE"
-        data = urllib2.urlopen(req)
+        data = urllib.request.urlopen(req)
         return json.loads(data.read())
 
