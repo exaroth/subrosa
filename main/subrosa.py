@@ -30,14 +30,17 @@ class Subrosa(object):
 
     """
     Initialization class for Subrosa
+    Expects an instance of Flask application
+    to be passed in constructor
     """
 
     OPTIONS = ("disqus", "facebook", "twitter", "github",\
                "google_plus", "email", "gallery", "projects",\
                "dynamic_site", "title", "articles_per_page",\
-               "images_per_page", "imgur_id", "thumbnail_size", "show_info", "twitter_username")
+               "images_per_page", "imgur_id", "thumbnail_size",\
+               "show_info", "twitter_username")
 
-    IMAGES = ('bg', 'bg_small', 'logo', 'portrait')
+    IMAGES = ('bg', 'logo', 'portrait')
 
     def __init__(self, app):
 
@@ -64,28 +67,22 @@ class Subrosa(object):
                                "main.md_extensions.extended_images" ])
 
         app.jinja_env.globals['csrf_token'] = generate_csrf_token
-        app.jinja_env.filters['parse_img_tags'] = parse_img_tags
         app.jinja_env.filters['timesince'] = timesince
         app.jinja_env.filters['markdown'] = md._build_filter(auto_escape = False)
 
 
     def _get_user_images(self):
 
+        """ Check if user provided images exist in /uploads folder """
+
         for name in self.IMAGES:
             self.settings[name] = None
             for ext in self.app.config["ALLOWED_FILENAMES"]:
                 filename = name + "." + ext
                 path = os.path.join(self.app.config["UPLOAD_FOLDER"], filename )
-                if self._user_img_exists(path):
+                if os.path.exists(path):
                     self.settings[name] = filename
 
-    def _user_img_exists(self, file):
-
-        """
-        Check if given file exists
-        :file - full path to file
-        """
-        return os.path.exists(file)
 
     def _select_db(self, db_type):
 
@@ -104,11 +101,17 @@ class Subrosa(object):
             raise
 
     def _favicon_check(self):
+        """ Check for favicon """
         favicon_exists = os.path.exists(os.path.join(self.app.config["UPLOAD_FOLDER"], "favicon.ico"))
         self.settings["favicon"] = True if favicon_exists else False
 
 
     def get_db(self, kwargs = dict()):
+
+        """
+        Return a new database connection object
+        provided values defined in configuration file
+        """
 
         if "DATABASE_URL" in os.environ:  # config for heroku
             # urlparse.uses_netloc.append("postgres")
@@ -144,7 +147,6 @@ class Subrosa(object):
                     kwargs.update(dict(
                         passwd = password
                     ))
-
         try:
 
             return  self._define_db_connection(dtype, dname, **kwargs)

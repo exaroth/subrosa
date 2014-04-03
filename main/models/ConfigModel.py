@@ -9,24 +9,31 @@ from main.helpers import handle_errors
 
 class ConfigModel(BaseModel):
 
+    
+    """
+    Class defining Subrosa configuration fields
+    """
 
-    twitter          = TextField(null = True, default = "")
-    facebook         = TextField(null = True, default = "")
-    github           = TextField(null = True, default = "")
-    google_plus      = TextField(null = True, default = "")
-    email            = TextField(null = True, default = "")
-    imgur_id         = TextField(null = True, default = "")
-    disqus           = TextField(null = True, default = "")
-    title            = TextField(null = True, default = "")
-    twitter_username = TextField(null = True, default = "")
-    gallery     = BooleanField(default = False)
-    projects    = BooleanField(default = False)
-    show_info   = BooleanField(default = False)
+
+    twitter          = TextField(null = True, default = "") # twitter address
+    facebook         = TextField(null = True, default = "") # facebook address
+    github           = TextField(null = True, default = "") # github address
+    google_plus      = TextField(null = True, default = "") # g+ adress
+    email            = TextField(null = True, default = "") # email address
+    imgur_id         = TextField(null = True, default = "") # imgur user_id
+    disqus           = TextField(null = True, default = "") # disqus site_shortname
+    title            = TextField(null = True, default = "") # site title
+    twitter_username = TextField(null = True, default = "") 
+    gallery     = BooleanField(default = False) # show gallery
+    projects    = BooleanField(default = False) # show projects
+    show_info   = BooleanField(default = False) # show user info
 
     def save_settings(self, **kwargs):
+
         """
         Update settings given a dictionary of values
         """
+
         to_save = dict()
         for key, value in kwargs.items():
             if key in self._meta.get_field_names() and value is not None:
@@ -42,6 +49,8 @@ class ConfigModel(BaseModel):
     
     @staticmethod
     def create_config(**kwargs):
+
+        """ Create new config """
 
         to_create = dict()
 

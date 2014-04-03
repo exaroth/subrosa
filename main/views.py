@@ -30,7 +30,7 @@ from jinja2 import evalcontextfilter, Markup
 from main import app, db, cache, get_config, settings
 from main.imgur import ImgurHandler
 from main.pagination import Pagination
-from main.decorators import dynamic_content, login_required
+from main.decorators import login_required
 from main.helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix, id_generator
 from main.models.ArticlesModel import Articles
 from main.models.UserImagesModel import UserImages
@@ -237,7 +237,6 @@ def download_article(id):
 
 @app.route("/upload_image", methods = ["GET", "POST"])
 @login_required
-@dynamic_content
 def upload_image():
     error = None
     if request.method == "POST":
@@ -323,7 +322,6 @@ def delete_project(id):
 @app.route("/images/<username>", defaults={"page": 1})
 @app.route("/images/<username>/<int:page>")
 @login_required
-@dynamic_content
 def user_images(username, page):
     per_page = settings.get("images_per_page", 10)
     images = UserImages.get_gallery_images(page = page,\
@@ -345,7 +343,6 @@ def user_images(username, page):
 
 @app.route("/delete_image/<int:id>")
 @login_required
-@dynamic_content
 def delete_image(id):
     image = UserImages.get_image(id)
     if not image:
@@ -368,7 +365,6 @@ def delete_image(id):
 
 @app.route("/gallerify/<int:id>")
 @login_required
-@dynamic_content
 def gallerify(id):
     """ Ads and removes image from gallery """
     image = UserImages.get_image(id)
@@ -379,7 +375,6 @@ def gallerify(id):
 
 @app.route("/configure", methods = [ "POST"])
 @login_required
-@dynamic_content
 def configure():
 
     imgur_id = request.form.get('imgur', None).encode('utf-8')
@@ -493,7 +488,6 @@ def recent_feeds():
     return feed.get_response()
 
 @app.route("/uploads/<path:filename>")
-@dynamic_content
 def send_image(filename):
     """
     Allows sending images from upload folder

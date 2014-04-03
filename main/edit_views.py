@@ -23,6 +23,12 @@ from main.helpers import logger
 
 class UpdateView(ScratchpadView):
 
+    
+    """
+    Basic class implementing update
+    functionality for articles and projects
+    """
+
     def get_model(self):
         raise NotImplementedError()
 
