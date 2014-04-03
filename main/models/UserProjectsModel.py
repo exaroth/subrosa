@@ -20,6 +20,10 @@ from main.helpers import handle_errors
 
 
 class UserProjects(BaseModel):
+    
+    """
+    Models and methods related to projects
+    """
 
     title = CharField(unique = True)
     body = TextField()
@@ -30,6 +34,7 @@ class UserProjects(BaseModel):
 
     @staticmethod
     def get_project(id):
+        """ Get project by id """
         try:
             return UserProjects\
                     .select()\
@@ -40,6 +45,7 @@ class UserProjects(BaseModel):
 
     @staticmethod
     def get_all_projects():
+        """ Returns all projects or 0 if none exist"""
         q = UserProjects.select()
         if q.count():
             return q
@@ -48,6 +54,7 @@ class UserProjects(BaseModel):
 
     @staticmethod
     def check_exists(title, id = False):
+        """ Check if project with given title exists """
         try:
            q =  UserProjects.select().where((UserProjects.title == title))
            if not id:
@@ -58,6 +65,14 @@ class UserProjects(BaseModel):
     @staticmethod
     @db.commit_on_success
     def create_project(title, body, author):
+        """
+        Create new project
+        Arguments:
+            :title (unicode) - title of the project
+            :body (unicode) - body of the project
+            :author (object) - object containing author info
+
+        """
         if len(title) > 255:
             raise ValueError("Title must be at most 255 characters long")
         try:
@@ -73,6 +88,9 @@ class UserProjects(BaseModel):
     @staticmethod
     @db.commit_on_success
     def delete_project(project):
+        """
+        Delete project
+        """
         try:
             project.delete_instance()
             return 1
@@ -83,6 +101,13 @@ class UserProjects(BaseModel):
     @staticmethod
     @db.commit_on_success
     def update_project(project, title, body):
+        """
+         Update project information
+         Arguments:
+             :project (object) - instance of project
+             :title (unicode) - new title
+             :body (unicode) - new body
+        """
         if len(title) > 255:
             raise ValueError("Title must be at most 255 characters long")
         try:

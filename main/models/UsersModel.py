@@ -52,13 +52,13 @@ class Users(BaseModel):
 
     @staticmethod
     def check_any_exist():
-
+        """ Check if any users exist """
         return len(list(Users.select())) > 0
 
     @staticmethod
     def check_exists(username):
 
-        """ Check if user with given username or email already exists """
+        """ Check if user with given username already exists """
 
         return Users.select()\
                 .where(Users.username == username)\
@@ -66,6 +66,7 @@ class Users(BaseModel):
 
     @staticmethod
     def get_user(id):
+        """ Get user by id """
         try:
             return Users.select().where(Users.id == id).get()
         except:
