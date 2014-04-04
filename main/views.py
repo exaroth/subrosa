@@ -387,6 +387,8 @@ def configure():
     google_plus = request.form.get('gplus', None).strip().encode('utf-8')
     email = request.form.get('email', None).strip().encode('utf-8')
 
+    title = request.form.get("site-title", None).strip().encode("utf-8")
+
 
 
     gallery = True if request.form.get('show-gallery') == 'on' else False

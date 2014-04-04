@@ -55,7 +55,6 @@ Subrosa also implements simple way to integrate your gallery with Imgur. The adv
 
 The configuration file is named subrosa.conf and you can find it inside main folder of the repository, The only things to configure are:
 
-* SITE_TITLE -- Self explanatory
 * SECRET_KEY -- This can be anything you like as long as you change it, its used for encrypting passwords and other security related stuff.
 * DATABASE -- select database type you want to use with Subrosa, available types are sqlite, postgresql and mysql.
 * DATABASE_NAME -- name of the database to be used.NOTE: you have to create it yourself.
