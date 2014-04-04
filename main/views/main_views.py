@@ -171,7 +171,9 @@ def about():
     about_info = user.about or ""
 
     if "user" not in session:
-        return render_template("about.html", about_info = about_info)
+        return render_template("about.html",
+                               about_info = about_info,
+                               portrait = settings["portrait"])
 
     context = dict(additional_controls = False,
                   show_title = False,

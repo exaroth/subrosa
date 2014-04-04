@@ -19,10 +19,7 @@
 			<div class="project-body basic-typography">{{ project.body | markdown }}</div>
 			
 		</article>
-<!-- 		{% if not loop.last %}
-		<hr>
-		{% endif %}
- -->		{% endfor %}
+	{% endfor %}
 	</div>
 	{% else %}
 	<div class=" empty-container vert-centered hor-centered">
