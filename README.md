@@ -208,7 +208,7 @@ To compile less files use grunt, it comes with 3 prebuilt tasks
 
 * `grunt bootstrap_compile` -- Builds bootstrap custom version based on modules specified in `main/static/src/css/bootstrap_custom.less` file
 
-* `grunt build` -- Builds the project: compiles, concatenates, minifies css and js files and copies them into `build` folder NOTE: You have to change paths to all static files in templates yourself
+* `grunt build` -- Builds the project: compiles, concatenates, minifies css and js files and copies them into `build` folder 
 
 
 #### Changing the fonts
