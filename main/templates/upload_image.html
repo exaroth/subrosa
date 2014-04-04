@@ -10,12 +10,17 @@
 {% block content %} 
 
 <div class="image-upload-wrapper col-md-4 col-md-offset-4 vert-centered">
+	<legend>Upload image
+		{% if not settings.imgur_id %}
+		<br /><small style="font-size: 12px;">*Enter API key in dashboard to be able to upload images straight to Imgur </small>
+		{% endif %}
+
+	</legend>
     <form action="" role="form" method="POST" accept-charset="utf-8" class="form-horizontal" enctype="multipart/form-data">
         {% if settings.imgur_id %}
         <div class="form-group">
             <span>
                 <p id="imgur-credit"><small>Service provided by <a href="http://www.imgur.com">
-                <!-- <img src="{{ url_for('static', filename = 'build/img/imgur.png')}}" alt="imgur"> </a> -->
                 <img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/imgur.png')}}" alt="imgur"> </a>
                 <img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/ajax-loader.gif')}}" alt="loading" style="display: none" class="loading"></small></p>
                 <div class="input-group">

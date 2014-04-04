@@ -672,13 +672,13 @@ textarea.article-input.article-input-body {
   color: #ff5c39;
 }
 .lamp-button:hover {
-  color: #fcc41e;
+  color: #ffcc00;
 }
 .cheatsheet-button:hover {
   color: #47b1ff;
 }
 .rss-button:hover {
-  color: #ffb126;
+  color: #ff9500;
 }
 .github-button:hover {
   color: #70C951;
@@ -732,13 +732,13 @@ textarea.article-input.article-input-body {
 }
 .image-toolbar .icon-circle:hover,
 .image-toolbar .icon-circle:active {
-  color: #ffb126;
+  color: #ff9500;
 }
 .image-toolbar .icon-cancel:hover {
   color: #ff5c39;
 }
 .image-toolbar .icon-code:hover {
-  color: #fcc41e;
+  color: #ffcc00;
 }
 .articles-pagination-btn,
 .gallery-pagination-btn {
@@ -792,7 +792,7 @@ a[disabled] {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 }
 .btn-primary {
-  background-color: #ffb126;
+  background-color: #ff9500;
 }
 #twitter-widget-1 {
   margin: 0 auto;
@@ -1806,7 +1806,7 @@ code {
   background-color: rgba(71, 177, 255, 0.04);
 }
 .text-warning {
-  color: #fcc41e !important;
+  color: #ffcc00 !important;
 }
 .text-success {
   color: #98cd45 !important;
