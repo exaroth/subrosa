@@ -86,7 +86,11 @@ class CreateArticleView(ArticleView, CreateView):
 
     def get_context(self):
         existing_categories = Categories.select()
-        return dict(draft = True, additional_controls = True, existing_categories = existing_categories)
+        return dict(draft = True,
+                    additional_controls = True,
+                    existing_categories = existing_categories,
+                    title_placeholder = "Title of your Article",
+                    body_placeholder = "and content here...")
 
 class CreateProjectView(CreateView):
     
@@ -97,5 +101,7 @@ class CreateProjectView(CreateView):
         return "create_project"
 
     def get_context(self):
-        return dict(additional_controls = False)
+        return dict(additional_controls = False,
+                   title_placeholder = "Title of the project..",
+                   body_placeholder = "and content here...")
 

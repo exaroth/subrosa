@@ -94,7 +94,9 @@ class UpdateArticleView(ArticleView, UpdateView):
         return Articles.get_article(id)
 
     def get_context(self):
-        return dict(additional_controls = True)
+        return dict(additional_controls = True,
+                   title_placeholder = "Title of your article",
+                   body_placeholder = "and content here...")
 
     def create_method(self):
         return "update_article"
@@ -106,6 +108,10 @@ class UpdateProjectView(UpdateView):
 
     def get_object(self, id):
         return UserProjects.get_project(id)
+    def get_context(self):
+        return dict(additional_controls = False,
+                   title_placeholder = "Title of the project",
+                   body_placeholder = "and content here...")
 
     def create_method(self):
         return "update_project"

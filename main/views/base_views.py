@@ -39,6 +39,7 @@ class BaseView(MethodView):
         with app.app_context():
             cache.clear()
         context.update(self.get_context())
+        context.update(dict(show_title = True))
         return render_template(self.get_template_name(), **context)
 
     def process_additional_fields(self):

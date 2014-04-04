@@ -163,6 +163,38 @@ def account(username):
                            projects = projects)
 
 
+@app.route("/about", methods = ["GET","POST"])
+@cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
+def about():
+
+    user = Users.get_user(1)
+    about_info = user.about or ""
+
+    if "user" not in session:
+        return render_template("about.html", about_info = about_info)
+
+    context = dict(additional_controls = False,
+                  show_title = False,
+                  body = about_info,
+                  title_placeholder = None,  
+                  body_placeholder = "Your about page info")
+
+    if request.method == "POST":
+        new_info = request.form.get("body").strip()
+
+        try:
+            user.about = new_info
+            user.save()
+            return redirect(url_for("account", username = session["user"]))
+        except:
+            context.update(error = "Error when saving info, see error log for details")
+            return render_template("scratchpad.html", **context)
+    else:
+        return render_template("scratchpad.html", **context)
+    
+
+
+    
 
 @app.route("/articles/<string:slug>")
 @cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
