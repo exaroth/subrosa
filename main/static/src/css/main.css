@@ -1620,7 +1620,6 @@ table tr:last-child td:last-child {
   }
 }
 .header-toolbar .toolbar-sitetitle h4 {
-  height: 40px;
   font-size: 10px;
   margin: 0;
   padding: 0;
@@ -1641,9 +1640,8 @@ table tr:last-child td:last-child {
 .header-toolbar ul {
   display: block;
   float: right;
-  height: 40px;
   line-height: 40px;
-  margin-right: 4em;
+  margin: 0 4em 0 0;
 }
 @media screen and (max-width: 970px) {
   .header-toolbar ul {
