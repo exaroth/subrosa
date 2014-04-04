@@ -32,7 +32,7 @@ class Articles(BaseModel):
     """
 
     title = TextField(unique = True)
-    slug = TextField(unique = True)
+    slug = TextField(unique = True, index = True)
     draft = BooleanField(default = True)
     series = TextField(null = True, default = None)
     date_created = DateTimeField(default = datetime.datetime.utcnow())
@@ -53,8 +53,6 @@ class Articles(BaseModel):
         """ Get article by it\'s slug """
 
         return Articles.get_single("slug", slug)
-
-
 
     @staticmethod
     def get_count(drafts = False):

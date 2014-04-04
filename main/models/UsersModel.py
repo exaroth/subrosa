@@ -32,6 +32,7 @@ class Users(BaseModel):
     hash = CharField()
     real_name = CharField(max_length = 40, null = True )
     description = TextField(null = True)
+    about = TextField(null = True)
 
 
     @staticmethod
