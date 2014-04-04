@@ -20,6 +20,24 @@ from main import db
 
 class BaseModel(Model):
 
+
+    @classmethod
+    def get_single(cls, column, identifier):
+
+        """ Get item by an identifier or return 0"""
+
+        try:
+            return cls.select().where(getattr(cls, column) == identifier).get()
+        except:
+            return 0
+    
+    @classmethod
+    def get_count(cls):
+        try:
+            return cls.select().count()
+        except:
+            raise
+
     class Meta:
         database = db
 

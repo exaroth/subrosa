@@ -35,18 +35,13 @@ class UserImages(BaseModel):
 
     @staticmethod
     def get_image(id):
-        try:
-            return UserImages.select().where(UserImages.id == id).get()
-        except:
-            return 0
+
+        return UserImages.get_single("id", id)
 
     @staticmethod
     def check_exists(image_link):
         return UserImages.select().where(UserImages.image_link == image_link).exists()
 
-    @staticmethod
-    def get_count():
-        return UserImages.select().count()
 
     @staticmethod
     def get_gallery_images(page, per_page, username = None, gallery = False):

@@ -42,26 +42,19 @@ class Articles(BaseModel):
     body = TextField()
     author = ForeignKeyField(Users, related_name = "article")
 
+
     @staticmethod
     def get_article(id):
+        return Articles.get_single("id", id)
 
-        """ Get article by id"""
-
-        try:
-            return Articles.select().where(Articles.id == id).get()
-        except:
-            return 0
 
     @staticmethod
     def get_article_by_slug(slug):
         """ Get article by it\'s slug """
-        try:
-            return Articles\
-                   .select()\
-                   .where(Articles.slug == slug)\
-                   .get()
-        except:
-            return 0
+
+        return Articles.get_single("slug", slug)
+
+
 
     @staticmethod
     def get_count(drafts = False):

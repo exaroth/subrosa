@@ -15,7 +15,7 @@
 from __future__ import absolute_import
 
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
-from main.filters import parse_img_tags, timesince
+from main.filters import timesince
 from main.helpers import generate_csrf_token
 from main.markdown_ext import Markdown
 from main.helpers import logger

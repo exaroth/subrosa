@@ -35,13 +35,7 @@ class UserProjects(BaseModel):
     @staticmethod
     def get_project(id):
         """ Get project by id """
-        try:
-            return UserProjects\
-                    .select()\
-                    .where(UserProjects.id == id)\
-                    .get()
-        except:
-            return 0
+        return UserProjects.get_single("id", id)
 
     @staticmethod
     def get_all_projects():
@@ -62,6 +56,8 @@ class UserProjects(BaseModel):
            return q.where(UserProjects.id != id).get()
         except:
             return False
+
+
     @staticmethod
     @db.commit_on_success
     def create_project(title, body, author):
