@@ -12,12 +12,23 @@
 	{% endif %}
 	<link rel="alternate" type="application/rss+xml" href="{{ url_for('recent_feeds') }}" title="Recent feeds">
 	<title>{{ settings.title }}</title>
-	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/styles.min.css') }}" media="all" /> -->
+
+
+	{% if config.DEBUG %}
+
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/bootstrap.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/pygments.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/fontello.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bower_components/magnific-popup/dist/magnific-popup.css') }}" media="all" />
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='src/css/main.css') }}" media="all" />
+	
+	{% else %}
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/css/styles.min.css') }}" media="all" />
+
+	{% endif %}
+
+
 
 </head>
 <body>
@@ -49,20 +60,31 @@
 	</div>
 	{%- block footer -%}
 	{%- endblock -%}
+	
 
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
-<!-- <script src="{{ url_for('static', filename='build/js/scripts.min.js') }} "></script> -->
-<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>
-<script src="{{ url_for('static', filename='bower_components/jquery-color/jquery.color.js') }} "></script>
-<script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
-<script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
-<script src="{{ url_for('static', filename='bower_components/bootstrap/js/popover.js')}}"></script>
-<script src="{{ url_for('static', filename='bower_components/magnific-popup/dist/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
-<script src="{{ url_for('static', filename='src/js/bootstrap3-confirmation.js') }} "></script>
-<script src="{{ url_for('static', filename='src/js/jquery.unveil.js') }} "></script>
-<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
-<script src="//localhost:35729/livereload.js"></script>
+{% if config.DEBUG %}
+
+	<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }} "></script>
+	<script src="{{ url_for('static', filename='bower_components/jquery-color/jquery.color.js') }} "></script>
+	<script src="{{ url_for('static', filename='bower_components/bootstrap/js/alert.js')}}"></script>
+	<script src="{{ url_for('static', filename='bower_components/bootstrap/js/tooltip.js')}}"></script>
+	<script src="{{ url_for('static', filename='bower_components/bootstrap/js/popover.js')}}"></script>
+	<script src="{{ url_for('static', filename='bower_components/magnific-popup/dist/jquery.magnific-popup.min.js')}}"></script>
+	<script src="{{ url_for('static', filename='bower_components/nested/jquery.nested.js')}}"></script>
+	<script src="{{ url_for('static', filename='src/js/bootstrap3-confirmation.js') }} "></script>
+	<script src="{{ url_for('static', filename='src/js/jquery.unveil.js') }} "></script>
+	<script src="{{ url_for('static', filename='src/js/main.js') }} "></script>
+	<script src="//localhost:35729/livereload.js"></script>
+
+{% else %}
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="{{ url_for('static', filename='build/js/scripts.min.js') }} "></script>
+
+{% endif %}
+
+
+
 
 </body>
 </html>

@@ -53,7 +53,8 @@ if os.environ.get("CI"):
 app.config.update(
     BASE_PATH = BASE_PATH,
     ROOT_PATH = ROOT_PATH,
-    UPLOAD_FOLDER = UPLOAD_FOLDER
+    UPLOAD_FOLDER = UPLOAD_FOLDER,
+    STATIC_ROOT = app.config["DEBUG"] and "src/" or "build/"
 )
 
 

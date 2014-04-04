@@ -16,9 +16,8 @@
             <span>
                 <p id="imgur-credit"><small>Service provided by <a href="http://www.imgur.com">
                 <!-- <img src="{{ url_for('static', filename = 'build/img/imgur.png')}}" alt="imgur"> </a> -->
-                <img src="{{ url_for('static', filename = 'src/img/imgur.png')}}" alt="imgur"> </a>
-                <!-- <img src="{{ url_for('static', filename = 'build/img/ajax-loader.gif')}}" alt="loading" style="display: none" class="loading"></small></p> -->
-                <img src="{{ url_for('static', filename = 'src/img/ajax-loader.gif')}}" alt="loading" style="display: none" class="loading"></small></p>
+                <img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/imgur.png')}}" alt="imgur"> </a>
+                <img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/ajax-loader.gif')}}" alt="loading" style="display: none" class="loading"></small></p>
                 <div class="input-group">
 
                     <div class="input-group-btn">
