@@ -95,6 +95,7 @@ $(document).ready(function(){
             $("#article-image-small-hidden").val($("#article-image-small").val());
             $createForm.submit();
         });
+
         $("img.lazy").unveil(200, function(){
             $(this).load(function(){
                 $(this).positionArticleImage();

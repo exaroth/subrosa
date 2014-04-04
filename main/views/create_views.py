@@ -84,7 +84,6 @@ class CreateArticleView(ArticleView, CreateView):
     def create_method(self):
         return "create_article"
 
-
     def get_context(self):
         existing_categories = Categories.select()
         return dict(draft = True, additional_controls = True, existing_categories = existing_categories)
@@ -98,5 +97,5 @@ class CreateProjectView(CreateView):
         return "create_project"
 
     def get_context(self):
-        return dict()
+        return dict(additional_controls = False)
 

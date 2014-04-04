@@ -60,7 +60,7 @@ class UserProjects(BaseModel):
 
     @staticmethod
     @db.commit_on_success
-    def create_project(title, body, author):
+    def create_project(title, body, author, **kwargs):
         """
         Create new project
         Arguments:
@@ -96,7 +96,8 @@ class UserProjects(BaseModel):
     
     @staticmethod
     @db.commit_on_success
-    def update_project(project, title, body):
+    def update_project(project, title, body, **kwargs):
+
         """
          Update project information
          Arguments:
@@ -104,6 +105,7 @@ class UserProjects(BaseModel):
              :title (unicode) - new title
              :body (unicode) - new body
         """
+
         if len(title) > 255:
             raise ValueError("Title must be at most 255 characters long")
         try:

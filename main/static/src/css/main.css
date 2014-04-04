@@ -464,13 +464,13 @@ textarea.article-input {
   overflow-y: hidden;
   overflow-x: hidden;
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
+  width: 100%;
   text-rendering: optimizeSpeed;
 }
 textarea.article-input.article-input-title {
   font-size: 48px !important ;
   text-align: center !important;
   font-weight: bold !important;
-  width: 100%;
   overflow-x: hidden;
   padding: 0 1em;
   margin-top: 1em;
@@ -481,11 +481,8 @@ textarea.article-input.article-input-title {
     font-size: 2em !important;
   }
 }
-textarea.article-input.article-input-body {
-  width: 100%;
-}
 @media screen and (max-width: 970px) {
-  textarea.article-input.article-input-body {
+  textarea.article-input {
     font-size: 1.3em !important;
   }
 }

@@ -72,12 +72,9 @@
 {% endblock %}
 
 {% block sidebar %}
-<div class="editing-tools">
-    <a href="#article-additional" class="{{ 'modal-toggle' if additional_controls else 'form-submit'}} create-button icon-holder editing-button" data-toggle="tooltip" data-placement="left" title="Create Article"><i class="icon-ok"></i></a>
-    <a href="{{ g.prev }}" class="cancel-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Cancel"><i class="icon-cancel"></i></a>
-    <a href="" class="lamp-button editing-button icon-holder" data-toggle="tooltip" data-placement="left" title="Dim light"><i class="icon-lamp"></i></a>
-    <a href="#cheatsheet" class="modal-toggle cheatsheet-button editing-button icon-holder" data-placement="left" data-toggle="tooltip" title="Markdown Cheatsheet"><i class="icon-italic"></i></a>
-</div>
+{% with additional_controls = additional_controls %}
+{% include "editing_tools.html" %}
+{% endwith %}
 {% endblock %}
 
 {% block modals %}

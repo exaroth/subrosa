@@ -34,7 +34,6 @@ class Users(BaseModel):
     description = TextField(null = True)
 
 
-
     @staticmethod
     def check_any_exist():
         """ Check if any users exist """
