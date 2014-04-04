@@ -68,12 +68,6 @@ module.exports = function(grunt) {
 
 		},
 
-		processhtml: {
-			files: ['../templates/*.html']
-
-		},
-
-
 		watch: {
 			options: {
 				livereload: true
@@ -114,7 +108,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-contrib-copy"); 
 	grunt.loadNpmTasks("grunt-contrib-concat"); 
-	grunt.loadNpmTasks("grunt-processhtml"); 
 
 
 	grunt.registerTask("default", ["watch:main"]);
