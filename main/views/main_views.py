@@ -197,11 +197,16 @@ def delete_article(id):
         flash("You can\'t delete other people\'s posts")
         return redirect(url_for("index"))
     else:
-        Articles.delete_article(article)
-        with app.app_context():
-            cache.clear()
-        flash("Article has been deleted")
-        return redirect(url_for("account", username = session["user"]))
+        try:
+            article.delete_article()
+            with app.app_context():
+                cache.clear()
+            flash("Article has been deleted")
+        except:
+            flash("Error deleting article")
+        finally:
+            return redirect(url_for("account", username = session["user"]))
+
 
 @app.route("/publish_article/<int:id>")
 @login_required
@@ -213,11 +218,15 @@ def publish_article(id):
         flash("You can\'t publish other\'s peoples posts")
         return redirect(url_for("index"))
     else:
-        Articles.publish_article(article)
-        with app.app_context():
-            cache.clear()
-        flash("Article has been published")
-        return redirect(url_for("account", username = session["user"]))
+        try:
+            article.publish_article()
+            with app.app_context():
+                cache.clear()
+            flash("Article has been published")
+        except:
+            flash("Error when publishing article")
+        finally:
+            return redirect(url_for("account", username = session["user"]))
 
 @app.route("/download_article/<int:id>")
 @login_required

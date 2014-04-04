@@ -328,24 +328,22 @@ class Articles(BaseModel):
             return 0
 
 
-    @staticmethod
     @db.commit_on_success
-    def publish_article(article):
+    def publish_article(self):
         """Reverses 'draft' status of the article"""
         try:
-            article.draft = not article.draft
-            article.save()
+            self.draft = not self.draft
+            self.save()
 
         except Exception as e:
             handle_errors("Error publishing article")
             raise
 
-    @staticmethod
     @db.commit_on_success
-    def delete_article(article):
+    def delete_article(self):
         """ Deletes an article"""
         try:
-            article.delete_instance()
+            self.delete_instance()
             return 1
         except Exception as e:
             handle_errors("Error deleting article")

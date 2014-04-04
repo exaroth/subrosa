@@ -21,6 +21,8 @@ from main import db
 class BaseModel(Model):
 
 
+
+
     @classmethod
     def get_single(cls, column, identifier):
 
