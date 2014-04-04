@@ -1,1 +1,1 @@
-gunicorn -c gunicorn.conf main:app
+gunicorn main:app
