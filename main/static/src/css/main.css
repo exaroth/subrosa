@@ -2076,12 +2076,18 @@ textarea.form-control:active {
 }
 .empty-container h4 {
   font-family: 'Georgia', 'Times New Roman', Times, serif;
-  color: #b3b3b3;
+  color: #808080;
   display: inline-block;
-  border-bottom: 2px solid #e6e6e6;
+  border-bottom: 2px solid #b3b3b3;
   padding-bottom: 4px;
 }
 .empty-container img {
-  opacity: .7;
+  opacity: .8;
   width: 100px;
+}
+.twitter-follow-button {
+  display: block;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
