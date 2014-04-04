@@ -2070,8 +2070,6 @@ textarea.form-control:active {
   -moz-background-clip: padding;
   border-radius: 10px;
   background-clip: padding-box;
-  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 .empty-container h4 {
