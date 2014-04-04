@@ -58,11 +58,13 @@
 
 	{% else %}
 
-	<div class="vert-centered hor-centered">
-	<h4 class="text-center text-muted" style="text-align: center;">No images uploaded yet</h4>
-		
-	</div>
 
+<div class="empty-container vert-centered hor-centered">
+	<img src="{{ url_for('static', filename = 'src/img/subrosa.jpg')}}" alt="">
+	<!-- <img src="{{ url_for('static', filename = 'build/img/subrosa.jpg')}}" alt=""> -->
+	<h4>No images in gallery</h4>
+	
+</div>
 
 	{% endif %}
 
