@@ -1,6 +1,6 @@
 .header {
 	background-color: #fcfcfc;
-	height: 60px;
+	height: 40px;
 	position: relative;
 	z-index: 9;
 }
@@ -16,14 +16,17 @@
 	}
 	.toolbar-sitetitle {
 		position: relative;
+		margin-left: 3em;
+		@media screen and (max-width: @md) {
+			margin-left: 1em;
+		}
 		h4 {
-			height: 60px;
-			line-height: 70px;
-			font-size: 12px;
+			height: 40px;
+			font-size: 10px;
 			margin: 0;
 			padding: 0;
 			float: left;
-			line-height: 60px;
+			line-height: 40px;
 			font-family: @sans-font;
 			color: @black-70;
 			text-transform: uppercase;
@@ -33,19 +36,12 @@
 				color: @black-50;
 			}
 		}
-		img {
-			max-height: 40px;
-			max-width: 300px;
-			position: absolute;
-			margin-top: 10px;
-		}
-
 	}
 	ul {
 		display: block;
 		float: right;
 		height: 40px;
-		line-height: 60px;
+		line-height: 40px;
 		margin-right: 4em;
 		@media screen and (max-width: @md){
 			float: right;
@@ -55,7 +51,7 @@
 			display: inline-block;
 			margin-right: 1em;
 			a {
-				font-size: 12px;
+				font-size: 10px;
 				
 			}
 		}

@@ -1595,7 +1595,7 @@ table tr:last-child td:last-child {
 }
 .header {
   background-color: #fcfcfc;
-  height: 60px;
+  height: 40px;
   position: relative;
   z-index: 9;
 }
@@ -1612,15 +1612,20 @@ table tr:last-child td:last-child {
 }
 .header-toolbar .toolbar-sitetitle {
   position: relative;
+  margin-left: 3em;
+}
+@media screen and (max-width: 970px) {
+  .header-toolbar .toolbar-sitetitle {
+    margin-left: 1em;
+  }
 }
 .header-toolbar .toolbar-sitetitle h4 {
-  height: 60px;
-  line-height: 70px;
-  font-size: 12px;
+  height: 40px;
+  font-size: 10px;
   margin: 0;
   padding: 0;
   float: left;
-  line-height: 60px;
+  line-height: 40px;
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
   color: #4d4d4d;
   text-transform: uppercase;
@@ -1633,17 +1638,11 @@ table tr:last-child td:last-child {
 .header-toolbar .toolbar-sitetitle h4:hover {
   color: #808080;
 }
-.header-toolbar .toolbar-sitetitle img {
-  max-height: 40px;
-  max-width: 300px;
-  position: absolute;
-  margin-top: 10px;
-}
 .header-toolbar ul {
   display: block;
   float: right;
   height: 40px;
-  line-height: 60px;
+  line-height: 40px;
   margin-right: 4em;
 }
 @media screen and (max-width: 970px) {
@@ -1657,7 +1656,7 @@ table tr:last-child td:last-child {
   margin-right: 1em;
 }
 .header-toolbar ul li a {
-  font-size: 12px;
+  font-size: 10px;
 }
 .toolbar-link {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
