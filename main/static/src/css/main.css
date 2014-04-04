@@ -2059,7 +2059,7 @@ textarea.form-control:active {
   right: 0px;
 }
 .empty-container {
-  width: 400px;
+  width: 200px;
   text-align: center;
   -webkit-border-radius: 10px;
   -webkit-background-clip: padding-box;
@@ -2075,10 +2075,11 @@ textarea.form-control:active {
   display: inline-block;
   border-bottom: 2px solid #b3b3b3;
   padding-bottom: 4px;
+  font-size: 14px;
 }
 .empty-container img {
   opacity: .8;
-  width: 100px;
+  width: 80px;
 }
 .twitter-follow-button {
   display: block;
