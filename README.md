@@ -194,7 +194,8 @@ NOTE: Recommended  and most commonly used HTTP Proxy for Gunicorn is Nginx serve
 
 ### Building own version
 
-Before you start make sure you have virtualenv installed on your system, aswell as npm, bower, grunt and grunt-cli for handling static files
+Before you start make sure you have virtualenv installed on your system, aswell as npm, bower, grunt and grunt-cli for handling static files, also be sure to add `DEBUG = True` to `subrosa.conf`
+when working with css/javascript, for the app to load static files from `src` folder instead of `build`.
 
 * First `git clone https://github.com/exaroth/subrosa.git`
 
