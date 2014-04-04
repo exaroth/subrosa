@@ -26,6 +26,7 @@ class ConfigModel(BaseModel):
     twitter_username = TextField(null = True, default = "") 
     gallery     = BooleanField(default = False) # show gallery
     projects    = BooleanField(default = False) # show projects
+    about       = BooleanField(default = False) # show about page
     show_info   = BooleanField(default = False) # show user info
 
     def save_settings(self, **kwargs):

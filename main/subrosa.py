@@ -38,7 +38,7 @@ class Subrosa(object):
                "google_plus", "email", "gallery", "projects",\
                "dynamic_site", "title", "articles_per_page",\
                "images_per_page", "imgur_id", "thumbnail_size",\
-               "show_info", "twitter_username")
+               "show_info", "twitter_username", "about")
 
     IMAGES = ('bg', 'logo', 'portrait')
 
