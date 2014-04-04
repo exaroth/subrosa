@@ -440,6 +440,9 @@ def configure():
 
     show_info = True if request.form.get('show-info') == 'on' else False
 
+    about = True if request.form.get('show-about') == 'on' else False
+
+
     to_update = dict()
     
     for key, val in locals().items():

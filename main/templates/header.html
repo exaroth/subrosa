@@ -12,7 +12,9 @@
 			{% if settings.projects %}
 			<li><a href="{{ url_for('projects')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'PROJECTS' }}">PROJECTS</a></li>
 			{% endif %}
+			{% if settings.about %}
 			<li><a href="{{ url_for('about')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'ABOUT' }}">ABOUT</a></li>
+			{% endif %}
 
 
 		</ul>
