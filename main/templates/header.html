@@ -1,4 +1,10 @@
 <div class="header">
+	{% if session.user %}
+	<div id="admin-subrosa">
+		<a href="{{ url_for('account', username = session.user )}}"><i class="icon-menu" style="font-size: 14px"></i></a>
+	</div>
+	{% endif %}
+
 	<div class="header-toolbar ">
 		<div class="toolbar-sitetitle col-md-5" >
 		<a href="{{ url_for('index')}}">

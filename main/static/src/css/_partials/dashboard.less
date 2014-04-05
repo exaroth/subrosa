@@ -1,50 +1,41 @@
 
-#dashboard-panel {
-    .delicate-shadow();
-    .border-radius(6px);
-    margin-bottom: 4em;
-    padding: 2em 4em;
-	border: 1px solid @black-10;
+#admin-subrosa {
+	float: left;
+	height: 100%;
+	background-color: @cerulean;
+	width: 40px;
+	height: 40px;
+	color: white;
+	margin-right: 20px;
 	position: relative;
-	@media screen and (max-width: @md){
-		box-shadow: none;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		border: none;
+    background-color: rgba(73,155,234,1);
+    background-color: darken(@cerulean, 10%);
+    z-index: 1001;
+    text-align: center;
+	a {
+		height: 100%;
+		width: 100%;
+        &:hover {
+            opacity: 0.9;
+        }
+		i {
+	        display: block;
+	        position: absolute;
+	        left: 0;
+	        right: 0;
+	        top: 50%;
+	        font-size: 14px !important;
+	        .translateY(-50%);
+	        color: white;
+	        .transition(all, 0.1s ease-in);
+	        &:hover {
+	            color: #fff !important;
+	        }
+
+		}
+
 	}
-
-
-
-	.settings-panel-buttons {
-	    clear: both;
-	    position: relative;
-	    margin-top: 100px;
-	    .btn {
-		    bottom: 0 !important;
-		    margin: 0 !important;
-		    margin-right: 10px !important;
-	        
-	    }
-	}
-
-
-	#dashboard-header {
-	    margin: 0;
-	    display: table;
-	    h2 {
-	        color: @black-50;
-	        font-family: @sans-font;
-	        font-weight: bold;
-	        font-size: 1.2em;
-	        margin-left: 2em;
-	        padding-bottom: 4px;
-	        border-bottom: 3px solid @black-50;
-	        text-shadow: 0px 1px 1px white;
-	    }
-	}
-
 }
-
 
 #projects-table {
     margin-bottom: 3em;
