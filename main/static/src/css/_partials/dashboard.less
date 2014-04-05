@@ -31,7 +31,7 @@
 .dark-dashboard-sidebar-item {
 	i {
 		color: @black-90;
-		text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+		text-shadow: 0 1px 1px rgba(255,255,255, 0.9);
 		&:hover{
 			color: @orange !important;
 		}
@@ -60,14 +60,13 @@
 .dashboard-sidebar {
 	width: 40px;
 	background-color: darken(#6a6a6e, 10%);
-	position: absolute;
-	height: 100%;
+	position: fixed;
 	left: 0;
 	z-index: 1000;
+	height: 100%;
 }
 
 #dashboard-wrapper {
-	height: 100vh;
 	padding-left: 50px;
 	background-color: #6a6a6e;
 	padding-top: 40px;
@@ -84,6 +83,7 @@
 	.btn-metro(@apple-gray);
 	text-shadow: none;
 	font-size: 0.6em;
+	line-height: 1em;
 	&:hover,
 	&:active {
 		color: white !important;

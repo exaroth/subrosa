@@ -1195,7 +1195,7 @@ textarea.article-input.article-input-title {
 }
 .dark-dashboard-sidebar-item i {
   color: #191919;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
 }
 .dark-dashboard-sidebar-item i:hover {
   color: #ff9500 !important;
@@ -1217,13 +1217,12 @@ textarea.article-input.article-input-title {
 .dashboard-sidebar {
   width: 40px;
   background-color: #515154;
-  position: absolute;
-  height: 100%;
+  position: fixed;
   left: 0;
   z-index: 1000;
+  height: 100%;
 }
 #dashboard-wrapper {
-  height: 100vh;
   padding-left: 50px;
   background-color: #6a6a6e;
   padding-top: 40px;
@@ -1251,6 +1250,7 @@ textarea.article-input.article-input-title {
   transition: background-color 0.1s ease-in;
   text-shadow: none;
   font-size: 0.6em;
+  line-height: 1em;
 }
 .dashboard-header-btn:hover {
   background-color: #a5a5a9;

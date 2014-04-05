@@ -12,7 +12,7 @@
 	<div class="col-md-10 col-md-offset-1" id="dashboard-articles-list-header" >
 		<h2 class="dashboard-section-header hidden-xs hidden-sm">
 	<a href="{{ url_for('create_article' )}}" class="dashboard-header-btn"><i class="icon-feather"></i></a>
-		Articles</h2>
+		articles</h2>
 	</div>
 </div>
 
@@ -20,6 +20,7 @@
 
 
 {% block sidebar %}
+
 <div class="dashboard-sidebar">
 	<div class="dashboard-sidebar-item dark-dashboard-sidebar-item">
 		<a href=""><i class="icon-feather"></i></a>
@@ -32,4 +33,9 @@
 		<a href=""><i class="icon-picture"></i></a>
 	</div>
 </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include "footer.html" %}
 {% endblock %}
