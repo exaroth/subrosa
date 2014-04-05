@@ -179,7 +179,7 @@ def about():
                   show_title = False,
                   body = about_info,
                   title_placeholder = None,  
-                  body_placeholder = "Your about page info")
+                  body_placeholder = "Enter about page content...")
 
     if request.method == "POST":
         new_info = request.form.get("body").strip()
@@ -302,7 +302,6 @@ def upload_image():
                 description = description
             )
             response = ImgurHandler(user_id, config).send_image()
-            print response
             if not response["success"]:
                 error = "Error uploading to imgur"
                 return render_template("upload_image.html", error = error)

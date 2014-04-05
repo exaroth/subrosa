@@ -1751,7 +1751,6 @@ table tr:last-child td:last-child {
   line-height: 1.2em ;
 }
 .header {
-  background-color: #fcfcfc;
   height: 40px;
   position: relative;
   z-index: 9;
@@ -1759,7 +1758,10 @@ table tr:last-child td:last-child {
 .header-toolbar {
   height: 100%;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  -webkit-box-shadow: inset 0px -1px 3px #ffffff;
+  -moz-box-shadow: inset 0px -1px 3px #ffffff;
+  box-shadow: inset 0px -1px 3px #ffffff;
   margin-bottom: 40px;
 }
 @media screen and (max-width: 970px) {
@@ -1785,6 +1787,7 @@ table tr:last-child td:last-child {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
   color: #4d4d4d;
   text-transform: uppercase;
+  display: inline-block;
   font-weight: bold;
   -webkit-transition: all 0.1s ease-in-out;
   -moz-transition: all 0.1s ease-in-out;
@@ -1808,26 +1811,31 @@ table tr:last-child td:last-child {
 }
 .header-toolbar ul li {
   display: inline-block;
-  margin-right: 1em;
 }
-.header-toolbar ul li a {
-  font-size: 10px;
+.header-toolbar ul li:before {
+  content: "|";
+  padding: 0.8em;
+  color: #cccccc;
+}
+.header-toolbar ul li:first-child:before {
+  content: "";
+  padding: 0;
 }
 .toolbar-link {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: bold;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   border-bottom: 2px solid transparent;
+  color: #999999;
 }
+.toolbar-link:hover,
+.toolbar-link:active,
 .toolbar-link.active {
-  color: #f15831;
-}
-.toolbar-link:hover {
-  color: #f15831;
+  color: #666666;
   border-bottom: 2px solid #f5603b;
 }
 #push,

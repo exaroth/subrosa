@@ -1,5 +1,4 @@
 .header {
-	background-color: #fcfcfc;
 	height: 40px;
 	position: relative;
 	z-index: 9;
@@ -9,7 +8,8 @@
 .header-toolbar {
 	height: 100%;
 	position: relative;
-	border-bottom: 1px solid rgba(0,0,0,.05);
+	border-bottom: 1px solid rgba(0,0,0,.06);
+	.box-shadow(inset, 0px, -1px, 3px, #fff);
 	margin-bottom: 40px;
 	@media screen and (max-width: @md){
 		padding: 0 10px 0 10px;
@@ -29,6 +29,7 @@
 			font-family: @sans-font;
 			color: @black-70;
 			text-transform: uppercase;
+			display: inline-block;
 			font-weight: bold;
 			.transition(all, 0.1s, ease-in-out);
 			&:hover {
@@ -47,26 +48,33 @@
 		}
 		li {
 			display: inline-block;
-			margin-right: 1em;
-			a {
-				font-size: 10px;
+			// margin-right: 1em;
+			&:before {
+				content: "|";
+				padding: 0.8em;
+				color: @black-20;
 			}
 		}
+		li:first-child:before {
+			content: "";
+			padding: 0;
+		}
+
+
 	}
 }
 
 .toolbar-link {
 	font-family: @sans-font;
-	font-size: 16px;
+	font-size: 10px;
 	font-weight: bold;
 	.transition(all, 0.3s, ease-in-out);
 	border-bottom: 2px solid transparent;
+	color: @black-40;
+	&:hover,
+	&:active,
 	&.active {
-		color: #f15831;
-
-	}
-	&:hover {
-		color: #f15831;
+		color: @black-60;
 		border-bottom: 2px solid #f5603b;
 	}
 }
