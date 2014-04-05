@@ -61,7 +61,7 @@ $(document).ready(function(){
         wWidth  = $window.width();
         wHeight = $window.height();
 
-        positionDashboardArea();
+        setDashboardBackground('#6a6a6e');
 
         $updateArticleButton.click(function(e){
             e.preventDefault();
@@ -363,14 +363,15 @@ $(document).ready(function(){
 
     };
 
-    function positionDashboardArea(){
-        var h = $dashboardArea.height();
+    function setDashboardBackground(color){
+        // Set height of dashboard area
 
-        if ( h < wHeight){
-            console.log("yes");
-            $dashboardArea.height(wHeight);
+        if ( $dashboardArea.length ){
+            $body.css('backgroundColor', color)
+            return false;
+
         }
-        return false;
+
     }
 
     // Randomize Image width in gallery
@@ -487,7 +488,6 @@ $window.resize(function(){
     wHeight = $window.height();
     wWidth = $window.width();
     matchIndexContents();
-    positionDashboardArea();
 });
 
 
