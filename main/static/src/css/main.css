@@ -463,6 +463,7 @@ a[disabled] {
 .single-article {
   position: relative;
   margin-top: 2em;
+  margin-bottom: 6em;
 }
 .top-image ~ .single-article {
   background-color: white;
@@ -927,14 +928,24 @@ textarea.article-input.article-input-title {
   }
 }
 .index-wrapper {
-  overflow: auto;
   padding-left: 0;
   margin-bottom: 48px;
-  overflow-x: hidden;
+  position: relative;
 }
 @media screen and (max-width: 970px) {
   .index-wrapper {
     padding: 1%;
+  }
+}
+.article-list {
+  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  position: relative;
+}
+@media screen and (max-width: 970px) {
+  .article-list {
+    margin: 0;
+    float: none;
+    overflow-x: hidden;
   }
 }
 #index-header {
@@ -999,18 +1010,6 @@ textarea.article-input.article-input-title {
 @media screen and (max-width: 970px) {
   .index-image {
     display: none;
-  }
-}
-.article-list {
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
-  position: relative;
-  min-height: 70vh;
-}
-@media screen and (max-width: 970px) {
-  .article-list {
-    margin: 0;
-    float: none;
-    overflow-x: hidden;
   }
 }
 .article-list-pagination {
@@ -1160,6 +1159,15 @@ textarea.article-input.article-input-title {
   left: -48px;
   margin-right: 12px;
 }
+#index-empty-container {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
 .dashboard-sidebar-item {
   width: 40px;
   height: 40px;
@@ -1226,6 +1234,8 @@ textarea.article-input.article-input-title {
   padding-left: 50px;
   background-color: #6a6a6e;
   padding-top: 40px;
+  min-height: 100% !important;
+  height: 100% !important;
 }
 .dashboard-section-header {
   color: #cccccc;
@@ -1448,7 +1458,7 @@ textarea.article-input.article-input-title {
 }
 #user-projects {
   margin-top: 2em;
-  margin-bottom: 48px;
+  margin-bottom: 6em;
 }
 @media screen and (max-width: 970px) {
   #user-projects {
@@ -1539,6 +1549,7 @@ textarea.article-input.article-input-title {
 }
 #about-wrapper {
   padding: 0 4em;
+  margin-bottom: 6em;
 }
 #about-portrait {
   margin: 6em 0 4em 0;
@@ -1650,11 +1661,6 @@ textarea.article-input.article-input-title {
   color: #666666;
   border-bottom: 2px solid #f5603b;
 }
-#push,
-#footer {
-  height: 60px;
-  clear: both;
-}
 #footer-links {
   position: absolute;
   z-index: 999;
@@ -1662,6 +1668,7 @@ textarea.article-input.article-input-title {
   line-height: 60px;
   padding-left: 4em;
   top: 50%;
+  overflow: auto;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);
@@ -1685,14 +1692,17 @@ textarea.article-input.article-input-title {
 #footer-links .footer-link:hover {
   color: #666666;
 }
-#footer {
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
-  position: relative;
-  width: auto;
+  width: 100%;
   clear: both;
   background-color: #fefefe;
 }
-#footer p {
+footer p {
   display: block;
   line-height: 60px;
   margin: 0;
@@ -1702,7 +1712,7 @@ textarea.article-input.article-input-title {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
   opacity: 0.7;
 }
-#footer #subscribe-link {
+footer #subscribe-link {
   position: absolute;
   background-color: #fff;
   curdor: pointer;
@@ -1724,7 +1734,7 @@ textarea.article-input.article-input-title {
   border-radius: 50%;
   background-clip: padding-box;
 }
-#footer #subscribe-link i {
+footer #subscribe-link i {
   display: block;
 }
 * {
@@ -1734,19 +1744,13 @@ textarea.article-input.article-input-title {
   -moz-box-sizing: border-box;
   /* Firefox, other Gecko */
 }
-html,
-body {
-  height: 100%;
+html {
+  position: relative !important;
+  min-height: 100% !important;
 }
 body {
   overflow-x: hidden;
-  position: relative;
-}
-#wrap {
-  min-height: 100%;
-  height: 100%;
-  height: auto !important;
-  margin: 0 auto -60px;
+  margin: 0 0 60px !important;
 }
 textarea {
   background-color: transparent !important;
@@ -1895,7 +1899,6 @@ textarea.form-control:active {
   -o-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  margin-top: -24px;
 }
 .hor-centered {
   position: absolute;

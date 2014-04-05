@@ -118,7 +118,6 @@ $(document).ready(function(){
             $(".loading").fadeIn(200);
         });
 
-        positionFooter();
 
 
         $imageLinks.magnificPopup({
@@ -313,22 +312,6 @@ $(document).ready(function(){
      };
 
 
-     function positionFooter(){
-        // Sticky footer code
-        if($(document.body).height() < $(window).height()){
-            $('#footer').css({
-                position: 'absolute',
-                top:  ( $(window).scrollTop() + $(window).height()
-                  - $("#footer").height() ) + "px",
-                width: "100%"
-            });
-        } else {
-            $('#footer').css({
-                position: 'relative'
-            });
-        }   
-
-    };
 
     // Disable tab trigger in textarea
     function enableTab(el) {
@@ -555,7 +538,6 @@ $window.load(function(){
 });
 
 $window.bind('resize scroll', function(){
-    positionFooter();
 });
 
 $window.resize(function(){
@@ -569,7 +551,6 @@ $window.resize(function(){
 
 });
 
-$window.scroll(positionFooter);
 
 });
 
