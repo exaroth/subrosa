@@ -1,23 +1,15 @@
 
-#admin-subrosa {
-	float: left;
-	height: 100%;
-	background-color: @cerulean;
+.dashboard-sidebar-item {
 	width: 40px;
 	height: 40px;
-	color: white;
-	margin-right: 20px;
 	position: relative;
-    background-color: rgba(73,155,234,1);
-    background-color: darken(@cerulean, 10%);
     z-index: 1001;
     text-align: center;
+    background-color: @black-80;
+    margin-top: 1px;
 	a {
 		height: 100%;
 		width: 100%;
-        &:hover {
-            opacity: 0.9;
-        }
 		i {
 	        display: block;
 	        position: absolute;
@@ -26,10 +18,9 @@
 	        top: 50%;
 	        font-size: 14px !important;
 	        .translateY(-50%);
-	        color: white;
 	        .transition(all, 0.1s ease-in);
 	        &:hover {
-	            color: #fff !important;
+	            color: #fff ;
 	        }
 
 		}
@@ -37,79 +28,127 @@
 	}
 }
 
-#projects-table {
-    margin-bottom: 3em;
+.dark-dashboard-sidebar-item {
+	i {
+		color: @black-90;
+		text-shadow: 0 1px 1px rgba(255,255,255,0.6);
+		&:hover{
+			color: @orange !important;
+		}
+	}
+	&.active {
+		color: @orange;
+	}
+
 }
-.dashboard-checkbox-field {
-    float: left;
-    display: inline-block;
-    margin-right: 24px;
+#admin-subrosa {
+	float: left;
+    background-color: darken(@cerulean, 10%);
+    margin: 0 20px 0 0;
+    i {
+    	color: #fff;
+    }
+    a {
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+}
+
+.dashboard-sidebar {
+	width: 40px;
+	background-color: darken(#6a6a6e, 10%);
+	position: absolute;
+	height: 100%;
+	left: 0;
+	z-index: 1000;
+}
+
+#dashboard-wrapper {
+	height: 100vh;
+	padding-left: 50px;
+	background-color: #6a6a6e;
+
+
+}
+
+
+// #projects-table {
+//     margin-bottom: 3em;
+// }
+
+// .dashboard-checkbox-field {
+//     float: left;
+//     display: inline-block;
+//     margin-right: 24px;
     
-}
+// }
 
-#articles-table a,
-#projects-table a {
-	color: @black-60;
-	&:hover {
-		color: black;
-	}
-}
+// #articles-table a,
+// #projects-table a {
+// 	color: @black-60;
+// 	&:hover {
+// 		color: black;
+// 	}
+// }
 
-.dashboard-header {
-	height: 4em;
-}
-#projects-table {
-    margin-top: 40px;
-}
-table {
-	border-collapse: separate !important;
-}
+// .dashboard-header {
+// 	height: 4em;
+// }
+// #projects-table {
+//     margin-top: 40px;
+// }
+// table {
+// 	border-collapse: separate !important;
+// }
 
-div[id^='selectable']{
-    display: none;
-}
-div#selectable-1 {
-    display: block;
-}
+// div[id^='selectable']{
+//     display: none;
+// }
+// div#selectable-1 {
+//     display: block;
+// }
 
-#link-fields {
-    margin-bottom: 24px;
-}
-#user-info-panel {
-    width: 500px;
-    height: 600px;
-    overflow-y: auto;
-    @media screen and (max-width: 640px){
-        width: 100%;
-    }
-    textarea {
-        height: 100% !important;
-        display: block;
-    }
-}
+// #link-fields {
+//     margin-bottom: 24px;
+// }
+// #user-info-panel {
+//     width: 500px;
+//     height: 600px;
+//     overflow-y: auto;
+//     @media screen and (max-width: 640px){
+//         width: 100%;
+//     }
+//     textarea {
+//         height: 100% !important;
+//         display: block;
+//     }
+// }
 
-table{
-	border: 1px solid @black-10;
-	.border-radius(6px);
-	.delicate-shadow();
-	thead {
-		th {
-		.background-image(linear-gradient(to bottom, #F8F8F8, #ECECEC));
+// table{
+// 	border: 1px solid @black-10;
+// 	.border-radius(6px);
+// 	.delicate-shadow();
+// 	thead {
+// 		th {
+// 		.background-image(linear-gradient(to bottom, #F8F8F8, #ECECEC));
 		    
-		}
-		th:first-child {
-			.border-top-left-radius(6px);
-			}
-		th:last-child {
-			.border-top-right-radius(6px);
-			}
+// 		}
+// 		th:first-child {
+// 			.border-top-left-radius(6px);
+// 			}
+// 		th:last-child {
+// 			.border-top-right-radius(6px);
+// 			}
 
-		}
-    tr:last-child td:first-child {
-			.border-bottom-left-radius(6px);
-		}
+// 		}
+//     tr:last-child td:first-child {
+// 			.border-bottom-left-radius(6px);
+// 		}
 
-	tr:last-child td:last-child {
-			.border-bottom-right-radius(6px);
-	}
-}
+// 	tr:last-child td:last-child {
+// 			.border-bottom-right-radius(6px);
+// 	}
+// }

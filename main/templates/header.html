@@ -1,6 +1,6 @@
 <div class="header">
 	{% if session.user %}
-	<div id="admin-subrosa">
+	<div class="dashboard-sidebar-item" id="admin-subrosa">
 		<a href="{{ url_for('account', username = session.user )}}"><i class="icon-menu" style="font-size: 14px"></i></a>
 	</div>
 	{% endif %}
