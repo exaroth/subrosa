@@ -1226,6 +1226,38 @@ textarea.article-input.article-input-title {
   height: 100vh;
   padding-left: 50px;
   background-color: #6a6a6e;
+  padding-top: 40px;
+}
+.dashboard-section-header {
+  color: #cccccc;
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
+  display: table;
+  text-shadow: 0px 1px 3px black;
+  float: left;
+}
+.dashboard-header-btn {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  background: #8e8e93;
+  border: 0 !important;
+  /* Font styles */
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  -webkit-transition: background-color 0.1s ease-in;
+  -moz-transition: background-color 0.1s ease-in;
+  -o-transition: background-color 0.1s ease-in;
+  transition: background-color 0.1s ease-in;
+  text-shadow: none;
+  font-size: 0.6em;
+}
+.dashboard-header-btn:hover {
+  background-color: #a5a5a9;
+}
+.dashboard-header-btn:hover,
+.dashboard-header-btn:active {
+  color: white !important;
 }
 .gallery-wrapper {
   width: 840px;
