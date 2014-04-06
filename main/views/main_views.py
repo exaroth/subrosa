@@ -220,6 +220,8 @@ def article_view(slug):
     article = Articles.get_article_by_slug(slug)
     if not article:
         abort(404)
+    if not session.get("user", None) and article.draft == True:
+        abort(404)
     author = article.author
     next_article = article.get_next_article()
     previous_article = article.get_previous_article()

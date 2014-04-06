@@ -61,7 +61,7 @@ $(document).ready(function(){
         wWidth  = $window.width();
         wHeight = $window.height();
 
-        setDashboardBackground('#6a6a6e');
+        // setDashboardBackground('#6a6a6e');
 
         $updateArticleButton.click(function(e){
             e.preventDefault();
