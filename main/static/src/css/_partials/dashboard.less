@@ -70,13 +70,19 @@
 	padding-left: 50px;
 	padding-top: 40px;
 }
-.dashboard-section-header {
+.dashboard-section-header,
+.dashboard-empty-text {
 	color: @black-20;
 	font-family: @sans-font;
-	display: table;
 	text-shadow: 0px 1px 3px black;
 	margin: 2em;
+	display: table;
 }
+.dashboard-empty-text {
+	width: 100%;
+	clear: both;
+}
+
 .dashboard-header-btn {
 	.btn-metro(@apple-gray);
 	text-shadow: none;
@@ -93,11 +99,10 @@
 	background-color: #fff;
 	.bs-shadow();
 	.border-radius(4px);
-	padding: 0;
 	position: relative;
 	.clearfix();
 	overflow: hidden;
-	width: 800px;
+	width: 600px;
 	left: 50%;
 	.translateX(-50%);
 	margin-bottom: 40px;
@@ -117,6 +122,9 @@
 	.box-shadow(inset, 1px, 1px, 1px, rgba(255,255,255,.8));
 	.background-size(cover);
 	background-position: center center;
+	&.dash-article-bg:before {
+		content: "";
+	}
 	&:before {
 		content: "\e801";
 		font-family: "fontello";
@@ -137,7 +145,7 @@
 	height: 100%;
 	display: inline-block;
 	padding: 0 24px;
-	width: 500px;
+	width: 450px;
 	position: relative;
 	@media screen and (max-width: @md){
 		width: 200px;
@@ -153,12 +161,37 @@
 
 .dashboard-article-actions {
 	height: 100%;
-	width: 200px;
+	width: 50px;
 	background-color: @black-80;
 	.box-shadow(inset, 1px, 1px, 1px, rgba(255,255,255,.3));
+	position: relative;
+	a {
+		color: @black-10;
+		height: 25px;
+		float: left;
+		clear: both;
+		margin-left: 12px;
+		&:hover {
+			color: #fff;
+		}
+		i {
+			font-size: 16px;
+			line-height: 25px;
+		}
+	}
 	@media screen and (max-width: @md){
+		a {
+			display: inline;
+			line-height: 60px;
+			float: none;
+			margin: 2px;
+
+		}
 		width: 140px;
 	}
+}
+.dashboard-article-buttons {
+
 }
 
 .dashboard-article-description-body {
@@ -168,4 +201,26 @@
 .dashboard-article-description-title {
 	font-weight: bold;
 }
+.published-sign {
+	position: absolute;
+	left: -60px;
+	top: 0;
+	width: 100px;
+	height: 30px;
+	background-color: #83d64c;
+	z-index: 2;
+	.rotate(-45deg);
+}
+.dashboard-warning {
+	position: absolute;
+	height: 100px;
+	width: 200px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	opacity: .8;
+}
+
 

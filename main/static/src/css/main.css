@@ -1233,12 +1233,17 @@ textarea.article-input.article-input-title {
   padding-left: 50px;
   padding-top: 40px;
 }
-.dashboard-section-header {
+.dashboard-section-header,
+.dashboard-empty-text {
   color: #cccccc;
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
-  display: table;
   text-shadow: 0px 1px 3px black;
   margin: 2em;
+  display: table;
+}
+.dashboard-empty-text {
+  width: 100%;
+  clear: both;
 }
 .dashboard-header-btn {
   display: inline-block;
@@ -1276,10 +1281,9 @@ textarea.article-input.article-input-title {
   -moz-background-clip: padding;
   border-radius: 4px;
   background-clip: padding-box;
-  padding: 0;
   position: relative;
   overflow: hidden;
-  width: 800px;
+  width: 600px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -1317,6 +1321,9 @@ textarea.article-input.article-input-title {
   background-size: cover;
   background-position: center center;
 }
+.dashboard-article-thumbnail.dash-article-bg:before {
+  content: "";
+}
 .dashboard-article-thumbnail:before {
   content: "\e801";
   font-family: "fontello";
@@ -1340,7 +1347,7 @@ textarea.article-input.article-input-title {
   height: 100%;
   display: inline-block;
   padding: 0 24px;
-  width: 500px;
+  width: 450px;
   position: relative;
 }
 @media screen and (max-width: 970px) {
@@ -1357,15 +1364,36 @@ textarea.article-input.article-input-title {
 }
 .dashboard-article-actions {
   height: 100%;
-  width: 200px;
+  width: 50px;
   background-color: #333333;
   -webkit-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
   -moz-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
   box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+.dashboard-article-actions a {
+  color: #e6e6e6;
+  height: 25px;
+  float: left;
+  clear: both;
+  margin-left: 12px;
+}
+.dashboard-article-actions a:hover {
+  color: #fff;
+}
+.dashboard-article-actions a i {
+  font-size: 16px;
+  line-height: 25px;
 }
 @media screen and (max-width: 970px) {
   .dashboard-article-actions {
     width: 140px;
+  }
+  .dashboard-article-actions a {
+    display: inline;
+    line-height: 60px;
+    float: none;
+    margin: 2px;
   }
 }
 .dashboard-article-description-body {
@@ -1373,6 +1401,31 @@ textarea.article-input.article-input-title {
 }
 .dashboard-article-description-title {
   font-weight: bold;
+}
+.published-sign {
+  position: absolute;
+  left: -60px;
+  top: 0;
+  width: 100px;
+  height: 30px;
+  background-color: #83d64c;
+  z-index: 2;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.dashboard-warning {
+  position: absolute;
+  height: 100px;
+  width: 200px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  opacity: .8;
 }
 .gallery-wrapper {
   width: 840px;
