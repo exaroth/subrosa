@@ -1268,7 +1268,8 @@ textarea.article-input.article-input-title {
 .dashboard-single-article {
   height: 100px;
   background-color: #fff;
-  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.4);
   -webkit-border-radius: 4px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 4px;
@@ -1307,6 +1308,14 @@ textarea.article-input.article-input-title {
   height: 100%;
   position: relative;
   background-color: #e6e6e6;
+  background-repeat: no-repeat;
+  -webkit-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
+  -moz-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
+  -webkit-background-size: 100% auto;
+  -moz-background-size: 100% auto;
+  background-size: 100% auto;
+  background-position: center center;
 }
 .dashboard-article-thumbnail:before {
   content: "\e801";
@@ -1346,23 +1355,13 @@ textarea.article-input.article-input-title {
     text-align: center;
   }
 }
-.dashboard-article-description:after {
-  content: "";
-  height: 80%;
-  width: 1px;
-  background-color: #b3b3b3;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -moz-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
 .dashboard-article-actions {
   height: 100%;
   width: 200px;
+  background-color: #333333;
+  -webkit-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
 }
 @media screen and (max-width: 970px) {
   .dashboard-article-actions {
@@ -1898,6 +1897,21 @@ textarea.form-control:active {
   transform: translateX(-50%);
   margin: 0 0 2em 0;
   position: relative;
+}
+#login-panel:before,
+#create-account-panel:before,
+#login-panel:after,
+#create-account-panel:after {
+  content: " ";
+  display: table;
+}
+#login-panel:after,
+#create-account-panel:after {
+  clear: both;
+}
+#login-panel input[type='submit'],
+#create-account-panel input[type='submit'] {
+  clear: both;
 }
 @media screen and (max-width: 970px) {
   #login-panel,

@@ -91,7 +91,7 @@
 .dashboard-single-article {
 	height: 100px;
 	background-color: #fff;
-	.delicate-shadow();
+	.bs-shadow();
 	.border-radius(4px);
 	padding: 0;
 	position: relative;
@@ -113,6 +113,10 @@
 	height: 100%;
 	position: relative;
 	background-color: @black-10;
+	background-repeat: no-repeat;
+	.box-shadow(inset, 1px, 1px, 1px, rgba(255,255,255,.8));
+	.background-size(100%, auto);
+	background-position: center center;
 	&:before {
 		content: "\e801";
 		font-family: "fontello";
@@ -145,22 +149,13 @@
 			text-align: center;
 		}
 	}
-	&:after {
-		content: "";
-		height: 80%;
-		width: 1px;
-		background-color: @black-30;
-		position: absolute;
-		right: 0;
-		top: 50%;
-		.translateY(-50%);
-
-	}
 }
 
 .dashboard-article-actions {
 	height: 100%;
 	width: 200px;
+	background-color: @black-80;
+	.box-shadow(inset, 1px, 1px, 1px, rgba(255,255,255,.3));
 	@media screen and (max-width: @md){
 		width: 140px;
 	}
