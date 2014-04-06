@@ -1312,9 +1312,9 @@ textarea.article-input.article-input-title {
   -webkit-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
   -moz-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
   box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
-  -webkit-background-size: 100% auto;
-  -moz-background-size: 100% auto;
-  background-size: 100% auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
   background-position: center center;
 }
 .dashboard-article-thumbnail:before {

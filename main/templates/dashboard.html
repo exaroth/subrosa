@@ -22,14 +22,26 @@
 
 		<div class="dashboard-single-article">
 
-		<div class="pull-left dashboard-article-thumbnail"></div>
+		<div class="pull-left dashboard-article-thumbnail" style="background-image: {{ 'url(' + article.article_thumbnail + ')' if article.article_thumbnail }}"></div>
 
 		<div class="pull-left dashboard-article-description">
+		<a href="{{ url_for('article_view', slug=article.slug )}}">
 			<h4 class="dashboard-article-description-title">{{ article.title | truncate(40) }}</h4>
+			
+		</a>
 			<p class="hidden-xs hidden-sm dashboard-article-description-body text-muted">{{ article.body | truncate(120) }}</p>
 		</div>
 
-		<div class="dashboard-article-actions pull-left"></div>
+		<div class="dashboard-article-actions pull-left">
+			<a href="{{ url_for('delete_article', id = article.id)}}" class="mini-icon"><i class="icon-cancel-squared"></i></a>
+			<a href="{{ url_for('edit_article', id = article.id )}}" class="mini-icon"><i class="icon-pencil-squared"></i></a>
+			<a href="{{ url_for('download_article', id = article.id )}}" class="mini-icon"><i class="icon-floppy"></i></a>
+			{% if article.draft %}
+			<a href="{{ url_for('publish_article', id = article.id )}}" class="mini-icon"><i class="icon-link-ext-alt"></i></a>
+			{% else %}
+			<a href="" class="mini-icon" disabled><i class="icon-link-ext-alt"></i></a>
+			{% endif %}
+		</div>
 		</div>
 
 		{% endfor %}
