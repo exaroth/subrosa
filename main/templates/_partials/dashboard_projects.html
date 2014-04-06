@@ -1,6 +1,19 @@
-<div id="projects-list" class="col-md-4" style="background-color: red; height: 40px;"></div>
-<div class="col-md-10 col-md-offset-1" id="dashboard-articles-list-header" >
-	<h2 class="dashboard-section-header">
-		<a href="{{ url_for('create_article' )}}" class="dashboard-header-btn"><i class="icon-feather"></i></a>
-		articles</h2>
+<div id="projects-list" class="col-md-4">
+
+<h3 class="text-center text-muted dashboard-header">Projects</h3>
+{% if projects %}
+
+{% for project in projects %}
+
+<div class="dashboard-single-project dashboard-list-item">
+	
+</div>
+
+
+{% endfor %}
+
+
+
+{% endif %}
+
 </div>

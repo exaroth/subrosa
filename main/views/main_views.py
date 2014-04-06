@@ -141,6 +141,7 @@ def create_account():
 @app.route("/logout")
 @login_required
 def logout():
+    """ Logout the user """
     if "user" in session:
         session.pop("user", None)
     with app.app_context():
@@ -150,32 +151,30 @@ def logout():
 @app.route("/<username>/account")
 @login_required
 def account(username):
+    """ Main account view """
     if username is None:
         return redirect("/admin")
     user = Users.get_user_by_username(username)
     if not user:
         abort(404)
     articles = Articles.get_user_articles(user.username)
+    projects = UserProjects.get_all_projects()
     return render_template("dashboard.html",\
                            user = user,\
-                           articles = articles
+                           articles = articles,\
+                           projects = projects\
                            )
 
 
-@app.route("/<username>/account_additional") 
+
+@app.route("/<username>/account_settings", methods=["GET", "POST"])
 @login_required
-def account_additional(username):
+def account_settings(username):
     user = Users.get_user_by_username(username)
     if not user:
         abort(404)
-    images = UserImages.select()
-    projects = UserProjects.select()
 
-    return render_template("dashboard_additional.html",\
-        projects = projects,
-        images = images
-        )
-
+    return render_template("dashboard_settings.html")
 
 
 

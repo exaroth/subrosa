@@ -737,9 +737,9 @@ a[disabled] {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  -webkit-background-size: 100% auto;
-  -moz-background-size: 100% auto;
-  background-size: 100% auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
   background-position: center center;
   left: 0;
   right: 0;
@@ -929,7 +929,7 @@ textarea.article-input.article-input-title {
 }
 .index-wrapper {
   padding-left: 0;
-  margin-bottom: 48px;
+  margin-bottom: 140px;
   position: relative;
 }
 @media screen and (max-width: 970px) {
@@ -1070,9 +1070,9 @@ textarea.article-input.article-input-title {
   width: 100px;
   height: 100px;
   float: left;
-  -webkit-background-size: auto 100%;
-  -moz-background-size: auto 100%;
-  background-size: auto 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
   background-posiiton: center center;
   background-repeat: no-repeat;
   -webkit-border-radius: 50%;
@@ -1201,14 +1201,13 @@ textarea.article-input.article-input-title {
   color: #fff ;
 }
 .dark-dashboard-sidebar-item i {
-  color: #191919;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.9);
+  color: #cccccc;
 }
 .dark-dashboard-sidebar-item i:hover {
-  color: #ff9500 !important;
+  color: #fff !important;
 }
 .dark-dashboard-sidebar-item.active i {
-  color: #ff9500;
+  color: #ffcc00;
 }
 #admin-subrosa {
   float: left;
@@ -1233,10 +1232,12 @@ textarea.article-input.article-input-title {
   padding-left: 50px;
   padding-top: 40px;
 }
+.dashboard-header {
+  margin-bottom: 2em;
+}
 .dashboard-list-item {
   background-color: #fff;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.4);
+  outline: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-border-radius: 4px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 4px;
@@ -1259,6 +1260,11 @@ textarea.article-input.article-input-title {
 .dashboard-list-item:after {
   clear: both;
 }
+@media screen and (max-width: 970px) {
+  #dashboard-articles-list {
+    margin-bottom: 64px;
+  }
+}
 .dashboard-single-article {
   height: 100px;
   position: relative;
@@ -1272,15 +1278,41 @@ textarea.article-input.article-input-title {
     margin-bottom: 20px;
   }
 }
+.dashboard-actions {
+  height: 100%;
+  width: 50px;
+  background-color: #4d4d4d;
+  position: relative;
+  text-align: center;
+}
+.dashboard-actions a {
+  color: #e6e6e6;
+  height: 25px;
+  float: left;
+  clear: both;
+  margin-left: 16px;
+}
+.dashboard-actions a:hover {
+  color: #fff;
+}
+.dashboard-actions a i {
+  font-size: 14px;
+  line-height: 25px;
+}
+@media screen and (max-width: 970px) {
+  .dashboard-actions a {
+    display: inline;
+    line-height: 60px;
+    float: none;
+    margin: 2px;
+  }
+}
 .dashboard-article-thumbnail {
   width: 100px;
   height: 100%;
   position: relative;
   background-color: #e6e6e6;
   background-repeat: no-repeat;
-  -webkit-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
-  -moz-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
-  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -1302,7 +1334,6 @@ textarea.article-input.article-input-title {
   transform: translate(-50%, -50%);
   color: rgba(0, 0, 0, 0.1);
   font-size: 24px;
-  text-shadow: 1px 1px 2px #f1f1f1, 0 0 0 #666666;
 }
 @media screen and (max-width: 970px) {
   .dashboard-article-thumbnail {
@@ -1328,38 +1359,9 @@ textarea.article-input.article-input-title {
     text-align: center;
   }
 }
-.dashboard-article-actions {
-  height: 100%;
-  width: 50px;
-  background-color: #333333;
-  -webkit-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
-  -moz-box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
-  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.3);
-  position: relative;
-}
-.dashboard-article-actions a {
-  color: #e6e6e6;
-  height: 25px;
-  float: left;
-  clear: both;
-  margin-left: 12px;
-}
-.dashboard-article-actions a:hover {
-  color: #fff;
-}
-.dashboard-article-actions a i {
-  font-size: 16px;
-  line-height: 25px;
-}
 @media screen and (max-width: 970px) {
   .dashboard-article-actions {
     width: 140px;
-  }
-  .dashboard-article-actions a {
-    display: inline;
-    line-height: 60px;
-    float: none;
-    margin: 2px;
   }
 }
 .dashboard-article-description-body {
@@ -1382,16 +1384,11 @@ textarea.article-input.article-input-title {
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
-.dashboard-warning {
-  position: absolute;
-  height: 100px;
-  width: 200px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  opacity: .8;
+.dashboard-single-project {
+  width: 400px;
+  height: 50px;
+  position: relative;
+  margin-bottom: 24px;
 }
 .gallery-wrapper {
   width: 840px;

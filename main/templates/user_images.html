@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 
 {% block titlebar %}
-{% with header_context="IMAGES" %}
-{% include 'header.html' %}
-{% endwith %}
+{% include '_partials/header.html' %}
 {% endblock %}
 
 {% block modals %}
@@ -90,6 +88,11 @@
 <div style="height: 90px;"></div>
 {% endblock %}
 
-{% block footer %}
-{% include 'footer.html' %}
+{% block sidebar %}
+{% with dashboard_part = "IMAGES" %}
+{% include "_partials/dashboard_sidebar.html" %}
+{% endwith %}
 {% endblock %}
+
+
+

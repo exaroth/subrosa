@@ -1,5 +1,7 @@
 <div id="dashboard-articles-list" class="col-md-8">
 
+		<h3 class="text-center text-muted dashboard-header">Articles</h3>
+
 
 		{% if articles.count() %}
 
@@ -23,8 +25,8 @@
 				<p class="hidden-xs hidden-sm dashboard-article-description-body text-muted">{{ article.body | truncate(120) }}</p>
 			</div>
 
-			<div class="dashboard-article-actions pull-left">
-				<a href="#" data-href="{{ url_for('delete_article', id = article.id)}}" style="background-color: red;" class="hint-icon" data-toggle="confirmation" data-toggle="tooltip"  data-placement="right" title="Delete" ><i class="icon-cancel"></i></a>
+			<div class=" dashboard-actions dashboard-article-actions pull-left">
+				<a href="#" data-href="{{ url_for('delete_article', id = article.id)}}" class="hint-icon" data-toggle="confirmation" data-toggle="tooltip"  data-placement="right" title="Delete" ><i class="icon-cancel"></i></a>
 				<a href="{{ url_for('edit_article', id = article.id )}}" class="hint-icon" data-placement="right" data-toggle="tooltip" title="Edit" ><i class="icon-align-left"></i></a>
 				<a href="{{ url_for('download_article', id = article.id )}}" class="hint-icon" data-placement="right"data-toggle="tooltip" title="Download"><i class="icon-floppy"></i></a>
 				{% if article.draft %}
@@ -35,6 +37,9 @@
 			</div>
 		</div>
 		{% endfor %}
+
+		{% else %}
+		<h4 class="text-center ">No articles written.</h4>
 
 		{% endif %}
 

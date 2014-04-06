@@ -10,6 +10,7 @@
 <div class="col-xs-12 dashboard-area container-fluid" id="dashboard-wrapper">
 
 	{% include "_partials/dashboard_articles.html" %}
+	{% include "_partials/dashboard_projects.html" %}
 
 	</div>
 
@@ -19,7 +20,7 @@
 
 	{% block sidebar %}
 
-	{% with dashboard_part="main" %}
+	{% with dashboard_part="MAIN" %}
 	{% include '_partials/dashboard_sidebar.html' %}
 	{% endwith %}
 
