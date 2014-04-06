@@ -1,32 +1,32 @@
 <ul class="dashboard-sidebar list-unstyled">
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'MAIN'}}">
-		<a href=" {{ url_for('account', username=session.user )}}" class="hint-icon" data-toggle="tooltip" data-container="body" title="Articles list"><i class="icon-feather"></i></a>
+		<a href=" {{ url_for('account', username=session.user )}}" class="hint-icon" data-toggle="tooltip" data-container="body" title="Articles list"><i class="icon-th-large"></i></a>
 	</li>
 	
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'IMAGES'}}">
-		<a href="{{ url_for('user_images', username = session.user )}}" class="hint-icon", title="Your Images"><i class="icon-doc-text-inv"></i></a>
+		<a href="{{ url_for('user_images', username = session.user )}}" class="hint-icon", title="Your Images"><i class="icon-picture"></i></a>
+	</li>
+
+	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'SETTINGS'}} ">
+		<a href="{{ url_for('account_settings', username = session.user )}}" class="hint-icon" title="Settings"><i class="icon-cog"></i></a>
 	</li>
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item ">
-		<a href="{{ url_for('account_settings', username = session.user )}}" class="hint-icon" title="Settings"><i class="icon-picture"></i></a>
+		<a href="{{ url_for('create_article')}}" class="hint-icon", title="Create Article"><i class="icon-doc-text-inv"></i></a>
 	</li>
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item ">
-		<a href="{{ url_for('create_article')}}" class="hint-icon", title="Create Article"><i class="icon-picture"></i></a>
-	</li>
-
-	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item ">
-		<a href="{{ url_for('create_project')}}" class="hint-icon", title="Create Project"><i class="icon-picture"></i></a>
+		<a href="{{ url_for('create_project')}}" class="hint-icon", title="Create Project"><i class="icon-doc"></i></a>
 	</li>
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'UPLOAD'}}">
-		<a href="{{ url_for('upload_image')}}" class="hint-icon" title="Upload Image"><i class="icon-cancel"></i></a>
+		<a href="{{ url_for('upload_image')}}" class="hint-icon" title="Upload Image"><i class="icon-upload-cloud"></i></a>
 	</li>
 
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item ">
-		<a href="{{ url_for('logout')}}" class="hint-icon" title="Logout"><i class="icon-picture"></i></a>
+		<a href="{{ url_for('logout')}}" class="hint-icon" title="Logout"><i class="icon-lock-open"></i></a>
 	</li>
 
 
