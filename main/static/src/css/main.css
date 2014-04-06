@@ -1207,7 +1207,7 @@ textarea.article-input.article-input-title {
 .dark-dashboard-sidebar-item i:hover {
   color: #ff9500 !important;
 }
-.dark-dashboard-sidebar-item.active {
+.dark-dashboard-sidebar-item.active i {
   color: #ff9500;
 }
 #admin-subrosa {
@@ -1241,10 +1241,6 @@ textarea.article-input.article-input-title {
   margin: 2em;
   display: table;
 }
-.dashboard-empty-text {
-  width: 100%;
-  clear: both;
-}
 .dashboard-header-btn {
   display: inline-block;
   padding: 10px;
@@ -1270,8 +1266,7 @@ textarea.article-input.article-input-title {
 .dashboard-header-btn:active {
   color: white !important;
 }
-.dashboard-single-article {
-  height: 100px;
+.dashboard-list-item {
   background-color: #fff;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.4);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 0, 0.4);
@@ -1281,24 +1276,27 @@ textarea.article-input.article-input-title {
   -moz-background-clip: padding;
   border-radius: 4px;
   background-clip: padding-box;
-  position: relative;
   overflow: hidden;
-  width: 600px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-  margin-bottom: 40px;
 }
-.dashboard-single-article:before,
-.dashboard-single-article:after {
+.dashboard-list-item:before,
+.dashboard-list-item:after {
   content: " ";
   display: table;
 }
-.dashboard-single-article:after {
+.dashboard-list-item:after {
   clear: both;
+}
+.dashboard-single-article {
+  height: 100px;
+  position: relative;
+  width: 600px;
+  margin-bottom: 40px;
 }
 @media screen and (max-width: 970px) {
   .dashboard-single-article {
@@ -1335,8 +1333,9 @@ textarea.article-input.article-input-title {
   -o-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  color: #cccccc;
+  color: rgba(0, 0, 0, 0.1);
   font-size: 24px;
+  text-shadow: 1px 1px 2px #f1f1f1, 0 0 0 #666666;
 }
 @media screen and (max-width: 970px) {
   .dashboard-article-thumbnail {

@@ -147,7 +147,7 @@ def logout():
         cache.clear()
     return redirect(url_for("index"))
 
-@app.route("/account/<username>", methods = ["GET","POST"])
+@app.route("/<username>/account")
 @login_required
 def account(username):
     if username is None:
@@ -156,11 +156,27 @@ def account(username):
     if not user:
         abort(404)
     articles = Articles.get_user_articles(user.username)
-    projects = UserProjects.get_all_projects()
     return render_template("dashboard.html",\
                            user = user,\
-                           articles = articles,\
-                           projects = projects)
+                           articles = articles
+                           )
+
+
+@app.route("/<username>/account_additional") 
+@login_required
+def account_additional(username):
+    user = Users.get_user_by_username(username)
+    if not user:
+        abort(404)
+    images = UserImages.select()
+    projects = UserProjects.select()
+
+    return render_template("dashboard_additional.html",\
+        projects = projects,
+        images = images
+        )
+
+
 
 
 @app.route("/about", methods = ["GET","POST"])

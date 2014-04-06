@@ -1,0 +1,12 @@
+<ul class="dashboard-sidebar list-unstyled">
+	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'main'}}">
+		<a href=" {{ url_for('account', username=session.user )}}" class="hint-icon" data-toggle="tooltip" data-placement="right" data-container="body" title="Articles list"><i class="icon-feather"></i></a>
+	</li>
+	
+	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'additional'}}">
+		<a href="{{ url_for('account_additional', username = session.user )}}"><i class="icon-doc-text-inv"></i></a>
+	</li>
+	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item">
+		<a href=""><i class="icon-picture"></i></a>
+	</li>
+</ul>

@@ -20,7 +20,7 @@
 
 		{% for article in articles %}
 
-		<div class="dashboard-single-article">
+		<div class="dashboard-single-article dashboard-list-item">
 
 		<div class="pull-left dashboard-article-thumbnail {{ 'dash-article-bg' if article.article_thumbnail }}" style="background-image: {{ 'url(' + article.article_thumbnail + ')' if article.article_thumbnail }}"></div>
 
@@ -70,18 +70,9 @@
 
 {% block sidebar %}
 
-<div class="dashboard-sidebar">
-	<div class="dashboard-sidebar-item dark-dashboard-sidebar-item">
-		<a href=""><i class="icon-feather"></i></a>
-	</div>
-	
-	<div class="dashboard-sidebar-item dark-dashboard-sidebar-item">
-		<a href=""><i class="icon-doc-text-inv"></i></a>
-	</div>
-	<div class="dashboard-sidebar-item dark-dashboard-sidebar-item">
-		<a href=""><i class="icon-picture"></i></a>
-	</div>
-</div>
+{% with dashboard_part="main" %}
+{% include 'dashboard_sidebar.html' %}
+{% endwith %}
 
 {% endblock %}
 
