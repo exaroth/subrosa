@@ -9,9 +9,35 @@
 {% block content %}
 <div class="col-xs-12 dashboard-area" id="dashboard-wrapper">
 	<div class="col-md-10 col-md-offset-1" id="dashboard-articles-list-header" >
-		<h2 class="dashboard-section-header hidden-xs hidden-sm">
+		<h2 class="dashboard-section-header">
 	<a href="{{ url_for('create_article' )}}" class="dashboard-header-btn"><i class="icon-feather"></i></a>
 		articles</h2>
+	</div>
+
+	<div id="dashboard-articles-list container-fluid col-md-8 col-md-offset-2">
+
+	{% if articles %}
+
+		{% for article in articles %}
+
+		<div class="dashboard-single-article">
+
+		<div class="pull-left dashboard-article-thumbnail"></div>
+
+		<div class="pull-left dashboard-article-description">
+			<h4 class="dashboard-article-description-title">{{ article.title | truncate(40) }}</h4>
+			<p class="hidden-xs hidden-sm dashboard-article-description-body text-muted">{{ article.body | truncate(120) }}</p>
+		</div>
+
+		<div class="dashboard-article-actions pull-left"></div>
+		</div>
+
+		{% endfor %}
+
+	{% endif %}
+
+
+
 	</div>
 </div>
 
