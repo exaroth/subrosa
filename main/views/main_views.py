@@ -174,7 +174,7 @@ def account_settings(username):
     if not user:
         abort(404)
 
-    return render_template("dashboard_settings.html")
+    return render_template("settings_panel.html", user = user)
 
 
 
@@ -470,10 +470,11 @@ def configure():
         config.save_settings(**to_update)
         with app.app_context():
             cache.clear()
-        return redirect(url_for('account', username = session['user']))
+        flash("Settings has been updated")
+        return redirect(url_for('account_settings', username = session['user']))
     except:
         handle_errors("Error when saving configuration")
-        return redirect(url_for("account", username = session["user"]))
+        return redirect(url_for("account_settings", username = session["user"]))
 
 @app.route("/set_info", methods = ["POST"])
 @login_required
@@ -493,7 +494,7 @@ def set_info():
     finally:
         with app.app_context():
             cache.clear()
-        return redirect(url_for('account', username = session['user']))
+        return redirect(url_for('account_settings', username = session['user']))
 
 
 @app.route("/reset-settings")

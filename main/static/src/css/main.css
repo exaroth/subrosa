@@ -1420,6 +1420,45 @@ textarea.article-input.article-input-title {
     line-height: 50px;
   }
 }
+#dashboard-settings-panel {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border: 1px solid #cccccc;
+  padding: 24px;
+  -webkit-border-radius: 6px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 6px;
+  -moz-background-clip: padding;
+  border-radius: 6px;
+  background-clip: padding-box;
+}
+@media screen and (max-width: 970px) {
+  #dashboard-settings-panel {
+    margin: 0 20px 0 60px;
+  }
+}
+.dashboard-checkbox-field {
+  float: left;
+  margin-right: 20px;
+}
+.settings-panel-buttons {
+  padding-top: 40px;
+  clear: both;
+}
+.settings-panel-buttons input {
+  margin-right: 12px;
+}
+div[id^='selectable'] {
+  display: none;
+}
+div#selectable-1 {
+  display: block;
+}
 .gallery-wrapper {
   width: 840px;
   left: 0;

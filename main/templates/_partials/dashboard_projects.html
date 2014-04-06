@@ -1,34 +1,34 @@
 <div id="projects-list" class="col-md-4">
 
-<h3 class="text-center text-muted dashboard-header">Projects</h3>
-{% if projects %}
+	<h3 class="text-center text-muted dashboard-header">Projects</h3>
+	{% if projects %}
 
-{% for project in projects %}
+	{% for project in projects %}
 
-<div class="dashboard-single-project dashboard-list-item">
+	<div class="dashboard-single-project dashboard-list-item">
 
-<div class="dashboard-item-description dashboard-project-description pull-left">
-	<h4>{{ project.title | truncate(40) }}</h4>
-</div>
+		<div class="dashboard-item-description dashboard-project-description pull-left">
+			<h4>{{ project.title | truncate(40) }}</h4>
+		</div>
 
-<div class="dashboard-actions dashboard-project-actions pull-left"> 
-
-
-		<a href="{{ url_for('edit_project', id = project.id )}}" class="hint-icon" data-placement="right" data-toggle="tooltip" title="Edit" ><i class="icon-align-left"></i></a>
-
-		<a href="#" data-href="{{ url_for('delete_project', id = project.id)}}" class="hint-icon" data-toggle="confirmation" data-toggle="tooltip"  data-placement="top" title="Delete" ><i class="icon-cancel"></i></a>
-
-</div>
-	
-</div>
+		<div class="dashboard-actions dashboard-project-actions pull-left"> 
 
 
-{% endfor %}
+			<a href="{{ url_for('edit_project', id = project.id )}}" class="hint-icon" data-placement="right" data-toggle="tooltip" title="Edit" ><i class="icon-align-left"></i></a>
+
+			<a href="#" data-href="{{ url_for('delete_project', id = project.id)}}" class="hint-icon" data-toggle="confirmation" data-toggle="tooltip"   title="Delete" ><i class="icon-cancel"></i></a>
+
+		</div>
+
+	</div>
 
 
-{% else %}
+	{% endfor %}
 
-		<h4 class="text-center ">No articles written.</h4>
-{% endif %}
+
+	{% else %}
+
+	<h4 class="text-center ">No projects created</h4>
+	{% endif %}
 
 </div>

@@ -175,6 +175,7 @@ $(document).ready(function(){
             }, 1000)
 
         };
+        
         $gallery.nested({
             selector : '.gallery-image',
             minWidth : 200,
@@ -246,7 +247,7 @@ $(document).ready(function(){
         .filter("[id=selectable-" + this.value + "]").show();
     };
 
-    // ========================================
+//========================================
 
     function dimLight(){
         if (!dark){
@@ -363,17 +364,6 @@ $(document).ready(function(){
 
 
     };
-
-    function setDashboardBackground(color){
-        // Set height of dashboard area
-
-        if ( $dashboardArea.length ){
-            $body.css('backgroundColor', color)
-            return false;
-
-        }
-
-    }
 
     // Randomize Image width in gallery
 
