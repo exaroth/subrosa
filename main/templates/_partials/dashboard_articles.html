@@ -1,0 +1,49 @@
+<div id="dashboard-articles-list " class="col-md-8">
+	<div class="col-md-10 col-md-offset-1" id="dashboard-articles-list-header" >
+		<h2 class="dashboard-section-header">
+			<a href="{{ url_for('create_article' )}}" class="dashboard-header-btn"><i class="icon-feather"></i></a>
+			articles</h2>
+		</div>
+
+
+		{% if articles.count() %}
+
+		{% for article in articles %}
+
+		<div class="dashboard-single-article dashboard-list-item">
+
+			<div class="pull-left dashboard-article-thumbnail {{ 'dash-article-bg' if article.article_thumbnail }}" style="background-image: {{ 'url(' + article.article_thumbnail + ')' if article.article_thumbnail }}"></div>
+
+			<div class="pull-left dashboard-article-description">
+				<a href="{{ url_for('article_view', slug=article.slug )}}">
+					<h4 class="dashboard-article-description-title">{{ article.title | truncate(20) }}
+						{% if article.draft == False %}
+						<span class="text-success"><i class="icon-ok"></i></span>
+						{% endif %}
+
+					</h4>
+
+				</a>
+				<p class="hidden-xs hidden-sm dashboard-article-description-body text-muted">{{ article.body | truncate(120) }}</p>
+			</div>
+
+			<div class="dashboard-article-actions pull-left">
+				<a href="#" data-href="{{ url_for('delete_article', id = article.id)}}" style="background-color: red;" class="hint-icon" data-toggle="confirmation" data-toggle="tooltip"  data-placement="right" title="Delete" ><i class="icon-cancel"></i></a>
+				<a href="{{ url_for('edit_article', id = article.id )}}" class="hint-icon" data-placement="right" data-toggle="tooltip" title="Edit" ><i class="icon-align-left"></i></a>
+				<a href="{{ url_for('download_article', id = article.id )}}" class="hint-icon" data-placement="right"data-toggle="tooltip" title="Download"><i class="icon-floppy"></i></a>
+				{% if article.draft %}
+				<a  href="#" data-href="{{ url_for('publish_article', id = article.id )}}" class="hint-icon" data-toggle="confirmation" data-placement="right"data-toggle="tooltip" title="Publish" ><i class="icon-link-ext-alt"></i></a>
+				{% else %}
+				<a href=""  disabled><i class="icon-link-ext-alt"></i></a>
+				{% endif %}
+			</div>
+		</div>
+
+		{% endfor %}
+
+
+		{% endif %}
+
+
+
+	</div>

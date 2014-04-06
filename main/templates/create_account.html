@@ -1,11 +1,5 @@
 {% extends "layout.html" %}
 
-{% block titlebar %}
-{% with header_context="CREATE ACCOUNT", hide_header=True %}
-{% include 'header.html' %}
-{% endwith %}
-{% endblock %}
-
 {% block content %} 
 <div class="col-md-4 col-md-offset-4 vert-centered" id="create-account-panel">
 <img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/subrosa.jpg')}}" alt="subrosa">

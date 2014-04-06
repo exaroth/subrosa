@@ -134,8 +134,9 @@ $(document).ready(function(){
         });
 
         // Prevent double clicks
-        $("a, button").one("click", function() {
-            $(this).click(function () { $(this).disabled = true; return false; });
+        $("a, button").one("dblclick", function(e) {
+            e.preventDefault();
+
         });
 
     };
