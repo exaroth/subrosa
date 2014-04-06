@@ -1260,22 +1260,22 @@ textarea.article-input.article-input-title {
 .dashboard-list-item:after {
   clear: both;
 }
-@media screen and (max-width: 970px) {
-  #dashboard-articles-list {
-    margin-bottom: 64px;
-  }
-}
-.dashboard-single-article {
-  height: 100px;
+.dashboard-item-description {
+  height: 100%;
+  display: inline-block;
+  padding: 0 24px;
   position: relative;
-  width: 600px;
-  margin-bottom: 40px;
+}
+.dashboard-item-description h4 {
+  font-weight: bold;
 }
 @media screen and (max-width: 970px) {
-  .dashboard-single-article {
-    width: 400px;
-    height: 60px;
-    margin-bottom: 20px;
+  .dashboard-item-description h4 {
+    line-height: 60px ;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    text-align: center;
   }
 }
 .dashboard-actions {
@@ -1305,6 +1305,32 @@ textarea.article-input.article-input-title {
     line-height: 60px;
     float: none;
     margin: 2px;
+  }
+}
+@media screen and (max-width: 970px) {
+  #dashboard-articles-list {
+    margin-bottom: 64px;
+  }
+}
+.dashboard-single-article {
+  height: 100px;
+  position: relative;
+  width: 600px;
+  margin-bottom: 40px;
+}
+@media screen and (max-width: 970px) {
+  .dashboard-single-article {
+    width: 400px;
+    height: 60px;
+    margin-bottom: 20px;
+  }
+}
+.dashboard-article-description {
+  width: 450px;
+}
+@media screen and (max-width: 970px) {
+  .dashboard-article-description {
+    width: 200px;
   }
 }
 .dashboard-article-thumbnail {
@@ -1340,25 +1366,6 @@ textarea.article-input.article-input-title {
     width: 60px;
   }
 }
-.dashboard-article-description {
-  height: 100%;
-  display: inline-block;
-  padding: 0 24px;
-  width: 450px;
-  position: relative;
-}
-@media screen and (max-width: 970px) {
-  .dashboard-article-description {
-    width: 200px;
-  }
-  .dashboard-article-description h4 {
-    line-height: 60px ;
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    text-align: center;
-  }
-}
 @media screen and (max-width: 970px) {
   .dashboard-article-actions {
     width: 140px;
@@ -1389,6 +1396,13 @@ textarea.article-input.article-input-title {
   height: 50px;
   position: relative;
   margin-bottom: 24px;
+}
+.dashboard-project-description {
+  width: 350px;
+}
+.dashboard-project-description h4 {
+  font-size: 12px;
+  line-height: 30px;
 }
 .gallery-wrapper {
   width: 840px;
