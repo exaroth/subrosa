@@ -945,7 +945,6 @@ textarea.article-input.article-input-title {
   .article-list {
     margin: 0;
     float: none;
-    overflow-x: hidden;
   }
 }
 #index-header {
@@ -1920,12 +1919,12 @@ textarea.form-control:active {
   margin-top: -100px;
 }
 .empty-container h4 {
-  font-family: 'Georgia', 'Times New Roman', Times, serif;
+  font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
   color: #808080;
   display: inline-block;
   border-bottom: 2px solid #b3b3b3;
   padding-bottom: 4px;
-  font-size: 14px;
+  font-size: 12px;
 }
 .empty-container img {
   opacity: .8;
