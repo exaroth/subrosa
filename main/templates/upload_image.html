@@ -70,3 +70,9 @@
 
 
 {% endblock %}
+
+{% block sidebar %}
+{% with dashboard_part = "UPLOAD" %}
+{% include "_partials/dashboard_sidebar.html" %}
+{% endwith %}
+{% endblock %}

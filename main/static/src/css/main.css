@@ -1404,6 +1404,22 @@ textarea.article-input.article-input-title {
   font-size: 12px;
   line-height: 30px;
 }
+@media screen and (max-width: 970px) {
+  .dashboard-project-description {
+    width: 300px;
+  }
+  .dashboard-project-description h4 {
+    line-height: 50px;
+  }
+}
+@media screen and (max-width: 970px) {
+  .dashboard-project-actions {
+    width: 100px;
+  }
+  .dashboard-project-actions a {
+    line-height: 50px;
+  }
+}
 .gallery-wrapper {
   width: 840px;
   left: 0;
