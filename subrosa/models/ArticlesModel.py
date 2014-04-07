@@ -60,7 +60,7 @@ class Articles(BaseModel):
         q = Articles.select()
         if drafts:
             return q.count()
-        return q.where(Articles.draft is False).count()
+        return q.where(Articles.draft == False).count()
 
     @staticmethod
     def get_index_articles(page, per_page):
