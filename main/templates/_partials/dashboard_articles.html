@@ -27,9 +27,9 @@
 
 			<div class=" dashboard-actions dashboard-article-actions pull-left">
 				{% if article.draft %}
-				<a  href="#" data-href="{{ url_for('publish_article', id = article.id )}}" class="hint-icon" data-toggle="confirmation" data-placement="right" data-toggle="tooltip" title="Publish" ><i class="icon-link-ext-alt"></i></a>
+				<a  href="#" data-href="{{ url_for('publish_article', id = article.id )}}" class="hint-icon" data-toggle="confirmation" data-placement="right" data-toggle="tooltip" title="Publish" ><i class="icon-publish"></i></a>
 				{% else %}
-				<a href=""  disabled><i class="icon-link-ext-alt"></i></a>
+				<a href=""  disabled><i class="icon-publish"></i></a>
 				{% endif %}
 				<a href="{{ url_for('edit_article', id = article.id )}}" class="hint-icon" data-placement="right" data-toggle="tooltip" title="Edit" ><i class="icon-align-left"></i></a>
 				<a href="{{ url_for('download_article', id = article.id )}}" class="hint-icon" data-placement="right"data-toggle="tooltip" title="Download"><i class="icon-floppy"></i></a>

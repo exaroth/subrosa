@@ -1459,6 +1459,25 @@ div[id^='selectable'] {
 div#selectable-1 {
   display: block;
 }
+@media screen and (max-width: 970px) {
+  .image-upload-wrapper {
+    padding-left: 50px;
+  }
+}
+#user-info-panel {
+  width: 500px;
+  height: 600px;
+  overflow-y: auto;
+}
+@media screen and (max-width: 640px) {
+  #user-info-panel {
+    width: 100%;
+  }
+}
+#user-info-panel textarea {
+  height: 100% !important;
+  display: block;
+}
 .gallery-wrapper {
   width: 840px;
   left: 0;
@@ -2042,6 +2061,10 @@ textarea.form-control:active {
   bottom: 0;
   top: 0;
   margin: auto;
+}
+a:disabled,
+a[disabled] {
+  opacity: .6;
 }
 /* overlay at start */
 .mfp-fade.mfp-bg {
