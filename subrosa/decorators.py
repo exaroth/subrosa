@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 
-    main.decorators
+    subrosa.decorators
     ===============
 
     Decorators used in views

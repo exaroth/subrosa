@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 
-    main.models.ArticlesModel
+    subrosa.models.ArticlesModel
     ============
 
     Implements model and methods related to subrosa articles

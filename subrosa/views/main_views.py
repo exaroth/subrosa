@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    main.views
+    subrosa.views.main_views
     ==========
 
     This module implements all the basic views of Subrosa

@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 
-    main.subrosa_init
+    subrosa.subrosa_init
     ================
 
     Implements subrosa intiialization class

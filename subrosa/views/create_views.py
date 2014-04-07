@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 
-    main.create_views
+    subrosa.views.create_views
     ===============
 
     Implements class-based views related to creating projects and articles

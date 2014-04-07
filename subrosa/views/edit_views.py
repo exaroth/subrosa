@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    main.edit_views
+    subrosa.views.edit_views
     ===============
 
 

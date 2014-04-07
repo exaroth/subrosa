@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    main.helpers
+    subrosa.helpers
     ============
 
     Helper files used by other Subrosa components

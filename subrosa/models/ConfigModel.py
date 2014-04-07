@@ -1,4 +1,17 @@
+# -*- coding: utf-8 -*-
+"""
 
+    subrosa.models.ConfigModel
+    ============
+
+    
+    Model defining Subrosa configuration
+
+    :copyright: (c) 2014 by Konrad Wasowicz
+    :license: MIT, see LICENSE for details.
+
+
+"""
 
 from peewee import *
 

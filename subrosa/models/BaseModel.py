@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    main.models.BaseModel
+    subrosa.models.BaseModel
     ============
 
     Base Database model used as a superclass

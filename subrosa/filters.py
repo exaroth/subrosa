@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    main.filters
+    subrosa.filters
     ============
 
     Miscellaneous filters used in subrosa views

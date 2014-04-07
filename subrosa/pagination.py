@@ -1,7 +1,7 @@
 ﻿# -*- coding: utf-8 -*-
 """
 
-    main.pagination
+    subrosa.pagination
     ===============
 
     Adds pagination class

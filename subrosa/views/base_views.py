@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    main.base-views
+    subrosa.views.base-views
     ===============
 
     Base classes used by class-based views

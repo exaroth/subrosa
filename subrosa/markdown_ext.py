@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    main.markdown_ext
+    subrosa.markdown_ext
     ============
 
         Implements class integrating markdown
