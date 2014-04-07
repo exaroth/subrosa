@@ -4,6 +4,7 @@ Tracking changes for Subrosa versions. Visit [https://github.com/exaroth/subrosa
 
 ## 0.3
 
+* Complete dashboard panel rewrite
 * Added about page
 * Removed requests library from dependency list
 * Site title can now be customized in dashboard panel
