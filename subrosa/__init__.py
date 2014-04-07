@@ -21,8 +21,8 @@ __version__ = "0.1.dev"
 import os, sys
 import logging
 from flask import Flask, request
-from main.subrosa import Subrosa
-from main.helpers import add_thumbnail_affix
+from subrosa.subrosa_init import Subrosa
+from subrosa.helpers import add_thumbnail_affix
 from flask.ext.cache import Cache
 
 
@@ -36,7 +36,7 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 # config init
-app.config.from_object("main.default_config")
+app.config.from_object("subrosa.default_config")
 app.config.from_pyfile("../subrosa.conf")
 if os.environ.get("SUBROSA_CONFIG"):
     # Get development config stored in ~/.configs/subrosa.py
@@ -60,13 +60,13 @@ app.config.update(
 
 cache = Cache(app)
 
-subrosa = Subrosa(app)
+s = Subrosa(app)
 
-settings = subrosa.get_settings()
+settings = s.get_settings()
 
-db = subrosa.get_db()
+db = s.get_db()
 
-from main.models.ConfigModel import ConfigModel
+from subrosa.models.ConfigModel import ConfigModel
 
 def get_config():
     """
@@ -105,13 +105,13 @@ def utility_processor():
                 current_path = request.url_root + request.path[1:],\
                 add_thumbnail_affix = add_thumbnail_affix)
 
-from main.views.create_views import CreateArticleView, CreateProjectView
-from main.views.edit_views import UpdateArticleView, UpdateProjectView
+from subrosa.views.create_views import CreateArticleView, CreateProjectView
+from subrosa.views.edit_views import UpdateArticleView, UpdateProjectView
 
 app.add_url_rule("/create-article/", view_func = CreateArticleView.as_view("create_article"))
 app.add_url_rule("/create-project/", view_func = CreateProjectView.as_view("create_project"))
 app.add_url_rule("/edit-article/<int:id>", view_func = UpdateArticleView.as_view("edit_article"))
 app.add_url_rule("/edit-project/<int:id>", view_func = UpdateProjectView.as_view("edit_project"))
 
-from main.views import main_views
-from main import misc
+from subrosa.views import main_views
+from subrosa import misc

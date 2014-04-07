@@ -7,7 +7,7 @@ import sys
 sys.path.append("..")
 
 
-from main.helpers import slugify, split_filename
+from subrosa.helpers import slugify, split_filename
 
 import unittest
 

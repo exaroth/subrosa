@@ -5,8 +5,8 @@ import sys
 sys.path.append("..")
 
 import unittest
-from main.models.UsersModel import Users
-from main.models.ArticlesModel import Articles, Categories, ArticleCategories
+from subrosa.models.UsersModel import Users
+from subrosa.models.ArticlesModel import Articles, Categories, ArticleCategories
 from playhouse.test_utils import test_database
 from peewee import *
 

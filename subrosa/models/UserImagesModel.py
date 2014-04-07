@@ -15,10 +15,10 @@
 import datetime
 from peewee import *
 
-from main.models.BaseModel import BaseModel
-from main.models.UsersModel import Users
-from main.helpers import handle_errors
-from main import db
+from subrosa.models.BaseModel import BaseModel
+from subrosa.models.UsersModel import Users
+from subrosa.helpers import handle_errors
+from subrosa import db
 
 
 class UserImages(BaseModel):

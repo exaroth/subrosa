@@ -17,10 +17,10 @@ from __future__ import absolute_import
 from peewee import *
 import datetime
 
-from main import db
-from main.helpers import handle_errors, slugify
-from main.models.BaseModel import BaseModel
-from main.models.UsersModel import Users
+from subrosa import db
+from subrosa.helpers import handle_errors, slugify
+from subrosa.models.BaseModel import BaseModel
+from subrosa.models.UsersModel import Users
 
 
 

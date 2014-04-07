@@ -1,6 +1,6 @@
 import unittest
-from main.models.UsersModel import Users
-from main.models.UserProjectsModel import UserProjects
+from subrosa.models.UsersModel import Users
+from subrosa.models.UserProjectsModel import UserProjects
 from playhouse.test_utils import test_database
 from peewee import *
 

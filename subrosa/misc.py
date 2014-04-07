@@ -1,5 +1,5 @@
 
-from main import app, settings, db
+from subrosa import app, settings, db
 from flask import request, render_template, g
 from .helpers import redirect_url
 

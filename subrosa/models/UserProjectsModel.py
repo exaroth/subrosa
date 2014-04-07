@@ -11,12 +11,12 @@
 
 
 """
-from main.models.UsersModel import Users
-from main.models.BaseModel import BaseModel
-from main import db
+from subrosa.models.UsersModel import Users
+from subrosa.models.BaseModel import BaseModel
+from subrosa import db
 from peewee import *
 from datetime import datetime
-from main.helpers import handle_errors
+from subrosa.helpers import handle_errors
 
 
 class UserProjects(BaseModel):

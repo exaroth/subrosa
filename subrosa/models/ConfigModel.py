@@ -2,9 +2,9 @@
 
 from peewee import *
 
-from main import db
-from main.models.BaseModel import BaseModel
-from main.helpers import handle_errors
+from subrosa import db
+from subrosa.models.BaseModel import BaseModel
+from subrosa.helpers import handle_errors
 
 
 class ConfigModel(BaseModel):

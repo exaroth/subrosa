@@ -15,8 +15,8 @@
 
 from flask.views import MethodView
 from flask import render_template, request
-from main.decorators import login_required
-from main import cache, app
+from subrosa.decorators import login_required
+from subrosa import cache, app
 import re
 
 class BaseView(MethodView):

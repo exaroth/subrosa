@@ -15,12 +15,12 @@ from __future__ import print_function
 
 
 from flask import render_template, request, session, url_for, redirect, flash
-from main import app, cache
-from main.models.UsersModel import Users
-from main.models.ArticlesModel import Articles, Categories
-from main.models.UserProjectsModel import UserProjects
-from main.helpers import logger
-from main.views.base_views import ScratchpadView, ArticleView
+from subrosa import app, cache
+from subrosa.models.UsersModel import Users
+from subrosa.models.ArticlesModel import Articles, Categories
+from subrosa.models.UserProjectsModel import UserProjects
+from subrosa.helpers import logger
+from subrosa.views.base_views import ScratchpadView, ArticleView
 
 
 

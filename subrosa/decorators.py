@@ -12,7 +12,7 @@
 """
 
 from flask import request, url_for, session, redirect
-from main import app
+from subrosa import app
 from functools import wraps
 
 

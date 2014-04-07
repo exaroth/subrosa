@@ -15,10 +15,10 @@
 from __future__ import absolute_import
 
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
-from main.filters import timesince
-from main.helpers import generate_csrf_token
-from main.markdown_ext import Markdown
-from main.helpers import logger
+from subrosa.filters import timesince
+from subrosa.helpers import generate_csrf_token
+from subrosa.markdown_ext import Markdown
+from subrosa.helpers import logger
 import logging
 import os, sys
 from six.moves.urllib import parse
@@ -64,7 +64,7 @@ class Subrosa(object):
                  extensions = [ "fenced_code",\
                                "codehilite",\
                                "headerid",\
-                               "main.md_extensions.extended_images" ])
+                               "subrosa.md_extensions.extended_images" ])
 
         app.jinja_env.globals['csrf_token'] = generate_csrf_token
         app.jinja_env.filters['timesince'] = timesince

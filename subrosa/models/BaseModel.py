@@ -16,7 +16,7 @@ import os, sys
 
 
 from peewee import *
-from main import db
+from subrosa import db
 
 class BaseModel(Model):
 

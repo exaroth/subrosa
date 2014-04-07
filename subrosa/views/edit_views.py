@@ -13,12 +13,12 @@
 """
 
 from flask import render_template, request, session, url_for, redirect, flash, abort
-from main import app, cache
-from main.models.UsersModel import Users
-from main.models.ArticlesModel import Articles
-from main.models.UserProjectsModel import UserProjects
-from main.helpers import logger
-from main.views.base_views import ScratchpadView, ArticleView
+from subrosa import app, cache
+from subrosa.models.UsersModel import Users
+from subrosa.models.ArticlesModel import Articles
+from subrosa.models.UserProjectsModel import UserProjects
+from subrosa.helpers import logger
+from subrosa.views.base_views import ScratchpadView, ArticleView
 
 
 class UpdateView(ScratchpadView):

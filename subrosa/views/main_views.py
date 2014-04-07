@@ -27,16 +27,16 @@ from werkzeug import secure_filename
 from werkzeug.contrib.cache import SimpleCache
 from werkzeug.contrib.atom import AtomFeed
 from jinja2 import evalcontextfilter, Markup
-from main import app, db, cache, get_config, settings
-from main.imgur import ImgurHandler
-from main.pagination import Pagination
-from main.decorators import login_required
-from main.helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix, id_generator
-from main.models.ArticlesModel import Articles
-from main.models.UserImagesModel import UserImages
-from main.models.UsersModel import Users
-from main.models.UserProjectsModel import UserProjects
-from main.models.ConfigModel import ConfigModel
+from subrosa import app, db, cache, get_config, settings
+from subrosa.imgur import ImgurHandler
+from subrosa.pagination import Pagination
+from subrosa.decorators import login_required
+from subrosa.helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix, id_generator
+from subrosa.models.ArticlesModel import Articles
+from subrosa.models.UserImagesModel import UserImages
+from subrosa.models.UsersModel import Users
+from subrosa.models.UserProjectsModel import UserProjects
+from subrosa.models.ConfigModel import ConfigModel
 
 
 

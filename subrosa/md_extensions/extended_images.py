@@ -19,7 +19,7 @@
 import markdown
 from markdown.inlinepatterns import IMAGE_LINK_RE, IMAGE_REFERENCE_RE
 from markdown.treeprocessors import Treeprocessor
-from main.helpers import logger
+from subrosa.helpers import logger
 
 
 class ExtendedImagesExtension(markdown.Extension):
