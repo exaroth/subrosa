@@ -20,7 +20,7 @@ do
             shift
             ;;
         --dev)
-            pip install -r requirements/dev.txt
+            pip install -r subrosa/requirements/dev.txt
             shift; shift
             ;;
         --help) ## list help options
@@ -37,6 +37,6 @@ do
     esac
 done
 
-pip install -r requirements/common.txt
+pip install -r subrosa/requirements/common.txt
            
 
