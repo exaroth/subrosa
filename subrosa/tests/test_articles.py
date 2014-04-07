@@ -121,18 +121,13 @@ class TestArticlesMethods(unittest.TestCase):
             Users.create_user(username = "konrad", password = "test")
             user1 = Users.select().get()
 
-            article1 = Articles.create_article(title = "test article1", body = "test", draft = True, author = user1)
-            article2 = Articles.create_article(title = "test article2", body = "test", draft = True, author = user1)
-            article3 = Articles.create_article(title = "test article3", body = "test", draft = True, author = user1)
-            article4 = Articles.create_article(title = "test article4", body = "test", draft = True, author = user1)
-            article5 = Articles.create_article(title = "test article5", body = "test", draft = True, author = user1)
-            article6 = Articles.create_article(title = "test article6", body = "test", draft = True, author = user1)
-            article7 = Articles.create_article(title = "test article7", body = "test", draft = True, author = user1)
 
-            category1 = Categories.create(name = "test1")
-            category2 = Categories.create(name = "test2")
-            category3 = Categories.create(name = "test3")
-            category4 = Categories.create(name = "test4")
+            for x in range(1, 8):
+                globals()["article" + str(x)] = Articles.create_article(title = "test article" + str(x), body = "test", draft = True, author = user1)
+
+            for y in range(1, 5):
+                globals()["category" + str(y)] = Categories.create(name = "test" + str(y))
+
 
             ArticleCategories.create(article = article1, category = category1)
             ArticleCategories.create(article = article1, category = category2)
