@@ -94,8 +94,7 @@ def get_config():
                 cache.set("configuration", config)
                 return config
             except Exception as exc:
-                raise Exception("Error when creating config file...
-                                aborting\n Error: {0}".format(exc))
+                raise Exception("Error when creating config file. Aborting\n Error: {0}".format(exc))
     return c
 
 

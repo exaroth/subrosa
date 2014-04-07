@@ -198,7 +198,6 @@ def about():
                    body=about_info,
                    title_placeholder=None,
                    body_placeholder="Enter about page content...")
-
     if request.method == "POST":
         new_info = request.form.get("body").strip()
 
@@ -450,7 +449,6 @@ def gallerify(id):
 def configure():
     imgur_id = request.form.get('imgur', None).encode('utf-8')
     disqus = request.form.get('disqus', None).encode('utf-8')
-
     github = request.form.get('github', None).strip().encode('utf-8')
     facebook = request.form.get('facebook', None).strip().encode('utf-8')
     twitter = request.form.get('twitter', None).strip().encode('utf-8')

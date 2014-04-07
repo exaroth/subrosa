@@ -1,9 +1,9 @@
 ﻿# -*- coding: utf-8 -*-
 """
 
-    main.models.UsersModel
+    subrosa.models.UsersModel
     ======================
-    
+
     Implements model and methods related to user interaction
 
     :copyright: (c) 2014 by Konrad Wasowicz
@@ -12,10 +12,8 @@
 
 """
 
-import os, sys
 import datetime
 from peewee import *
-
 from subrosa import db
 from subrosa.models.BaseModel import BaseModel
 from subrosa.helpers import handle_errors
@@ -25,15 +23,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class Users(BaseModel):
 
     """
-    Models and methods related to user database interaction 
+    Models and methods related to user database interaction
     """
 
-    username = CharField( max_length = 40, unique = True, index = True )
+    username = CharField(max_length=40, unique=True, index=True)
     hash = CharField()
-    real_name = CharField(max_length = 40, null = True )
-    description = TextField(null = True)
-    about = TextField(null = True)
-
+    real_name = CharField(max_length=40, null=True)
+    description = TextField(null=True)
+    about = TextField(null=True)
 
     @staticmethod
     def check_any_exist():
@@ -46,8 +43,8 @@ class Users(BaseModel):
         """ Check if user with given username already exists """
 
         return Users.select()\
-                .where(Users.username == username)\
-                .exists()
+               .where(Users.username == username)\
+               .exists()
 
     @staticmethod
     def get_user(id):
@@ -61,18 +58,17 @@ class Users(BaseModel):
 
         return Users.get_single("username", username)
 
-
     @staticmethod
     @db.commit_on_success
-    def create_user(username, password, description = None, real_name = None):
+    def create_user(username, password, description=None, real_name=None):
 
         """ Create new user """
 
         try:
-            return Users.create(username = username,\
-                                hash = generate_password_hash(password),\
-                                description = description,\
-                                real_name = real_name).get_id()
+            return Users.create(username=username,
+                                hash=generate_password_hash(password),
+                                description=description,
+                                real_name=real_name).get_id()
 
         except:
             handle_errors("Error creating user")

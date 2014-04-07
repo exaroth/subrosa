@@ -15,19 +15,19 @@ class ConfigModel(BaseModel):
     """
 
 
-    twitter          = TextField(null = True, default = "") # twitter address
-    facebook         = TextField(null = True, default = "") # facebook address
-    github           = TextField(null = True, default = "") # github address
-    google_plus      = TextField(null = True, default = "") # g+ adress
-    email            = TextField(null = True, default = "") # email address
-    imgur_id         = TextField(null = True, default = "") # imgur user_id
-    disqus           = TextField(null = True, default = "") # disqus site_shortname
-    title            = TextField(null = True, default = "") # site title
+    twitter = TextField(null = True, default = "") # twitter address
+    facebook = TextField(null = True, default = "") # facebook address
+    github  = TextField(null = True, default = "") # github address
+    google_plus = TextField(null = True, default = "") # g+ adress
+    email = TextField(null = True, default = "") # email address
+    imgur_id = TextField(null = True, default = "") # imgur user_id
+    disqus = TextField(null = True, default = "") # disqus site_shortname
+    title  = TextField(null = True, default = "") # site title
     twitter_username = TextField(null = True, default = "") 
-    gallery     = BooleanField(default = False) # show gallery
-    projects    = BooleanField(default = False) # show projects
-    about       = BooleanField(default = False) # show about page
-    show_info   = BooleanField(default = False) # show user info
+    gallery = BooleanField(default = False) # show gallery
+    projects = BooleanField(default = False) # show projects
+    about = BooleanField(default = False) # show about page
+    show_info = BooleanField(default = False) # show user info
 
     def save_settings(self, **kwargs):
 

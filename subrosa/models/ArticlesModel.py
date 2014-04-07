@@ -3,7 +3,7 @@
 
     main.models.ArticlesModel
     ============
-    
+
     Implements model and methods related to subrosa articles
 
     :copyright: (c) 2014 by Konrad Wasowicz
@@ -13,16 +13,12 @@
 """
 
 from __future__ import absolute_import
-
 from peewee import *
 import datetime
-
 from subrosa import db
 from subrosa.helpers import handle_errors, slugify
 from subrosa.models.BaseModel import BaseModel
 from subrosa.models.UsersModel import Users
-
-
 
 
 class Articles(BaseModel):
@@ -31,22 +27,20 @@ class Articles(BaseModel):
     Models and methods related to articles
     """
 
-    title = TextField(unique = True)
-    slug = TextField(unique = True, index = True)
-    draft = BooleanField(default = True)
-    series = TextField(null = True, default = None)
-    date_created = DateTimeField(default = datetime.datetime.utcnow())
-    date_updated = DateTimeField(default = datetime.datetime.utcnow())
-    article_image = TextField(null = True, default = None)
-    article_thumbnail = TextField(null = True, default = None)
+    title = TextField(unique=True)
+    slug = TextField(unique=True, index=True)
+    draft = BooleanField(default=True)
+    series = TextField(null=True, default=None)
+    date_created = DateTimeField(default=datetime.datetime.utcnow())
+    date_updated = DateTimeField(default=datetime.datetime.utcnow())
+    article_image = TextField(null=True, default=None)
+    article_thumbnail = TextField(null=True, default=None)
     body = TextField()
-    author = ForeignKeyField(Users, related_name = "article")
-
+    author = ForeignKeyField(Users, related_name="article")
 
     @staticmethod
     def get_article(id):
         return Articles.get_single("id", id)
-
 
     @staticmethod
     def get_article_by_slug(slug):
@@ -55,19 +49,22 @@ class Articles(BaseModel):
         return Articles.get_single("slug", slug)
 
     @staticmethod
-    def get_count(drafts = False):
+    def get_count(drafts=False):
+
         """
-        Return number of articles 
+        Return number of articles
         Arguments:
             :drafts (bool) - if True includes drafts in result
         """
+
         q = Articles.select()
         if drafts:
             return q.count()
-        return q.where(Articles.draft == False).count()
-    
+        return q.where(Articles.draft is False).count()
+
     @staticmethod
     def get_index_articles(page, per_page):
+
         """
         Returns paginated articles for the index page
         Arguments:
@@ -93,18 +90,19 @@ class Articles(BaseModel):
         """
 
         try:
-            return Articles.select()\
-                    .join(Users)\
-                    .where(Users.username == username)
+            return Articles.\
+                   select().\
+                   join(Users).\
+                   where(Users.username == username)
 
         except:
             handle_errors("Error getting articles")
 
     @staticmethod
-    def check_exists(title, id = False):
+    def check_exists(title, id=False):
 
         """
-        Check if article exists, if id is given checks if title 
+        Check if article exists, if id is given checks if title
         of article has different id (for updating articles)
         Arguments:
             :title - title of the article
@@ -112,10 +110,10 @@ class Articles(BaseModel):
         """
 
         try:
-           q =  Articles.select().where((Articles.title == title))
-           if not id:
-               return q.get()
-           return q.where(Articles.id != id).get()
+            q = Articles.select().where((Articles.title == title))
+            if not id:
+                return q.get()
+            return q.where(Articles.id != id).get()
         except:
             return False
 
@@ -123,37 +121,32 @@ class Articles(BaseModel):
         """ Return all articles belonging to series"""
         if not self.series.strip():
             return 0
-
-        q = Articles.select().where(Articles.series == self.series)     
+        q = Articles.select().where(Articles.series == self.series)
         if not q.count():
             return 0
-        return q     
+        return q
 
     def get_article_categories(self):
 
-        """
-        Returns all articles' categories
-        """
-        
+        """ Returns all articles' categories """
+
         return Categories.select()\
-                .join(ArticleCategories)\
-                .where(ArticleCategories.article == self)\
-                .group_by(Categories)
+               .join(ArticleCategories)\
+               .where(ArticleCategories.article == self)\
+               .group_by(Categories)
 
-    
-    def save_article_categories(self, category_names, update = False):
+    def save_article_categories(self, category_names, update=False):
 
         """
-
-        Create Categories and ArticleCategories table if 
+        Create Categories and ArticleCategories table if
         category doesn\'t exist or article doesn\'t have the category yet
         Arguments:
-            : category_names (list/tuple) - iterable containing categories' names
-            : update (bool) - if True performs a check whether user has deleted any categories
-                             
+            : category_names (list/tuple) - iterable containing
+            categories' names
+            : update (bool) - if True performs a check whether
+            user has deleted any categories
         """
 
-        
         if not category_names:
             return
 
@@ -162,31 +155,31 @@ class Articles(BaseModel):
             own_categories = self.get_article_categories().iterator()
 
             for name in new_categories:
-                if not Categories.select().where(Categories.name == name).exists():
-                    cat = Categories.create(name = name)
-                    ArticleCategories.create(article = self, category = cat)
+                if not Categories.select()\
+                   .where(Categories.name == name).exists():
+                    cat = Categories.create(name=name)
+                    ArticleCategories.create(article=self, category=cat)
 
             existing_categories = set([field.name for field in own_categories])
             to_add = list(new_categories.difference(existing_categories))
             for name in to_add:
                 cat = Categories.select().where(Categories.name == name).get()
-                ArticleCategories.create(article = self, category = cat)
+                ArticleCategories.create(article=self, category=cat)
             if update:
                 q = list(existing_categories.difference(new_categories))
                 if q:
                     to_remove = Categories.select().where(Categories.name << q)
-                    delete_query = ArticleCategories.delete()\
+                    delete_query = ArticleCategories\
+                                   .delete()\
                                    .where((ArticleCategories.article == self)\
-                                   & (ArticleCategories.category << to_remove)) 
+                                           & (ArticleCategories.category << to_remove))
                     delete_query.execute()
-
         except Exception as e:
             handle_errors("error saving article categories")
             raise e
 
+    def get_similar_articles(self, common_categories=1, limit=3):
 
-
-    def get_similar_articles(self, common_categories = 1, limit = 3):
         """
         Get 3 similar articles based on tag used,
         minimum 1 common tag is required
@@ -194,23 +187,23 @@ class Articles(BaseModel):
             :common_categories (int) - minimum number of common categories
             :limit (int) - number of articles to be returned
         """
-        art = (ArticleCategories.select(ArticleCategories.category)\
-               .join(Articles)\
+
+        art = (ArticleCategories.select(ArticleCategories.category)
+               .join(Articles)
                .where(ArticleCategories.article == self))
 
         return Articles.select()\
                .join(ArticleCategories, JOIN_LEFT_OUTER)\
                .where((ArticleCategories.article != self) & ArticleCategories.category << art)\
                .group_by(Articles)\
-               .having(fn.Count(ArticleCategories.id ) >= common_categories)\
+               .having(fn.Count(ArticleCategories.id) >= common_categories)\
                .order_by(fn.Count(Articles.id).desc())\
                .limit(limit)
-        
 
     @staticmethod
     @db.commit_on_success
-    def create_article(title, body, author, draft = True, **kwargs):
-        
+    def create_article(title, body, author, draft=True, **kwargs):
+
         """
         Creates new article
         Returns instance of the created article
@@ -228,29 +221,27 @@ class Articles(BaseModel):
             :article_thumbnail (string) - url for articles thumbnail
         """
 
-
         if len(title) > 255:
             raise ValueError("Title must be at most 255 characters")
         try:
-            series = kwargs.get("series", None)        
+            series = kwargs.get("series", None)
             article_image = kwargs.get("article_image", None)
             article_thumbnail = kwargs.get("article_thumbnail", None)
-            article =  Articles.create(title = title,\
-                            slug = slugify(title),\
-                            body = body,\
-                            author = author,\
-                            draft = draft,\
-                            series = series,\
-                            article_image = article_image,\
-                            article_thumbnail = article_thumbnail
-                            )
+            article = Articles.create(title=title,
+                                      slug=slugify(title),
+                                      body=body,
+                                      author=author,
+                                      draft=draft,
+                                      series=series,
+                                      article_image=article_image,
+                                      article_thumbnail=article_thumbnail)
             article_categories = kwargs.get("categories", None)
             if article_categories:
                 try:
                     article.save_article_categories(article_categories)
                 except:
                     raise
-            return article        
+            return article
         except Exception as e:
             handle_errors("Error creating article")
             raise
@@ -258,6 +249,7 @@ class Articles(BaseModel):
     @staticmethod
     @db.commit_on_success
     def update_article(article, title, body, **kwargs):
+
         """
         Updates an article
         Arguments:
@@ -273,10 +265,9 @@ class Articles(BaseModel):
         """
 
         try:
-            series = kwargs.get("series", None)        
+            series = kwargs.get("series", None)
             article_image = kwargs.get("article_image")
             article_thumbnail = kwargs.get("article_thumbnail")
-
             article.title = title
             article.body = body
             article.date_updated = datetime.datetime.utcnow()
@@ -291,12 +282,12 @@ class Articles(BaseModel):
             handle_errors("Error updating article")
             raise
 
-    def get_previous_article(self, draft = False):
+    def get_previous_article(self, draft=False):
 
         """
         Return previous article or 0 if doesn't exist
         Arguments:
-            :draft (bool)(default: False) - whether to include drafts 
+            :draft (bool)(default: False) - whether to include drafts
         """
 
         try:
@@ -308,12 +299,12 @@ class Articles(BaseModel):
         except:
             return 0
 
-    def get_next_article(self, draft = False):
+    def get_next_article(self, draft=False):
 
         """
         Return next article or 0 if doesn't exist
         Arguments:
-            :draft (bool)(default: False) - whether to include drafts 
+            :draft (bool)(default: False) - whether to include drafts
         """
 
         try:
@@ -324,7 +315,6 @@ class Articles(BaseModel):
                    .get()
         except:
             return 0
-
 
     @db.commit_on_success
     def publish_article(self):
@@ -346,20 +336,17 @@ class Articles(BaseModel):
         except Exception as e:
             handle_errors("Error deleting article")
             raise
-            
 
     def __repr__(self):
-
         return "<Article: {0}>".format(self.title)
 
     class Meta:
         order_by = ("-id",)
 
 
-
 class Categories(BaseModel):
 
-    name = CharField(unique = True)
+    name = CharField(unique=True)
 
     def __repr__(self):
         return "<Category: {0}>".format(self.name)
@@ -367,8 +354,14 @@ class Categories(BaseModel):
 
 class ArticleCategories(BaseModel):
 
-    article = ForeignKeyField(Articles, on_delete="CASCADE", on_update="CASCADE", related_name = "articles")
-    category = ForeignKeyField(Categories, on_delete="CASCADE", on_update="CASCADE", related_name = "tags")
+    article = ForeignKeyField(Articles,
+                              on_delete="CASCADE",
+                              on_update="CASCADE",
+                              related_name="articles")
+    category = ForeignKeyField(Categories,
+                               on_delete="CASCADE",
+                               on_update="CASCADE",
+                               related_name="tags")
 
     def __repr__(self):
         return "<Article - {0} : Category - {1}>".format(self.article, self.category)
