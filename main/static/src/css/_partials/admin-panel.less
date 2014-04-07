@@ -4,7 +4,6 @@
 .admin-menu,
 .admin-pic,
 .menu-item {
-    text-align: center;
     height: 40px;
     background-color: rgba(0,0,0,0.3);
     @media screen and (max-width: @sm){
@@ -15,20 +14,8 @@
 .admin-write,
 .admin-pic {
     width: 40px;
-    font-size: 2em;
     position: relative;
     i {
-        display: block;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 50%;
-        .translateY(-50%);
-        color: @black-20 !important;
-        .transition(all, 0.1s ease-in);
-        &:hover {
-            color: #fff !important;
-        }
     }
     @media screen and (max-width: @sm){
         width: 50px;
@@ -56,13 +43,7 @@
     .admin-subrosa {
         float: left;
         position: relative;
-        background-color: rgba(73,155,234,1);
-        background-color: darken(@cerulean, 10%);
-        z-index: 1001;
         a {
-            &:hover {
-                opacity: 0.9;
-            }
         }
         i {
             color: white !important;

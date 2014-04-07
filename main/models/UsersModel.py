@@ -32,6 +32,34 @@ class Users(BaseModel):
     hash = CharField()
     real_name = CharField(max_length = 40, null = True )
     description = TextField(null = True)
+    about = TextField(null = True)
+
+
+    @staticmethod
+    def check_any_exist():
+        """ Check if any users exist """
+        return Users.get_count() > 0
+
+    @staticmethod
+    def check_exists(username):
+
+        """ Check if user with given username already exists """
+
+        return Users.select()\
+                .where(Users.username == username)\
+                .exists()
+
+    @staticmethod
+    def get_user(id):
+        """ Get user by id """
+        return Users.get_single("id", id)
+
+    @staticmethod
+    def get_user_by_username(username):
+
+        """ Get user by his username , returns 0 if not exists """
+
+        return Users.get_single("username", username)
 
 
     @staticmethod
@@ -49,37 +77,6 @@ class Users(BaseModel):
         except:
             handle_errors("Error creating user")
             raise
-
-    @staticmethod
-    def check_any_exist():
-
-        return len(list(Users.select())) > 0
-
-    @staticmethod
-    def check_exists(username):
-
-        """ Check if user with given username or email already exists """
-
-        return Users.select()\
-                .where(Users.username == username)\
-                .exists()
-
-    @staticmethod
-    def get_user(id):
-        try:
-            return Users.select().where(Users.id == id).get()
-        except:
-            return 0
-
-    @staticmethod
-    def get_user_by_username(username):
-
-        """ Get user by his username , returns 0 if not exists """
-
-        try:
-            return Users.select().where(Users.username == username).get()
-        except:
-            return 0
 
     def check_password(self, password):
 

@@ -3,7 +3,7 @@
 {% block titlebar %}
 
 {% with header_context="PROJECTS" %}
-{% include 'header.html' %}
+{% include '_partials/header.html' %}
 {% endwith %}
 {% endblock %}
 
@@ -17,16 +17,13 @@
 			<div class="project-title"><h1 class="text-center">{{ project.title }}</h1></div>
 			<div class="project-timesince"><h5 class="text-center">{{ project.date_created.strftime("%d %B %Y")}}</h5></div>
 			<div class="project-body basic-typography">{{ project.body | markdown }}</div>
-			
 		</article>
-<!-- 		{% if not loop.last %}
-		<hr>
-		{% endif %}
- -->		{% endfor %}
+	{% endfor %}
 	</div>
 	{% else %}
-	<div class="vert-centered hor-centered">
-	<h4 class="text-center">No projects added yet</h4>
+	<div class=" empty-container vert-centered hor-centered ">
+	<img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/subrosa.jpg')}}" alt="">
+	<h4>No projects added yet</h4>
 		
 	</div>
 		
@@ -35,5 +32,5 @@
 
 {% endblock %}
 {% block footer %}
-{% include 'footer.html' %}
+{% include '_partials/footer.html' %}
 {% endblock %}

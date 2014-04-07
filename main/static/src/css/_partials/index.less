@@ -2,12 +2,20 @@
 
 // Styles related to index
 .index-wrapper {
-	overflow: auto;
 	padding-left: 0;
-	margin-bottom: 48px;
-	overflow-x: hidden;
+	margin-bottom: 140px;
+	position: relative;
 	@media screen and (max-width: @md){
 		padding: 1%;
+	}
+}
+
+.article-list {
+	font-family: @body-font;
+	position: relative;
+	@media screen and (max-width: @md){
+		margin: 0;
+		float: none;
 	}
 }
 
@@ -65,17 +73,6 @@
 	padding: 0 0 2em 4em;
 	@media screen and (max-width: @md){
 		display: none;
-	}
-}
-
-.article-list {
-	font-family: @body-font;
-	position: relative;
-	min-height: 70vh;
-	@media screen and (max-width: @md){
-		margin: 0;
-		float: none;
-		overflow-x: hidden;
 	}
 }
 
@@ -141,7 +138,7 @@
 	width: 100px;
 	height: 100px;
 	float: left;
-	.background-size(auto, 100%);
+	.background-size(cover);
 	background-posiiton: center center;
 	background-repeat: no-repeat;
 	.border-radius(50%);
@@ -209,3 +206,20 @@
 	margin-top: 10px;
 }
 
+.article-comments-count {
+	display: table;
+}
+
+.article-comments-count:before {
+	content: '\e80a';
+	font-family: 'fontello';
+	opacity: 0.8;
+	left: -48px;
+	margin-right: 12px;
+}
+
+#index-empty-container {
+	position: absolute;
+	left: 50%;
+	.translateX(-50%);
+}

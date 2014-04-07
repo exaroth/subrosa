@@ -3,7 +3,6 @@
 
 $(document).ready(function(){
 
-    var panelVisible;
 
     // Variables
 
@@ -24,11 +23,10 @@ $(document).ready(function(){
     $indexWrapper        = $(".index-wrapper"),
     $editingButtons      = $(".editing-button"),
     $gallery             = $(".gallery-wrapper"),
+    $dashboardArea       = $(".dashboard-area"),
     $lamp                = $(".lamp-button"),
     $imageLinks          = $(".show-img"),
-    $adminPanel          = $(".admin-panel"),
     $smallImgInput       = $("#article-image-small"),
-    $adminToggle         = $adminPanel.find(".admin-subrosa a"),
     // base thumbnail size for gallery
     thumbSize            = 200,
     // variable referring to whether editing window is darkened
@@ -38,14 +36,12 @@ $(document).ready(function(){
     articleBodyLight     = "#666",
     articleTitleDark     = "#b7b7b7",
     articleBodyDark      = "#848383",
-    adminPanelVisible    = true,
     wWidth               = null,
     wHeight              = null,
     fadeoutIntVal        = null,
     fadeout              = false,
     // width of window where most responsive events are occuring
     majorBreakpoint      = 740,
-    adminPanelWidthSmall = 240,
     tocTemplate = "\
       <div class='toc'>\
         <div class='toc-header'><h3>Table of Contents</h3></div>\
@@ -65,20 +61,7 @@ $(document).ready(function(){
         wWidth  = $window.width();
         wHeight = $window.height();
 
-        panelVisible = getToggleState();
-        if (panelVisible == null){
-            panelVisible = 1;
-        };
-
-        if (panelVisible == 0){
-
-            $adminPanel.find('.hideable')
-            .hide()
-            .end()
-            .css('width', '20px').show()
-        } else {
-            $adminPanel.show()
-        }
+        // setDashboardBackground('#6a6a6e');
 
         $updateArticleButton.click(function(e){
             e.preventDefault();
@@ -95,6 +78,7 @@ $(document).ready(function(){
             $("#article-image-small-hidden").val($("#article-image-small").val());
             $createForm.submit();
         });
+
         $("img.lazy").unveil(200, function(){
             $(this).load(function(){
                 $(this).positionArticleImage();
@@ -117,7 +101,6 @@ $(document).ready(function(){
             $(".loading").fadeIn(200);
         });
 
-        positionFooter();
 
 
         $imageLinks.magnificPopup({
@@ -151,8 +134,9 @@ $(document).ready(function(){
         });
 
         // Prevent double clicks
-        $("a, button").one("click", function() {
-            $(this).click(function () { $(this).disabled = true; return false; });
+        $("a, button").one("dblclick", function(e) {
+            e.preventDefault();
+
         });
 
     };
@@ -191,6 +175,7 @@ $(document).ready(function(){
             }, 1000)
 
         };
+        
         $gallery.nested({
             selector : '.gallery-image',
             minWidth : 200,
@@ -231,10 +216,6 @@ $(document).ready(function(){
             midClick: true,
             type: 'inline'
         });
-        $adminToggle.click(function(e){
-            e.preventDefault();
-            toggleAdminPanel();
-        });
         $('[data-toggle="confirmation"]').confirmation({
             popout: true,
             singleton: true,
@@ -245,21 +226,6 @@ $(document).ready(function(){
             btnCancelLabel: '<i class="icon-cancel"></i>No'
         });
         $("#link-fields").change(toggleSelectables);
-
-    };
-
-    function getToggleState(){
-
-        // Get menu state from local storage
-
-        return localStorage.getItem('adminPanelVisible')
-    };
-
-    function setToggleState(state){
-
-        // Set menu state to local storage
-
-        localStorage.setItem('adminPanelVisible', state)
 
     };
 
@@ -281,7 +247,7 @@ $(document).ready(function(){
         .filter("[id=selectable-" + this.value + "]").show();
     };
 
-    // ========================================
+//========================================
 
     function dimLight(){
         if (!dark){
@@ -312,22 +278,6 @@ $(document).ready(function(){
      };
 
 
-     function positionFooter(){
-        // Sticky footer code
-        if($(document.body).height() < $(window).height()){
-            $('#footer').css({
-                position: 'absolute',
-                top:  ( $(window).scrollTop() + $(window).height()
-                  - $("#footer").height() ) + "px",
-                width: "100%"
-            });
-        } else {
-            $('#footer').css({
-                position: 'relative'
-            });
-        }   
-
-    };
 
     // Disable tab trigger in textarea
     function enableTab(el) {
@@ -415,37 +365,6 @@ $(document).ready(function(){
 
     };
 
-
-    function toggleAdminPanel(){
-
-        if  (wWidth > majorBreakpoint){
-            panelVisible = getToggleState();
-
-            if (panelVisible === null){
-                panelVisible = 1
-            };
-
-            if (panelVisible == 1){
-                $adminPanel
-                .find('.hideable')
-                .stop()
-                .hide()
-                .end()
-                .delay(200)
-                .css('width', 20);
-                setToggleState(0);
-            } else {
-                $adminPanel
-                .stop()
-                .css('width', adminPanelWidthSmall)
-                .find('.hideable')
-                .delay(100)
-                .show()
-                setToggleState(1);
-            }
-
-        }
-    };
     // Randomize Image width in gallery
 
     function processGalleryImages(galleryBody){
@@ -554,21 +473,14 @@ $window.load(function(){
 });
 
 $window.bind('resize scroll', function(){
-    positionFooter();
 });
 
 $window.resize(function(){
     wHeight = $window.height();
     wWidth = $window.width();
     matchIndexContents();
-    if(wWidth < majorBreakpoint){
-        $adminPanel.removeAttr('style').show().find('.hideable').show();
-        setToggleState(1);
-    }
-
 });
 
-$window.scroll(positionFooter);
 
 });
 

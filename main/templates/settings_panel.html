@@ -1,5 +1,14 @@
+{% extends "layout.html" %}
 
-<div id="dashboard-panel" class="col-xs-10 col-xs-offset-1">
+{% block titlebar %}
+{% include "_partials/header.html" %}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div id="dashboard-settings-panel" class="col-md-4 col-md-offset-4">
 	<legend>Settings</legend>
 
 	<form action="{{ url_for('configure')}}" method="POST">
@@ -8,6 +17,11 @@
 
 		<div class="address-fields">
 
+			<div class="form-group">
+				<label for="site-title">Site title</label>
+				<input type="text" class="form-control " name="site-title" id="site-title" value="{{ settings.title  }}" placeholder="Site title" style="text-align: center;" />
+			</div>
+			<div class="form-group">
 			<select name="link-fields" id="link-fields" class="form-control">
 				<option value="1">Email<i class="icon-paper-plane"></i></option>
 				<option value="2">Github<i class="icon-paper-plane"></i></option>
@@ -15,8 +29,8 @@
 				<option value="4">Twitter<i class="icon-paper-plane"></i></option>
 				<option value="5">Google+<i class="icon-paper-plane"></i></option>
 			</select>
-
-
+				
+			</div>
 
 
  			<div class="form-group" id="selectable-1">
@@ -54,16 +68,14 @@
 		<hr>
 			<div class="form-group">
 				<div class="input-group">
-					<span class="input-group-addon" title="Imgur user_id" style="width: 80px;"><img src="{{url_for('static', filename='src/img/imgur.png')}}" alt="imgur" style="height: 16px;"></span>
-					<!-- <span class="input-group-addon" title="Imgur user_id" style="width: 80px;"><img src="{{url_for('static', filename='build/img/imgur.png')}}" alt="imgur" style="height: 16px;"></span> -->
+					<span class="input-group-addon" title="Imgur user_id" style="width: 80px;"><img src="{{url_for('static', filename = config.STATIC_ROOT + 'img/imgur.png' )}}" alt="imgur" style="height: 16px;"></span>
 					<input type="text" name="imgur" id="imgur" placeholder="Imgur client_id" class="form-control" value="{{ settings.imgur_id }}">
 				</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="input-group">
-				<span class="input-group-addon" title="Disqus site name" style="width: 60px"><img src="{{ url_for('static', filename = 'src/img/disqus.png')}}" alt="disqus" style="height: 10px;"></span>
-				<!-- <span class="input-group-addon" title="Disqus site name" style="width: 60px"><img src="{{ url_for('static', filename = 'build/img/disqus.png')}}" alt="disqus" style="height: 10px;"></span> -->
+				<span class="input-group-addon" title="Disqus site name" style="width: 60px"><img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/disqus.png')}}" alt="disqus" style="height: 10px;"></span>
 				<input type="text" name="disqus" id="disqus" placeholder="Disqus site shortname" class="form-control" value="{{ settings.disqus }}">
 			</div>
 		</div>
@@ -108,6 +120,16 @@
 				</div>
 			</div>
 			
+			<div class="dashboard-checkbox-field">
+				<label for=""><small>Show about page</small></label>
+				<div class="onoffswitch">
+					<input type="checkbox" name="show-about" class="onoffswitch-checkbox" id="myonoffswitch4" {{ 'checked' if settings.about }}>
+					<label class="onoffswitch-label" for="myonoffswitch4">
+						<div class="onoffswitch-inner"></div>
+						<div class="onoffswitch-switch"></div>
+					</label>
+				</div>
+			</div>
 		</div>
 
 		<div class="form-inline settings-panel-buttons" style="" >
@@ -117,3 +139,35 @@
 
 	</form>
 </div>
+
+{% endblock %}
+
+{% block modals %}
+<div id="user-info-panel" class="modal-window dismissable mfp-hide">
+		<legend>User Info</legend>
+		<form action="{{ url_for('set_info') }}" method="POST" role="form">
+		<div class="form-group">
+			<label for="real-name">Real Name</label>
+			<input type="text" class="form-control" placeholder="Not set" name="real-name" value="{{ user.real_name }}">
+
+		</div>
+		<div class="form-group">
+		<label for="description">User description</label>
+		<textarea name="description" class="form-control" rows="16" placeholder="Not set">{{ user.description }}</textarea>
+		</div>
+		<div class="form-group">
+			<input type="submit" value="Submit" class="btn btn-default">
+		</div>
+		</form>
+	</div>
+
+{% endblock %}
+
+
+	{% block sidebar %}
+
+	{% with dashboard_part="SETTINGS" %}
+	{% include '_partials/dashboard_sidebar.html' %}
+	{% endwith %}
+
+	{% endblock %}

@@ -5,23 +5,29 @@
     ===============
     
 
-    Implements views related to updating stuff
+    Implements views related to updating projects and articles
 
     :copyright: (c) 2014 by Konrad Wasowicz
     :license: MIT, see LICENSE for details.
 
 """
 
-from main.base_views import ScratchpadView, ArticleView
 from flask import render_template, request, session, url_for, redirect, flash, abort
 from main import app, cache
 from main.models.UsersModel import Users
 from main.models.ArticlesModel import Articles
 from main.models.UserProjectsModel import UserProjects
 from main.helpers import logger
+from main.views.base_views import ScratchpadView, ArticleView
 
 
 class UpdateView(ScratchpadView):
+
+    
+    """
+    Basic class implementing update
+    functionality for articles and projects
+    """
 
     def get_model(self):
         raise NotImplementedError()
@@ -88,7 +94,9 @@ class UpdateArticleView(ArticleView, UpdateView):
         return Articles.get_article(id)
 
     def get_context(self):
-        return dict(additional_controls = True)
+        return dict(additional_controls = True,
+                   title_placeholder = "Title of your article",
+                   body_placeholder = "and content here...")
 
     def create_method(self):
         return "update_article"
@@ -100,6 +108,10 @@ class UpdateProjectView(UpdateView):
 
     def get_object(self, id):
         return UserProjects.get_project(id)
+    def get_context(self):
+        return dict(additional_controls = False,
+                   title_placeholder = "Title of the project",
+                   body_placeholder = "and content here...")
 
     def create_method(self):
         return "update_project"

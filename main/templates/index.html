@@ -1,19 +1,26 @@
 {% extends "layout.html" %}
 
 {% block titlebar %}
-{% include "header.html" %}
+{% include "_partials/header.html" %}
 {% endblock %}
 
 {% block content %} 
 
+<!-- Show top image -->
+
 {% if images.bg %}
-<div class="top-image" style="background-image: url({{ url_for('send_image', filename = images.bg )}})"></div>
+	<div class="top-image" style="background-image: url({{ url_for('send_image', filename = images.bg )}})"></div>
 {% endif %}
+
+<!-- Top image end -->
+
 <div class="index-wrapper col-xs-12">
 
 
 	<div class="article-list col-md-offset-3 col-md-6 ">
+		
 
+		<!-- Show logo or title -->
 
 		<div id="index-header">
 			{% if images.logo %}
@@ -23,92 +30,108 @@
 			{% endif %}
 		</div>
 
-		<div style="position: relative">
-			{% if settings.show_info %}
+		<!-- End -->
 
-			<div class="article-sidebar">
+		<!-- Sidebar logic -->
 
-				<div class="user-info xs-hidden sm-hidden">
-					{% if images.portrait %}
-					<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = images.portrait ) }})"> </div>
-					{% endif %}
-					{% if user.real_name %}
-					<span class="real-name">{{ user.real_name }}</span>
-					{% endif %}
-					<div class="user-desc">
-						<p>{{ user.description }}</p>
+		{% if settings.show_info %}
+			<div style="position: relative">
+
+				<div class="article-sidebar">
+
+					<div class="user-info xs-hidden sm-hidden">
+						{% if images.portrait %}
+						<div class="portrait-holder" style="background-image: url({{ url_for('send_image', filename = images.portrait ) }})"> </div>
+						{% endif %}
+						{% if user.real_name %}
+						<span class="real-name">{{ user.real_name }}</span>
+						{% endif %}
+						<div class="user-desc">
+							<p>{{ user.description }}</p>
+						</div>
 					</div>
-				</div>
-				{% if settings.twitter_username %}
-				
-				<div>
-					<a href="https://twitter.com/{{ settings.twitter_username }}" data-show-screen-name="true" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="large">{{ settings.twitter_username }}</a>
-				</div>
-				{% endif %}
+					{% if settings.twitter_username %}
+						<div>
+							<a href="https://twitter.com/{{ settings.twitter_username }}" data-show-screen-name="true" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="large">{{ settings.twitter_username }}</a>
+						</div>
+					{% endif %}
+			</div>
 			</div>
 			{% endif %}
-			{% if articles_written %}
-			{% for article in articles %}
-			<article class="article-list-entry col-xs-12">
-				<div class="article-list-title ">
-					<a href="{{ url_for('article_view', slug = article.slug )}}" class="article-title-link"><h3 class="text-center">{{ article.title }}</h3></a>
-					<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
-					{% if settings.disqus %}
-					<a href="{{ url_for('article_view', slug = article.slug )}}#disqus_thread" class="article-comments-count" data-disqus-identifier="{{ article.slug }}">&nbsp;</a>
-					{% endif %}
-				</div>
-				<div class="article-list-body col-xs-12">
-					{% if article.article_thumbnail %}
-					<div class="article-list-thumbnail" style="background-image: url({{ article.article_thumbnail }}); float: left"></div>
-					{% endif %}
-					{% if article.header %}
-					{{ article.header }}
-					{% else %}
-					{{ article.body |truncate(200 + range(40)| random )|markdown }}
-					{% endif %}
-				</div>
 
-				{% if not loop.last %}
-				<h1 style="text-align: center">&hellip;</h1>
-				{% endif %}
-			</article>
+			<!-- End Sidebar logic -->
+
+
+		{% if articles_written %}
+
+			{% for article in articles %}
+
+			<!-- Single article logic -->
+
+				<article class="article-list-entry col-xs-12">
+					<div class="article-list-title ">
+						<a href="{{ url_for('article_view', slug = article.slug )}}" class="article-title-link"><h3 class="text-center">{{ article.title }}</h3></a>
+						<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
+						{% if settings.disqus %}
+						<a href="{{ url_for('article_view', slug = article.slug )}}#disqus_thread" class="article-comments-count" data-disqus-identifier="{{ article.slug }}">&nbsp;</a>
+						{% endif %}
+					</div>
+					<div class="article-list-body col-xs-12">
+						{% if article.article_thumbnail %}
+						<div class="article-list-thumbnail" style="background-image: url({{ article.article_thumbnail }}); float: left"></div>
+						{% endif %}
+						{{ article.body |truncate(200 + range(40)| random )|markdown }}
+					</div>
+
+					{% if not loop.last %}
+						<h1 style="text-align: center">&hellip;</h1>
+					{% endif %}
+				</article>
+
+				<!-- End Single Article -->
+
+
 			{% endfor %}
 
+			<!-- Pagination logic -->
+
 			{% if show_pagination %}
-			<div class="article-list-pagination col-md-6 col-md-offset-3">
+				<div class="article-list-pagination col-md-6 col-md-offset-3">
 
 
 				{% if pagination.has_prev %}
-				<a href="{{ url_for('index', page = pagination.page - 1)}}" style="width: 100px;" class="btn btn-default articles-pagination-btn" id="prev">Previous</a>
+					<a href="{{ url_for('index', page = pagination.page - 1)}}" style="width: 100px;" class="btn btn-default articles-pagination-btn" id="prev">Previous</a>
 				{% else %}
 
-				<a href="#" class="btn btn-default articles-pagination-btn" id="prev" style="width: 100px;" disabled>Previous</a>
+					<a href="#" class="btn btn-default articles-pagination-btn" id="prev" style="width: 100px;" disabled>Previous</a>
 
 				{% endif %}
 
 				{% if pagination.has_next %}
 
-				<a href="{{ url_for('index', page = pagination.page + 1)}}" id = "next" style="width:100px" class=" articles-pagination-btn btn btn-default">Next</a>
+					<a href="{{ url_for('index', page = pagination.page + 1)}}" id = "next" style="width:100px" class=" articles-pagination-btn btn btn-default">Next</a>
 				{% else %}
 
-				<a href="#" class="btn btn-default articles-pagination-btn" id = "next" style="width: 100px" disabled>Next</a>
+					<a href="#" class="btn btn-default articles-pagination-btn" id = "next" style="width: 100px" disabled>Next</a>
 				{% endif %}
 
 			</div>
 
 			{% endif %}
 
+			<!-- End pagination -->
+
 		</div>
 
+	{% else %}
 
+	<div class="empty-container" id="index-empty-container" style="margin-top: 100px;">
+		<img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/subrosa.jpg')}}" alt="">
+		<h4>No articles written yet</h4>
 	</div>
 
-
-	{% else %}
-	<h4 class="text-center text-muted" style="margin: 4em 0">No articles here yet, maybe write some cowboy...</h4>
-</div>
 {% endif %}
-
+</div>
 </div>
 
 {% if settings.twitter_username %}
@@ -134,5 +157,5 @@ var disqus_shortname = '{{ settings.disqus }}'; // required: replace example wit
 
 
 {% block footer %}
-{% include 'footer.html' %}
+{% include '_partials/footer.html' %}
 {% endblock %}

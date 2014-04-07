@@ -13,16 +13,17 @@
 
 """
 
-import json, base64
-import requests
+import base64
+import json
+from six.moves import urllib
 
 
 
 class ImgurHandler(object):
 
     """
-    Basic class for handling Imgur image upload
-    accepts header containing user_id variable
+    Basic class for handling Imgur image upload,
+    Accepts header containing user_id variable
     and dictionary containing request configuration
     """
 
@@ -73,16 +74,22 @@ class ImgurHandler(object):
                 )
 
         data.update(params)
-        return data
+        return urllib.parse.urlencode(data)
 
 
     def send_image(self, params = dict(), additional = dict()):
-        req = requests.post(self.get_api(),\
-                            data = self.build_send_request(params),\
-                            headers = self.add_authorization_header(additional))
-        return req.json()
+        req = urllib.request.Request(url = self.get_api(),\
+                              data = self.build_send_request(params),\
+                              headers = self.add_authorization_header()
+                             )
+        data = urllib.request.urlopen(req)
+        return json.loads(data.read())
 
     def delete_image(self, delete_hash):
-        req = requests.delete(self.get_api()+ "/" + delete_hash,\
+        opener = urllib.request.build_opener(urllib.request.HTTPHandler)
+        req = urllib.request.Request(url = self.get_api() + "/" + delete_hash,\
                               headers = self.add_authorization_header())
-        return req.json()
+        req.get_method = lambda: "DELETE"
+        data = urllib.request.urlopen(req)
+        return json.loads(data.read())
+

@@ -3,7 +3,7 @@
 
 
 
-v.0.2
+v.0.3
 
 
 [![Build Status](https://travis-ci.org/exaroth/subrosa.png?branch=master)](https://travis-ci.org/exaroth/subrosa)
@@ -55,7 +55,6 @@ Subrosa also implements simple way to integrate your gallery with Imgur. The adv
 
 The configuration file is named subrosa.conf and you can find it inside main folder of the repository, The only things to configure are:
 
-* SITE_TITLE -- Self explanatory
 * SECRET_KEY -- This can be anything you like as long as you change it, its used for encrypting passwords and other security related stuff.
 * DATABASE -- select database type you want to use with Subrosa, available types are sqlite, postgresql and mysql.
 * DATABASE_NAME -- name of the database to be used.NOTE: you have to create it yourself.
@@ -187,15 +186,13 @@ Subrosa uses gunicorn WSGI server, to start it run :
 ```
 from root Subrosa directory.
 
-**Important** If you're using Python3, there's a known bug preventing gunicorn from loading config file, please consider runnning gunicorn through command line instead ( see [http://gunicorn-docs.readthedocs.org/en/latest/settings.html](http://gunicorn-docs.readthedocs.org/en/latest/settings.html) for details about available options )
+For more advanced usage of gunicorn aswell as methods of deployment with different proxy servers see [documentation](http://docs.gunicorn.org/en/latest/index.html).
 
-Basic Gunicorn configuration options are stored in `gunicorn.conf`.
-
-NOTE: Recommended  and most commonly used HTTP Proxy for Gunicorn is Nginx server, to learn about deployment and configuration see [http://docs.gunicorn.org/en/latest/deploy.html](http://docs.gunicorn.org/en/latest/deploy.html)
 
 ### Building own version
 
-Before you start make sure you have virtualenv installed on your system, aswell as npm, bower, grunt and grunt-cli for handling static files
+Before you start make sure you have virtualenv installed on your system, aswell as npm, bower, grunt and grunt-cli for handling static files, also be sure to add `DEBUG = True` to `subrosa.conf`
+when working with css/javascript, for the app to load static files from `src` folder instead of `build`.
 
 * First `git clone https://github.com/exaroth/subrosa.git`
 
@@ -209,7 +206,7 @@ To compile less files use grunt, it comes with 3 prebuilt tasks
 
 * `grunt bootstrap_compile` -- Builds bootstrap custom version based on modules specified in `main/static/src/css/bootstrap_custom.less` file
 
-* `grunt build` -- Builds the project: compiles, concatenates, minifies css and js files and copies them into `build` folder NOTE: You have to change paths to all static files in templates yourself
+* `grunt build` -- Builds the project: compiles, concatenates, minifies css and js files and copies them into `build` folder 
 
 
 #### Changing the fonts
@@ -226,7 +223,6 @@ By default Subrosa uses only fonts commonly available on different operating sys
 ##### [Peewee ORM](https://github.com/coleifer/peewee)
 ##### [Flask-Cache](https://github.com/thadeusb/flask-cache)
 ##### [Python-Markdown](https://github.com/waylan/Python-Markdown)
-##### [requests](http://docs.python-requests.org/en/latest/)
 ##### [magnific-popup](http://dimsemenov.com/plugins/magnific-popup/)
 ##### [jquery-nested](http://suprb.com/apps/nested/)
 ##### [jquery-lazyload](http://www.appelsiini.net/projects/lazyload)

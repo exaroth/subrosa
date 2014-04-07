@@ -8,13 +8,13 @@ textarea.article-input {
 	overflow-y: hidden;
 	overflow-x: hidden;
 	font-family: @sans-font;
+	width: 100%;
 	// Fix for tab in chrome
 	text-rendering: optimizeSpeed;
 		&.article-input-title {
 		font-size: 48px !important ;
 		text-align: center !important;
 		font-weight: bold !important;
-		width: 100%;
 		overflow-x: hidden;
 		padding: 0 1em;
 		margin-top: 1em;
@@ -23,11 +23,8 @@ textarea.article-input {
 			font-size: 2em !important;
 		}
 	}
-	&.article-input-body {
-		width: 100%;
-		@media screen and (max-width: @md){
-			font-size: 1.3em !important;
-		}
+	@media screen and (max-width: @md){
+		font-size: 1.3em !important;
 	}
 
 }

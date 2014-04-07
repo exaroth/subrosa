@@ -39,9 +39,11 @@ app = Flask(__name__)
 app.config.from_object("main.default_config")
 app.config.from_pyfile("../subrosa.conf")
 if os.environ.get("SUBROSA_CONFIG"):
+    # Get development config stored in ~/.configs/subrosa.py
     app.config.from_envvar("SUBROSA_CONFIG", silent = False)
 
 if os.environ.get("CI"):
+    # Configuration for travis
     app.config.update(dict(
     DATABASE = "sqlite",
     DATABASE_NAME = "test.db",
@@ -51,7 +53,8 @@ if os.environ.get("CI"):
 app.config.update(
     BASE_PATH = BASE_PATH,
     ROOT_PATH = ROOT_PATH,
-    UPLOAD_FOLDER = UPLOAD_FOLDER
+    UPLOAD_FOLDER = UPLOAD_FOLDER,
+    STATIC_ROOT = app.config["DEBUG"] and "src/" or "build/"
 )
 
 
@@ -66,6 +69,11 @@ db = subrosa.get_db()
 from main.models.ConfigModel import ConfigModel
 
 def get_config():
+    """
+    This function provides configuration dictionary to views
+    If config exists in cache returns it otherwise preforms query to db
+    and sets the cache. If cache doesn't exist creates new config object
+    """
     c = cache.get("configuration")
     if not c:
         try:
@@ -86,16 +94,24 @@ def get_config():
 
 @app.context_processor
 def utility_processor():
+    """
+    Appends additional data to default context
+    settings - basic Subrosa config fields
+    current_path - full url to current view
+    add_thumbnail_affix (fn) - function used
+    for adding affix for imgur thumbnails
+    """
     return dict(settings = get_config(),\
                 current_path = request.url_root + request.path[1:],\
                 add_thumbnail_affix = add_thumbnail_affix)
 
-from main.create_views import CreateArticleView, CreateProjectView
-from main.edit_views import UpdateArticleView, UpdateProjectView
+from main.views.create_views import CreateArticleView, CreateProjectView
+from main.views.edit_views import UpdateArticleView, UpdateProjectView
 
 app.add_url_rule("/create-article/", view_func = CreateArticleView.as_view("create_article"))
 app.add_url_rule("/create-project/", view_func = CreateProjectView.as_view("create_project"))
 app.add_url_rule("/edit-article/<int:id>", view_func = UpdateArticleView.as_view("edit_article"))
 app.add_url_rule("/edit-project/<int:id>", view_func = UpdateProjectView.as_view("edit_project"))
 
-from main import views, misc
+from main.views import main_views
+from main import misc

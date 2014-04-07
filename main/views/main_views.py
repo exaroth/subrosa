@@ -30,7 +30,7 @@ from jinja2 import evalcontextfilter, Markup
 from main import app, db, cache, get_config, settings
 from main.imgur import ImgurHandler
 from main.pagination import Pagination
-from main.decorators import dynamic_content, login_required
+from main.decorators import login_required
 from main.helpers import make_external, redirect_url, handle_errors, split_filename, add_thumbnail_affix, id_generator
 from main.models.ArticlesModel import Articles
 from main.models.UserImagesModel import UserImages
@@ -141,15 +141,17 @@ def create_account():
 @app.route("/logout")
 @login_required
 def logout():
+    """ Logout the user """
     if "user" in session:
         session.pop("user", None)
     with app.app_context():
         cache.clear()
     return redirect(url_for("index"))
 
-@app.route("/account/<username>", methods = ["GET","POST"])
+@app.route("/<username>/account")
 @login_required
 def account(username):
+    """ Main account view """
     if username is None:
         return redirect("/admin")
     user = Users.get_user_by_username(username)
@@ -160,15 +162,64 @@ def account(username):
     return render_template("dashboard.html",\
                            user = user,\
                            articles = articles,\
-                           projects = projects)
+                           projects = projects\
+                           )
 
 
+
+@app.route("/<username>/account_settings", methods=["GET", "POST"])
+@login_required
+def account_settings(username):
+    user = Users.get_user_by_username(username)
+    if not user:
+        abort(404)
+
+    return render_template("settings_panel.html", user = user)
+
+
+
+@app.route("/about", methods = ["GET","POST"])
+@cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
+def about():
+
+    user = Users.get_user(1)
+    about_info = user.about or ""
+
+    if "user" not in session:
+        return render_template("about.html",
+                               about_info = about_info,
+                               portrait = settings["portrait"])
+
+    context = dict(additional_controls = False,
+                  show_title = False,
+                  body = about_info,
+                  title_placeholder = None,  
+                  body_placeholder = "Enter about page content...")
+
+    if request.method == "POST":
+        new_info = request.form.get("body").strip()
+
+        try:
+            user.about = new_info
+            user.save()
+            return redirect(url_for("account", username = session["user"]))
+        except:
+            context.update(error = "Error when saving info, see error log for details")
+            return render_template("scratchpad.html", **context)
+    else:
+        return render_template("scratchpad.html", **context)
+    
+
+
+    
 
 @app.route("/articles/<string:slug>")
 @cache.cached(timeout = app.config.get("CACHE_TIMEOUT", 50))
 def article_view(slug):
     article = Articles.get_article_by_slug(slug)
     if not article:
+        abort(404)
+    if not session.get("user", None) and article.draft == True:
         abort(404)
     author = article.author
     next_article = article.get_next_article()
@@ -197,11 +248,16 @@ def delete_article(id):
         flash("You can\'t delete other people\'s posts")
         return redirect(url_for("index"))
     else:
-        Articles.delete_article(article)
-        with app.app_context():
-            cache.clear()
-        flash("Article has been deleted")
-        return redirect(url_for("account", username = session["user"]))
+        try:
+            article.delete_article()
+            with app.app_context():
+                cache.clear()
+            flash("Article has been deleted")
+        except:
+            flash("Error deleting article")
+        finally:
+            return redirect(url_for("account", username = session["user"]))
+
 
 @app.route("/publish_article/<int:id>")
 @login_required
@@ -213,11 +269,15 @@ def publish_article(id):
         flash("You can\'t publish other\'s peoples posts")
         return redirect(url_for("index"))
     else:
-        Articles.publish_article(article)
-        with app.app_context():
-            cache.clear()
-        flash("Article has been published")
-        return redirect(url_for("account", username = session["user"]))
+        try:
+            article.publish_article()
+            with app.app_context():
+                cache.clear()
+            flash("Article has been published")
+        except:
+            flash("Error when publishing article")
+        finally:
+            return redirect(url_for("account", username = session["user"]))
 
 @app.route("/download_article/<int:id>")
 @login_required
@@ -237,7 +297,6 @@ def download_article(id):
 
 @app.route("/upload_image", methods = ["GET", "POST"])
 @login_required
-@dynamic_content
 def upload_image():
     error = None
     if request.method == "POST":
@@ -322,7 +381,6 @@ def delete_project(id):
 @app.route("/images/<username>", defaults={"page": 1})
 @app.route("/images/<username>/<int:page>")
 @login_required
-@dynamic_content
 def user_images(username, page):
     per_page = settings.get("images_per_page", 10)
     images = UserImages.get_gallery_images(page = page,\
@@ -344,7 +402,6 @@ def user_images(username, page):
 
 @app.route("/delete_image/<int:id>")
 @login_required
-@dynamic_content
 def delete_image(id):
     image = UserImages.get_image(id)
     if not image:
@@ -367,7 +424,6 @@ def delete_image(id):
 
 @app.route("/gallerify/<int:id>")
 @login_required
-@dynamic_content
 def gallerify(id):
     """ Ads and removes image from gallery """
     image = UserImages.get_image(id)
@@ -378,7 +434,6 @@ def gallerify(id):
 
 @app.route("/configure", methods = [ "POST"])
 @login_required
-@dynamic_content
 def configure():
 
     imgur_id = request.form.get('imgur', None).encode('utf-8')
@@ -391,6 +446,8 @@ def configure():
     google_plus = request.form.get('gplus', None).strip().encode('utf-8')
     email = request.form.get('email', None).strip().encode('utf-8')
 
+    title = request.form.get("site-title", None).strip().encode("utf-8")
+
 
 
     gallery = True if request.form.get('show-gallery') == 'on' else False
@@ -398,6 +455,9 @@ def configure():
     projects = True if request.form.get('show-projects') == 'on' else False
 
     show_info = True if request.form.get('show-info') == 'on' else False
+
+    about = True if request.form.get('show-about') == 'on' else False
+
 
     to_update = dict()
     
@@ -410,10 +470,11 @@ def configure():
         config.save_settings(**to_update)
         with app.app_context():
             cache.clear()
-        return redirect(url_for('account', username = session['user']))
+        flash("Settings has been updated")
+        return redirect(url_for('account_settings', username = session['user']))
     except:
         handle_errors("Error when saving configuration")
-        return redirect(url_for("account", username = session["user"]))
+        return redirect(url_for("account_settings", username = session["user"]))
 
 @app.route("/set_info", methods = ["POST"])
 @login_required
@@ -433,7 +494,7 @@ def set_info():
     finally:
         with app.app_context():
             cache.clear()
-        return redirect(url_for('account', username = session['user']))
+        return redirect(url_for('account_settings', username = session['user']))
 
 
 @app.route("/reset-settings")
@@ -492,7 +553,6 @@ def recent_feeds():
     return feed.get_response()
 
 @app.route("/uploads/<path:filename>")
-@dynamic_content
 def send_image(filename):
     """
     Allows sending images from upload folder

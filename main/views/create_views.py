@@ -4,7 +4,7 @@
     main.create_views
     ===============
     
-    implements class-based views related to creating stuff
+    Implements class-based views related to creating projects and articles
 
     :copyright: (c) 2014 by Konrad Wasowicz
     :license: MIT, see LICENSE for details.
@@ -19,14 +19,20 @@ from main import app, cache
 from main.models.UsersModel import Users
 from main.models.ArticlesModel import Articles, Categories
 from main.models.UserProjectsModel import UserProjects
-from main.base_views import ScratchpadView, ArticleView
 from main.helpers import logger
+from main.views.base_views import ScratchpadView, ArticleView
 
 
 
 
 
 class CreateView(ScratchpadView):
+
+    
+    """
+    Base view needed for creating
+    articles and projects
+    """
 
     def get_get_model(self):
         raise NotImplementedError()
@@ -54,7 +60,6 @@ class CreateView(ScratchpadView):
             error = "Entry with that title already exists, choose a new one.."
             context.update(dict(error = error))
             return self.render_template(context)
-
         else:
             context.update(self.process_additional_fields())
             try:
@@ -79,10 +84,13 @@ class CreateArticleView(ArticleView, CreateView):
     def create_method(self):
         return "create_article"
 
-
     def get_context(self):
         existing_categories = Categories.select()
-        return dict(draft = True, additional_controls = True, existing_categories = existing_categories)
+        return dict(draft = True,
+                    additional_controls = True,
+                    existing_categories = existing_categories,
+                    title_placeholder = "Title of your Article",
+                    body_placeholder = "and content here...")
 
 class CreateProjectView(CreateView):
     
@@ -93,8 +101,7 @@ class CreateProjectView(CreateView):
         return "create_project"
 
     def get_context(self):
-        return dict()
+        return dict(additional_controls = False,
+                   title_placeholder = "Title of the project..",
+                   body_placeholder = "and content here...")
 
-
-
-        

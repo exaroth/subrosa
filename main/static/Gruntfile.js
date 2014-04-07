@@ -68,7 +68,6 @@ module.exports = function(grunt) {
 
 		},
 
-
 		watch: {
 			options: {
 				livereload: true
@@ -78,7 +77,8 @@ module.exports = function(grunt) {
 					"src/css/*.less",
 					"src/css/_partials/*.less",
 					"src/js/*.js",
-					"../templates/*.html"
+					"../templates/*.html",
+					"../templates/_partials/*.html"
 				],
 				tasks: ["less:devel"]
 			}
