@@ -1,8 +1,8 @@
 ﻿# -*- coding: utf-8 -*-
 """
 
-    main.subrosa
-    ============
+    main.subrosa_init
+    ================
 
     Implements subrosa intiialization class
 
@@ -13,15 +13,16 @@
 """
 
 from __future__ import absolute_import
-
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
 from subrosa.filters import timesince
 from subrosa.helpers import generate_csrf_token
 from subrosa.markdown_ext import Markdown
 from subrosa.helpers import logger
 import logging
-import os, sys
+import os
+import sys
 from six.moves.urllib import parse
+
 
 logging.basicConfig()
 
@@ -34,10 +35,10 @@ class Subrosa(object):
     to be passed in constructor
     """
 
-    OPTIONS = ("disqus", "facebook", "twitter", "github",\
-               "google_plus", "email", "gallery", "projects",\
-               "dynamic_site", "title", "articles_per_page",\
-               "images_per_page", "imgur_id", "thumbnail_size",\
+    OPTIONS = ("disqus", "facebook", "twitter", "github",
+               "google_plus", "email", "gallery", "projects",
+               "dynamic_site", "title", "articles_per_page",
+               "images_per_page", "imgur_id", "thumbnail_size",
                "show_info", "twitter_username", "about")
 
     IMAGES = ('bg', 'logo', 'portrait')
@@ -48,9 +49,9 @@ class Subrosa(object):
         self.settings = dict()
 
         self.db_types = dict(
-            sqlite = SqliteDatabase,
-            postgres = PostgresqlDatabase,
-            mysql = MySQLDatabase
+            sqlite=SqliteDatabase,
+            postgres=PostgresqlDatabase,
+            mysql=MySQLDatabase
         )
         # List of options that should be passed to views
 
@@ -60,29 +61,24 @@ class Subrosa(object):
         self._get_user_images()
         self._favicon_check()
 
-        md = Markdown(app,
-                 extensions = [ "fenced_code",\
-                               "codehilite",\
-                               "headerid",\
-                               "subrosa.md_extensions.extended_images" ])
+        md = Markdown(app, extensions=["fenced_code",
+                                       "codehilite",
+                                       "headerid",
+                                       "subrosa.md_extensions.extended_images"])
 
         app.jinja_env.globals['csrf_token'] = generate_csrf_token
         app.jinja_env.filters['timesince'] = timesince
-        app.jinja_env.filters['markdown'] = md._build_filter(auto_escape = False)
-
+        app.jinja_env.filters['markdown'] = md._build_filter(auto_escape=False)
 
     def _get_user_images(self):
-
         """ Check if user provided images exist in /uploads folder """
-
         for name in self.IMAGES:
             self.settings[name] = None
             for ext in self.app.config["ALLOWED_FILENAMES"]:
                 filename = name + "." + ext
-                path = os.path.join(self.app.config["UPLOAD_FOLDER"], filename )
+                path = os.path.join(self.app.config["UPLOAD_FOLDER"], filename)
                 if os.path.exists(path):
                     self.settings[name] = filename
-
 
     def _select_db(self, db_type):
 
@@ -102,23 +98,22 @@ class Subrosa(object):
 
     def _favicon_check(self):
         """ Check for favicon """
-        favicon_exists = os.path.exists(os.path.join(self.app.config["UPLOAD_FOLDER"], "favicon.ico"))
+        favicon_exists = os.path.exists(os.path.join(self.app.config["UPLOAD_FOLDER"],
+                                                     "favicon.ico"))
         self.settings["favicon"] = True if favicon_exists else False
 
-
-    def get_db(self, kwargs = dict()):
+    def get_db(self, kwargs=dict()):
 
         """
         Return a new database connection object
         provided values defined in configuration file
         """
-
-        if "DATABASE_URL" in os.environ:  # config for heroku
-            # urlparse.uses_netloc.append("postgres")
+        # config for heroku
+        if "DATABASE_URL" in os.environ:
             url = parse.urlparse(os.environ.get("DATABASE_URL"))
             DATABASE = {
-                "database" : url.path[1:],
-                "user" : url.username,
+                "database": url.path[1:],
+                "user": url.username,
                 "password": url.password,
                 "host": url.hostname,
                 "port": url.port
@@ -136,24 +131,21 @@ class Subrosa(object):
             if not username:
                 raise ValueError("%s requires username to connect" % dtype)
             kwargs.update(dict(
-                user = username,
+                user=username,
             ))
             if password:
                 if dtype == "postgres":
                     kwargs.update(dict(
-                        password = password
+                        password=password
                     ))
                 elif dtype == "mysql":
                     kwargs.update(dict(
-                        passwd = password
+                        passwd=password
                     ))
         try:
-
-            return  self._define_db_connection(dtype, dname, **kwargs)
-
+            return self._define_db_connection(dtype, dname, **kwargs)
         except Exception as e:
             logger.debug(e)
-
 
     def get_settings(self):
         return self.settings

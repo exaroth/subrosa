@@ -15,6 +15,7 @@ from jinja2 import Markup
 from datetime import datetime
 import re
 
+
 def timesince(dt, default="just now"):
     """
     Returns string representing "time since" e.g.

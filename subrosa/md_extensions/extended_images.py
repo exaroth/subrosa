@@ -27,10 +27,9 @@ class ExtendedImagesExtension(markdown.Extension):
     """ Extends default markdown processor """
 
     def __init__(self, config):
+        # set default path
         self.config = {
-                # set default path
-                'replacement': [ '', 'Replacement for src tag' ]
-        }
+            'replacement': ['', 'Replacement for src tag']}
 
         for k, v in config:
             self.setConfig(k, v)
@@ -41,21 +40,19 @@ class ExtendedImagesExtension(markdown.Extension):
         self.processor.md = md
         self.processor.config = self.getConfigs()
         if 'att_list' in md.treeprocessors.keys():
-            md.treeprocessores.add('extended_img', self.processor, '>attr_list')
+            md.treeprocessores.add('extended_img',
+                                   self.processor, '>attr_list')
         else:
-            md.treeprocessors.add('extended_img', self.processor, '>prettify')
-
-
+            md.treeprocessors.add('extended_img',
+                                  self.processor, '>prettify')
 
 
 class ExtendedImagesTreeprocessor(Treeprocessor):
-
 
     """
     Replace <img src='...'> tags
     with <img data-src='...'>
     """
-
 
     def run(self, text):
 
@@ -67,8 +64,9 @@ class ExtendedImagesTreeprocessor(Treeprocessor):
                     elem.set('src', replacement)
                 else:
                     elem.set('src', '#')
-                elem.set('data-src', base_src)
-                elem.set('class', 'lazy')
+                    elem.set('data-src', base_src)
+                    elem.set('class', 'lazy')
 
-def makeExtension(config = None):
-    return ExtendedImagesExtension(config = config)
+
+def makeExtension(config=None):
+    return ExtendedImagesExtension(config=config)
