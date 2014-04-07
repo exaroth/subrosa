@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 
-    main.md_extensions.extended_images
+    subrosa.md_extensions.extended_images
     ============
 
 
