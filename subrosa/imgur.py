@@ -91,5 +91,5 @@ class ImgurHandler(object):
                               headers = self.add_authorization_header())
         req.get_method = lambda: "DELETE"
         data = urllib.request.urlopen(req)
-        return json.loads(data.read())
+        return json.loads(data.read().decode("utf-8"))
 
