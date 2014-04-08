@@ -346,7 +346,6 @@ $(document).ready(function(){
 
     };
 
-	j
     // Create table of contents if h1
     // tags are in article body
     $.fn.createToC = function(){

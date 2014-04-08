@@ -1755,6 +1755,9 @@ div#selectable-1 {
   transform: translateX(-50%);
   margin: 4em 0;
 }
+.project-wrapper .project-body .centered-image-wrapper .image-desc {
+  display: none;
+}
 @media screen and (max-width: 970px) {
   .project-wrapper .project-body .centered-image-wrapper {
     width: 100%;
