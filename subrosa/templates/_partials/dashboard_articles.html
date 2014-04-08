@@ -14,7 +14,7 @@
 
 			<div class="pull-left dashboard-item-description dashboard-article-description">
 				<a href="{{ url_for('article_view', slug=article.slug )}}">
-					<h4>{{ article.title | truncate(20) }}
+					<h4>{{ article.title | truncate(15, killwords=True) }}
 						{% if article.draft == False %}
 						<span class="text-success"><i class="icon-ok"></i></span>
 						{% endif %}
@@ -22,7 +22,7 @@
 					</h4>
 
 				</a>
-				<p class="hidden-xs hidden-sm dashboard-article-description-body text-muted">{{ article.body | truncate(120) }}</p>
+				<p class="hidden-xs hidden-sm dashboard-article-description-body text-muted">{{ article.body | truncate(110, killwords = True) }}</p>
 			</div>
 
 			<div class=" dashboard-actions dashboard-article-actions pull-left">

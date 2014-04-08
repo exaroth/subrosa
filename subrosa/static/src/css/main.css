@@ -469,8 +469,7 @@ a[disabled] {
 }
 .single-article {
   position: relative;
-  margin-top: 2em;
-  margin-bottom: 6em;
+  margin-top: 6em;
 }
 .top-image ~ .single-article {
   background-color: white;
@@ -936,7 +935,6 @@ textarea.article-input.article-input-title {
 }
 .index-wrapper {
   padding-left: 0;
-  margin-bottom: 140px;
   position: relative;
 }
 @media screen and (max-width: 970px) {
@@ -1229,8 +1227,11 @@ textarea.article-input.article-input-title {
 #admin-subrosa i {
   color: #fff;
 }
+#admin-subrosa a {
+  color: #f7fcfc;
+}
 #admin-subrosa a:hover {
-  opacity: 0.9;
+  color: #fff;
 }
 .dashboard-sidebar {
   width: 40px;
@@ -2026,6 +2027,8 @@ body:before {
 #main-wrapper {
   overflow: auto;
   padding-bottom: 60px;
+  width: 100%;
+  position: relative;
 }
 textarea {
   background-color: transparent !important;
