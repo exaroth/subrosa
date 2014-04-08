@@ -19,8 +19,14 @@
 
 			{% endif %}
 
-			<div class="basic-typography" style="clear: both" id="about-body">{{ about_info | markdown }}</div>
+			{% if user.real_name %}
 
+			<h2 class="text-center" id="about-realname">{{ user.real_name }}</h2>
+
+			{% endif %}
+
+
+			<div class="basic-typography" style="clear: both" id="about-body">{{ user.about | markdown }}</div>
 
 		</div>
 

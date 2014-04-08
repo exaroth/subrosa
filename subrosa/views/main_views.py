@@ -186,11 +186,10 @@ def account_settings(username):
 def about():
 
     user = Users.get_user(1)
-    about_info = user.about or ""
 
     if "user" not in session:
         return render_template("about.html",
-                               about_info=about_info,
+                               user=user,
                                portrait=settings["portrait"])
 
     context = dict(additional_controls=False,
@@ -198,6 +197,7 @@ def about():
                    body=about_info,
                    title_placeholder=None,
                    body_placeholder="Enter about page content...")
+
     if request.method == "POST":
         new_info = request.form.get("body").strip()
 
