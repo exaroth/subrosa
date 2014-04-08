@@ -1,10 +1,16 @@
+//
+// Subrosa Scripts files
+// Copyright @2014 Konrad Wasowicz
+//
+// https://github.com/exaroth/subrosa
+//
 (function($) {
 
 
 $(document).ready(function(){
 
 
-    // Variables
+    // Variables Caching
 
     var
     $body                = $('body'),
@@ -26,7 +32,6 @@ $(document).ready(function(){
     $dashboardArea       = $(".dashboard-area"),
     $lamp                = $(".lamp-button"),
     $imageLinks          = $(".show-img"),
-    $smallImgInput       = $("#article-image-small"),
     // base thumbnail size for gallery
     thumbSize            = 200,
     // variable referring to whether editing window is darkened
@@ -193,26 +198,24 @@ $(document).ready(function(){
         });
 
 
-        if ($smallImgInput.length){
-            if ($("#article-image").val().length > 0){
-                    console.log("yes");
-                    $("#article-image-small-container").fadeTo(100, 1)
-                    $("#article-image-small").attr("disabled", false);
-            };
-        }
+        // if ($smallImgInput.length){
+        //     if ($("#article-image").val().length > 0){
+        //             $("#article-image-small-container").fadeTo(100, 1)
+        //             $("#article-image-small").attr("disabled", false);
+        //     };
+        // }
 
-        $("#article-image").on("change keyup", function(e){
-            console.log(e)
-
-            if ($(this).val().length > 0){
-                $("#article-image-small").attr("disabled", false);
-                $("#article-image-small-container").fadeTo(100, 1)
-            } else {
-                $("#article-image-small").attr("disabled", true);
-                $("#article-image-small").val("")
-                $("#article-image-small-container").fadeTo(100, 0.4);
-            };
-        });
+        // $("#article-image").on("change keyup", function(e){
+        //
+        //     if ($(this).val().length > 0){
+        //         $("#article-image-small").attr("disabled", false);
+        //         $("#article-image-small-container").fadeTo(100, 1)
+        //     } else {
+        //         $("#article-image-small").attr("disabled", true);
+        //         $("#article-image-small").val("")
+        //         $("#article-image-small-container").fadeTo(100, 0.4);
+        //     };
+        // });
 
 
         $('.modal-toggle').magnificPopup({
@@ -349,7 +352,6 @@ $(document).ready(function(){
     // Create table of contents if h1
     // tags are in article body
     $.fn.createToC = function(){
-
 
         var self = $(this);
         var headers = self.find('h1');

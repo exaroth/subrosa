@@ -36,38 +36,7 @@
 		</div>
 
 		{% if additional_controls %}
-		<input type="hidden" name="categories-hidden" id="categories-hidden" value="">
-		<input type="hidden" name="series-hidden" id="series-hidden" value="">
-		<input type="hidden" name="article-image-hidden" id="article-image-hidden" value="">
-		<input type="hidden" name="article-image-small-hidden" id="article-image-small-hidden" value="">
-
-		<div class="modal-window dismissable mfp-hide" id="article-additional">
-			<legend>Additional information</legend>
-			<div class="form-group">
-				<label for="categories">Article categories <br><small class="text-muted"><em>*Use space after each category name</em></small></label>
-				<input type="text" name="categories" class="form-control" id="categories" placeholder="No categories selected" value="{% if categories %}{% for category in categories %}{{category + ' ' }}{% endfor %} {% endif %}">
-			</div>
-
-			<div class="form-group">
-				<label for="series">Article series <br><small class="text-muted"><em>*If this article is a part of the series</em></small></label>
-				<input type="text" name="series" id="series" class="form-control" placeholder="No series selected" value="{{ series }}" >
-			</div>
-			<div class="form-group">
-				<label for="article-image">Choose image (optional): <br><small class="text-muted"><em>
-							If you want to add image to be show at the top of the Article
-				</em></small></label>
-				<input type="text" name="article-image" id="article-image" class="form-control" placeholder="eg. http://www.kittens.com/kitten" value="{{ article_image }}">
-			</div>
-			<div class="form-group" id="article-image-small-container">
-				<label for="article-image-small">Image thumbnail (optional)<br><small class="text-muted"><em>
-							Small version of the image, to be used as thumbnail, if not set large version will be used.
-				</em></small></label>
-				<input type="text" name="article-image-small" id="article-image-small" class="form-control" placeholder="eg. http://www.kittens.com/kitten-small.jpg" value="{{ article_thumbnail }}" disabled>
-			</div>
-			<div class="form-group">
-				<a href="#" class="btn btn-default form-submit" id="article-submit-button">Submit</a>
-			</div>
-		</div>
+		{% include "_partials/additional_controls.html" %}
 		{% endif %}
 
 		<input type="submit" value="" style="display: none"  />

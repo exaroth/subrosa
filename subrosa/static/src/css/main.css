@@ -873,9 +873,6 @@ textarea.article-input.article-input-title {
   width: 400px;
   height: 540px;
 }
-#article-additional #article-image-small-container {
-  opacity: 0.4;
-}
 #article-additional input[type='submit'] {
   position: absolute;
   bottom: 0;
