@@ -12,6 +12,7 @@ h5,
 h6 {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
   text-rendering: optimizeLegibility;
+  line-height: 1.2em;
   -webkit-font-smoothing: antialiased;
   color: #4d4d4d;
 }
