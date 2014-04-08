@@ -1868,7 +1868,7 @@ div#selectable-1 {
   line-height: 40px;
   margin: 0 4em 0 0;
 }
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 750px) {
   .header-toolbar ul {
     text-align: center;
     margin: 0;
