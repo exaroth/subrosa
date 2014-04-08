@@ -488,10 +488,12 @@ a[disabled] {
 .article-main {
   position: relative;
   font-size: 14px;
+  margin-top: 60px;
 }
 @media screen and (min-width: 970px) {
   .article-main {
     padding: 0;
+    margin: 0;
   }
 }
 .article-main .article-timesince {
@@ -554,6 +556,7 @@ a[disabled] {
   line-height: 1.4em;
   margin-top: 6px;
   margin-bottom: 18px;
+  line-height: 1.2em;
 }
 @media screen and (max-width: 970px) {
   .article-main .article-title {

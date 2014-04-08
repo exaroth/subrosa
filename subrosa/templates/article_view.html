@@ -7,67 +7,66 @@
 {% block content %}
 
 {% if article.article_image %}
-<div class="top-image" style="background-image: url({{ article.article_image}})"></div>
+	<div class="top-image" style="background-image: url({{ article.article_image}})"></div>
 {% endif %}
 
 <div class="single-article col-md-8 col-md-offset-2">
-  <article class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
+	<article class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
 
-    <div class="article-main">
-      {% if session.user and session.user == article.author.username %}
-      <a class="btn btn-default btn-xs" data-href="{{ url_for('delete_article', id = article.id) }}" data-toggle="confirmation" href="#">Delete</a>
-      <a class="btn btn-default btn-xs" href="{{ url_for('edit_article', id = article.id) }}" style="margin-right: 10px;">Edit</a>
-      {% endif %}
+	<div class="article-main">
+		{% if session.user and session.user == article.author.username %}
+		<a class="btn btn-default btn-xs" data-href="{{ url_for('delete_article', id = article.id) }}" data-toggle="confirmation" href="#">Delete</a>
+		<a class="btn btn-default btn-xs" href="{{ url_for('edit_article', id = article.id) }}" style="margin-right: 10px;">Edit</a>
+		{% endif %}
 
-      <h1 class="article-title" >{{ article.title }}</h1>
-      {% if article.header %}
-      <h2 class="article-header"> {{ article.header }}</h2>
-      {% endif %}
-      <h5 class="article-timesince">
-       {% if article.author.real_name %} by <span style="color: #4d4d4d">{{ article.author.real_name }}</span> <span style="margin: 0 4px;">|</span>{%- endif -%} {{ article.date_created.strftime("%B %d, %Y") }}
-     </h5>
-     <div class="article-divider"></div>
-     <div class="article-body basic-typography">
-      {% with user_portrait = user_picture %}
-      {% include "article_sidebar.html" %}
-      {% endwith %}
-      {{ article.body|markdown }}
-    </div>
-    <div class="article-footer">
-     {% if previous_article %}
-     <a href="{{ url_for('article_view', slug = previous_article.slug )}}" class="articles-pagination-btn btn btn-default" style="padding-right: 20px"> <i class="icon-angle-left"></i>Previous Article</a>
-     {% endif %}
-     {% if next_article %}
-     <a href="{{ url_for('article_view', slug = next_article.slug )}}" class="articles-pagination-btn btn btn-default" style="float: right; padding-left: 20px;">Next Article <i class="icon-angle-right"></i></a>
-     {% endif %}
-   </div>
+		<h1 class="article-title" >{{ article.title }}</h1>
+		{% if article.header %}
+		<h2 class="article-header"> {{ article.header }}</h2>
+		{% endif %}
+		<h5 class="article-timesince">
+			{% if article.author.real_name %} by <span style="color: #4d4d4d">{{ article.author.real_name }}</span> <span style="margin: 0 4px;">|</span>{%- endif -%} {{ article.date_created.strftime("%B %d, %Y") }}
+		</h5>
+		<div class="article-divider"></div>
+		<div class="article-body basic-typography">
+			{% with user_portrait = user_picture %}
+			{% include "article_sidebar.html" %}
+			{% endwith %}
+			{{ article.body|markdown }}
+		</div>
+		<div class="article-footer">
+			{% if previous_article %}
+			<a href="{{ url_for('article_view', slug = previous_article.slug )}}" class="articles-pagination-btn btn btn-default" style="padding-right: 20px"> <i class="icon-angle-left"></i>Previous Article</a>
+			{% endif %}
+			{% if next_article %}
+			<a href="{{ url_for('article_view', slug = next_article.slug )}}" class="articles-pagination-btn btn btn-default" style="float: right; padding-left: 20px;">Next Article <i class="icon-angle-right"></i></a>
+			{% endif %}
+		</div>
 
- <div class="social-container">
-   <div>
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ current_path }}" data-text="{{ article.title }}" {{ 'data-via=' + settings.twitter_username if settings.twitter_username }} data-lang="en">Tweet</a>
+		<div class="social-container">
+			<div>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ current_path }}" data-text="{{ article.title }}" {{ 'data-via=' + settings.twitter_username if settings.twitter_username }} data-lang="en">Tweet</a>
 
-  </div>
+			</div>
 
-  <div class="g-plusone" data-size="medium"></div>
- </div>
+			<div class="g-plusone" data-size="medium"></div>
+		</div>
 
 
 {% if settings.disqus %}
 
-
-<div id="disqus_thread" style="margin-bottom: 2em;"></div>
+		<div id="disqus_thread" style="margin-bottom: 2em;"></div>
+		<!-- Disqus code -->
 <script type="text/javascript">
-  var disqus_shortname = '{{ settings.disqus }}';
-  var disqus_identifier = '{{ article.slug }}';
-  var disqus_title = '{{ article.title }}';
-  var disqus_url = '{{ current_path }}';
+			var disqus_shortname = '{{ settings.disqus }}';
+			var disqus_identifier = '{{ article.slug }}';
+			var disqus_title = '{{ article.title }}';
+			var disqus_url = '{{ current_path }}';
 
-  /* * * DON'T EDIT BELOW THIS LINE * * */
-  (function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+			(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
@@ -80,17 +79,14 @@
 
 </div>
 
-
-
-
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
 <script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
+	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+	(function() {
+var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+po.src = 'https://apis.google.com/js/platform.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+})();
 </script>
 
 
