@@ -14,7 +14,6 @@
 from __future__ import absolute_import
 
 __title__= "subrosa"
-__version__ = "0.1.dev"
 __author__ = "Konrad Wasowicz"
 __version__ = "0.3"
 
