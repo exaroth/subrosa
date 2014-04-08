@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,28 +30,29 @@
 
 	{% endif %}
 
-
-
 </head>
+
+
 <body>
 	{%- block modals -%}
 	{%- endblock -%}
 	<div class="container-full" id="wrap">
-
-			{%- block titlebar -%} 
-			{%- endblock -%}
+		{%- block titlebar -%} 
+		{%- endblock -%}
+		<div id="main-wrapper">
 
 			{%- block sidebar -%}
 			{%- endblock -%}
 
 			{%- block content -%} 
 			{%- endblock -%}
-	</div>
+		
+		</div>
 
+	</div>
 
 	{%- block footer -%}
 	{%- endblock -%}
-	
 
 	{% if config.DEBUG %}
 
@@ -72,9 +74,6 @@
 		<script src="{{ url_for('static', filename='build/js/scripts.min.js') }} "></script>
 
 	{% endif %}
-
-
-
 
 </body>
 </html>

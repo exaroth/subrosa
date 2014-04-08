@@ -29,7 +29,6 @@
 @orange: #ff9500;
 
 
-
 // Uncomment this to see the grid of the site
 
 // .edit();
@@ -40,14 +39,26 @@
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 }
 
-html {
-	position: relative !important;
-	min-height: 100% !important;
+html, body {
+	height: 100%;
 }
 
-body {
-	overflow-x: hidden;
-	margin: 0 0 60px ;
+// Opera fix
+body:before {
+
+	content: "";
+	height: 100%;
+	width: 0;
+	margin-top: -32767px;
+}
+
+#wrap{
+	min-height: 100%;
+}
+
+#main-wrapper {
+	overflow: auto;
+	padding-bottom: 60px;
 }
 
 textarea {
@@ -165,8 +176,6 @@ a[disabled] {
 .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
 	opacity: 0;
 }
-// Login screen
-
 
 .mfp-arrow-left:before,
 .mfp-arrow-right:before{
@@ -204,6 +213,7 @@ a[disabled] {
     .translateX(-50%);
 }
 
+// Container appearing when theres no content on the page
 .empty-container {
 	width: 200px;
 	text-align: center;

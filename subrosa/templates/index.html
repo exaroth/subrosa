@@ -121,7 +121,6 @@
 
 			<!-- End pagination -->
 
-		</div>
 
 	{% else %}
 
@@ -134,6 +133,12 @@
 </div>
 </div>
 
+{% endblock %}
+
+
+{% block footer %}
+{% include '_partials/footer.html' %}
+
 {% if settings.twitter_username %}
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 {% endif %}
@@ -141,10 +146,8 @@
 {% if settings.disqus %}
 
 <script type="text/javascript">
-	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = '{{ settings.disqus }}'; // required: replace example with your forum shortname
 
-/* * * DON'T EDIT BELOW THIS LINE * * */
 (function () {
 	var s = document.createElement('script'); s.async = true;
 	s.type = 'text/javascript';
@@ -153,9 +156,4 @@ var disqus_shortname = '{{ settings.disqus }}'; // required: replace example wit
 }());
 </script>
 {% endif %}
-{% endblock %}
-
-
-{% block footer %}
-{% include '_partials/footer.html' %}
 {% endblock %}

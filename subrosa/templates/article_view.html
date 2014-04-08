@@ -7,7 +7,7 @@
 {% block content %}
 
 {% if article.article_image %}
-	<div class="top-image" style="background-image: url({{ article.article_image}})"></div>
+<div class="top-image" style="background-image: url({{ article.article_image}})"></div>
 {% endif %}
 
 <div class="single-article col-md-8 col-md-offset-2">
@@ -20,9 +20,6 @@
 		{% endif %}
 
 		<h1 class="article-title" >{{ article.title }}</h1>
-		{% if article.header %}
-		<h2 class="article-header"> {{ article.header }}</h2>
-		{% endif %}
 		<h5 class="article-timesince">
 			{% if article.author.real_name %} by <span style="color: #4d4d4d">{{ article.author.real_name }}</span> <span style="margin: 0 4px;">|</span>{%- endif -%} {{ article.date_created.strftime("%B %d, %Y") }}
 		</h5>
@@ -49,52 +46,57 @@
 			</div>
 
 			<div class="g-plusone" data-size="medium"></div>
+
 		</div>
 
 
-{% if settings.disqus %}
+		{% if settings.disqus %}
+
+		<!-- Disqus threads -->
 
 		<div id="disqus_thread" style="margin-bottom: 2em;"></div>
-		<!-- Disqus code -->
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+		{% endif %}
+
+	</div>
+
+	</article>
+</div>
+
+
+{% endblock %}
+
+
+{% block footer %}
+
+{% include '_partials/footer.html' %}
+
 <script type="text/javascript">
-			var disqus_shortname = '{{ settings.disqus }}';
-			var disqus_identifier = '{{ article.slug }}';
-			var disqus_title = '{{ article.title }}';
-			var disqus_url = '{{ current_path }}';
 
-			(function() {
-			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-			dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-			})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+{% if settings.disqus %}
 
+// Disqus
+var disqus_shortname = '{{ settings.disqus }}';
+var disqus_identifier = '{{ article.slug }}';
+var disqus_title = '{{ article.title }}';
+var disqus_url = '{{ current_path }}';
+
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
 {% endif %}
 
-</div>
-
-</article>
-
-</div>
-
-<script type="text/javascript">
-	!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-
-	(function() {
+// Twitter
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+// Google plus
+(function() {
 var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
 po.src = 'https://apis.google.com/js/platform.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 })();
 </script>
-
-
-
-
-
-{% endblock %}
-
-{% block footer %}
-{% include '_partials/footer.html' %}
 {% endblock %}

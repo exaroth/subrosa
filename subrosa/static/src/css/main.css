@@ -1960,10 +1960,9 @@ div#selectable-1 {
   color: #666666;
 }
 footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
+  position: relative;
   height: 60px;
+  margin-top: 60px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   width: 100%;
   clear: both;
@@ -2011,13 +2010,22 @@ footer #subscribe-link i {
   -moz-box-sizing: border-box;
   /* Firefox, other Gecko */
 }
-html {
-  position: relative !important;
-  min-height: 100% !important;
-}
+html,
 body {
-  overflow-x: hidden;
-  margin: 0 0 60px ;
+  height: 100%;
+}
+body:before {
+  content: "";
+  height: 100%;
+  width: 0;
+  margin-top: -32767px;
+}
+#wrap {
+  min-height: 100%;
+}
+#main-wrapper {
+  overflow: auto;
+  padding-bottom: 60px;
 }
 textarea {
   background-color: transparent !important;
