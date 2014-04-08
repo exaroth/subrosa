@@ -3947,6 +3947,7 @@ h5,
 h6 {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;
   text-rendering: optimizeLegibility;
+  line-height: 1.2em;
   -webkit-font-smoothing: antialiased;
   color: #4d4d4d;
 }
@@ -3979,6 +3980,12 @@ code {
 .basic-typography p,
 .basic-typography li {
   line-height: 1.8em;
+}
+@media screen and (min-width: 750px) {
+  .basic-typography p,
+  .basic-typography li {
+    font-size: 1.3em;
+  }
 }
 @media screen and (min-width: 970px) {
   .basic-typography p,
@@ -4417,10 +4424,12 @@ a[disabled] {
 .article-main {
   position: relative;
   font-size: 14px;
+  margin-top: 60px;
 }
 @media screen and (min-width: 970px) {
   .article-main {
     padding: 0;
+    margin: 0;
   }
 }
 .article-main .article-timesince {
@@ -4483,6 +4492,7 @@ a[disabled] {
   line-height: 1.4em;
   margin-top: 6px;
   margin-bottom: 18px;
+  line-height: 1.2em;
 }
 @media screen and (max-width: 970px) {
   .article-main .article-title {
@@ -4801,9 +4811,6 @@ textarea.article-input.article-input-title {
 #article-additional {
   width: 400px;
   height: 540px;
-}
-#article-additional #article-image-small-container {
-  opacity: 0.4;
 }
 #article-additional input[type='submit'] {
   position: absolute;
@@ -5148,6 +5155,11 @@ textarea.article-input.article-input-title {
   float: left;
   background-color: #149bff;
   margin: 0 20px 0 0;
+}
+@media screen and (max-width: 750px) {
+  #admin-subrosa {
+    height: 80px;
+  }
 }
 #admin-subrosa i {
   color: #fff;
@@ -5679,6 +5691,9 @@ div#selectable-1 {
   transform: translateX(-50%);
   margin: 4em 0;
 }
+.project-wrapper .project-body .centered-image-wrapper .image-desc {
+  display: none;
+}
 @media screen and (max-width: 970px) {
   .project-wrapper .project-body .centered-image-wrapper {
     width: 100%;
@@ -5698,15 +5713,17 @@ div#selectable-1 {
 #about-portrait {
   margin: 6em 0 4em 0;
   -webkit-border-radius: 4px;
-  -webkit-background-clip: padding-box;
   -moz-border-radius: 4px;
-  -moz-background-clip: padding;
   border-radius: 4px;
-  background-clip: padding-box;
-  background-color: red;
   max-width: 400px;
   max-height: 400px;
   position: relative;
+  -webkit-border-radius: 50%;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 50%;
+  -moz-background-clip: padding;
+  border-radius: 50%;
+  background-clip: padding-box;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
@@ -5715,7 +5732,19 @@ div#selectable-1 {
   transform: translateX(-50%);
 }
 #about-body p {
-  line-height: 1.2em ;
+  line-height: 1.8em !important ;
+}
+#about-fill {
+  height: 48px;
+}
+@media screen and (min-width: 750px) {
+  #about-fill {
+    height: 100px;
+  }
+}
+#about-realname {
+  font-weight: bold;
+  margin-bottom: 48px;
 }
 .header {
   height: 40px;
@@ -5723,6 +5752,25 @@ div#selectable-1 {
   z-index: 9;
   background-color: #fff;
   width: 100% !important;
+}
+@media screen and (max-width: 750px) {
+  .header {
+    height: 80px;
+  }
+}
+@media screen and (max-width: 750px) {
+  #admin-subrosa ~ .header-toolbar {
+    height: 40px;
+  }
+  #admin-subrosa ~ .header-toolbar .toolbar-sitetitle {
+    margin-left: 40px;
+  }
+}
+@media screen and (max-width: 750px) {
+  #admin-subrosa ~ .header-toolbar .toolbar-links {
+    margin-top: -40px;
+    padding-left: 40px;
+  }
 }
 .header-toolbar {
   height: 100%;
@@ -5741,10 +5789,11 @@ div#selectable-1 {
 .header-toolbar .toolbar-sitetitle {
   position: relative;
   margin-left: 3em;
+  text-align: center;
 }
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 750px) {
   .header-toolbar .toolbar-sitetitle {
-    margin-left: 1em;
+    margin: 0;
   }
 }
 .header-toolbar .toolbar-sitetitle h4 {
@@ -5763,6 +5812,12 @@ div#selectable-1 {
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
+@media screen and (max-width: 750px) {
+  .header-toolbar .toolbar-sitetitle h4 {
+    width: 100%;
+    text-align: center;
+  }
+}
 .header-toolbar .toolbar-sitetitle h4:hover {
   color: #808080;
 }
@@ -5772,10 +5827,11 @@ div#selectable-1 {
   line-height: 40px;
   margin: 0 4em 0 0;
 }
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 750px) {
   .header-toolbar ul {
-    float: right;
+    text-align: center;
     margin: 0;
+    width: 100%;
   }
 }
 .header-toolbar ul li {

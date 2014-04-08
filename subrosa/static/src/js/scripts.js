@@ -4161,13 +4161,19 @@ if (!Object.keys) {
   };
 
 })(window.jQuery || window.Zepto);
-;(function($) {
+;//
+// Subrosa Scripts files
+// Copyright @2014 Konrad Wasowicz
+//
+// https://github.com/exaroth/subrosa
+//
+(function($) {
 
 
 $(document).ready(function(){
 
 
-    // Variables
+    // Variables Caching
 
     var
     $body                = $('body'),
@@ -4189,7 +4195,6 @@ $(document).ready(function(){
     $dashboardArea       = $(".dashboard-area"),
     $lamp                = $(".lamp-button"),
     $imageLinks          = $(".show-img"),
-    $smallImgInput       = $("#article-image-small"),
     // base thumbnail size for gallery
     thumbSize            = 200,
     // variable referring to whether editing window is darkened
@@ -4264,8 +4269,6 @@ $(document).ready(function(){
             $(".loading").fadeIn(200);
         });
 
-
-
         $imageLinks.magnificPopup({
             type: 'image',
             closeBtnInside: false,
@@ -4278,6 +4281,7 @@ $(document).ready(function(){
 
             }
         });
+
         $('.show-src').magnificPopup({
             type:'inline',
             midClick: true,
@@ -4304,30 +4308,36 @@ $(document).ready(function(){
 
     };
 
-    //functions to be initialised when window has loaded
 
+    //functions to be initialised when window has loaded
     function start(){
 
         processGalleryImages($gallery);
+
         $scratcharea.autogrow();
+
         $hintIcons.tooltip({
             container: 'body'
         });
+
         $editingButtons.tooltip();
+
         $articleInputBody.focusin(function(){;
             fadeout = true;
             checkFadeout()
-        }
-        ).focusout(function(){
+        })
+		.focusout(function(){
             $editingTools.stop().fadeTo(100, '1')
             fadeout = false;
             clearInterval(fadeoutIntVal)
         });
+
         $window.mousemove(function(){
             if (fadeout){
                 $editingTools.stop().fadeTo(100, '1');
             }
         });
+
 
         function checkFadeout(){
              fadeoutIntVal = setInterval(function(){
@@ -4338,6 +4348,7 @@ $(document).ready(function(){
             }, 1000)
 
         };
+
         
         $gallery.nested({
             selector : '.gallery-image',
@@ -4349,36 +4360,32 @@ $(document).ready(function(){
             }
         });
 
-        if ($smallImgInput.length){
-            if ($("#article-image").val().length > 0){
-                    console.log("yes");
-                    $("#article-image-small-container").fadeTo(100, 1)
-                    $("#article-image-small").attr("disabled", false);
-            };
-        }
 
+        // if ($smallImgInput.length){
+        //     if ($("#article-image").val().length > 0){
+        //             $("#article-image-small-container").fadeTo(100, 1)
+        //             $("#article-image-small").attr("disabled", false);
+        //     };
+        // }
 
-
-        $("#article-image").on("change keyup", function(e){
-            console.log(e)
-
-            if ($(this).val().length > 0){
-                $("#article-image-small").attr("disabled", false);
-                $("#article-image-small-container").fadeTo(100, 1)
-            } else {
-                $("#article-image-small").attr("disabled", true);
-                $("#article-image-small").val("")
-                $("#article-image-small-container").fadeTo(100, 0.4);
-            };
-        });
-
-
+        // $("#article-image").on("change keyup", function(e){
+        //
+        //     if ($(this).val().length > 0){
+        //         $("#article-image-small").attr("disabled", false);
+        //         $("#article-image-small-container").fadeTo(100, 1)
+        //     } else {
+        //         $("#article-image-small").attr("disabled", true);
+        //         $("#article-image-small").val("")
+        //         $("#article-image-small-container").fadeTo(100, 0.4);
+        //     };
+        // });
 
 
         $('.modal-toggle').magnificPopup({
             midClick: true,
             type: 'inline'
         });
+
         $('[data-toggle="confirmation"]').confirmation({
             popout: true,
             singleton: true,
@@ -4388,10 +4395,17 @@ $(document).ready(function(){
             btnOkLabel: '<i class="icon-ok"></i>Yes',
             btnCancelLabel: '<i class="icon-cancel"></i>No'
         });
+
         $("#link-fields").change(toggleSelectables);
 
     };
 
+
+
+
+//======  Functions ========
+	
+	
     function matchIndexContents(){
         if(wWidth > majorBreakpoint){
             if($articleList.height() > $indexWrapper.height()){
@@ -4401,17 +4415,17 @@ $(document).ready(function(){
 
     };
 
+
+	// Toggle link fields in dashboard menu
     function toggleSelectables(){
 
-        // Toggle link fields in dashboard menu
 
         $("div[id^='selectable']")
         .hide()
         .filter("[id=selectable-" + this.value + "]").show();
     };
-
-//========================================
-
+ 
+    // Darken/lighten screen in scratchpad view
     function dimLight(){
         if (!dark){
             $body.stop().animate({
@@ -4467,14 +4481,14 @@ $(document).ready(function(){
         });
     };
 
-    // Check if image is Horizontal
 
+    // Check if image is Horizontal
     function imgIsHorizontal(el){
         return el.width() > el.height();
     };
 
-    // Get random value from given range
 
+    // Get random value from given range
     function getRandomArbitary (min, max) {
         return Math.random() * (max - min) + min;
     };
@@ -4500,9 +4514,7 @@ $(document).ready(function(){
 
     // Create table of contents if h1
     // tags are in article body
-
     $.fn.createToC = function(){
-
 
         var self = $(this);
         var headers = self.find('h1');
@@ -4528,8 +4540,8 @@ $(document).ready(function(){
 
     };
 
-    // Randomize Image width in gallery
 
+    // Randomize Image width in gallery
     function processGalleryImages(galleryBody){
 
         var imgs = galleryBody.find(".gallery-image");
@@ -4627,7 +4639,7 @@ $(document).ready(function(){
             });
     };
 
-// ================================================================================
+// ====== Initialization ========
 
 init();
 
