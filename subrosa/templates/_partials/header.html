@@ -19,7 +19,14 @@
 			<li><a href="{{ url_for('projects')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'PROJECTS' }}">PROJECTS</a></li>
 			{% endif %}
 			{% if settings.about %}
-			<li><a href="{{ url_for('about')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'ABOUT' }}">ABOUT</a></li>
+			{% if session.user %}
+
+			<li><a class="toolbar-link gallery-link" href="{{ url_for('about_edit') }}">ABOUT</a></li>
+			{% else %}
+				<li><a href="{{ url_for('about')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'ABOUT' }}">ABOUT</a></li>
+
+			{% endif %}
+
 			{% endif %}
 
 

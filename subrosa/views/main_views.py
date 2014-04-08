@@ -182,17 +182,10 @@ def account_settings(username):
     return render_template("settings_panel.html", user=user)
 
 
-@app.route("/about", methods=["GET", "POST"])
-@cache.cached(timeout=app.config.get("CACHE_TIMEOUT", 50))
-def about():
+@app.route("/about_edit", methods=["GET","POST"])
+def about_edit():
 
-    user = Users.get_user(1)
-
-    if "user" not in session:
-        return render_template("about.html",
-                               user=user,
-                               portrait=settings["portrait"])
-
+    user = Users.get_user_by_username(session["user"])
     context = dict(additional_controls=False,
                    show_title=False,
                    body=user.about or "",
@@ -212,6 +205,19 @@ def about():
             return render_template("scratchpad.html", **context)
     else:
         return render_template("scratchpad.html", **context)
+
+
+
+@app.route("/about")
+@cache.cached(timeout=app.config.get("CACHE_TIMEOUT", 50))
+def about():
+
+    user = Users.get_user(1)
+
+    return render_template("about.html",
+                           user=user,
+                           portrait=settings["portrait"])
+
 
 
 @app.route("/articles/<string:slug>")
