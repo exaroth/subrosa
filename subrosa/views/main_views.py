@@ -194,7 +194,7 @@ def about():
 
     context = dict(additional_controls=False,
                    show_title=False,
-                   body=about_info,
+                   body=user.about,
                    title_placeholder=None,
                    body_placeholder="Enter about page content...")
 

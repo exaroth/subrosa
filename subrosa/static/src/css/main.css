@@ -1220,6 +1220,11 @@ textarea.article-input.article-input-title {
   background-color: #149bff;
   margin: 0 20px 0 0;
 }
+@media screen and (max-width: 750px) {
+  #admin-subrosa {
+    height: 80px;
+  }
+}
 #admin-subrosa i {
   color: #fff;
 }
@@ -1814,6 +1819,20 @@ div#selectable-1 {
     height: 80px;
   }
 }
+@media screen and (max-width: 750px) {
+  #admin-subrosa ~ .header-toolbar {
+    height: 40px;
+  }
+  #admin-subrosa ~ .header-toolbar .toolbar-sitetitle {
+    margin-left: 40px;
+  }
+}
+@media screen and (max-width: 750px) {
+  #admin-subrosa ~ .header-toolbar .toolbar-links {
+    margin-top: -40px;
+    padding-left: 40px;
+  }
+}
 .header-toolbar {
   height: 100%;
   position: relative;
@@ -1831,10 +1850,11 @@ div#selectable-1 {
 .header-toolbar .toolbar-sitetitle {
   position: relative;
   margin-left: 3em;
+  text-align: center;
 }
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 750px) {
   .header-toolbar .toolbar-sitetitle {
-    margin: 0 1em;
+    margin: 0;
   }
 }
 .header-toolbar .toolbar-sitetitle h4 {

@@ -11,6 +11,23 @@
 
 }
 
+#admin-subrosa ~ .header-toolbar {
+	@media screen and (max-width: @sm){
+		height: 40px;
+		.toolbar-sitetitle {
+			margin-left: 40px;
+		}
+
+	}
+}
+
+#admin-subrosa ~ .header-toolbar .toolbar-links {
+	@media screen and (max-width: @sm){
+		margin-top: -40px;
+		padding-left: 40px;
+	}
+}
+
 
 .header-toolbar {
 	height: 100%;
@@ -24,8 +41,9 @@
 	.toolbar-sitetitle {
 		position: relative;
 		margin-left: 3em;
-		@media screen and (max-width: @md) {
-			margin: 0 1em;
+		text-align: center;
+		@media screen and (max-width: @sm){
+			margin: 0;
 		}
 		h4 {
 			@media screen and (max-width: @sm){
@@ -60,7 +78,6 @@
 		}
 		li {
 			display: inline-block;
-			// margin-right: 1em;
 			&:before {
 				content: "|";
 				padding: 0.8em;
