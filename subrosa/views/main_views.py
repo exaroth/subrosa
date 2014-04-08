@@ -183,6 +183,7 @@ def account_settings(username):
 
 
 @app.route("/about_edit", methods=["GET","POST"])
+@login_required
 def about_edit():
 
     user = Users.get_user_by_username(session["user"])
