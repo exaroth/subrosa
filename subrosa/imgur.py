@@ -74,20 +74,20 @@ class ImgurHandler(object):
                 )
 
         data.update(params)
-        return urllib.parse.urlencode(data)
+        return urllib.parse.urlencode(data).encode("utf-8")
 
 
     def send_image(self, params = dict(), additional = dict()):
-        req = urllib.request.Request(url = self.get_api(),\
-                              data = self.build_send_request(params),\
+        req = urllib.request.Request(url = self.get_api(),
+                              data = self.build_send_request(params),
                               headers = self.add_authorization_header()
                              )
         data = urllib.request.urlopen(req)
-        return json.loads(data.read())
+        return json.loads(data.read().decode("utf-8"))
 
     def delete_image(self, delete_hash):
         opener = urllib.request.build_opener(urllib.request.HTTPHandler)
-        req = urllib.request.Request(url = self.get_api() + "/" + delete_hash,\
+        req = urllib.request.Request(url = self.get_api() + "/" + delete_hash,
                               headers = self.add_authorization_header())
         req.get_method = lambda: "DELETE"
         data = urllib.request.urlopen(req)
