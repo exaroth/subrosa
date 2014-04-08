@@ -11,6 +11,7 @@
 """
 
 from __future__ import absolute_import
+from __future__ import unicode_literals
 import os
 import re
 from datetime import datetime
@@ -539,7 +540,7 @@ def recent_feeds():
 
     for article in articles:
         feed.add(article.title,
-                 unicode(article.body)[:320],
+                 article.body[:320],
                  content_type="html",
                  author=article.author,
                  updated=article.date_updated,
