@@ -5,16 +5,26 @@
 {% endwith %}
 
 {% block content %}
-<div class="col-md-6 col-md-offset-3" id="about-wrapper" style="position: relative;">
 
-	{% if portrait %}
-	<img src="{{ url_for('send_image', filename = portrait) }}" id="about-portrait" alt="portrait"/>
+<div class="container">
+	<div class="row">
 
-	{% endif %}
+		<div class="col-md-8 col-md-offset-2" id="about-wrapper" style="position: relative;">
 
-	<div class="basic-typography" style="clear: both" id="about-body">{{ about_info | markdown }}</div>
+			{% if portrait %}
+			<img src="{{ url_for('send_image', filename = portrait) }}" id="about-portrait" alt="portrait"/>
+
+			{% else %}
+			<div class="col-xs-12" id="about-fill"> </div>
+
+			{% endif %}
+
+			<div class="basic-typography" style="clear: both" id="about-body">{{ about_info | markdown }}</div>
 
 
+		</div>
+
+	</div>
 </div>
 {% endblock %}
 

@@ -11,7 +11,10 @@
 
 
 {% if projects %}
-	<div class="col-md-6 col-md-offset-3" id="user-projects">
+<div class="container">
+	<div class="row">
+	
+	<div class="col-md-8 col-md-offset-2 " id="user-projects">
 		{% for project in projects %}
 		<article class="project-wrapper row">
 			<div class="project-title"><h1 class="text-center">{{ project.title }}</h1></div>
@@ -26,6 +29,8 @@
 	<h4>No projects added yet</h4>
 		
 	</div>
+	</div>
+</div>
 		
 {% endif %}
 

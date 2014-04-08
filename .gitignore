@@ -6,6 +6,7 @@
 *.bak
 dist
 eggs
+.crtrlp
 parts
 bin
 var

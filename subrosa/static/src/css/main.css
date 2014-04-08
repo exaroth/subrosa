@@ -45,6 +45,12 @@ code {
 .basic-typography li {
   line-height: 1.8em;
 }
+@media screen and (min-width: 750px) {
+  .basic-typography p,
+  .basic-typography li {
+    font-size: 1.3em;
+  }
+}
 @media screen and (min-width: 970px) {
   .basic-typography p,
   .basic-typography li {
@@ -1780,7 +1786,15 @@ div#selectable-1 {
   transform: translateX(-50%);
 }
 #about-body p {
-  line-height: 1.2em ;
+  line-height: 1.8em !important ;
+}
+#about-fill {
+  height: 48px;
+}
+@media screen and (min-width: 750px) {
+  #about-fill {
+    height: 100px;
+  }
 }
 .header {
   height: 40px;
