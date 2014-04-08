@@ -1809,6 +1809,11 @@ div#selectable-1 {
   background-color: #fff;
   width: 100% !important;
 }
+@media screen and (max-width: 750px) {
+  .header {
+    height: 80px;
+  }
+}
 .header-toolbar {
   height: 100%;
   position: relative;
@@ -1829,7 +1834,7 @@ div#selectable-1 {
 }
 @media screen and (max-width: 970px) {
   .header-toolbar .toolbar-sitetitle {
-    margin-left: 1em;
+    margin: 0 1em;
   }
 }
 .header-toolbar .toolbar-sitetitle h4 {
@@ -1848,6 +1853,12 @@ div#selectable-1 {
   -o-transition: all 0.1s ease-in-out;
   transition: all 0.1s ease-in-out;
 }
+@media screen and (max-width: 750px) {
+  .header-toolbar .toolbar-sitetitle h4 {
+    width: 100%;
+    text-align: center;
+  }
+}
 .header-toolbar .toolbar-sitetitle h4:hover {
   color: #808080;
 }
@@ -1859,8 +1870,9 @@ div#selectable-1 {
 }
 @media screen and (max-width: 970px) {
   .header-toolbar ul {
-    float: right;
+    text-align: center;
     margin: 0;
+    width: 100%;
   }
 }
 .header-toolbar ul li {

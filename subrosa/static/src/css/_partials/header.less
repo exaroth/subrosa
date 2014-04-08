@@ -5,6 +5,10 @@
 	background-color: #fff;
 	width: 100% !important;
 
+	@media screen and (max-width: @sm){
+		height: 80px;
+	}
+
 }
 
 
@@ -21,9 +25,13 @@
 		position: relative;
 		margin-left: 3em;
 		@media screen and (max-width: @md) {
-			margin-left: 1em;
+			margin: 0 1em;
 		}
 		h4 {
+			@media screen and (max-width: @sm){
+				width: 100%;
+				text-align: center;
+			}
 			font-size: 10px;
 			margin: 0;
 			padding: 0;
@@ -46,8 +54,9 @@
 		line-height: 40px;
 		margin: 0 4em 0 0;
 		@media screen and (max-width: @md){
-			float: right;
+			text-align: center;
 			margin: 0;
+			width: 100%;
 		}
 		li {
 			display: inline-block;
