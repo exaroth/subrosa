@@ -13,8 +13,6 @@ Subrosa
 Hosted on github: `https://github.com/exaroth/subrosa <https://github.com/exaroth/subrosa>`_.
 
 Contents:
-
-
 .. toctree::
    :maxdepth: 2
     
