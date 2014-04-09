@@ -14,9 +14,11 @@ Hosted on github: `https://github.com/exaroth/subrosa <https://github.com/exarot
 
 Contents:
 
+
 .. toctree::
-    :maxdepth: 2
-    subrosa/installation
+   :maxdepth: 2
+
+   subrosa/installation
 
 
 Indices and tables
