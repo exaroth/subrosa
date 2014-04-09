@@ -14,13 +14,13 @@ Subrosa was made with simple installation in mind to download it simply issue:
 Basic configuration
 -------------------
 
-Main config file is named `subrosa.conf`, despite it's extension it's treated as standard python file, so be sure to input all values as strings (with either "" or '').
+Main config file is named ``subrosa.conf``, despite it's extension it's treated as standard python file, so be sure to input all values as strings (with either "" or '' ).
 It consists of the following options:
 
 ``SECRET_KEY`` -- This is important one, change it to any value you want, but change it, It's used by many components of Subrosa, like encrypting password and cookies. Also be sure to remember it or make a note in case you will want to reinstall Subrosa.
 
 .. note::
-   If you will be deploying Subrosa into Heroku you can leave below fields black, the configuration will be created automatically.
+   If you will be deploying Subrosa into Heroku you can leave below fields blank, the configuration will be created automatically.
    See "Deploying into Heroku" section below
 
 ``DATABASE`` -- Define database type to be used on the server side, ORM that subrosa uses: `Peewee <https://github.com/coleifer/peewee>`_ officialy supports **SQlite**, **MySQL** and **PostgreSQL**.
@@ -46,7 +46,7 @@ Adding Images
 -------------
 
 
-If you wish you can also specify graphics to be used in various parts or your blog, simple name them according to below table (plus extension) and drop them into ``/uploads folder``. With the exception of favicon.ico his can be in any common image format you like (png, jpg and gif)
+If you wish you can also specify graphics to be used in various parts or your blog, simply name them according to below table (plus extension) and drop them into ``/uploads folder``. With the exception of favicon.ico these can be in any common image format you like (``png``, ``jpg`` and ``gif``)
 
 +-------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | Filename    | Description                                                                                                                                 |
@@ -110,7 +110,7 @@ This should return something like:
 
 **Promote the database**
 
-.. code-block: console
+.. code-block:: console
    
    heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
 
@@ -135,4 +135,4 @@ Type:
 To create the tables in the database
 
 
-And that's it, you have fully working blog set up on Heroku cloud.
+And that's it, you now have fully working blog set up on Heroku cloud, go into <name of your app>.herokuapp.com to create user account.
