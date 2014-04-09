@@ -25,7 +25,7 @@ Subrosa is simple and elegant blogging platform written in Python, meant to be e
 * IE9+ compatible
 * Supported Python versions: 2.6, 2.7, 3.3, 3.4
 
-### For installation and configuration options please refer to official documentation ad [http://subrosa.readthedocs.org/en/latest/](http://subrosa.readthedocs.org/en/latest/)
+##### For installation and configuration options please refer to official documentation ad [http://subrosa.readthedocs.org/en/latest/](http://subrosa.readthedocs.org/en/latest/)
 
 ## Software used
 
