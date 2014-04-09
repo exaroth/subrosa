@@ -18,12 +18,6 @@
 
 TITLE = "Your awesome blog"
 
-# Set it to False if Subrosa will not modify local filesystem in any way,
-# including database
-# Not yet impemented
-
-DYNAMIC_SITE = True
-
 # ========== Database Configuration =================
 
 # Define database connection
@@ -89,10 +83,6 @@ IMAGES_PER_PAGE = 10
 
 SECRET_KEY = "Change it"
 
-# Default color for header text and icons
-
-HEADER_FONT_COLOR = "#4D4D4D"
-HEADER_BG_COLOR = "#FFFFFF"
 
 # =======================================================================
 # ======================== Advanced Settings ============================
@@ -119,11 +109,6 @@ THUMBNAIL_SIZE = "l"
 # Set it to True only for development purposes, outputs errors straight to the browser
 
 DEBUG = False
-
-
-# Set it to True if you want detailed error messages written to a file
-
-LOGGING = False
 
 # Cache options
 

@@ -35,10 +35,10 @@ Subrosa is built using `Grunt <http://gruntjs.com/>`_ task runner. It comes with
 Changing default fonts
 ^^^^^^^^^^^^^^^^^^^^^^
 
-By default Subrosa uses only fonts available on most operating systems, if you'd like to go for slightly more fancy simply replace respective font variable name in ``main/static/src/css/main.less`` file.
+By default Subrosa uses only fonts available on most operating systems, if you'd like to go for slightly more fancy simply replace respective font variable name in ``subrosa/static/src/css/main.less`` file.
 
 * ``@body-font`` -- serif font used inside articles body
-* ``@sans-font`` -- sans-serif font
+* ``@sans-font`` -- sans-serif font used in everywhere else
 
 .. note::
   
@@ -49,10 +49,11 @@ Advanced configuration
 ----------------------
 
 
-For more advanced options refr to ``default_config.py`` file inside ``subrosa`` directory, it's best not to directly change it as Subrosa overwrites settings specified in it with ``subrosa.conf`` and development config specified with ``SUBROSA_CONFIG`` environment variable. The most useful settings are:
+For more advanced options refer to ``default_config.py`` file inside ``subrosa`` directory, it's best not to directly change it as Subrosa overwrites settings specified in it with ``subrosa.conf`` and development config specified with ``SUBROSA_CONFIG`` environment variable. Best solution is to append this settings to ``subrosa.conf`` file.  
 
-* ``CACHE_TIMEOUT`` -- amount of time in seconds after which cache is cleared
+* ``CACHE_TIMEOUT`` -- amount of time in seconds after which cache is cleared (integer)
+* ``CACHE_TYPE`` -- Change it, if You'd like to use Redis or Memcached instead of Werkzeug dictionary-based caching,refer to `http://pythonhosted.org/Flask-Cache/ <http://pythonhosted.org/Flask-Cache/>`_ for available options.
 * ``THUMBNAIL_SIZE`` -- thumbnail size for imgur images, see table in ``default_config.py`` for reference
-* ``ARTICLES_PER_PAGE`` -- amount of articles showing up on the index page
-* ``IMAGES_PER_PAGE`` -- amount of images showing in the gallery
+* ``ARTICLES_PER_PAGE`` -- amount of articles showing up on the index page (integer)
+* ``IMAGES_PER_PAGE`` -- amount of images showing in the gallery (integer)
 
