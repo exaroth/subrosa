@@ -14,7 +14,7 @@ Subrosa was made with simple installation in mind to download it simply issue:
 Basic configuration
 -------------------
 
-Main config file is named ``subrosa.conf``, despite it's extension it's treated as standard python file, so be sure to input all values as strings (with either "" or '' ).
+Main config file is named ``subrosa.conf``, despite it's extension it's treated like standard python file, so be sure to input all values as strings (with either "" or '' ).
 It consists of the following options:
 
 ``SECRET_KEY`` -- This is important one, change it to any value you want, but change it, It's used by many components of Subrosa, like encrypting password and cookies. Also be sure to remember it or make a note in case you will want to reinstall Subrosa.
@@ -135,7 +135,7 @@ Type:
 To create the tables in the database
 
 
-And that's it, you now have fully working blog set up on Heroku cloud, go into ``<name of your app>.herokuapp.com`` to create user account.
+And that's it, you now have fully working blog set up on Heroku cloud, visit ``<name of your app>.herokuapp.com`` to create your user account.
 
 
 Server deployment
@@ -179,7 +179,7 @@ To install additional libraries execute this with following flags:
 **Create database and tables**
 
 Creating databases is beyond the scope of this document, if you don't have experience with working with MySQL or PostgreSQL you might use graphical tools for managing databases
-like ``phpmyadmin`` or ``phppgadmin``. Important thing to note: when creating ``MySQL`` database, make sure the to use proper encoding for the database; safe choice is to use ``utf8_bin``, if not set up properly MySQL will replace all non-ascii characters in data with '?'. As for SQLite manual database creation is not needed.
+like ``phpmyadmin`` or ``phppgadmin``. Important thing to note: when using MySQL, make sure the to use proper encoding for the database; safe choice is ``utf8_bin``, if not set up properly MySQL will replace all non-ascii characters in data with '?'. As for SQLite manual database creation is not needed.
 
 After database is created simply issue:
 
@@ -205,4 +205,4 @@ Issue:
 
 .. note::
 
-   Script ``run.sh`` simply starts gunicorn server with default parameters, if you wish to change that run ``gunicorn`` in command line. See `docs.gunicorn.org/en/latest/index.html <http://docs.gunicorn.org/en/latest/index.html>`_ for available options. While ``gunicorn`` is great at what it does it's not meant to be used standalone for serving apps. Most common practice is to use it along with an proxy server like Nginx, setting up a server configuration is beyond the scope of this documentation, however you can find detailed info on the topic in the official gunicorn documentation.
+   Script ``run.sh`` simply starts gunicorn server with default parameters, if you wish to change that run ``gunicorn`` in command line. See `docs.gunicorn.org/en/latest/index.html <http://docs.gunicorn.org/en/latest/index.html>`_ for available options. While ``gunicorn`` is great at what it does it's not meant to be used standalone for serving apps. Most common practice is to use it along with an proxy server like Nginx, setting up a server configuration is beyond the scope of this documentation, however you can find detailed info on the topic in the official gunicorn docs.

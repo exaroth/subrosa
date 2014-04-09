@@ -6,11 +6,15 @@
 Subrosa
 ===================================
 
-* Small database driven blog
+* Small database driven blogging platform
 * Python 2.6+ and 3.2+ compatible
 * Supports MySQL, PostgreSQL and SQLite
- 
-Hosted on github: `https://github.com/exaroth/subrosa <https://github.com/exaroth/subrosa>`_
+* Clean, elegant and responsive design
+* Integration with Imgur for images upload and Disqus for comments
+  
+.. note::
+
+    Hosted on github: `https://github.com/exaroth/subrosa <https://github.com/exaroth/subrosa>`_
 
 Contents:
 
@@ -19,6 +23,7 @@ Contents:
    :maxdepth: 2
 
    subrosa/installation
+   subrosa/apis
 
 
 Indices and tables
