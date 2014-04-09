@@ -8,7 +8,7 @@ Subrosa
 
 * Small database driven blogging platform
 * Python 2.6+ and 3.2+ compatible
-* Supports MySQL, PostgreSQL and SQLite
+* Supports MySQL, PostgreSQL and SQLite databases
 * Clean, elegant and responsive design
 * Integration with Imgur for images upload and Disqus for comments
   
@@ -24,6 +24,7 @@ Contents:
 
    subrosa/installation
    subrosa/apis
+   subrosa/customization
 
 
 Indices and tables

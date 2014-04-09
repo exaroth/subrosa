@@ -192,7 +192,7 @@ To make sure everything went ok execute:
 
 .. code-block:: console
 
-   ./create_db
+   ./check_db
 
 
 **Run the app**
