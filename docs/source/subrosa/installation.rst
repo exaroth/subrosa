@@ -25,7 +25,7 @@ It consists of the following options:
 
 ``DATABASE`` -- Define database type to be used on the server side, ORM that subrosa uses: `Peewee <https://github.com/coleifer/peewee>`_ officialy supports **SQlite**, **MySQL** and **PostgreSQL**.
 
-``DATABASE_NAME``  Name of the database (or database file for SQLite) to be used for storing data. Note that in case of PostgreSQL and MySQL you **DO** have to create this database yourself, tables are created later so don't worry about making them yourself.
+``DATABASE_NAME`` -- Name of the database (or database file for SQLite) to be used for storing data. Note that in case of PostgreSQL and MySQL you **DO** have to create this database yourself, tables are created later so don't worry about making them yourself.
 
 .. note::
    Below options only apply if you're using MySQL or PostgreSQL database.
@@ -37,7 +37,7 @@ It consists of the following options:
 Here are couple of notes about databases:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* For MySQL and PostgreSQL connectors to work properly they need to be compiled upon install, this however requires additional libraries, you will need to install either ``libpg-dev`` (for PostgreSQL) or ``libmysqlclient-dev`` on the server side. Use package manager that your system provides to install them.
+* For MySQL and PostgreSQL connectors to work properly they need to be compiled upon install, this however requires additional libraries, you will need to install either ``libpg-dev`` (for PostgreSQL) or ``libmysqlclient-dev`` on the server side. Use package manager that your system provides to acquire them.
 
 * SQLite db doesn't require any additional libraries to be installed, however, because it's file based, you do need write access on the server side for it to work properly
 
@@ -46,7 +46,7 @@ Adding Images
 -------------
 
 
-If you wish you can also specify graphics to be used in various parts or your blog, simply name them according to below table (plus extension) and drop them into ``/uploads folder``. With the exception of favicon.ico these can be in any common image format you like (``png``, ``jpg`` and ``gif``)
+If you wish you can also specify graphics to be used in various parts or your blog, simply name them according to below table (plus extension) and drop them into ``/uploads`` folder. With the exception of ``favicon.ico`` these can be in any common image format you like (``png``, ``jpg`` and ``gif``)
 
 +-------------+---------------------------------------------------------------------------------------------------------------------------------------------+
 | Filename    | Description                                                                                                                                 |
@@ -64,7 +64,7 @@ Deployment on Heroku
 --------------------
 
 .. note::
-   This assumes you already created Heroku account and have Heroku Toolbelt installed on you system. If not see `https://devcenter.heroku.com/articles/quickstart <https://devcenter.heroku.com/articles/quickstart>`_
+   This assumes you already created Heroku account and have Heroku Toolbelt installed on you system. If not, see `https://devcenter.heroku.com/articles/quickstart <https://devcenter.heroku.com/articles/quickstart>`_
 
 
 Commit all the changes
@@ -135,4 +135,68 @@ Type:
 To create the tables in the database
 
 
-And that's it, you now have fully working blog set up on Heroku cloud, go into <name of your app>.herokuapp.com to create user account.
+And that's it, you now have fully working blog set up on Heroku cloud, go into ``<name of your app>.herokuapp.com`` to create user account.
+
+
+Server deployment
+-----------------
+
+.. note::
+   The preferred method of deploying apps like Subrosa is to use virtualenv, this makes it easier prevent polluting system with python packages aswell as ensuring you use proper versions of libraries.
+
+**Create virtualenv Environment (optional)**
+
+.. code-block:: console
+
+  mkdir subrosa && virtualenv subrosa 
+  cd subrosa && source bin/activate
+
+**Clone the repo from Github**
+
+.. code-block:: console
+
+   git clone https://github.com/exaroth/subrosa.git
+
+**Install the dependencies**
+
+Issue:
+
+.. code-block:: console
+
+   ./install
+
+To install additional libraries execute this with following flags:
+
+``--mysql`` -- for MySQL
+``--postgres`` -- for PostgeSQL
+
+.. note::
+  
+  If you get an error saying 'Python.h missing` make sure you have ``python-dev`` package installed.
+
+**Create database**
+
+See "Basic configuration above"
+
+**Create tables**
+
+Execute:
+
+.. code-block:: console
+
+  ./create_db
+
+from main subrosa directory
+
+
+**Run the app**
+
+Issue:
+
+.. code-block:: console
+   ./run.sh
+
+
+.. note::
+
+   script ``run.sh`` simply starts gunicorn server with default parameters, if you wish to change that run ``gunicorn`` in command line. See `http://docs.gunicorn.org/en/latest/index.html <http://docs.gunicorn.org/en/latest/index.html>` for available options. While ``gunicorn`` is great at what it does it's not meant to be used standalone for serving apps. Most common practice is to use it along with an proxy server like Nginx, setting up a server configuration is beyond the scope of this documentation, however you can find detailed info about deplying it along with Nginx in the official documentation.
