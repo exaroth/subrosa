@@ -27,8 +27,8 @@ class Articles(BaseModel):
     Models and methods related to articles
     """
 
-    title = TextField(unique=True)
-    slug = TextField(unique=True, index=True)
+    title = TextField()
+    slug = TextField()
     draft = BooleanField(default=True)
     series = TextField(null=True, default=None)
     date_created = DateTimeField(default=datetime.datetime.utcnow())

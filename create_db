@@ -23,6 +23,12 @@ try:
 
     print ("Tables created")
 
-except:
-    raise Exception("Error occured when creating tables,\
-                    check your database configuration")
+except Exception as e:
+
+    print("Error occured when Creating database")
+    print("Error details: \n")
+    print(e)
+    raise Exception
+
+    
+

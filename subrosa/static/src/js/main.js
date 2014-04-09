@@ -69,8 +69,10 @@ $(document).ready(function(){
         wHeight = $window.height();
 
 		matchDocumentHeight($fullHeightWrapper);
-		matchDocumentHeight($(".dashboard-sidebar"));
+		matchDocumentHeight($(".dashboard-sidebar"), -20);
         // setDashboardBackground('#6a6a6e');
+		
+		positionIndex();
 
         $updateArticleButton.click(function(e){
             e.preventDefault();
@@ -242,19 +244,26 @@ $(document).ready(function(){
 
     };
 
+	// Resize the element to match total document height
+	function matchDocumentHeight(el, amount){
 
-	function matchDocumentHeight(el){
+		amount = amount || 220;
 
 		if(el.length > 0) {
 			if(el.height() < $document.height()) {
-				el.height($document.height() - 60);
+				el.height($document.height() - amount );
 			};
 			 
 		}
 
 	}
 
-	
+	function positionIndex(){
+
+		if ($indexWrapper.height() < wHeight) {
+			$indexWrapper.height(wHeight);
+		}
+	};
 	
     function matchIndexContents(){
         if(wWidth > majorBreakpoint){
@@ -504,6 +513,7 @@ $window.resize(function(){
     wHeight = $window.height();
     wWidth = $window.width();
     matchIndexContents();
+	matchDocumentHeight();
 });
 
 

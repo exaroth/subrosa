@@ -11,7 +11,6 @@
 
 
 {% if projects %}
-<div class="container">
 	<div class="row">
 	
 	<div class="col-md-8 col-md-offset-2 " id="user-projects">
@@ -24,13 +23,15 @@
 	{% endfor %}
 	</div>
 	{% else %}
+	<div class="full-height-wrapper">
+	
 	<div class=" empty-container vert-centered hor-centered ">
 	<img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/subrosa.jpg')}}" alt="">
 	<h4>No projects added yet</h4>
 		
 	</div>
 	</div>
-</div>
+	</div>
 		
 {% endif %}
 
