@@ -1,29 +1,139 @@
-Installation
-============
+Quickstart and Installation
+===========================
+
+Getting the source
+------------------
+
+Subrosa was made with simple installation in mind to download it simply issue:
+
+.. code-block:: console
+
+	git clone https://github.com/exaroth/subrosa.git
 
 
-+----------------------------+--------------------------------+
-| Column 1                   | Column 2                       |
-+============================+================================+
-| Foo                        | deprofundis clamo ad te domine |
-+----------------------------+--------------------------------+
-| Bar                        | Deprofundis clamo ad te domine |
-+----------------------------+--------------------------------+
+Basic configuration
+-------------------
 
+Main config file is named `subrosa.conf`, despite it's extension it's treated as standard python file, so be sure to input all values as strings (with either "" or '').
+It consists of the following options:
 
-THis is paragraph text *after the table*
-
-
-`Print`
-
-.. code-block:: python
-   
-    import math
-    print "import done"
-    print math.sqrt(4)
-    
-    
-Adipisicing obcaecati necessitatibus fuga non corporis amet, quae at. Sapiente cupiditate quasi obcaecati officia voluptates? Adipisci illo illo consequuntur cumque porro nisi? Accusantium neque quos at est eos id <necessitatibus></necessitatibus>
+`SECRET_KEY`  This is important one, change it to any value you want, but change it, It's used by many components of Subrosa, like encrypting password and cookies. Also be sure to remember it or make a note in case you will want to reinstall Subrosa.
 
 .. note::
-   Sit sapiente quam consectetur voluptatum optio impedit iure molestias. Facere veritatis alias tempora harum maxime alias sit. Quia minima a possimus modi eius! Delectus eius vel enim blanditiis laudantium vitae.
+   If you will be deploying Subrosa into Heroku you can leave below fields black, the configuration will be created automatically.
+   See "Deploying into Heroku" section below
+
+`DATABASE`  Define database type to be used on the server side, ORM that subrosa uses: `Peewee <https://github.com/coleifer/peewee>`_ officialy supports **SQlite**, **MySQL** and **PostgreSQL**.
+
+`DATABASE_NAME`  Name of the database (or database file for SQLite) to be used for storing data. Note that in case of PostgreSQL and MySQL you **DO** have to create this database yourself, tables are created later so don't worry about making them yourself.
+
+.. note::
+   Below options only apply if you're using MySQL or PostgreSQL database.
+
+`DB_USERNAME` Username to be used when connecting to database, it's best practice, for safety reasons, to create a user (say 'subrosa') that only has read and write access to a single database.
+
+`DB_PASSWORD` Password to be used when connecting to database
+
+Here are couple of notes about databases:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* For MySQL and PostgreSQL connectors to work properly they need to be compiled upon install, this however requires additional libraries, you will need to install either ``libpg-dev`` (for PostgreSQL) or ``libmysqlclient-dev`` on the server side. Use package manager that your system provides to install them.
+
+* SQLite db doesn't require any additional libraries to be installed, however, because it's file based, you do need write access on the server side for it to work properly
+
+
+Adding Images
+-------------
+
+
+If you wish you can also specify graphics to be used in various parts or your blog, simple name them according to below table (plus extension) and drop them into ``/uploads folder``. With the exception of favicon.ico his can be in any common image format you like (png, jpg and gif)
+
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| Filename    | Description                                                                                                                                 |
++=============+=============================================================================================================================================+
+| bg          | Image to be shown on you landing page, because of the way the background is resized according to screen size it works best in square format |
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| portrait    | Your portrait shown next to your posts, aswell as on landing and about page                                                                 |
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| logo        | Image to be shown instead of plain site title                                                                                               |
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+| favicon.ico | This is small icon shown by the browser next to your URL Address                                                                            |
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+Deployment on Heroku
+--------------------
+
+:: note::
+   This assumes you already created Heroku account and have Heroku Toolbelt installed on you system. If not see `https://devcenter.heroku.com/articles/quickstart <https://devcenter.heroku.com/articles/quickstart>`_
+
+
+Commit all the changes
+^^^^^^^^^^^^^^^^^^^^^^
+
+After changing configuration file and adding images issue:
+
+:: code-block: console
+
+   git add . && git commit -m "Changes added"
+
+
+Set up Heroku app
+^^^^^^^^^^^^^^^^^
+
+Issue this commands from main Subrosa directory:
+
+**Create new Heroku app**
+
+.. code-block:: console
+  
+  heroku app create --stack cedar <name of your app>
+
+**Add PostgreSQL database to Heroku**
+
+.. code-block:: console
+   
+   heroku addons:add heroku-postgresql
+
+**Get name of your newly created database**
+
+.. code-block:: console
+   
+   heroku pg:info
+
+This should return something like:
+
+.. code-block:: console
+
+   HEROKU_POSTGRESQL_WHITE_URL <== Database name
+   Plan:        Dev
+   Status:      available
+
+**Promote the database**
+
+.. code-block: console
+   
+   heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
+
+Push the repo and create tables
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After this configuration you are ready to push repository into Heroku. Issue:
+
+.. code-block:: console
+   
+   git push heroku master
+
+This should get all your data into the server and install required dependencies
+
+Finally create the tables in your database:
+
+Type:
+
+.. code-block:: console
+   
+   heroku run python create_db
+
+To create the tables in the database
+
+
+And that's it, you have fully working blog set up on Heroku cloud.
