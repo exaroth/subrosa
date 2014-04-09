@@ -17,22 +17,22 @@ Basic configuration
 Main config file is named `subrosa.conf`, despite it's extension it's treated as standard python file, so be sure to input all values as strings (with either "" or '').
 It consists of the following options:
 
-`SECRET_KEY`  This is important one, change it to any value you want, but change it, It's used by many components of Subrosa, like encrypting password and cookies. Also be sure to remember it or make a note in case you will want to reinstall Subrosa.
+``SECRET_KEY`` -- This is important one, change it to any value you want, but change it, It's used by many components of Subrosa, like encrypting password and cookies. Also be sure to remember it or make a note in case you will want to reinstall Subrosa.
 
 .. note::
    If you will be deploying Subrosa into Heroku you can leave below fields black, the configuration will be created automatically.
    See "Deploying into Heroku" section below
 
-`DATABASE`  Define database type to be used on the server side, ORM that subrosa uses: `Peewee <https://github.com/coleifer/peewee>`_ officialy supports **SQlite**, **MySQL** and **PostgreSQL**.
+``DATABASE`` -- Define database type to be used on the server side, ORM that subrosa uses: `Peewee <https://github.com/coleifer/peewee>`_ officialy supports **SQlite**, **MySQL** and **PostgreSQL**.
 
-`DATABASE_NAME`  Name of the database (or database file for SQLite) to be used for storing data. Note that in case of PostgreSQL and MySQL you **DO** have to create this database yourself, tables are created later so don't worry about making them yourself.
+``DATABASE_NAME``  Name of the database (or database file for SQLite) to be used for storing data. Note that in case of PostgreSQL and MySQL you **DO** have to create this database yourself, tables are created later so don't worry about making them yourself.
 
 .. note::
    Below options only apply if you're using MySQL or PostgreSQL database.
 
-`DB_USERNAME` Username to be used when connecting to database, it's best practice, for safety reasons, to create a user (say 'subrosa') that only has read and write access to a single database.
+``DB_USERNAME`` -- Username to be used when connecting to database, it's best practice, for safety reasons, to create a user (say 'subrosa') that only has read and write access to a single database.
 
-`DB_PASSWORD` Password to be used when connecting to database
+``DB_PASSWORD`` -- Password to be used when connecting to database
 
 Here are couple of notes about databases:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -63,7 +63,7 @@ If you wish you can also specify graphics to be used in various parts or your bl
 Deployment on Heroku
 --------------------
 
-:: note::
+.. note::
    This assumes you already created Heroku account and have Heroku Toolbelt installed on you system. If not see `https://devcenter.heroku.com/articles/quickstart <https://devcenter.heroku.com/articles/quickstart>`_
 
 
@@ -72,7 +72,7 @@ Commit all the changes
 
 After changing configuration file and adding images issue:
 
-:: code-block: console
+.. code-block:: console
 
    git add . && git commit -m "Changes added"
 
@@ -114,8 +114,7 @@ This should return something like:
    
    heroku pg:promote HEROKU_POSTGRESQL_WHITE_URL
 
-Push the repo and create tables
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Push the repo and create tables**
 
 After this configuration you are ready to push repository into Heroku. Issue:
 
