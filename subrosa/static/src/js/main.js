@@ -14,6 +14,7 @@ $(document).ready(function(){
 
     var
     $body                = $('body'),
+	$document            = $(document),
     $window              = $(window),
     $scratcharea            = $("textarea.scratch"),
     $articleInputBody    = $(".article-input-body"),
@@ -67,6 +68,8 @@ $(document).ready(function(){
         wWidth  = $window.width();
         wHeight = $window.height();
 
+		matchDocumentHeight($fullHeightWrapper);
+		matchDocumentHeight($(".dashboard-sidebar"));
         // setDashboardBackground('#6a6a6e');
 
         $updateArticleButton.click(function(e){
@@ -75,13 +78,6 @@ $(document).ready(function(){
         });
 
         matchIndexContents();
-		
-		if($fullHeightWrapper.length > 0) {
-			if($fullHeightWrapper.height() < wHeight) {
-				$fullHeightWrapper.height(wHeight - 120);
-			};
-			 
-		}
 
         $submitButton.click(function(e){
             e.preventDefault();
@@ -183,6 +179,7 @@ $(document).ready(function(){
             }
         });
 
+//======  Functions ========
 
         function checkFadeout(){
              fadeoutIntVal = setInterval(function(){
@@ -246,9 +243,17 @@ $(document).ready(function(){
     };
 
 
+	function matchDocumentHeight(el){
 
+		if(el.length > 0) {
+			if(el.height() < $document.height()) {
+				el.height($document.height() - 60);
+			};
+			 
+		}
 
-//======  Functions ========
+	}
+
 	
 	
     function matchIndexContents(){
