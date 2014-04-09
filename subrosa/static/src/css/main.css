@@ -197,24 +197,10 @@ code {
     height: 50px;
   }
 }
-#sidepanel-toggler {
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  z-index: 999;
-  top: 5%;
-  left: 50px;
-}
-#sidepanel-toggler:hover {
-  color: #47b1ff;
-}
-#sidepanel-toggler i {
-  font-size: 3em;
-}
 .content-header-btns {
   display: inline-block;
   top: 20%;
-  z-index: 9999;
+  z-index: 3;
   right: 10%;
   position: absolute;
   text-align: center;
@@ -860,11 +846,11 @@ textarea.article-input.article-input-title {
   -o-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  z-index: 3;
 }
 @media screen and (max-width: 970px) {
   .editing-tools {
     right: 8%;
-    z-index: 99999999;
   }
 }
 @media screen and (max-width: 970px) {
@@ -1177,7 +1163,7 @@ textarea.article-input.article-input-title {
   width: 40px;
   height: 40px;
   position: relative;
-  z-index: 1001;
+  z-index: 3;
   text-align: center;
   background-color: #333333;
   margin-top: 1px;
@@ -1822,7 +1808,7 @@ div#selectable-1 {
 .header {
   height: 40px;
   position: relative;
-  z-index: 9;
+  z-index: 3;
   background-color: #fff;
   width: 100% !important;
 }
@@ -1938,7 +1924,7 @@ div#selectable-1 {
 }
 #footer-links {
   position: absolute;
-  z-index: 999;
+  z-index: 3;
   font-size: 1.2em;
   line-height: 60px;
   padding-left: 4em;
@@ -2133,7 +2119,7 @@ textarea.form-control:active {
   position: fixed;
   background-color: white;
   padding: 2em 1em 0 1em;
-  z-index: 999;
+  z-index: 4;
   -webkit-border-radius: 4px;
   -webkit-background-clip: padding-box;
   -moz-border-radius: 4px;

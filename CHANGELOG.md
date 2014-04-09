@@ -2,6 +2,10 @@
 
 Tracking changes for Subrosa versions. Visit [https://github.com/exaroth/subrosa.git](https://github.com/exaroth/subrosa.git) for complete history revision.
 
+## 0.4 ( in progress )
+
+* Added documentation
+
 ## 0.3
 
 * Complete dashboard panel rewrite
