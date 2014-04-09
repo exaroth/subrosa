@@ -18,7 +18,7 @@ THis is paragrap text *after the table*
 
 `` Print 
 
-.. code-block::
+.. code-block:: python
    
     import math
     print "import done"
