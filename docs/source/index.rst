@@ -10,13 +10,13 @@ Subrosa
 * Python 2.6 and 3.2 compatible
 * Supports MySQL, PostgreSQL and SQLite
  
-Hosted on github: `https://github.com/exaroth/subrosa <https://github.com/exaroth/subrosa>`_.
+Hosted on github: `https://github.com/exaroth/subrosa <https://github.com/exaroth/subrosa>`_
 
 Contents:
+
 .. toctree::
-   :maxdepth: 2
-    
-   subrosa/installation
+    :maxdepth: 2
+    subrosa/installation
 
 
 Indices and tables
