@@ -5,7 +5,7 @@
 	</li>
 	
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'IMAGES'}}">
-		<a href="{{ url_for('user_images', username = session.user )}}" class="hint-icon", title="Your Images"><i class="icon-picture"></i></a>
+		<a href="{{ url_for('user_images', username = session.user )}}" class="hint-icon" title="Your Images"><i class="icon-picture"></i></a>
 	</li>
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'SETTINGS'}} ">
@@ -13,11 +13,11 @@
 	</li>
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item ">
-		<a href="{{ url_for('create_article')}}" class="hint-icon", title="Create Article"><i class="icon-doc-text-inv"></i></a>
+		<a href="{{ url_for('create_article')}}" class="hint-icon" title="Create Article"><i class="icon-doc-text-inv"></i></a>
 	</li>
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item ">
-		<a href="{{ url_for('create_project')}}" class="hint-icon", title="Create Project"><i class="icon-doc"></i></a>
+		<a href="{{ url_for('create_project')}}" class="hint-icon" title="Create Project"><i class="icon-doc"></i></a>
 	</li>
 
 	<li class="dashboard-sidebar-item dark-dashboard-sidebar-item {{ 'active' if dashboard_part == 'UPLOAD'}}">

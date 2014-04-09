@@ -30,6 +30,7 @@ $(document).ready(function(){
     $editingButtons      = $(".editing-button"),
     $gallery             = $(".gallery-wrapper"),
     $dashboardArea       = $(".dashboard-area"),
+	$fullHeightWrapper   = $(".full-height-wrapper"),
     $lamp                = $(".lamp-button"),
     $imageLinks          = $(".show-img"),
     // base thumbnail size for gallery
@@ -74,6 +75,13 @@ $(document).ready(function(){
         });
 
         matchIndexContents();
+		
+		if($fullHeightWrapper.length > 0) {
+			if($fullHeightWrapper.height() < wHeight) {
+				$fullHeightWrapper.height(wHeight - 120);
+			};
+			 
+		}
 
         $submitButton.click(function(e){
             e.preventDefault();

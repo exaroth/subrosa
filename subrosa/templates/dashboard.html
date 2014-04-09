@@ -5,22 +5,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-xs-12 dashboard-area container-fluid" id="dashboard-wrapper">
+
+<div class="full-height-wrapper">
+	<div class="dashboard-area">
 
 	{% include "_partials/dashboard_articles.html" %}
 	{% include "_partials/dashboard_projects.html" %}
 
 	</div>
 
+</div>
 
 	{% endblock %}
 
-
-	{% block sidebar %}
-
+{% block sidebar %}
 	{% with dashboard_part="MAIN" %}
-	{% include '_partials/dashboard_sidebar.html' %}
+		{% include '_partials/dashboard_sidebar.html' %}
 	{% endwith %}
+{% endblock %}
 
-	{% endblock %}
+
 

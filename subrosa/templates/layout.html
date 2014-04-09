@@ -34,19 +34,16 @@
 
 
 <body>
+	{%- block sidebar -%}
+	{%- endblock -%}
 	{%- block modals -%}
 	{%- endblock -%}
+	{%- block titlebar -%} 
+	{%- endblock -%}
 	<div class="container-full" id="wrap">
-		{%- block titlebar -%} 
-		{%- endblock -%}
 		<div id="main-wrapper">
-
-			{%- block sidebar -%}
-			{%- endblock -%}
-
 			{%- block content -%} 
 			{%- endblock -%}
-		
 		</div>
 
 	</div>

@@ -864,7 +864,7 @@ textarea.article-input.article-input-title {
 @media screen and (max-width: 970px) {
   .editing-tools {
     right: 8%;
-    z-index: 99;
+    z-index: 99999999;
   }
 }
 @media screen and (max-width: 970px) {
@@ -1240,8 +1240,9 @@ textarea.article-input.article-input-title {
   left: 0;
   z-index: 1000;
   height: 100%;
+  top: 40px;
 }
-#dashboard-wrapper {
+.dashboard-area {
   padding-left: 50px;
   padding-top: 40px;
 }
@@ -2034,6 +2035,18 @@ textarea {
   background-color: transparent !important;
   resize: none;
 }
+.full-height-wrapper {
+  position: relative;
+  height: 100%;
+}
+.full-height-wrapper:before,
+.full-height-wrapper:after {
+  content: " ";
+  display: table;
+}
+.full-height-wrapper:after {
+  clear: both;
+}
 .form-control,
 textarea.form-control {
   background-color: rgba(0, 0, 0, 0.02) !important;
@@ -2189,7 +2202,7 @@ a[disabled] {
   border: none;
 }
 .vert-centered {
-  position: absolute;
+  position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
@@ -2198,7 +2211,7 @@ a[disabled] {
   transform: translateY(-50%);
 }
 .hor-centered {
-  position: absolute;
+  position: relative;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
