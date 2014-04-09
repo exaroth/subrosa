@@ -168,25 +168,31 @@ Issue:
 To install additional libraries execute this with following flags:
 
 ``--mysql`` -- for MySQL
+
+
 ``--postgres`` -- for PostgeSQL
 
 .. note::
   
   If you get an error saying 'Python.h missing` make sure you have ``python-dev`` package installed.
 
-**Create database**
+**Create database and tables**
 
-See "Basic configuration above"
+Creating databases is beyond the scope of this document, if you don't have experience with working with MySQL or PostgreSQL you might use graphical tools for managing databases
+like ``phpmyadmin`` or ``phppgadmin``. Important thing to note: when creating ``MySQL`` database, make sure the to use proper encoding for the database; safe choice is to use ``utf8_bin``, if not set up properly MySQL will replace all non-ascii characters in data with '?'. As for SQLite manual database creation is not needed.
 
-**Create tables**
+After database is created simply issue:
 
-Execute:
+.. code-block:: console
+   
+   ./create_db
+
+
+To make sure everything went ok execute:
 
 .. code-block:: console
 
-  ./create_db
-
-from main subrosa directory
+   ./create_db
 
 
 **Run the app**
@@ -194,9 +200,9 @@ from main subrosa directory
 Issue:
 
 .. code-block:: console
-   ./run.sh
 
+   ./run.sh
 
 .. note::
 
-   script ``run.sh`` simply starts gunicorn server with default parameters, if you wish to change that run ``gunicorn`` in command line. See `http://docs.gunicorn.org/en/latest/index.html <http://docs.gunicorn.org/en/latest/index.html>` for available options. While ``gunicorn`` is great at what it does it's not meant to be used standalone for serving apps. Most common practice is to use it along with an proxy server like Nginx, setting up a server configuration is beyond the scope of this documentation, however you can find detailed info about deplying it along with Nginx in the official documentation.
+   Script ``run.sh`` simply starts gunicorn server with default parameters, if you wish to change that run ``gunicorn`` in command line. See `docs.gunicorn.org/en/latest/index.html <http://docs.gunicorn.org/en/latest/index.html>`_ for available options. While ``gunicorn`` is great at what it does it's not meant to be used standalone for serving apps. Most common practice is to use it along with an proxy server like Nginx, setting up a server configuration is beyond the scope of this documentation, however you can find detailed info on the topic in the official gunicorn documentation.
