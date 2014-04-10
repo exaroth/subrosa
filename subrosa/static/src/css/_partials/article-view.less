@@ -13,8 +13,14 @@
 }
 
 .top-image ~ .single-article {
+	top: -160px;
 	background-color: white;
-	top: -120px;
+	@media screen and (max-width: @md){
+		background-color: transparent;
+	}
+	@media screen and (max-width: @sm){
+		margin-top: 120px;
+	}
 	.article-main {
 		top: 80px;
 	}

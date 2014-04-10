@@ -458,8 +458,18 @@ a[disabled] {
   margin-top: 6em;
 }
 .top-image ~ .single-article {
+  top: -160px;
   background-color: white;
-  top: -120px;
+}
+@media screen and (max-width: 970px) {
+  .top-image ~ .single-article {
+    background-color: transparent;
+  }
+}
+@media screen and (max-width: 750px) {
+  .top-image ~ .single-article {
+    margin-top: 120px;
+  }
 }
 .top-image ~ .single-article .article-main {
   top: 80px;
@@ -1672,8 +1682,7 @@ div#selectable-1 {
   margin: auto;
 }
 #user-projects {
-  margin-top: 2em;
-  margin-bottom: 6em;
+  margin-top: 120px !important;
 }
 @media screen and (max-width: 970px) {
   #user-projects {

@@ -1,5 +1,5 @@
 //
-// Subrosa Scripts files
+// Subrosa main Javascript file
 // Copyright @2014 Konrad Wasowicz
 //
 // https://github.com/exaroth/subrosa
@@ -149,6 +149,8 @@ $(document).ready(function(){
 
         });
 
+        console.log("Blog powered by Subrosa\nhttps://github.com/exaroth/subrosa")
+
     };
 
 
@@ -274,7 +276,6 @@ $(document).ready(function(){
 
     };
 
-
 	// Toggle link fields in dashboard menu
     function toggleSelectables(){
 
@@ -314,7 +315,6 @@ $(document).ready(function(){
      };
 
 
-
     // Disable tab trigger in textarea
     function enableTab(el) {
 
@@ -352,6 +352,7 @@ $(document).ready(function(){
         return Math.random() * (max - min) + min;
     };
 
+    // Position images inside containers
     $.fn.positionArticleImage = function(){
 
         var self = $(this);
@@ -506,7 +507,7 @@ $window.load(function(){
     start();
 });
 
-$window.bind('resize scroll', function(){
+$window.bind('scroll', function(){
 });
 
 $window.resize(function(){
