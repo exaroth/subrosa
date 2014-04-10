@@ -4162,7 +4162,7 @@ if (!Object.keys) {
 
 })(window.jQuery || window.Zepto);
 ;//
-// Subrosa Scripts files
+// Subrosa main Javascript file
 // Copyright @2014 Konrad Wasowicz
 //
 // https://github.com/exaroth/subrosa
@@ -4177,6 +4177,7 @@ $(document).ready(function(){
 
     var
     $body                = $('body'),
+	$document            = $(document),
     $window              = $(window),
     $scratcharea            = $("textarea.scratch"),
     $articleInputBody    = $(".article-input-body"),
@@ -4193,6 +4194,7 @@ $(document).ready(function(){
     $editingButtons      = $(".editing-button"),
     $gallery             = $(".gallery-wrapper"),
     $dashboardArea       = $(".dashboard-area"),
+	$fullHeightWrapper   = $(".full-height-wrapper"),
     $lamp                = $(".lamp-button"),
     $imageLinks          = $(".show-img"),
     // base thumbnail size for gallery
@@ -4229,7 +4231,11 @@ $(document).ready(function(){
         wWidth  = $window.width();
         wHeight = $window.height();
 
+		matchDocumentHeight($fullHeightWrapper);
+		matchDocumentHeight($(".dashboard-sidebar"), -20);
         // setDashboardBackground('#6a6a6e');
+		
+		positionIndex();
 
         $updateArticleButton.click(function(e){
             e.preventDefault();
@@ -4306,6 +4312,8 @@ $(document).ready(function(){
 
         });
 
+        console.log("Blog powered by Subrosa\nhttps://github.com/exaroth/subrosa")
+
     };
 
 
@@ -4338,6 +4346,7 @@ $(document).ready(function(){
             }
         });
 
+//======  Functions ========
 
         function checkFadeout(){
              fadeoutIntVal = setInterval(function(){
@@ -4400,11 +4409,26 @@ $(document).ready(function(){
 
     };
 
+	// Resize the element to match total document height
+	function matchDocumentHeight(el, amount){
 
+		amount = amount || 220;
 
+		if(el.length > 0) {
+			if(el.height() < $document.height()) {
+				el.height($document.height() - amount );
+			};
+			 
+		}
 
-//======  Functions ========
-	
+	}
+
+	function positionIndex(){
+
+		if ($indexWrapper.height() < wHeight) {
+			$indexWrapper.height(wHeight);
+		}
+	};
 	
     function matchIndexContents(){
         if(wWidth > majorBreakpoint){
@@ -4414,7 +4438,6 @@ $(document).ready(function(){
         }
 
     };
-
 
 	// Toggle link fields in dashboard menu
     function toggleSelectables(){
@@ -4455,7 +4478,6 @@ $(document).ready(function(){
      };
 
 
-
     // Disable tab trigger in textarea
     function enableTab(el) {
 
@@ -4493,6 +4515,7 @@ $(document).ready(function(){
         return Math.random() * (max - min) + min;
     };
 
+    // Position images inside containers
     $.fn.positionArticleImage = function(){
 
         var self = $(this);
@@ -4647,13 +4670,14 @@ $window.load(function(){
     start();
 });
 
-$window.bind('resize scroll', function(){
+$window.bind('scroll', function(){
 });
 
 $window.resize(function(){
     wHeight = $window.height();
     wWidth = $window.width();
     matchIndexContents();
+	matchDocumentHeight();
 });
 
 
