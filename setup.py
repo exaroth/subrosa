@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name = "Subrosa",
-    version = "0.3",
+    version = "0.3.2",
     author = "Konrad Wasowicz",
     author_email = "exaroth@gmail.com",
     description = "Simple and elegant blogging system",
