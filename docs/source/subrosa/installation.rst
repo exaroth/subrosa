@@ -4,7 +4,11 @@ Quickstart and Installation
 Getting the source
 ------------------
 
-Subrosa was made with simple installation in mind to download it simply issue:
+You can find zipped Subrosa files under below address:
+
+`https://github.com/exaroth/subrosa/archive/0.3.2.zip <https://github.com/exaroth/subrosa/archive/0.3.2.zip>`_
+
+Alternatively you can clone the repository:
 
 .. code-block:: console
 
@@ -70,6 +74,9 @@ Deployment on Heroku
 Commit all the changes
 ^^^^^^^^^^^^^^^^^^^^^^
 
+If you downloaded zipped source ```git init``` from inside main Subrosa directory
+
+
 After changing configuration file and adding images issue:
 
 .. code-block:: console
@@ -80,7 +87,7 @@ After changing configuration file and adding images issue:
 Set up Heroku app
 ^^^^^^^^^^^^^^^^^
 
-Issue this commands from main Subrosa directory:
+Execute this commands from main Subrosa directory:
 
 **Create new Heroku app**
 
