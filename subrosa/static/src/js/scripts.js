@@ -4231,8 +4231,8 @@ $(document).ready(function(){
         wWidth  = $window.width();
         wHeight = $window.height();
 
-		matchDocumentHeight($fullHeightWrapper);
-		matchDocumentHeight($(".dashboard-sidebar"), -20);
+		// matchDocumentHeight($fullHeightWrapper);
+		// matchDocumentHeight($(".dashboard-sidebar"), -20);
         // setDashboardBackground('#6a6a6e');
 		
 		positionIndex();
@@ -4413,13 +4413,9 @@ $(document).ready(function(){
 	function matchDocumentHeight(el, amount){
 
 		amount = amount || 220;
-
-		if(el.length > 0) {
-			if(el.height() < $document.height()) {
-				el.height($document.height() - amount );
-			};
-			 
-		}
+		if (el.height > $window.height()) { el.height("100%"); return }
+		var highest = Math.max(el.height(), $document.height() - amount)
+		el.height(highest);
 
 	}
 
@@ -4676,8 +4672,8 @@ $window.bind('scroll', function(){
 $window.resize(function(){
     wHeight = $window.height();
     wWidth = $window.width();
-    matchIndexContents();
-	matchDocumentHeight();
+	// matchDocumentHeight($fullHeightWrapper);
+	// matchDocumentHeight($(".dashboard-sidebar"), -20);
 });
 
 

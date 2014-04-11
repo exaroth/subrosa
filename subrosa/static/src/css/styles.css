@@ -3959,7 +3959,7 @@ li {
 a:hover,
 a:active {
   text-decoration: none;
-  color: #ff5c39;
+  color: #999999;
 }
 a {
   -webkit-transition: color 0.1s ease-in;
@@ -5410,11 +5410,6 @@ div[id^='selectable'] {
 div#selectable-1 {
   display: block;
 }
-@media screen and (max-width: 970px) {
-  .image-upload-wrapper {
-    padding-left: 50px;
-  }
-}
 #user-info-panel {
   width: 500px;
   height: 600px;
@@ -5534,6 +5529,7 @@ div#selectable-1 {
 @media screen and (max-width: 970px) {
   .image-upload-wrapper {
     margin: 0 2em;
+    padding-left: 50px;
   }
 }
 .image-upload-wrapper #imgur-credit {
@@ -5749,6 +5745,27 @@ div#selectable-1 {
   font-weight: bold;
   margin-bottom: 48px;
 }
+#archives-main-title {
+  font-weight: bold;
+  color: #666666;
+  margin: 100px 0 48px 0;
+}
+.archives-date h5 {
+  font-weight: bold;
+  margin: 12px 0;
+  color: #666666;
+  font-size: 12px;
+  display: table;
+  border-bottom: 2px solid #999999;
+  padding-bottom: 2px;
+}
+.archives-item:hover {
+  color: #cccccc !important;
+}
+.archives-item h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
 .header {
   height: 40px;
   position: relative;
@@ -5919,7 +5936,7 @@ footer p {
 footer #subscribe-link {
   position: absolute;
   background-color: #fff;
-  curdor: pointer;
+  cursor: pointer;
   border: 1px solid #e6e6e6;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
   background-image: -webkit-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
@@ -5938,6 +5955,9 @@ footer #subscribe-link {
   border-radius: 50%;
   background-clip: padding-box;
 }
+footer #subscribe-link:hover {
+  color: #ff5c39;
+}
 footer #subscribe-link i {
   display: block;
 }
@@ -5951,6 +5971,7 @@ footer #subscribe-link i {
 html,
 body {
   height: 100%;
+  position: relative;
 }
 body:before {
   content: "";
@@ -5964,24 +5985,10 @@ body:before {
 #main-wrapper {
   overflow: auto;
   padding-bottom: 60px;
-  width: 100%;
-  position: relative;
 }
 textarea {
   background-color: transparent !important;
   resize: none;
-}
-.full-height-wrapper {
-  position: relative;
-  height: 100%;
-}
-.full-height-wrapper:before,
-.full-height-wrapper:after {
-  content: " ";
-  display: table;
-}
-.full-height-wrapper:after {
-  clear: both;
 }
 .form-control,
 textarea.form-control {
@@ -6137,35 +6144,29 @@ a[disabled] {
 .mfp-arrow:after {
   border: none;
 }
-.vert-centered {
-  position: relative;
+.vertical-center {
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  position: absolute;
 }
-.hor-centered {
-  position: relative;
+.empty-container {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  padding: 20px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-}
-.empty-container {
-  width: 200px;
-  text-align: center;
-  -webkit-border-radius: 10px;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 10px;
-  -moz-background-clip: padding;
-  border-radius: 10px;
-  background-clip: padding-box;
-  padding: 20px;
-  margin-top: -120px;
+  top: 30%;
+  position: absolute;
+  margin: 0;
 }
 .empty-container h4 {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;

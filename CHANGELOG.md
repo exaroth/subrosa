@@ -5,6 +5,7 @@ Tracking changes for Subrosa versions. Visit [https://github.com/exaroth/subrosa
 ## 0.4 ( in progress )
 
 * Added documentation
+* Added archives page
 
 ## 0.3
 
