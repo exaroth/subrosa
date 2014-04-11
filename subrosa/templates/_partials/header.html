@@ -8,22 +8,27 @@
 	<div class="header-toolbar ">
 		<div class="toolbar-sitetitle col-md-5" >
 			<a href="{{ url_for('index')}}">
-				<h4>{{ settings.title }}</h4>
+				<h4>{{ settings.site_title }}</h4>
 			</a>
 		</div>
 		<ul class="toolbar-links list-unstyled" style="margin-left: 5%" >
-			{% if settings.gallery %}
+			{% if settings.show_gallery %}
 			<li><a href="{{ url_for('gallery')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'GALLERY' }}">GALLERY</a></li>
 			{% endif %}
-			{% if settings.projects %}
+			{% if settings.show_projects %}
 			<li><a href="{{ url_for('projects')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'PROJECTS' }}">PROJECTS</a></li>
 			{% endif %}
-			{% if settings.about %}
+			{% if settings.show_archives %}
+			<li><a href="{{ url_for('archives')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'ARCHIVES' }}">ARCHIVES</a></li>
+			{% endif %}
+
+
+			{% if settings.show_about %}
 			{% if session.user %}
 
 			<li><a class="toolbar-link gallery-link" href="{{ url_for('about_edit') }}">ABOUT</a></li>
 			{% else %}
-				<li><a href="{{ url_for('about')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'ABOUT' }}">ABOUT</a></li>
+			<li><a href="{{ url_for('about')}}" class="toolbar-link gallery-link {{ 'active' if header_context == 'ABOUT' }}">ABOUT</a></li>
 
 			{% endif %}
 

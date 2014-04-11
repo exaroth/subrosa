@@ -45,7 +45,7 @@ footer {
 	#subscribe-link {
 		position: absolute;
 		background-color: #fff;
-		curdor: pointer;
+		cursor: pointer;
 		border: 1px solid @black-10;
 		.gradient-light-linear();
 		padding: 6px;
@@ -53,6 +53,9 @@ footer {
 		.translateX(-50%);
 		top: -15px;
 		.border-radius(50%);
+		&:hover {
+			 color: @rose-red;
+		}
 		i {
 			display: block;
 		}

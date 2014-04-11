@@ -16,6 +16,7 @@ import os
 import re
 from datetime import datetime
 from six.moves.urllib.parse import urljoin
+from itertools import groupby
 import urllib
 import textwrap
 from flask import (render_template, redirect,
@@ -455,20 +456,12 @@ def gallerify(id):
 @app.route("/configure", methods=["POST"])
 @login_required
 def configure():
-    imgur_id = request.form.get('imgur', None).encode('utf-8')
-    disqus = request.form.get('disqus', None).encode('utf-8')
-    github = request.form.get('github', None).strip().encode('utf-8')
-    facebook = request.form.get('facebook', None).strip().encode('utf-8')
-    twitter = request.form.get('twitter', None).strip().encode('utf-8')
-    twitter_username = request.form.get('twitter-user', None).strip().encode('utf-8')
-    google_plus = request.form.get('gplus', None).strip().encode('utf-8')
-    email = request.form.get('email', None).strip().encode('utf-8')
-    title = request.form.get("site-title", None).strip().encode("utf-8")
-    gallery = True if request.form.get('show-gallery') == 'on' else False
-    projects = True if request.form.get('show-projects') == 'on' else False
-    show_info = True if request.form.get('show-info') == 'on' else False
-    about = True if request.form.get('show-about') == 'on' else False
 
+    for field in app.config["SETTINGS_FIELDS"]:
+        locals()[field] = request.form.get(field, "").strip().encode("utf-8")
+
+    for field in app.config["SETTINGS_SWITCHES"]:
+        locals()[field] = True if request.form.get(field) == "on" else False
     to_update = dict()
     for key, val in locals().items():
         if key in ConfigModel._meta.get_field_names():
@@ -510,7 +503,7 @@ def set_info():
 @app.route("/gallery/<int:page>")
 @cache.cached(timeout=app.config.get("CACHE_TIMEOUT", 50))
 def gallery(page):
-    if not get_config().gallery:
+    if not get_config().show_gallery:
         return redirect(url_for("index"))
     per_page = settings.get("images_per_page", 10)
     images = UserImages.get_gallery_images(page=page,
@@ -530,6 +523,13 @@ def gallery(page):
                            images=images,
                            show_pagination=show_pagination)
 
+
+@app.route("/archives")
+def archives():
+
+    articles = Articles.get_released_articles()
+
+    return render_template("archives.html", articles=articles)
 
 @app.route("/recent.atom")
 def recent_feeds():

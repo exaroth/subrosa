@@ -65,11 +65,15 @@ TWITTER_USERNAME = ""
 
 IMGUR_ID = ""
 
-# Set it to True if you want gallery link on your main page
+# Show different links on header
 
 GALLERY = False
 
 PROJECTS = False
+
+ABOUT = False
+
+ARCHIVES = False
 
 # Number of pages that shows up on index page
 
@@ -92,6 +96,14 @@ SECRET_KEY = "Change it"
 # Allowed filenames for image upload
 
 ALLOWED_FILENAMES = ["jpg", "jpeg", "gif", "png", "JPG", "JPEG", "GIF", "PNG"]
+
+# Switches in swttings panel
+
+SETTINGS_SWITCHES = ("show_info", "show_projects", "show_archives", "show_gallery", "show_about")
+
+# Field names in settings panel
+
+SETTINGS_FIELDS = ("email", "github", "facebook", "twitter", "twitter_username", "google_plus", "disqus_shortname", "imgur_id", "site_title")
 
 # Thumbnail size for imgur images
 

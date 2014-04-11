@@ -71,7 +71,7 @@
 					<div class="article-list-title ">
 						<a href="{{ url_for('article_view', slug = article.slug )}}" class="article-title-link"><h3 class="text-center">{{ article.title }}</h3></a>
 						<p class="date-created">{{ article.date_created.strftime("%B %d %Y") }}</p>
-						{% if settings.disqus %}
+						{% if settings.disqus_shortname %}
 						<a href="{{ url_for('article_view', slug = article.slug )}}#disqus_thread" class="article-comments-count" data-disqus-identifier="{{ article.slug }}">&nbsp;</a>
 						{% endif %}
 					</div>
@@ -142,7 +142,7 @@
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 {% endif %}
 
-{% if settings.disqus %}
+{% if settings.disqus_shortname %}
 
 <script type="text/javascript">
 var disqus_shortname = '{{ settings.disqus }}'; // required: replace example with your forum shortname

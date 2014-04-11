@@ -20,7 +20,7 @@
 
 			<div class="form-group">
 				<label for="site-title">Site title</label>
-				<input type="text" class="form-control " name="site-title" id="site-title" value="{{ settings.title  }}" placeholder="Site title" style="text-align: center;" />
+				<input type="text" class="form-control " name="site_title" id="site-title" value="{{ settings.site_title  }}" placeholder="Site title" style="text-align: center;" />
 			</div>
 			<div class="form-group">
 			<select name="link-fields" id="link-fields" class="form-control">
@@ -57,27 +57,27 @@
 				<div class="input-group">
 					<span class="input-group-addon" title="Twitter address"><i class="icon-twitter"></i></span>
 					<input type="text" name="twitter" id="twitter" placeholder="Twitter address (not set)" class="form-control" value="{{ settings.twitter }}">
-					<input type="text" name="twitter-user" id="twitter-user" class="form-control" placeholder="Your Twitter username" value="{{ settings.twitter_username}}">
+					<input type="text" name="twitter_username" id="twitter-username" class="form-control" placeholder="Your Twitter username" value="{{ settings.twitter_username}}">
 				</div>
 			</div>
  			<div class="form-group" id="selectable-5">
 				<div class="input-group">
 					<span class="input-group-addon" title="Google+ address"><i class="icon-gplus"></i></span>
-					<input type="text" name="gplus" id="gplus" placeholder="Google+ account (not set)" class="form-control" value="{{ settings.google_plus }}">
+					<input type="text" name="google_plus" id="google-plus" placeholder="Google+ account (not set)" class="form-control" value="{{ settings.google_plus }}">
 				</div>
 			</div>
 		<hr>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon" title="Imgur user_id" style="width: 80px;"><img src="{{url_for('static', filename = config.STATIC_ROOT + 'img/imgur.png' )}}" alt="imgur" style="height: 16px;"></span>
-					<input type="text" name="imgur" id="imgur" placeholder="Imgur client_id" class="form-control" value="{{ settings.imgur_id }}">
+					<input type="text" name="imgur_id" id="imgur" placeholder="Imgur client_id" class="form-control" value="{{ settings.imgur_id }}">
 				</div>
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="input-group">
 				<span class="input-group-addon" title="Disqus site name" style="width: 60px"><img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/disqus.png')}}" alt="disqus" style="height: 10px;"></span>
-				<input type="text" name="disqus" id="disqus" placeholder="Disqus site shortname" class="form-control" value="{{ settings.disqus }}">
+				<input type="text" name="disqus_shortname" id="disqus" placeholder="Disqus site shortname" class="form-control" value="{{ settings.disqus_shortname }}">
 			</div>
 		</div>
 
@@ -89,7 +89,7 @@
 			<div class="dashboard-checkbox-field">
 				<label for=""><small>Show Gallery</small></label>
 				<div class="onoffswitch">
-					<input type="checkbox" name="show-gallery" class="onoffswitch-checkbox" id="myonoffswitch1" {{ 'checked' if settings.gallery }}>
+					<input type="checkbox" name="show_gallery" class="onoffswitch-checkbox" id="myonoffswitch1" {{ 'checked' if settings.show_gallery }}>
 					<label class="onoffswitch-label" for="myonoffswitch1">
 						<div class="onoffswitch-inner"></div>
 						<div class="onoffswitch-switch"></div>
@@ -100,20 +100,18 @@
 			<div class="dashboard-checkbox-field">
 				<label for=""><small>Show Projects</small></label>
 				<div class="onoffswitch">
-					<input type="checkbox" name="show-projects" class="onoffswitch-checkbox" id="myonoffswitch2" {{ 'checked' if settings.projects }}>
+					<input type="checkbox" name="show_projects" class="onoffswitch-checkbox" id="myonoffswitch2" {{ 'checked' if settings.show_projects }}>
 					<label class="onoffswitch-label" for="myonoffswitch2">
 						<div class="onoffswitch-inner"></div>
 						<div class="onoffswitch-switch"></div>
 					</label>
 				</div>
-
-
 			</div>
 
 			<div class="dashboard-checkbox-field">
 				<label for=""><small>Show User Info</small></label>
 				<div class="onoffswitch">
-					<input type="checkbox" name="show-info" class="onoffswitch-checkbox" id="myonoffswitch3" {{ 'checked' if settings.show_info }}>
+					<input type="checkbox" name="show_info" class="onoffswitch-checkbox" id="myonoffswitch3" {{ 'checked' if settings.show_info }}>
 					<label class="onoffswitch-label" for="myonoffswitch3">
 						<div class="onoffswitch-inner"></div>
 						<div class="onoffswitch-switch"></div>
@@ -122,10 +120,21 @@
 			</div>
 			
 			<div class="dashboard-checkbox-field">
+				<label for=""><small>Show Archives</small></label>
+				<div class="onoffswitch">
+					<input type="checkbox" name="show_archives" class="onoffswitch-checkbox" id="myonoffswitch4" {{ 'checked' if settings.show_archives }}>
+					<label class="onoffswitch-label" for="myonoffswitch4">
+						<div class="onoffswitch-inner"></div>
+						<div class="onoffswitch-switch"></div>
+					</label>
+				</div>
+			</div>
+
+			<div class="dashboard-checkbox-field">
 				<label for=""><small>Show about page</small></label>
 				<div class="onoffswitch">
-					<input type="checkbox" name="show-about" class="onoffswitch-checkbox" id="myonoffswitch4" {{ 'checked' if settings.about }}>
-					<label class="onoffswitch-label" for="myonoffswitch4">
+					<input type="checkbox" name="show_about" class="onoffswitch-checkbox" id="myonoffswitch5" {{ 'checked' if settings.show_about }}>
+					<label class="onoffswitch-label" for="myonoffswitch5">
 						<div class="onoffswitch-inner"></div>
 						<div class="onoffswitch-switch"></div>
 					</label>

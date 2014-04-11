@@ -24,7 +24,7 @@ li {
 a:hover,
 a:active {
   text-decoration: none;
-  color: #ff5c39;
+  color: #999999;
 }
 a {
   -webkit-transition: color 0.1s ease-in;
@@ -1814,6 +1814,27 @@ div#selectable-1 {
   font-weight: bold;
   margin-bottom: 48px;
 }
+#archives-main-title {
+  font-weight: bold;
+  color: #666666;
+  margin: 100px 0 48px 0;
+}
+.archives-date h5 {
+  font-weight: bold;
+  margin: 12px 0;
+  color: #666666;
+  font-size: 12px;
+  display: table;
+  border-bottom: 2px solid #999999;
+  padding-bottom: 2px;
+}
+.archives-item:hover {
+  color: #cccccc !important;
+}
+.archives-item h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
 .header {
   height: 40px;
   position: relative;
@@ -1984,7 +2005,7 @@ footer p {
 footer #subscribe-link {
   position: absolute;
   background-color: #fff;
-  curdor: pointer;
+  cursor: pointer;
   border: 1px solid #e6e6e6;
   background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
   background-image: -webkit-linear-gradient(#ffffff, rgba(255, 255, 255, 0));
@@ -2002,6 +2023,9 @@ footer #subscribe-link {
   -moz-background-clip: padding;
   border-radius: 50%;
   background-clip: padding-box;
+}
+footer #subscribe-link:hover {
+  color: #ff5c39;
 }
 footer #subscribe-link i {
   display: block;

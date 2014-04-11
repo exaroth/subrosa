@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 from peewee import SqliteDatabase, PostgresqlDatabase, MySQLDatabase
-from subrosa.filters import timesince
+from subrosa.filters import timesince, get_month_name
 from subrosa.helpers import generate_csrf_token
 from subrosa.markdown_ext import Markdown
 from subrosa.helpers import logger
@@ -35,19 +35,22 @@ class Subrosa(object):
     to be passed in constructor
     """
 
-    OPTIONS = ("disqus", "facebook", "twitter", "github",
-               "google_plus", "email", "gallery", "projects",
-               "dynamic_site", "title", "articles_per_page",
-               "images_per_page", "imgur_id", "thumbnail_size",
-               "show_info", "twitter_username", "about")
+    # OPTIONS = ("disqus", "facebook", "twitter", "github",
+    #            "google_plus", "email", "gallery", "projects",
+    #            "dynamic_site", "title", "articles_per_page",
+    #            "images_per_page", "imgur_id", "thumbnail_size",
+    #            "show_info", "twitter_username", "about", "archives")
+    OPTIONS = ("articles_per_page", "images_per_page")
 
     IMAGES = ('bg', 'logo', 'portrait')
 
     def __init__(self, app):
 
         self.app = app
-        self.settings = dict()
 
+        self.OPTIONS += self.app.config["SETTINGS_FIELDS"]
+        self.OPTIONS += self.app.config["SETTINGS_SWITCHES"]
+        self.settings = dict()
         self.db_types = dict(
             sqlite=SqliteDatabase,
             postgres=PostgresqlDatabase,
@@ -68,6 +71,7 @@ class Subrosa(object):
 
         app.jinja_env.globals['csrf_token'] = generate_csrf_token
         app.jinja_env.filters['timesince'] = timesince
+        app.jinja_env.filters['month_name'] = get_month_name
         app.jinja_env.filters['markdown'] = md._build_filter(auto_escape=False)
 
     def _get_user_images(self):

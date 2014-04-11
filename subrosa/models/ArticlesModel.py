@@ -81,6 +81,11 @@ class Articles(BaseModel):
             handle_errors("Error getting articles")
 
     @staticmethod
+    def get_released_articles():
+        return Articles.select().where(Articles.draft == False)
+        
+
+    @staticmethod
     def get_user_articles(username):
 
         """

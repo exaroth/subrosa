@@ -11,7 +11,6 @@ from playhouse.test_utils import test_database
 from peewee import *
 
 db = SqliteDatabase(":memory:")
-
 db._flag = "db1"
 
 

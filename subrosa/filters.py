@@ -13,6 +13,7 @@
 
 from jinja2 import Markup
 from datetime import datetime
+import calendar
 import re
 
 
@@ -38,3 +39,17 @@ def timesince(dt, default="just now"):
         if period:
             return "%d %s ago" % (period, singular if period == 1 else plural)
     return default
+
+
+def get_month_name(month_number):
+    """ Return month name based on integer """
+
+    months = ("January", "February",
+              "March", "April", "May",
+              "June", "July", "August",
+              "September", "October",
+              "November", "December")
+
+    return months[month_number - 1]
+
+

@@ -15,8 +15,10 @@ import os
 import six
 from math import ceil
 from functools import wraps
+from itertools import groupby
 from flask import session, redirect, url_for, request
 from six.moves.urllib import parse
+from collections import defaultdict, OrderedDict
 import string
 import random
 import unicodedata
@@ -98,7 +100,6 @@ def id_generator(size=6, chars=string.ascii_uppercase+string.digits):
     """ Generate random string """
 
     return ''.join(random.choice(chars) for _ in range(size))
-
 
 def handle_errors(mess="Unknown Error"):
 

@@ -50,7 +50,7 @@
 		</div>
 
 
-		{% if settings.disqus %}
+		{% if settings.disqus_shortname %}
 
 		<!-- Disqus threads -->
 
@@ -75,10 +75,10 @@
 
 <script type="text/javascript">
 
-{% if settings.disqus %}
+{% if settings.disqus_shortname %}
 
 // Disqus
-var disqus_shortname = '{{ settings.disqus }}';
+var disqus_shortname = '{{ settings.disqus_shortname }}';
 var disqus_identifier = '{{ article.slug }}';
 var disqus_title = '{{ article.title }}';
 var disqus_url = '{{ current_path }}';

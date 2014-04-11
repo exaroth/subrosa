@@ -8,9 +8,18 @@ sys.path.append("..")
 
 
 from subrosa.helpers import slugify, split_filename
-
+from subrosa.models.ArticlesModel import Articles
+from subrosa.models.UsersModel import Users
+from subrosa.helpers import archives_generator
+from playhouse.test_utils import test_database
+import datetime
+from peewee import *
 import unittest
+import time
+from pprint import pprint
 
+db = SqliteDatabase(":memory:")
+db._flag = "db1"
 
 class TestBasicHelpers(unittest.TestCase):
 
