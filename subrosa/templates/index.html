@@ -25,7 +25,7 @@
 			{% if images.logo %}
 			<img id="site-logo" src="{{ url_for('send_image', filename = images.logo)}}"></img>
 			{% else %}
-			<h1 class="text-center" id="site-title">{{ settings.title }}</h1>
+			<h1 class="text-center" id="site-title">{{ settings.site_title }}</h1>
 			{% endif %}
 		</div>
 
