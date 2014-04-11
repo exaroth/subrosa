@@ -1475,11 +1475,6 @@ div[id^='selectable'] {
 div#selectable-1 {
   display: block;
 }
-@media screen and (max-width: 970px) {
-  .image-upload-wrapper {
-    padding-left: 50px;
-  }
-}
 #user-info-panel {
   width: 500px;
   height: 600px;
@@ -1599,6 +1594,7 @@ div#selectable-1 {
 @media screen and (max-width: 970px) {
   .image-upload-wrapper {
     margin: 0 2em;
+    padding-left: 50px;
   }
 }
 .image-upload-wrapper #imgur-credit {
@@ -2040,6 +2036,7 @@ footer #subscribe-link i {
 html,
 body {
   height: 100%;
+  position: relative;
 }
 body:before {
   content: "";
@@ -2053,24 +2050,10 @@ body:before {
 #main-wrapper {
   overflow: auto;
   padding-bottom: 60px;
-  width: 100%;
-  position: relative;
 }
 textarea {
   background-color: transparent !important;
   resize: none;
-}
-.full-height-wrapper {
-  position: relative;
-  height: 100%;
-}
-.full-height-wrapper:before,
-.full-height-wrapper:after {
-  content: " ";
-  display: table;
-}
-.full-height-wrapper:after {
-  clear: both;
 }
 .form-control,
 textarea.form-control {
@@ -2226,35 +2209,29 @@ a[disabled] {
 .mfp-arrow:after {
   border: none;
 }
-.vert-centered {
-  position: relative;
+.vertical-center {
   top: 50%;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  position: absolute;
 }
-.hor-centered {
-  position: relative;
+.empty-container {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  padding: 20px;
   left: 50%;
   -webkit-transform: translateX(-50%);
   -moz-transform: translateX(-50%);
   -o-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-}
-.empty-container {
-  width: 200px;
-  text-align: center;
-  -webkit-border-radius: 10px;
-  -webkit-background-clip: padding-box;
-  -moz-border-radius: 10px;
-  -moz-background-clip: padding;
-  border-radius: 10px;
-  background-clip: padding-box;
-  padding: 20px;
-  margin-top: -120px;
+  top: 30%;
+  position: absolute;
+  margin: 0;
 }
 .empty-container h4 {
   font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Gill Sans', Verdana, sans-serif;

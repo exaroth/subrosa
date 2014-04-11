@@ -42,17 +42,18 @@
 
 html, body {
 	height: 100%;
+	position: relative;
 }
 
 
 // Opera fix
 body:before {
-
 	content: "";
 	height: 100%;
 	width: 0;
 	margin-top: -32767px;
 }
+
 
 #wrap{
 	min-height: 100%;
@@ -61,19 +62,11 @@ body:before {
 #main-wrapper {
 	overflow: auto;
 	padding-bottom: 60px;
-	width: 100%;
-	position: relative;
 }
 
 textarea {
 	background-color: transparent !important;
 	resize: none;
-}
-
-.full-height-wrapper {
-	 position: relative;
-	 height: 100%;
-	.clearfix();
 }
 
 
@@ -213,24 +206,23 @@ a[disabled] {
 	border: none
 }
 
-.vert-centered {
-	position: relative;
+.vertical-center {
 	top: 50%;
 	.translateY(-50%);
-}
-.hor-centered {
-    position: relative;
-    left: 50%;
-    .translateX(-50%);
+	position: absolute;
 }
 
 // Container appearing when theres no content on the page
 .empty-container {
 	width: 200px;
+	height: 200px;
 	text-align: center;
-	.border-radius(10px);
 	padding: 20px;
-	margin-top: -120px;
+	left: 50%;
+	.translateX(-50%);
+	top: 30%;
+	position: absolute;
+	margin: 0;
 	h4 {
 		font-family: @sans-font;
 		color: @black-50;

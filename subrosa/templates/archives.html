@@ -10,24 +10,37 @@
 
 <h1 class="text-center" id="archives-main-title" >Archives</h1>
 
+{% if articles.count() %}
 
-	<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" id="archives-list">
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" id="archives-list">
 
-		{% for year, year_group in articles | groupby("date_created.year") %}
-		{% for month, list in year_group| groupby("date_created.month") %}
-			<div class="archives-date col-xs-12">
-				<h5>{{ month | month_name }}  {{ year }}</h5>
-			</div>
-		{% for article in list %}
-			<div class="archives-item col-sm-8 col-sm-offset-2">
-				<a href="{{ url_for('article_view', slug=article.slug) }}"><h4 class="archives-title">{{ article.title }}</h4></a>
-			</div>
-		{% endfor %}
+	{% for year, year_group in articles | groupby("date_created.year") %}
 
-		{% endfor %}
+	{% for month, list in year_group| groupby("date_created.month") %}
 
-		{% endfor %}
+	<div class="archives-date col-xs-12">
+		<h5>{{ month | month_name }}  {{ year }}</h5>
 	</div>
+	{% for article in list %}
+	<div class="archives-item col-sm-8 col-sm-offset-2">
+		<a href="{{ url_for('article_view', slug=article.slug) }}"><h4 class="archives-title">{{ article.title }}</h4></a>
+	</div>
+	{% endfor %}
+
+	{% endfor %}
+
+	{% endfor %}
+</div>
+
+{% else %}
+
+<div class="empty-container">
+	<img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/subrosa.jpg')}}" alt="subrosa">
+	<h4>No articles written yet</h4></div>
+{% endif %}
+
+
+
 {% endblock %}
 
 

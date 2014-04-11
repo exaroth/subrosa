@@ -7,10 +7,9 @@
 
 {% block content %} 
 
-<div class="full-height-wrapper">
 
 
-	<div class="col-md-2 col-md-offset-5 vert-centered" id="login-panel">
+	<div class="col-md-2 col-md-offset-5 vertical-center" id="login-panel">
 		<img src="{{ url_for('static', filename = config.STATIC_ROOT + 'img/subrosa.jpg')}}" alt="subrosa">
 		<form role="form" method="POST" action="">
 			<input name=_csrf_token type=hidden value="{{ csrf_token() }}">    
@@ -28,6 +27,5 @@
 			{% endif %}
 		</div>
 	</div>
-</div>
 
 {% endblock %}
