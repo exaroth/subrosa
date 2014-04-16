@@ -39,8 +39,8 @@ class ExtendedImagesExtension(markdown.Extension):
         self.processor = ExtendedImagesTreeprocessor()
         self.processor.md = md
         self.processor.config = self.getConfigs()
-        if 'att_list' in md.treeprocessors.keys():
-            md.treeprocessores.add('extended_img',
+        if 'attr_list' in md.treeprocessors.keys():
+            md.treeprocessors.add('extended_img',
                                    self.processor, '>attr_list')
         else:
             md.treeprocessors.add('extended_img',

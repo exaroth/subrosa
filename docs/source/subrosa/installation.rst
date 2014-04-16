@@ -74,7 +74,7 @@ Deployment on Heroku
 Commit all the changes
 ^^^^^^^^^^^^^^^^^^^^^^
 
-If you downloaded zipped source ```git init``` from inside main Subrosa directory
+If you downloaded zipped source run ```git init``` from inside main Subrosa directory
 
 
 After changing configuration file and adding images issue:
