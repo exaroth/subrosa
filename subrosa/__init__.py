@@ -39,7 +39,7 @@ app = Flask(__name__)
 # config init
 app.config.from_object("subrosa.default_config")
 app.config.from_pyfile("../subrosa.conf")
-if os.environ.get("SUBROSA_CONFIG"):
+if os.environ.has_key("SUBROSA_CONFIG"):
     # Get development config stored in ~/.configs/subrosa.py
     app.config.from_envvar("SUBROSA_CONFIG", silent=False)
 
