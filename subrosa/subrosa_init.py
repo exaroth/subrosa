@@ -59,7 +59,7 @@ class Subrosa(object):
         self._get_user_images()
         self._favicon_check()
 
-        md = Markdown(app, extensions=["fenced_code",
+        md = Markdown(app, extension_configs=["fenced_code",
                                        "codehilite",
                                        "headerid",
                                        "subrosa.md_extensions.extended_images"])
