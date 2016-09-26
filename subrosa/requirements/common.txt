@@ -1,6 +1,6 @@
 git+git://github.com/mitsuhiko/flask
 git+git://github.com/thadeusb/flask-cache.git
-git+git://github.com/coleifer/peewee.git
+git+git://github.com/coleifer/peewee.git@822d135ef9d37206cfed4b1efa884e5e0adab2c2
 git+git://github.com/benoitc/gunicorn.git
 Markdown>=2.3.1
 Pygments>=1.6
