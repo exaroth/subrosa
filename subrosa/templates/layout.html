@@ -13,7 +13,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('send_image', filename = 'favicon.ico')}}">
 	{% endif %}
 	<link rel="alternate" type="application/rss+xml" href="{{ url_for('recent_feeds') }}" title="Recent feeds">
-	<title>{{ settings.title }}</title>
+	<title>{{ settings.site_title }}</title>
 
 
 	{% if config.DEBUG %}
