@@ -5,8 +5,6 @@ v.0.3
 
 [![Build Status](https://travis-ci.org/exaroth/subrosa.png?branch=master)](https://travis-ci.org/exaroth/subrosa)
 
-You can see working example under [konradwasowicz.com/subrosa](http://konradwasowicz.com/subrosa)
-
 Subrosa is simple and elegant blogging platform written in Python, meant to be easy to use and deploy. Features:
 
 ![](sr_admin_thumb.jpg)
