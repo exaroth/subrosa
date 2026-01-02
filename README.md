@@ -1,4 +1,3 @@
-![](sr.jpg)
 # Subrosa
 
 v.0.3
